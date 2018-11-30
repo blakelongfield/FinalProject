@@ -1,6 +1,6 @@
 package com.skilldistillery.skireport.entities;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -20,12 +20,18 @@ class ReportTests {
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception{
 		emf = Persistence.createEntityManagerFactory("SkiReport");
-		
 	}
+	
 	@BeforeEach
 	void setUp() throws Exception {
 		em = emf.createEntityManager();
 		report = em.find(Report.class, 1);
+	}
+	
+	@Test
+	void test1() {
+		assertEquals(5, report.getRating().intValue());
+		assertEquals("Great Powder Today", report.getReportText());
 	}
 	
 	@AfterAll
