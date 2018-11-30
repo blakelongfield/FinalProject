@@ -1,10 +1,15 @@
 package com.skilldistillery.skireport.entities;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -31,7 +36,20 @@ public class Report {
 	@CreationTimestamp
 	@Column(name="date_created")
 	private Integer dateCreated;
-
+	
+	@OneToMany(mappedBy="user_id")
+	private User user;
+	
+	@OneToMany(mappedBy="mountain_id")
+	private Mountain mountain;
+	
+	@OneToMany(mappedBy="trail_id")
+	private Trail trail;
+	
+	@ManyToOne
+	@JoinColumn(name="comment_id")
+	private List<Comment> comments;
+	
 	public Report() {
 		super();
 	}

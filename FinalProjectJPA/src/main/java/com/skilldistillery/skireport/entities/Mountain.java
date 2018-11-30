@@ -1,12 +1,15 @@
 package com.skilldistillery.skireport.entities;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-
-import org.hibernate.annotations.Columns;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Mountain {
@@ -30,6 +33,17 @@ public class Mountain {
 	
 	@Column(name="mountain_map_url")
 	private String imgUrl;
+	
+	@ManyToOne
+	@JoinColumn(name="report_id")
+	private List<Report> reports;
+	
+	@ManyToOne
+	@JoinColumn(name="trail_id")
+	private List<Trail> trails;
+	
+	@OneToMany(mappedBy="resort_id")
+	private Resort resort;
 
 	public Mountain() {
 		super();
