@@ -10,6 +10,7 @@
     
     <!-- entities goes here -->
     <class>com.skilldistillery.skireport.entities.User</class>
+    <class>com.skilldistillery.skireport.entities.Mountain</class>
     
     <!-- Sort by alphabetical to make each entity easy to find -->
    
