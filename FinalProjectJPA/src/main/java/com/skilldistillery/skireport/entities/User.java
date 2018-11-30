@@ -37,6 +37,30 @@ public class User {
 	@OneToMany(mappedBy="report_id")
 	private List<Report> reports;
 	
+	public User(int id, String firstName, String lastName, String userName, String password, String email, String role,
+			Boolean active, String imgUrl, List<Comment> comments, List<Report> reports) {
+		super();
+		this.id = id;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.userName = userName;
+		this.password = password;
+		this.email = email;
+		this.role = role;
+		this.active = active;
+		this.imgUrl = imgUrl;
+		this.comments = comments;
+		this.reports = reports;
+	}
+
+	public List<Report> getReports() {
+		return reports;
+	}
+
+	public void setReports(List<Report> reports) {
+		this.reports = reports;
+	}
+
 	public User() {
 		
 	}
@@ -140,6 +164,8 @@ public class User {
 		builder.append(imgUrl);
 		builder.append(", comments=");
 		builder.append(comments);
+		builder.append(", reports=");
+		builder.append(reports);
 		builder.append("]");
 		return builder.toString();
 	}
@@ -171,6 +197,7 @@ public class User {
 		result = prime * result + ((imgUrl == null) ? 0 : imgUrl.hashCode());
 		result = prime * result + ((lastName == null) ? 0 : lastName.hashCode());
 		result = prime * result + ((password == null) ? 0 : password.hashCode());
+		result = prime * result + ((reports == null) ? 0 : reports.hashCode());
 		result = prime * result + ((role == null) ? 0 : role.hashCode());
 		result = prime * result + ((userName == null) ? 0 : userName.hashCode());
 		return result;
@@ -221,6 +248,11 @@ public class User {
 			if (other.password != null)
 				return false;
 		} else if (!password.equals(other.password))
+			return false;
+		if (reports == null) {
+			if (other.reports != null)
+				return false;
+		} else if (!reports.equals(other.reports))
 			return false;
 		if (role == null) {
 			if (other.role != null)
