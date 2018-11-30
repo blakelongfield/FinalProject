@@ -70,7 +70,7 @@ public class Report {
 
 	@ManyToOne
 	@JoinColumn(name="trail_id")
-	private TrailTest trail;
+	private Trail trail;
 	
 	@OneToMany(mappedBy="report")
 	private List<Comment> comments;
