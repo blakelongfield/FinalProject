@@ -34,7 +34,7 @@ public class User {
 	@OneToMany(mappedBy="user")
 	private List<Comment> comments;
 	
-	@OneToMany(mappedBy="report_id")
+	@OneToMany(mappedBy="user")
 	private List<Report> reports;
 	
 	public User(int id, String firstName, String lastName, String userName, String password, String email, String role,

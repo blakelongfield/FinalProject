@@ -38,18 +38,19 @@ public class Report {
 	@Column(name="date_created")
 	private Date dateCreated;
 	
-	@OneToMany(mappedBy="user_id")
+	@ManyToOne
+	@JoinColumn(name="user_id")
 	private User user;
 	
 	@ManyToOne
 	@JoinColumn(name="mountain_id")
 	private Mountain mountain;
 	
-	@OneToMany(mappedBy="trail_id")
+	@ManyToOne
+	@JoinColumn(name="trail_id")
 	private Trail trail;
 	
-	@ManyToOne
-	@JoinColumn(name="comment_id")
+	@OneToMany(mappedBy="report")
 	private List<Comment> comments;
 	
 	public Report() {

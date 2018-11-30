@@ -7,7 +7,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Trail {
@@ -22,7 +26,15 @@ public class Trail {
 	private Integer elevationGainLoss;
 	private String features;
 	@ManyToMany
+	@JoinTable(name="chairlift_has_trail", 
+	joinColumns=@JoinColumn(name="trail_id"),
+	inverseJoinColumns=@JoinColumn(name="chairlift_id"))
 	private List<ChairLift> lifts;
+	@OneToMany(mappedBy="trail")
+	private List<Report> reports;
+	@ManyToOne
+	@JoinColumn(name="mountain_id")
+	private Mountain mountain;
 	
 	/*
 	 * getters / setters
