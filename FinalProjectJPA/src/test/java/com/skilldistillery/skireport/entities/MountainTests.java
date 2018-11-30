@@ -23,6 +23,7 @@ class MountainTests {
 		emf = Persistence.createEntityManagerFactory("SkiReport");
 		
 	}
+	
 	@BeforeEach
 	void setUp() throws Exception {
 		em = emf.createEntityManager();

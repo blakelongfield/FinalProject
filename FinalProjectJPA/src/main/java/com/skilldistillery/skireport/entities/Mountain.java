@@ -44,7 +44,7 @@ public class Mountain {
 	
 	@OneToMany(mappedBy="resort_id")
 	private Resort resort;
-
+ 
 	public Mountain() {
 		super();
 	}

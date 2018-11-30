@@ -9,7 +9,7 @@
     <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
     
     <!-- entities goes here -->
-    <class>com.skilldistillery.skireport.entities.CharLift</class>
+    <class>com.skilldistillery.skireport.entities.ChairLift</class>
     <class>com.skilldistillery.skireport.entities.Comment</class>
     <class>com.skilldistillery.skireport.entities.Mountain</class>
     <class>com.skilldistillery.skireport.entities.Report</class>
