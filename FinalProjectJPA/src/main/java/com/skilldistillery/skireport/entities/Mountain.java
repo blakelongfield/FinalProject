@@ -43,7 +43,7 @@ public class Mountain {
 	private List<Trail> trails;
 	
 	@OneToMany(mappedBy="resort_id")
-	private Resort resort;
+	private ResortTest resort;
 
 	public Mountain() {
 		super();
@@ -77,11 +77,11 @@ public class Mountain {
 		this.trails = trails;
 	}
 
-	public Resort getResort() {
+	public ResortTest getResort() {
 		return resort;
 	}
 
-	public void setResort(Resort resort) {
+	public void setResort(ResortTest resort) {
 		this.resort = resort;
 	}
 

@@ -1,5 +1,6 @@
 package com.skilldistillery.skireport.entities;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -35,12 +36,13 @@ public class Report {
 	@Temporal(TemporalType.DATE)
 	@CreationTimestamp
 	@Column(name="date_created")
-	private Integer dateCreated;
+	private Date dateCreated;
 	
 	@OneToMany(mappedBy="user_id")
 	private User user;
 	
-	@OneToMany(mappedBy="mountain_id")
+	@ManyToOne
+	@JoinColumn(name="")
 	private Mountain mountain;
 	
 	@OneToMany(mappedBy="trail_id")
@@ -54,7 +56,7 @@ public class Report {
 		super();
 	}
 
-	public Report(int id, String reportText, Integer rating, Integer votes, String imgUrl, Integer dateCreated) {
+	public Report(int id, String reportText, Integer rating, Integer votes, String imgUrl, Date dateCreated) {
 		super();
 		this.id = id;
 		this.reportText = reportText;
@@ -104,11 +106,11 @@ public class Report {
 		this.imgUrl = imgUrl;
 	}
 
-	public Integer getDateCreated() {
+	public Date getDateCreated() {
 		return dateCreated;
 	}
 
-	public void setDateCreated(Integer dateCreated) {
+	public void setDateCreated(Date dateCreated) {
 		this.dateCreated = dateCreated;
 	}
 
