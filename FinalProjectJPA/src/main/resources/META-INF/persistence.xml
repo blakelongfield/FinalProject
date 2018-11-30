@@ -16,6 +16,7 @@
     <class>com.skilldistillery.skireport.entities.Resort</class>
     <class>com.skilldistillery.skireport.entities.Trail</class>
     <class>com.skilldistillery.skireport.entities.User</class>
+    <class>com.skilldistillery.skireport.entities.LiftType</class>
     
     <!-- Sort by alphabetical to make each entity easy to find -->
    
