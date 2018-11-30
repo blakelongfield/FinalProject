@@ -92,7 +92,7 @@ public class Trail {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Trail other = (Trail) obj;
+		TrailTest other = (TrailTest) obj;
 		if (id != other.id)
 			return false;
 		return true;

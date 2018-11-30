@@ -48,7 +48,7 @@ public class Report {
 	
 	@ManyToOne
 	@JoinColumn(name="trail_id")
-	private Trail trail;
+	private TrailTest trail;
 	
 	@OneToMany(mappedBy="report")
 	private List<Comment> comments;
