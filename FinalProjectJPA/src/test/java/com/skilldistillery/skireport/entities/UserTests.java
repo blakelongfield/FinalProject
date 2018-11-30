@@ -48,6 +48,8 @@ public class UserTests {
 		System.out.println("USER------------------------------------------------: " + user);
 		
 		assertNotNull(user);
+		assertEquals("Zachary", user.getFirstName());
+		assertEquals("Lamb", user.getLastName());
 		
 		
 		
