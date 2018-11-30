@@ -42,7 +42,7 @@ public class Report {
 	private User user;
 	
 	@ManyToOne
-	@JoinColumn(name="")
+	@JoinColumn(name="mountain_id")
 	private Mountain mountain;
 	
 	@OneToMany(mappedBy="trail_id")
