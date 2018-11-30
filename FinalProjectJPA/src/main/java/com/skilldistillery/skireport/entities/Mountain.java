@@ -34,8 +34,7 @@ public class Mountain {
 	@Column(name="mountain_map_url")
 	private String imgUrl;
 	
-	@ManyToOne
-	@JoinColumn(name="report_id")
+	@OneToMany(mappedBy="mountain")
 	private List<Report> reports;
 	
 	@ManyToOne
@@ -43,8 +42,8 @@ public class Mountain {
 	private List<Trail> trails;
 	
 	@OneToMany(mappedBy="resort_id")
-	private ResortTest resort;
-
+	private Resort resort;
+ 
 	public Mountain() {
 		super();
 	}
@@ -77,11 +76,11 @@ public class Mountain {
 		this.trails = trails;
 	}
 
-	public ResortTest getResort() {
+	public Resort getResort() {
 		return resort;
 	}
 
-	public void setResort(ResortTest resort) {
+	public void setResort(Resort resort) {
 		this.resort = resort;
 	}
 
