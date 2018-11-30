@@ -1,4 +1,4 @@
-package com.skilldistillery.repositories;
+package com.skilldistillery.skireport.repositories;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
