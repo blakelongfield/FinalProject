@@ -35,6 +35,10 @@ public class Comment {
 	@ManyToOne
 	@JoinColumn(name="user_id")
 	private User user;
+	
+	public Comment() {
+		
+	}
 
 	public int getId() {
 		return id;
@@ -64,10 +68,27 @@ public class Comment {
 		return mainComment;
 	}
 
-	public void setMainComment(Comment mainCommentID) {
-		this.mainComment = mainCommentID;
+	public void setMainComment(Comment mainComment) {
+		this.mainComment = mainComment;
 	}
 
+	public List<Comment> getComments() {
+		return comments;
+	}
+
+	public void setComments(List<Comment> comments) {
+		this.comments = comments;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -93,23 +114,30 @@ public class Comment {
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("Comment [id=").append(id).append(", commentText=").append(commentText).append(", report=")
-				.append(report).append(", mainCommentID=").append(mainComment).append("]");
+		builder.append("Comment [id=");
+		builder.append(id);
+		builder.append(", commentText=");
+		builder.append(commentText);
+		builder.append(", report=");
+		builder.append(report);
+		builder.append(", mainComment=");
+		builder.append(mainComment);
+		builder.append(", comments=");
+		builder.append(comments);
+		builder.append(", user=");
+		builder.append(user);
+		builder.append("]");
 		return builder.toString();
 	}
 
-	public Comment() {
-		super();
-	}
-
-	public Comment(int id, String commentText, Report report, Comment mainComment) {
+	public Comment(int id, String commentText, Report report, Comment mainComment, List<Comment> comments, User user) {
 		super();
 		this.id = id;
 		this.commentText = commentText;
 		this.report = report;
 		this.mainComment = mainComment;
+		this.comments = comments;
+		this.user = user;
 	}
-	
-	
 
 }

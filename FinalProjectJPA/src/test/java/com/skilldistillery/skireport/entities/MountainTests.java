@@ -6,12 +6,12 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
-import org.junit.Test;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 
 class MountainTests {
 	private static EntityManagerFactory emf;
@@ -32,9 +32,19 @@ class MountainTests {
 	
 	@Test
 	@DisplayName("test that mountain has many reports")
-	void test() {
-		assertEquals(3, mountain.getReports().size());
+	void test1() {
+		assertEquals(1, mountain.getReports().size());
 	}
+	
+	@Test
+	@DisplayName("Mountain in database is correct")
+	void test2() {
+		assertEquals("Arapahoe Basin", mountain.getName());
+		assertEquals(2, mountain.getNumberOfLifts().intValue());
+		assertEquals(, mountain.getNumberOfRuns().);
+		assertEquals(, mountain.getPeakElevation());
+		assertEquals(, mountain.getBaseElevation());
+}
 	
 	@AfterAll
 	static void tearDownAfterClasS() {
