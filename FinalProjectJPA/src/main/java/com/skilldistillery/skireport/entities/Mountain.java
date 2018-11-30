@@ -37,11 +37,11 @@ public class Mountain {
 	@OneToMany(mappedBy="mountain")
 	private List<Report> reports;
 	
-	@ManyToOne
-	@JoinColumn(name="trail_id")
+	@OneToMany(mappedBy="mountain")
 	private List<Trail> trails;
 	
-	@OneToMany(mappedBy="resort_id")
+	@ManyToOne
+	@JoinColumn(name="resort_id")
 	private Resort resort;
  
 	public Mountain() {

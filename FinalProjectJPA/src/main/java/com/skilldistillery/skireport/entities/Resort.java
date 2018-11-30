@@ -1,10 +1,18 @@
 package com.skilldistillery.skireport.entities;
 
+import java.util.List;
+
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Resort {
 
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	private String street;
 	private String street2;
@@ -13,6 +21,8 @@ public class Resort {
 	private String zip;
 	private String name;
 	private Integer acres;
+	@OneToMany(mappedBy="resort")
+	private List<Mountain> mountains;
 	
 	/*
 	 * getters / setters
