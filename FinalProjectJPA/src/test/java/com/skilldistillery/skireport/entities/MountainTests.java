@@ -32,9 +32,19 @@ class MountainTests {
 	
 	@Test
 	@DisplayName("test that mountain has many reports")
-	void test() {
-		assertEquals(3, mountain.getReports().size());
+	void test1() {
+		assertEquals(1, mountain.getReports().size());
 	}
+	
+	@Test
+	@DisplayName("Mountain in database is correct")
+	void test2() {
+		assertEquals("Arapahoe Basin", mountain.getName());
+		assertEquals(2, mountain.getNumberOfLifts().intValue());
+		assertEquals(, mountain.getNumberOfRuns().);
+		assertEquals(, mountain.getPeakElevation());
+		assertEquals(, mountain.getBaseElevation());
+}
 	
 	@AfterAll
 	static void tearDownAfterClasS() {
