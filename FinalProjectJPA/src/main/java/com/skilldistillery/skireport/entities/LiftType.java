@@ -11,7 +11,7 @@ import javax.persistence.Table;
 
 
 @Entity
-@Table(name="'chairlift_type")
+@Table(name="chairlift_type")
 public class LiftType {
 	
 	@Id

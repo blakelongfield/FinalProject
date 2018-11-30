@@ -2,6 +2,7 @@ package com.skilldistillery.skireport.entities;
 
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -9,20 +10,22 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 @Entity
+@Table(name="chairlift")
 public class ChairLift {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
-	@JoinColumn(name="ride_length")
+	@Column(name="ride_length")
 	private Double rideLength;
 	
 	
-	@JoinColumn(name="type")
 	@ManyToOne
+	@JoinColumn(name="chairlift_type_id")
 	private LiftType type;
 	
 	private String hours;
@@ -30,7 +33,8 @@ public class ChairLift {
 	@ManyToMany(mappedBy="lifts")
 	private List<Trail> trails;
 	
-	// GETTERS AND SETTERS
+	
+	//GETTERS AND SETTERS
 
 	public int getId() {
 		return id;
@@ -63,7 +67,6 @@ public class ChairLift {
 	public void setHours(String hours) {
 		this.hours = hours;
 	}
-	
 
 	public List<Trail> getTrails() {
 		return trails;
@@ -72,9 +75,9 @@ public class ChairLift {
 	public void setTrails(List<Trail> trails) {
 		this.trails = trails;
 	}
-	
-	// HASH CODE AND EQUALS
 
+	
+	// HASH CODE AND EQAULS
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -97,7 +100,7 @@ public class ChairLift {
 		return true;
 	}
 
-
+	
 	// TO STRING
 	@Override
 	public String toString() {
@@ -111,22 +114,25 @@ public class ChairLift {
 		builder.append(", hours=");
 		builder.append(hours);
 		builder.append(", trails=");
-		builder.append(trails.size());
+		builder.append(trails);
 		builder.append("]");
 		return builder.toString();
 	}
-
 	
 	// CONSTRUCTORS
-	public ChairLift(Double rideLength, LiftType type, String hours) {
+
+	public ChairLift(int id, Double rideLength, LiftType type, String hours, List<Trail> trails) {
 		super();
+		this.id = id;
 		this.rideLength = rideLength;
 		this.type = type;
 		this.hours = hours;
+		this.trails = trails;
 	}
-	
+
 	public ChairLift() {}
 	
 	
-
+	
+	
 }
