@@ -40,11 +40,22 @@ class MountainTests {
 	@DisplayName("Mountain in database is correct")
 	void test2() {
 		assertEquals("Arapahoe Basin", mountain.getName());
-		assertEquals(2, mountain.getNumberOfLifts().intValue());
-		assertEquals(, mountain.getNumberOfRuns().);
-		assertEquals(, mountain.getPeakElevation());
-		assertEquals(, mountain.getBaseElevation());
+		assertEquals(9, mountain.getNumberOfLifts().intValue());
+		assertEquals(145, mountain.getNumberOfRuns().intValue());
+		assertEquals(10780, mountain.getBaseElevation().intValue());
+		assertEquals(13050, mountain.getPeakElevation().intValue());
 }
+	
+	@Test
+	@DisplayName("Resort on the mountain is correct")
+	void test3() {
+		assertEquals("28194 US Hwy 6", mountain.getResort().getStreet());
+		assertEquals("Keystone", mountain.getResort().getCity());
+		assertEquals("CO", mountain.getResort().getState());
+		assertEquals(80435, mountain.getResort().getZip());
+		assertEquals("Arapahoe Basin", mountain.getResort().getName());
+		assertEquals(1428, mountain.getResort().getAcres().intValue());
+	}
 	
 	@AfterAll
 	static void tearDownAfterClasS() {

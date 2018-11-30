@@ -31,7 +31,7 @@ public class ChairLift {
 	private String hours;
 	
 	@ManyToMany(mappedBy="lifts")
-	private List<TrailTest> trails;
+	private List<Trail> trails;
 	
 	
 	//GETTERS AND SETTERS
@@ -68,11 +68,11 @@ public class ChairLift {
 		this.hours = hours;
 	}
 
-	public List<TrailTest> getTrails() {
+	public List<Trail> getTrails() {
 		return trails;
 	}
 
-	public void setTrails(List<TrailTest> trails) {
+	public void setTrails(List<Trail> trails) {
 		this.trails = trails;
 	}
 

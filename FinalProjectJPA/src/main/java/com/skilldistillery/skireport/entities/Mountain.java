@@ -38,7 +38,7 @@ public class Mountain {
 	private List<Report> reports;
 	
 	@OneToMany(mappedBy="mountain")
-	private List<TrailTest> trails;
+	private List<Trail> trails;
 	
 	@ManyToOne
 	@JoinColumn(name="resort_id")
@@ -68,11 +68,11 @@ public class Mountain {
 		this.reports = reports;
 	}
 
-	public List<TrailTest> getTrails() {
+	public List<Trail> getTrails() {
 		return trails;
 	}
 
-	public void setTrails(List<TrailTest> trails) {
+	public void setTrails(List<Trail> trails) {
 		this.trails = trails;
 	}
 
