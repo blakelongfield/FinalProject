@@ -286,7 +286,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `skireviewdb`;
-INSERT INTO `report` (`id`, `report_text`, `rating`, `image_url`, `date_created`, `vote`, `user_id`, `trail_id`, `mountain_id`) VALUES (1, 'Great Powder Todal', 5, NULL, '2019-01-01 00:00:00', NULL, 1, 1, NULL);
+INSERT INTO `report` (`id`, `report_text`, `rating`, `image_url`, `date_created`, `vote`, `user_id`, `trail_id`, `mountain_id`) VALUES (1, 'Great Powder Today', 5, NULL, '2019-01-01 00:00:00', NULL, 1, 1, NULL);
 INSERT INTO `report` (`id`, `report_text`, `rating`, `image_url`, `date_created`, `vote`, `user_id`, `trail_id`, `mountain_id`) VALUES (2, 'This place is awesome', NULL, NULL, '2019-01-01 00:00:00', NULL, 1, NULL, 1);
 
 COMMIT;
@@ -308,6 +308,16 @@ COMMIT;
 START TRANSACTION;
 USE `skireviewdb`;
 INSERT INTO `chairlift` (`id`, `ride_length`, `hours`, `chairlift_type_id`) VALUES (1, NULL, '9:00 AM - 4:00 PM', 1);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `chairlift_has_trail`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `skireviewdb`;
+INSERT INTO `chairlift_has_trail` (`chairlift_id`, `trail_id`) VALUES (1, 1);
 
 COMMIT;
 

@@ -12,10 +12,10 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-class ReportTests {
+class LiftTypeTests {
 	private static EntityManagerFactory emf;
 	EntityManager em;
-	private Report report;
+	private LiftType liftType;
 	
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception{
@@ -25,13 +25,14 @@ class ReportTests {
 	@BeforeEach
 	void setUp() throws Exception {
 		em = emf.createEntityManager();
-		report = em.find(Report.class, 1);
+		liftType = em.find(LiftType.class, 1);
 	}
 	
 	@Test
 	void test1() {
-		assertEquals(5, report.getRating().intValue());
-		assertEquals("Great Powder Today", report.getReportText());
+		assertEquals(4, liftType.getCapacity().intValue());
+		assertEquals("Express", liftType.getType());
+		assertEquals(1, liftType.getLifts().size());
 	}
 	
 	@AfterAll
