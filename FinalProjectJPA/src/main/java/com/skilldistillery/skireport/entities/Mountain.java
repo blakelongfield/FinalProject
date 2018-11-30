@@ -61,6 +61,30 @@ public class Mountain {
 		this.imgUrl = imgUrl;
 	}
 
+	public List<Report> getReports() {
+		return reports;
+	}
+
+	public void setReports(List<Report> reports) {
+		this.reports = reports;
+	}
+
+	public List<Trail> getTrails() {
+		return trails;
+	}
+
+	public void setTrails(List<Trail> trails) {
+		this.trails = trails;
+	}
+
+	public Resort getResort() {
+		return resort;
+	}
+
+	public void setResort(Resort resort) {
+		this.resort = resort;
+	}
+
 	public int getId() {
 		return id;
 	}
