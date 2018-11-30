@@ -37,32 +37,16 @@ public class User {
 	@OneToMany(mappedBy="user")
 	private List<Report> reports;
 	
-	public User(int id, String firstName, String lastName, String userName, String password, String email, String role,
-			Boolean active, String imgUrl, List<Comment> comments, List<Report> reports) {
-		super();
-		this.id = id;
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.userName = userName;
-		this.password = password;
-		this.email = email;
-		this.role = role;
-		this.active = active;
-		this.imgUrl = imgUrl;
-		this.comments = comments;
-		this.reports = reports;
-	}
-
-	public List<Report> getReports() {
-		return reports;
-	}
-
-	public void setReports(List<Report> reports) {
-		this.reports = reports;
-	}
-
 	public User() {
 		
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public String getFirstName() {
@@ -137,8 +121,34 @@ public class User {
 		this.comments = comments;
 	}
 
-	public int getId() {
-		return id;
+	public List<Report> getReports() {
+		return reports;
+	}
+
+	public void setReports(List<Report> reports) {
+		this.reports = reports;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + id;
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		User other = (User) obj;
+		if (id != other.id)
+			return false;
+		return true;
 	}
 
 	@Override
@@ -171,7 +181,7 @@ public class User {
 	}
 
 	public User(int id, String firstName, String lastName, String userName, String password, String email, String role,
-			Boolean active, String imgUrl, List<Comment> comments) {
+			Boolean active, String imgUrl, List<Comment> comments, List<Report> reports) {
 		super();
 		this.id = id;
 		this.firstName = firstName;
@@ -183,90 +193,8 @@ public class User {
 		this.active = active;
 		this.imgUrl = imgUrl;
 		this.comments = comments;
-	}
-
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((active == null) ? 0 : active.hashCode());
-		result = prime * result + ((comments == null) ? 0 : comments.hashCode());
-		result = prime * result + ((email == null) ? 0 : email.hashCode());
-		result = prime * result + ((firstName == null) ? 0 : firstName.hashCode());
-		result = prime * result + id;
-		result = prime * result + ((imgUrl == null) ? 0 : imgUrl.hashCode());
-		result = prime * result + ((lastName == null) ? 0 : lastName.hashCode());
-		result = prime * result + ((password == null) ? 0 : password.hashCode());
-		result = prime * result + ((reports == null) ? 0 : reports.hashCode());
-		result = prime * result + ((role == null) ? 0 : role.hashCode());
-		result = prime * result + ((userName == null) ? 0 : userName.hashCode());
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		User other = (User) obj;
-		if (active == null) {
-			if (other.active != null)
-				return false;
-		} else if (!active.equals(other.active))
-			return false;
-		if (comments == null) {
-			if (other.comments != null)
-				return false;
-		} else if (!comments.equals(other.comments))
-			return false;
-		if (email == null) {
-			if (other.email != null)
-				return false;
-		} else if (!email.equals(other.email))
-			return false;
-		if (firstName == null) {
-			if (other.firstName != null)
-				return false;
-		} else if (!firstName.equals(other.firstName))
-			return false;
-		if (id != other.id)
-			return false;
-		if (imgUrl == null) {
-			if (other.imgUrl != null)
-				return false;
-		} else if (!imgUrl.equals(other.imgUrl))
-			return false;
-		if (lastName == null) {
-			if (other.lastName != null)
-				return false;
-		} else if (!lastName.equals(other.lastName))
-			return false;
-		if (password == null) {
-			if (other.password != null)
-				return false;
-		} else if (!password.equals(other.password))
-			return false;
-		if (reports == null) {
-			if (other.reports != null)
-				return false;
-		} else if (!reports.equals(other.reports))
-			return false;
-		if (role == null) {
-			if (other.role != null)
-				return false;
-		} else if (!role.equals(other.role))
-			return false;
-		if (userName == null) {
-			if (other.userName != null)
-				return false;
-		} else if (!userName.equals(other.userName))
-			return false;
-		return true;
+		this.reports = reports;
 	}
 	
 	
 }
-

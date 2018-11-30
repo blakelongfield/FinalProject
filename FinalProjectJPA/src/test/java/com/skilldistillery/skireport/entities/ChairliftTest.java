@@ -46,10 +46,11 @@ class ChairliftTest {
 	@DisplayName("testing connection to data base")
 	void test() {
 		
-		ChairLift cl = em.find(ChairLift.class, 1);
+		ChairLift cl = em.find (ChairLift.class, 1);
 		
 		assertNotNull( cl );
-//		assertEquals(1, cl.getType().getType());
+		assertEquals( "Express", cl.getType().getType());
+	
 		
 	}
 
