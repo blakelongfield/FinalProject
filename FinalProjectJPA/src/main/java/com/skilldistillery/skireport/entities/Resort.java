@@ -76,6 +76,12 @@ public class Resort {
 		this.acres = acres;
 	}
 	
+	public List<Mountain> getMountains() {
+		return mountains;
+	}
+	public void setMountains(List<Mountain> mountains) {
+		this.mountains = mountains;
+	}
 	@Override
 	public int hashCode() {
 		final int prime = 31;
