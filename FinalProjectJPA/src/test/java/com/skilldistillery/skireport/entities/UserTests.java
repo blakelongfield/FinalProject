@@ -48,7 +48,7 @@ public class UserTests {
 		System.out.println("USER------------------------------------------------: " + user);
 		
 		assertNotNull(user);
-		assertEquals("blank", user.getFirstName());
+		
 		
 		
 	}
