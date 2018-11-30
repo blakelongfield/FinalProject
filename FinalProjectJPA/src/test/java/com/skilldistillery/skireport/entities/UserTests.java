@@ -3,6 +3,7 @@ package com.skilldistillery.skireport.entities;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -50,9 +51,34 @@ public class UserTests {
 		assertNotNull(user);
 		assertEquals("Zachary", user.getFirstName());
 		assertEquals("Lamb", user.getLastName());
+		assertEquals("zach", user.getUserName());
+		assertEquals(("zach"), user.getPassword());
+		assertEquals("zach@zach.com", user.getEmail());
+		assertEquals("Admin", user.getRole());
+		assertEquals(true, user.getActive());
+		assertNull(user.getImgUrl());
 		
+		}
+	
+	@Test
+	@DisplayName("test user to comments")
+	public void test2() {
+		User user = em.find(User.class, 5);
+		
+		assertEquals(4, user.getComments().size());
+		
+	}
+	
+	@Test
+	@DisplayName("test user to report")
+	public void test3() {
+		User user = em.find(User.class, 1);
+		
+		assertEquals(2, user.getReports().size());
 		
 		
 	}
+	
+
 
 }
