@@ -34,8 +34,7 @@ public class Mountain {
 	@Column(name="mountain_map_url")
 	private String imgUrl;
 	
-	@ManyToOne
-	@JoinColumn(name="report_id")
+	@OneToMany(mappedBy="mountain")
 	private List<Report> reports;
 	
 	@ManyToOne
