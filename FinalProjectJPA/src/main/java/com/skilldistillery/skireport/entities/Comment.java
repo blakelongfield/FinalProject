@@ -11,6 +11,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Comment {
 	
@@ -21,18 +23,22 @@ public class Comment {
 	@Column(name="comment_text")
 	private String commentText;
 	
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name="report_id")
 	private Report report;
 	
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name="user_id")
 	private User userComment;
 	
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name="comment_id")
 	private Comment mainComment;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy="mainComment")
 	private List<Comment> comments;
 

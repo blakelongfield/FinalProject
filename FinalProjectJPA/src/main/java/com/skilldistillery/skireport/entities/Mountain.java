@@ -11,6 +11,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Mountain {
 	@Id
@@ -34,13 +36,17 @@ public class Mountain {
 	@Column(name="mountain_map_url")
 	private String imgUrl;
 	
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name="resort_id")
 	private Resort resort;
 	
+	
+	@JsonIgnore
 	@OneToMany(mappedBy="mountainReports")
 	private List<Report> reports;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy="mountain")
 	private List<Trail> trails;
 

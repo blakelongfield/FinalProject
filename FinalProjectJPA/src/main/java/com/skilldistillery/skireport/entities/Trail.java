@@ -15,6 +15,8 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Trail {
 	
@@ -34,16 +36,19 @@ public class Trail {
 	
 	private String features;
 	
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name="mountain_id")
 	private Mountain mountain;
 	
+//	@JsonIgnore
 	@ManyToMany
 	@JoinTable(name="chairlift_has_trail", 
 	joinColumns=@JoinColumn(name="trail_id"),
 	inverseJoinColumns=@JoinColumn(name="chairlift_id"))
 	private List<ChairLift> lifts;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy="trail")
 	private List<Report> reports;
 

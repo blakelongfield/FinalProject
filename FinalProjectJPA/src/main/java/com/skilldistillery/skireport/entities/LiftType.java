@@ -9,6 +9,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 @Entity
 @Table(name="chairlift_type")
@@ -22,6 +24,7 @@ public class LiftType {
 
 	private Integer capacity;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy="type")
 	private List<ChairLift> lifts;
 

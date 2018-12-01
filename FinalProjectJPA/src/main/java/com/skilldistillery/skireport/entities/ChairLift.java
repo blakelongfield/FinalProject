@@ -12,6 +12,8 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name="chairlift")
 public class ChairLift {
@@ -23,12 +25,14 @@ public class ChairLift {
 	@Column(name="ride_length")
 	private Double rideLength;
 	
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name="chairlift_type_id")
 	private LiftType type;
 	
 	private String hours;
 	
+	@JsonIgnore
 	@ManyToMany(mappedBy="lifts")
 	private List<Trail> trails;
 

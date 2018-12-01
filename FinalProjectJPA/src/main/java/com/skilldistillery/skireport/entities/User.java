@@ -9,6 +9,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class User {
 	
@@ -34,10 +36,12 @@ public class User {
 	
 	@Column(name="profile_pic_url")
 	private String imgUrl;
-		
+	
+	@JsonIgnore
 	@OneToMany(mappedBy="userComment")
 	private List<Comment> comments;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy="user")
 	private List<Report> reports;
 

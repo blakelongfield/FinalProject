@@ -16,6 +16,8 @@ import javax.persistence.TemporalType;
 
 import org.hibernate.annotations.CreationTimestamp;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Report {
 	@Id
@@ -38,18 +40,22 @@ public class Report {
 	@Column(name="vote")
 	private Integer votes;
 	
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name="user_id")
 	private User user;
 	
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name="trail_id")
 	private Trail trail;
 	
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name="mountain_id")
 	private Mountain mountainReports;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy="report")
 	private List<Comment> comments;
 
