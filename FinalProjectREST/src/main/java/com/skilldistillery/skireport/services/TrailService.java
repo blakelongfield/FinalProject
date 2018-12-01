@@ -10,6 +10,12 @@ public interface TrailService {
 
 	Trail findById(int trailId);
 
-	Trail create(Trail trail);
+	Trail create(Trail trail, String username);
+
+	Trail update(Trail trail, int trailId, String username);
+
+	Trail patch(Trail trail, int trailId, String username);
+
+	Boolean destroy(int trailId, String username);
 
 }

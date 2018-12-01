@@ -26,20 +26,95 @@ public class TrailServiceImpl implements TrailService {
 
 	@Override
 	public Trail findById(int trailId) {
-		Trail findById = null; 
+		Trail findById = null;
 		Optional<Trail> optionalTrail = trailRepo.findById(trailId);
-		if(optionalTrail.isPresent()) {
+		if (optionalTrail.isPresent()) {
 			findById = optionalTrail.get();
 		}
 		return findById;
 	}
 
 	@Override
-	public Trail create(Trail trail) {
+	public Trail create(Trail trail, String username) {
 		Trail newTrail = null;
-			newTrail = trailRepo.saveAndFlush(newTrail);
+		User user = userRepository.findByUsername(username);
+		if (user != null) {
+			if (user.getRole().equals("Admin")) {
+				newTrail = trailRepo.saveAndFlush(newTrail);
+			}
+		}
 		return newTrail;
 	}
-	
-	
+
+	@Override
+	public Trail update(Trail trail, int trailId, String username) {
+		Trail updateTrail = null;
+		User user = userRepository.findByUsername(username);
+		if (user != null) {
+			if (user.getRole().equals("Admin")) {
+				Optional<Trail> optionalTrail = trailRepo.findById(trailId);
+				if (optionalTrail.isPresent()) {
+					updateTrail = optionalTrail.get();
+					updateTrail.setName(trail.getName());
+					updateTrail.setDifficulty(trail.getDifficulty());
+					updateTrail.setLength(trail.getLength());
+					updateTrail.setElevationGainLoss(trail.getElevationGainLoss());
+					updateTrail.setFeatures(trail.getFeatures());
+					updateTrail.setMountain(trail.getMountain());
+					updateTrail = trailRepo.saveAndFlush(updateTrail);
+				}
+			}
+		}
+		return updateTrail;
+	}
+
+	@Override
+	public Trail patch(Trail trail, int trailId, String username) {
+		Trail updateTrail = null;
+		User user = userRepository.findByUsername(username);
+		if (user != null) {
+			if (user.getRole().equals("Admin")) {
+				Optional<Trail> optionalTrail = trailRepo.findById(trailId);
+				if (optionalTrail.isPresent()) {
+					updateTrail = optionalTrail.get();
+					if (trail.getName() != null) {
+						updateTrail.setName(trail.getName());
+					}
+					if (trail.getDifficulty() != null) {
+						updateTrail.setDifficulty(trail.getDifficulty());
+					}
+					if (trail.getLength() != null) {
+						updateTrail.setLength(trail.getLength());
+					}
+					if (trail.getElevationGainLoss() != null) {
+						updateTrail.setElevationGainLoss(trail.getElevationGainLoss());
+					}
+					if (trail.getFeatures() != null) {
+						updateTrail.setFeatures(trail.getFeatures());
+					}
+					if (trail.getMountain() != null) {
+						updateTrail.setMountain(trail.getMountain());
+					}
+					updateTrail = trailRepo.saveAndFlush(updateTrail);
+				}
+			}
+		}
+		return updateTrail;
+	}
+
+	@Override
+	public Boolean destroy(int trailId, String username) {
+		boolean destroy = false;
+		User user = userRepository.findByUsername(username);
+		if (user != null) {
+			if (user.getRole().equals("Admin")) {
+				if (trailRepo.existsById(trailId)) {
+					trailRepo.deleteById(trailId);
+					destroy = true;
+				}
+			}
+		}
+		return destroy;
+	}
+
 }
