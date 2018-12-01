@@ -79,6 +79,24 @@ public class Trail {
 		this.features = features;
 	}
 	
+	public List<ChairLift> getLifts() {
+		return lifts;
+	}
+	public void setLifts(List<ChairLift> lifts) {
+		this.lifts = lifts;
+	}
+	public List<Report> getReports() {
+		return reports;
+	}
+	public void setReports(List<Report> reports) {
+		this.reports = reports;
+	}
+	public Mountain getMountain() {
+		return mountain;
+	}
+	public void setMountain(Mountain mountain) {
+		this.mountain = mountain;
+	}
 	@Override
 	public int hashCode() {
 		final int prime = 31;
