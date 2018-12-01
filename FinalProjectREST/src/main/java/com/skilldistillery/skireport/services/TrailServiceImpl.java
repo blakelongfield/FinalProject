@@ -6,8 +6,10 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.skilldistillery.skireport.entities.Mountain;
 import com.skilldistillery.skireport.entities.Trail;
 import com.skilldistillery.skireport.entities.User;
+import com.skilldistillery.skireport.repositories.MountainRepository;
 import com.skilldistillery.skireport.repositories.TrailRepository;
 import com.skilldistillery.skireport.repositories.UserRepository;
 
@@ -18,6 +20,8 @@ public class TrailServiceImpl implements TrailService {
 	private TrailRepository trailRepo;
 	@Autowired
 	private UserRepository userRepository;
+	@Autowired
+	private MountainRepository mountainRepo;
 
 	@Override
 	public List<Trail> findAll() {
@@ -35,12 +39,18 @@ public class TrailServiceImpl implements TrailService {
 	}
 
 	@Override
-	public Trail create(Trail trail, String username) {
+	public Trail create(Trail trail, int mountainId, String username) {
 		Trail newTrail = null;
+		Mountain findMountain = null;
 		User user = userRepository.findByUsername(username);
 		if (user != null) {
 			if (user.getRole().equals("Admin")) {
-				newTrail = trailRepo.saveAndFlush(newTrail);
+				Optional<Mountain> optionalMountain = mountainRepo.findById(mountainId);
+				if (optionalMountain.isPresent()) {
+					findMountain = optionalMountain.get();
+					trail.setMountain(findMountain);
+					newTrail = trailRepo.saveAndFlush(trail);
+				}
 			}
 		}
 		return newTrail;
@@ -60,7 +70,6 @@ public class TrailServiceImpl implements TrailService {
 					updateTrail.setLength(trail.getLength());
 					updateTrail.setElevationGainLoss(trail.getElevationGainLoss());
 					updateTrail.setFeatures(trail.getFeatures());
-					updateTrail.setMountain(trail.getMountain());
 					updateTrail = trailRepo.saveAndFlush(updateTrail);
 				}
 			}
@@ -91,9 +100,6 @@ public class TrailServiceImpl implements TrailService {
 					}
 					if (trail.getFeatures() != null) {
 						updateTrail.setFeatures(trail.getFeatures());
-					}
-					if (trail.getMountain() != null) {
-						updateTrail.setMountain(trail.getMountain());
 					}
 					updateTrail = trailRepo.saveAndFlush(updateTrail);
 				}

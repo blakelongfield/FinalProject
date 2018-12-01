@@ -22,7 +22,7 @@ import com.skilldistillery.skireport.services.TrailService;
 
 @RestController
 @RequestMapping("api")
-@CrossOrigin({ "*", "http://localhost:4201" })
+@CrossOrigin({ "*", "http://localhost:4205" })
 public class TrailController {
 
 	@Autowired
@@ -34,7 +34,8 @@ public class TrailController {
 	private String username = "zach";
 
 	/*
-	 * Get methods can be accessed by anybody. Other methods require you to be an admin.
+	 * Get methods can be accessed by anybody. Other methods require you to be an
+	 * admin.
 	 */
 	@GetMapping("trails")
 	public List<Trail> index(HttpServletResponse resp) {
@@ -57,11 +58,12 @@ public class TrailController {
 		return trail;
 	}
 
-	@PostMapping("trails")
-	public Trail create(@RequestBody Trail trail, HttpServletResponse resp, HttpServletRequest req) {
+	@PostMapping("trails/mountains/{mountainId}")
+	public Trail create(@RequestBody Trail trail, @PathVariable("mountainId") int mountainId, HttpServletResponse resp,
+			HttpServletRequest req) {
 		Trail newTrail = null;
 		System.out.println(trail);
-		newTrail = trailService.create(trail, username);
+		newTrail = trailService.create(trail, mountainId, username);
 		if (newTrail == null) {
 			resp.setStatus(400);
 		} else {
