@@ -51,7 +51,7 @@ public class UserTests {
 		assertNotNull(user);
 		assertEquals("Zachary", user.getFirstName());
 		assertEquals("Lamb", user.getLastName());
-		assertEquals("zach", user.getUserName());
+		assertEquals("zach", user.getUsername());
 		assertEquals(("zach"), user.getPassword());
 		assertEquals("zach@zach.com", user.getEmail());
 		assertEquals("Admin", user.getRole());

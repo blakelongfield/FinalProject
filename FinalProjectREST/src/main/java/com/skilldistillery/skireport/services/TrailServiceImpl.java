@@ -35,14 +35,9 @@ public class TrailServiceImpl implements TrailService {
 	}
 
 	@Override
-	public Trail create(Trail trail, String username) {
+	public Trail create(Trail trail) {
 		Trail newTrail = null;
-		User user = userRepository.findByUserName(username);
-		if(user != null) {
-			if(user.getRole() == "Admin") {
-				newTrail = trailRepo.saveAndFlush(newTrail);
-			}
-		}
+			newTrail = trailRepo.saveAndFlush(newTrail);
 		return newTrail;
 	}
 	

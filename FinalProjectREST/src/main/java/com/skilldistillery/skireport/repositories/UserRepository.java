@@ -6,5 +6,5 @@ import com.skilldistillery.skireport.entities.User;
 
 public interface UserRepository extends JpaRepository<User, Integer> {
 
-	User findByUserName(String userName);
+	User findByUsername(String username);
 }

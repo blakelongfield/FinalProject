@@ -9,7 +9,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 public class User {
@@ -24,7 +26,7 @@ public class User {
 	@Column(name="last_name")
 	private String lastName;
 	
-	private String userName;
+	private String username;
 	
 	private String password;
 	
@@ -37,11 +39,11 @@ public class User {
 	@Column(name="profile_pic_url")
 	private String imgUrl;
 	
-	@JsonIgnore
+	@JsonManagedReference
 	@OneToMany(mappedBy="userComment")
 	private List<Comment> comments;
 	
-	@JsonIgnore
+	@JsonManagedReference
 	@OneToMany(mappedBy="user")
 	private List<Report> reports;
 
@@ -72,12 +74,12 @@ public class User {
 		this.lastName = lastName;
 	}
 
-	public String getUserName() {
-		return userName;
+	public String getUsername() {
+		return username;
 	}
 
-	public void setUserName(String userName) {
-		this.userName = userName;
+	public void setUsername(String userName) {
+		this.username = userName;
 	}
 
 	public String getPassword() {
@@ -170,7 +172,7 @@ public class User {
 		builder.append("User [id=").append(id)
 				.append(", firstName=").append(firstName)
 				.append(", lastName=").append(lastName)
-				.append(", userName=").append(userName)
+				.append(", userName=").append(username)
 				.append(", password=").append(password)
 				.append(", email=").append(email)
 				.append(", role=").append(role)
@@ -182,16 +184,17 @@ public class User {
 		return builder.toString();
 	}
 
+
 	/*
 	 * constructors
 	 */
-	public User(int id, String firstName, String lastName, String userName, String password, String email, String role,
+	public User(int id, String firstName, String lastName, String username, String password, String email, String role,
 			Boolean active, String imgUrl, List<Comment> comments, List<Report> reports) {
 		super();
 		this.id = id;
 		this.firstName = firstName;
 		this.lastName = lastName;
-		this.userName = userName;
+		this.username = username;
 		this.password = password;
 		this.email = email;
 		this.role = role;

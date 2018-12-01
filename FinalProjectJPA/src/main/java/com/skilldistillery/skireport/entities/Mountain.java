@@ -11,7 +11,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 public class Mountain {
@@ -36,17 +38,16 @@ public class Mountain {
 	@Column(name="mountain_map_url")
 	private String imgUrl;
 	
-	@JsonIgnore
+	@JsonBackReference
 	@ManyToOne
 	@JoinColumn(name="resort_id")
 	private Resort resort;
 	
-	
-	@JsonIgnore
+	@JsonManagedReference
 	@OneToMany(mappedBy="mountainReports")
 	private List<Report> reports;
 	
-	@JsonIgnore
+	@JsonManagedReference
 	@OneToMany(mappedBy="mountain")
 	private List<Trail> trails;
 

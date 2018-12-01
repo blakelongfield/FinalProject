@@ -9,7 +9,9 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 
 @Entity
@@ -24,7 +26,7 @@ public class LiftType {
 
 	private Integer capacity;
 	
-	@JsonIgnore
+	@JsonManagedReference
 	@OneToMany(mappedBy="type")
 	private List<ChairLift> lifts;
 
@@ -97,7 +99,7 @@ public class LiftType {
 		builder.append("LiftType [id=").append(id)
 				.append(", type=").append(type)
 				.append(", capacity=").append(capacity)
-				.append(", lifts=").append(lifts)
+				.append(", lifts=").append(lifts.size())
 				.append("]");
 		return builder.toString();
 	}

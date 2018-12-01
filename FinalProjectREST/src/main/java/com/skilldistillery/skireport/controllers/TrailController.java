@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,6 +19,7 @@ import com.skilldistillery.skireport.services.TrailService;
 
 @RestController
 @RequestMapping("api")
+@CrossOrigin({ "*", "http://localhost:4201" })
 public class TrailController {
 
 	@Autowired
@@ -26,7 +28,7 @@ public class TrailController {
 	/*
 	 * TO BE REMOVED
 	 */
-	private String username = "zach";
+//	private String username = "zach";
 	
 	@GetMapping("trails")
 	public List<Trail> index(HttpServletResponse resp) {
@@ -52,7 +54,7 @@ public class TrailController {
 	@PostMapping("trails")
 	public Trail create(@RequestBody Trail trail, HttpServletResponse resp, HttpServletRequest req) {
 		Trail newTrail = null;
-		newTrail = trailService.create(trail, username);
+		newTrail = trailService.create(trail);
 		if(newTrail == null) {
 			resp.setStatus(400);
 		} else {

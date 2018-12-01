@@ -11,7 +11,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 public class Comment {
@@ -23,22 +25,22 @@ public class Comment {
 	@Column(name="comment_text")
 	private String commentText;
 	
-	@JsonIgnore
+	@JsonBackReference
 	@ManyToOne
 	@JoinColumn(name="report_id")
 	private Report report;
 	
-	@JsonIgnore
+	@JsonBackReference
 	@ManyToOne
 	@JoinColumn(name="user_id")
 	private User userComment;
 	
-	@JsonIgnore
+	@JsonBackReference
 	@ManyToOne
 	@JoinColumn(name="comment_id")
 	private Comment mainComment;
 	
-	@JsonIgnore
+	@JsonManagedReference
 	@OneToMany(mappedBy="mainComment")
 	private List<Comment> comments;
 
