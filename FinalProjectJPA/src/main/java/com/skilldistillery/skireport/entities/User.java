@@ -37,11 +37,11 @@ public class User {
 	@Column(name="profile_pic_url")
 	private String imgUrl;
 	
-	@JsonManagedReference
-	@OneToMany(mappedBy="userComment")
+	@JsonManagedReference(value="userToComment")
+	@OneToMany(mappedBy="user")
 	private List<Comment> comments;
 	
-	@JsonManagedReference
+	@JsonManagedReference(value="userToReport")
 	@OneToMany(mappedBy="user")
 	private List<Report> reports;
 

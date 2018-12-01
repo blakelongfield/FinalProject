@@ -24,7 +24,7 @@ public class LiftType {
 
 	private Integer capacity;
 	
-	@JsonManagedReference
+	@JsonManagedReference(value="liftTypeToChairLift")
 	@OneToMany(mappedBy="type")
 	private List<ChairLift> lifts;
 

@@ -37,16 +37,16 @@ public class Mountain {
 	@Column(name="mountain_map_url")
 	private String imgUrl;
 	
-	@JsonBackReference
+	@JsonBackReference(value="resortToMountain")
 	@ManyToOne
 	@JoinColumn(name="resort_id")
 	private Resort resort;
 	
-	@JsonManagedReference
+	@JsonManagedReference(value="mountainToReport")
 	@OneToMany(mappedBy="mountainReports")
 	private List<Report> reports;
 	
-	@JsonManagedReference
+	@JsonManagedReference(value="mountainToTrails")
 	@OneToMany(mappedBy="mountain")
 	private List<Trail> trails;
 

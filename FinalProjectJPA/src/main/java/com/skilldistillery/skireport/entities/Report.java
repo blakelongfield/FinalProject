@@ -41,22 +41,22 @@ public class Report {
 	@Column(name="vote")
 	private Integer votes;
 	
-	@JsonBackReference
+	@JsonBackReference(value="userToReport")
 	@ManyToOne
 	@JoinColumn(name="user_id")
 	private User user;
 	
-	@JsonBackReference
+	@JsonBackReference(value="trailToReport")
 	@ManyToOne
 	@JoinColumn(name="trail_id")
 	private Trail trail;
 	
-	@JsonBackReference
+	@JsonBackReference(value="mountainToReport")
 	@ManyToOne
 	@JoinColumn(name="mountain_id")
 	private Mountain mountainReports;
 	
-	@JsonManagedReference
+	@JsonManagedReference(value="reportToComment")
 	@OneToMany(mappedBy="report")
 	private List<Comment> comments;
 

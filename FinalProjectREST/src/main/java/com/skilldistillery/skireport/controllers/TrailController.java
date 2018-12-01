@@ -33,6 +33,9 @@ public class TrailController {
 	 */
 	private String username = "zach";
 
+	/*
+	 * Get methods can be accessed by anybody. Other methods require you to be an admin.
+	 */
 	@GetMapping("trails")
 	public List<Trail> index(HttpServletResponse resp) {
 		List<Trail> trails = null;
@@ -57,6 +60,7 @@ public class TrailController {
 	@PostMapping("trails")
 	public Trail create(@RequestBody Trail trail, HttpServletResponse resp, HttpServletRequest req) {
 		Trail newTrail = null;
+		System.out.println(trail);
 		newTrail = trailService.create(trail, username);
 		if (newTrail == null) {
 			resp.setStatus(400);

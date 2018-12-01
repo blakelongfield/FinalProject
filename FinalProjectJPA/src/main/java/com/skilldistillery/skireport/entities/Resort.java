@@ -31,7 +31,7 @@ public class Resort {
 	
 	private Integer acres;
 	
-	@JsonManagedReference
+	@JsonManagedReference(value="resortToMountain")
 	@OneToMany(mappedBy="resort")
 	private List<Mountain> mountains;
 	

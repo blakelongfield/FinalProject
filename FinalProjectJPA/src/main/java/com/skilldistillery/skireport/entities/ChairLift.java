@@ -13,6 +13,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name="chairlift")
@@ -25,14 +26,15 @@ public class ChairLift {
 	@Column(name="ride_length")
 	private Double rideLength;
 	
-	@JsonBackReference
+	@JsonBackReference(value="liftTypeToChairLift")
 	@ManyToOne
 	@JoinColumn(name="chairlift_type_id")
 	private LiftType type;
 	
 	private String hours;
 	
-	@JsonBackReference
+//	@JsonBackReference(value="trailToChairLift")
+	@JsonIgnore
 	@ManyToMany(mappedBy="lifts")
 	private List<Trail> trails;
 

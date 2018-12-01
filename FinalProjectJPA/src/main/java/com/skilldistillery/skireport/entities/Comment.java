@@ -24,22 +24,22 @@ public class Comment {
 	@Column(name="comment_text")
 	private String commentText;
 	
-	@JsonBackReference
+	@JsonBackReference(value="reportToComment")
 	@ManyToOne
 	@JoinColumn(name="report_id")
 	private Report report;
 	
-	@JsonBackReference
+	@JsonBackReference(value="userToComment")
 	@ManyToOne
 	@JoinColumn(name="user_id")
-	private User userComment;
+	private User user;
 	
-	@JsonBackReference
+	@JsonBackReference(value="commentToComment")
 	@ManyToOne
 	@JoinColumn(name="comment_id")
 	private Comment mainComment;
 	
-	@JsonManagedReference
+	@JsonManagedReference(value="commentToComment")
 	@OneToMany(mappedBy="mainComment")
 	private List<Comment> comments;
 
@@ -71,12 +71,12 @@ public class Comment {
 		this.report = report;
 	}
 
-	public User getUserComment() {
-		return userComment;
+	public User getUser() {
+		return user;
 	}
 
-	public void setUserComment(User userComment) {
-		this.userComment = userComment;
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 	public Comment getMainComment() {
@@ -129,7 +129,7 @@ public class Comment {
 		builder.append("Comment [id=").append(id)
 				.append(", commentText=").append(commentText)
 				.append(", report=").append(report)
-				.append(", userComment=").append(userComment)
+				.append(", userComment=").append(user)
 				.append(", mainComment=").append(mainComment)
 				.append(", comments=").append(comments.size())
 				.append("]");
@@ -143,13 +143,13 @@ public class Comment {
 		super();
 	}
 
-	public Comment(int id, String commentText, Report report, User userComment, Comment mainComment,
+	public Comment(int id, String commentText, Report report, User user, Comment mainComment,
 			List<Comment> comments) {
 		super();
 		this.id = id;
 		this.commentText = commentText;
 		this.report = report;
-		this.userComment = userComment;
+		this.user = user;
 		this.mainComment = mainComment;
 		this.comments = comments;
 	}
