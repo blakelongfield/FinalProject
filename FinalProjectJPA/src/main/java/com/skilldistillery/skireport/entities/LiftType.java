@@ -24,10 +24,10 @@ public class LiftType {
 	
 	@OneToMany(mappedBy="type")
 	private List<ChairLift> lifts;
-	
-	
-	// GETTERS AND SETTER
 
+	/*
+	 * getters / setters
+	 */
 	public int getId() {
 		return id;
 	}
@@ -60,8 +60,9 @@ public class LiftType {
 		this.lifts = lifts;
 	}
 
-	
-	// HASH CODE AND EQUALS
+	/*
+	 * hashCode / equals
+	 */
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -84,29 +85,27 @@ public class LiftType {
 		return true;
 	}
 
-	
-	// TO STRING
-	
-	
-	
-	
+	/*
+	 * toString
+	 */
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("LiftType [id=");
-		builder.append(id);
-		builder.append(", type=");
-		builder.append(type);
-		builder.append(", capacity=");
-		builder.append(capacity);
-		builder.append(", lifts=");
-		builder.append(lifts);
-		builder.append("]");
+		builder.append("LiftType [id=").append(id)
+				.append(", type=").append(type)
+				.append(", capacity=").append(capacity)
+				.append(", lifts=").append(lifts)
+				.append("]");
 		return builder.toString();
 	}
-	
-	
-	// CONSTRUCTORS
+
+	/*
+	 * constructors
+	 */
+	public LiftType() {
+		super();
+	}
+
 	public LiftType(int id, String type, Integer capacity, List<ChairLift> lifts) {
 		super();
 		this.id = id;
@@ -115,6 +114,6 @@ public class LiftType {
 		this.lifts = lifts;
 	}
 	
-
-	public LiftType() {}
+	
+	
 }

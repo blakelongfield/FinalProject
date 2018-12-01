@@ -31,10 +31,10 @@ public class ChairLift {
 	
 	@ManyToMany(mappedBy="lifts")
 	private List<Trail> trails;
-	
-	
-	//GETTERS AND SETTERS
 
+	/*
+	 * getters / setters
+	 */
 	public int getId() {
 		return id;
 	}
@@ -75,8 +75,9 @@ public class ChairLift {
 		this.trails = trails;
 	}
 
-	
-	// HASH CODE AND EQAULS
+	/*
+	 * hashCode / equals
+	 */
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -99,26 +100,27 @@ public class ChairLift {
 		return true;
 	}
 
-	
-	// TO STRING
+	/*
+	 * toString
+	 */
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("ChairLift [id=");
-		builder.append(id);
-		builder.append(", rideLength=");
-		builder.append(rideLength);
-		builder.append(", type=");
-		builder.append(type);
-		builder.append(", hours=");
-		builder.append(hours);
-		builder.append(", trails=");
-		builder.append(trails);
-		builder.append("]");
+		builder.append("ChairLift [id=").append(id)
+				.append(", rideLength=").append(rideLength)
+				.append(", type=").append(type)
+				.append(", hours=").append(hours)
+				.append(", trails=").append(trails)
+				.append("]");
 		return builder.toString();
 	}
-	
-	// CONSTRUCTORS
+
+	/*
+	 * constructors
+	 */
+	public ChairLift() {
+		super();
+	}
 
 	public ChairLift(int id, Double rideLength, LiftType type, String hours, List<Trail> trails) {
 		super();
@@ -128,8 +130,6 @@ public class ChairLift {
 		this.hours = hours;
 		this.trails = trails;
 	}
-
-	public ChairLift() {}
 	
 	
 	

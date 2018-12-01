@@ -14,13 +14,21 @@ public class Resort {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
+	
 	private String street;
+	
 	private String street2;
+	
 	private String city;
+	
 	private String state;
+	
 	private String zip;
+	
 	private String name;
+	
 	private Integer acres;
+	
 	@OneToMany(mappedBy="resort")
 	private List<Mountain> mountains;
 	
@@ -30,48 +38,63 @@ public class Resort {
 	public int getId() {
 		return id;
 	}
+	
 	public void setId(int id) {
 		this.id = id;
 	}
+	
 	public String getStreet() {
 		return street;
 	}
+	
 	public void setStreet(String street) {
 		this.street = street;
 	}
+	
 	public String getStreet2() {
 		return street2;
 	}
+	
 	public void setStreet2(String street2) {
 		this.street2 = street2;
 	}
+	
 	public String getCity() {
 		return city;
 	}
+	
 	public void setCity(String city) {
 		this.city = city;
 	}
+	
 	public String getState() {
 		return state;
 	}
+	
 	public void setState(String state) {
 		this.state = state;
 	}
+	
 	public String getZip() {
 		return zip;
 	}
+	
 	public void setZip(String zip) {
 		this.zip = zip;
 	}
+	
 	public String getName() {
 		return name;
 	}
+	
 	public void setName(String name) {
 		this.name = name;
 	}
+	
 	public Integer getAcres() {
 		return acres;
 	}
+	
 	public void setAcres(Integer acres) {
 		this.acres = acres;
 	}
@@ -79,9 +102,14 @@ public class Resort {
 	public List<Mountain> getMountains() {
 		return mountains;
 	}
+	
 	public void setMountains(List<Mountain> mountains) {
 		this.mountains = mountains;
 	}
+	
+	/*
+	 * hashCode / equals
+	 */
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -104,6 +132,9 @@ public class Resort {
 		return true;
 	}
 	
+	/*
+	 * toString
+	 */
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
@@ -115,16 +146,16 @@ public class Resort {
 				.append(", zip=").append(zip)
 				.append(", name=").append(name)
 				.append(", acres=").append(acres)
+				.append(", mountains=").append(mountains.size())
 				.append("]");
 		return builder.toString();
 	}
-	
-	public Resort() {
-		super();
-	}
-	
+
+	/*
+	 * constructors
+	 */
 	public Resort(int id, String street, String street2, String city, String state, String zip, String name,
-			Integer acres) {
+			Integer acres, List<Mountain> mountains) {
 		super();
 		this.id = id;
 		this.street = street;
@@ -134,7 +165,11 @@ public class Resort {
 		this.zip = zip;
 		this.name = name;
 		this.acres = acres;
+		this.mountains = mountains;
 	}
-	
+
+	public Resort() {
+		super();
+	}
 	
 }

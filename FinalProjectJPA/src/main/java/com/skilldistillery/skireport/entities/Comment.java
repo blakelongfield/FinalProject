@@ -26,20 +26,20 @@ public class Comment {
 	private Report report;
 	
 	@ManyToOne
+	@JoinColumn(name="user_id")
+	private User userComment;
+	
+	@ManyToOne
 	@JoinColumn(name="comment_id")
 	private Comment mainComment;
 	
 	@OneToMany(mappedBy="mainComment")
 	private List<Comment> comments;
-	
-	@ManyToOne
-	@JoinColumn(name="user_id")
-	private User userComment;
-	
-	public Comment() {
-		
-	}
 
+	
+	/*
+	 * getters / setters
+	 */
 	public int getId() {
 		return id;
 	}
@@ -64,6 +64,14 @@ public class Comment {
 		this.report = report;
 	}
 
+	public User getUserComment() {
+		return userComment;
+	}
+
+	public void setUserComment(User userComment) {
+		this.userComment = userComment;
+	}
+
 	public Comment getMainComment() {
 		return mainComment;
 	}
@@ -80,15 +88,9 @@ public class Comment {
 		this.comments = comments;
 	}
 
-	public User getUser() {
-		return userComment;
-	}
-
-	public void setUser(User user) {
-		this.userComment = user;
-	}
-
-	
+	/*
+	 * hashCode / equals
+	 */
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -111,33 +113,40 @@ public class Comment {
 		return true;
 	}
 
+	/*
+	 * toString
+	 */
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("Comment [id=");
-		builder.append(id);
-		builder.append(", commentText=");
-		builder.append(commentText);
-		builder.append(", report=");
-		builder.append(report);
-		builder.append(", mainComment=");
-		builder.append(mainComment);
-		builder.append(", comments=");
-		builder.append(comments);
-		builder.append(", user=");
-		builder.append(userComment);
-		builder.append("]");
+		builder.append("Comment [id=").append(id)
+				.append(", commentText=").append(commentText)
+				.append(", report=").append(report)
+				.append(", userComment=").append(userComment)
+				.append(", mainComment=").append(mainComment)
+				.append(", comments=").append(comments.size())
+				.append("]");
 		return builder.toString();
 	}
 
-	public Comment(int id, String commentText, Report report, Comment mainComment, List<Comment> comments, User userComment) {
+	/*
+	 * constructors
+	 */
+	public Comment() {
+		super();
+	}
+
+	public Comment(int id, String commentText, Report report, User userComment, Comment mainComment,
+			List<Comment> comments) {
 		super();
 		this.id = id;
 		this.commentText = commentText;
 		this.report = report;
+		this.userComment = userComment;
 		this.mainComment = mainComment;
 		this.comments = comments;
-		this.userComment = userComment;
 	}
+	
+	
 
 }

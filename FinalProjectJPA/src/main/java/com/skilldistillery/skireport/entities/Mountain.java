@@ -19,11 +19,11 @@ public class Mountain {
 	
 	private String name;
 	
-	@Column(name="number_of_lifts")
-	private Integer numberOfLifts;
-	
 	@Column(name="number_of_trails")
 	private Integer numberOfRuns;
+	
+	@Column(name="number_of_lifts")
+	private Integer numberOfLifts;
 	
 	@Column(name="elevation_base")
 	private Integer baseElevation;
@@ -34,56 +34,19 @@ public class Mountain {
 	@Column(name="mountain_map_url")
 	private String imgUrl;
 	
+	@ManyToOne
+	@JoinColumn(name="resort_id")
+	private Resort resort;
+	
 	@OneToMany(mappedBy="mountainReports")
 	private List<Report> reports;
 	
 	@OneToMany(mappedBy="mountain")
 	private List<Trail> trails;
-	
-	@ManyToOne
-	@JoinColumn(name="resort_id")
-	private Resort resort;
- 
-	public Mountain() {
-		super();
-	}
 
-	public Mountain(int id, String name, Integer numberOfLifts, Integer numberOfRuns, Integer baseElevation,
-			Integer peakElevation, String imgUrl) {
-		super();
-		this.id = id;
-		this.name = name;
-		this.numberOfLifts = numberOfLifts;
-		this.numberOfRuns = numberOfRuns;
-		this.baseElevation = baseElevation;
-		this.peakElevation = peakElevation;
-		this.imgUrl = imgUrl;
-	}
-
-	public List<Report> getReports() {
-		return reports;
-	}
-
-	public void setReports(List<Report> reports) {
-		this.reports = reports;
-	}
-
-	public List<Trail> getTrails() {
-		return trails;
-	}
-
-	public void setTrails(List<Trail> trails) {
-		this.trails = trails;
-	}
-
-	public Resort getResort() {
-		return resort;
-	}
-
-	public void setResort(Resort resort) {
-		this.resort = resort;
-	}
-
+	/*
+	 * getters / setters
+	 */
 	public int getId() {
 		return id;
 	}
@@ -100,20 +63,20 @@ public class Mountain {
 		this.name = name;
 	}
 
-	public Integer getNumberOfLifts() {
-		return numberOfLifts;
-	}
-
-	public void setNumberOfLifts(Integer numberOfLifts) {
-		this.numberOfLifts = numberOfLifts;
-	}
-
 	public Integer getNumberOfRuns() {
 		return numberOfRuns;
 	}
 
 	public void setNumberOfRuns(Integer numberOfRuns) {
 		this.numberOfRuns = numberOfRuns;
+	}
+
+	public Integer getNumberOfLifts() {
+		return numberOfLifts;
+	}
+
+	public void setNumberOfLifts(Integer numberOfLifts) {
+		this.numberOfLifts = numberOfLifts;
 	}
 
 	public Integer getBaseElevation() {
@@ -140,10 +103,96 @@ public class Mountain {
 		this.imgUrl = imgUrl;
 	}
 
+	public Resort getResort() {
+		return resort;
+	}
+
+	public void setResort(Resort resort) {
+		this.resort = resort;
+	}
+
+	public List<Report> getReports() {
+		return reports;
+	}
+
+	public void setReports(List<Report> reports) {
+		this.reports = reports;
+	}
+
+	public List<Trail> getTrails() {
+		return trails;
+	}
+
+	public void setTrails(List<Trail> trails) {
+		this.trails = trails;
+	}
+
+	/*
+	 * hashCode / equals
+	 */
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + id;
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Mountain other = (Mountain) obj;
+		if (id != other.id)
+			return false;
+		return true;
+	}
+
+	/*
+	 * toString
+	 */
 	@Override
 	public String toString() {
-		return "Mountain [id=" + id + ", name=" + name + ", numberOfLifts=" + numberOfLifts + ", numberOfRuns="
-				+ numberOfRuns + ", baseElevation=" + baseElevation + ", peakElevation=" + peakElevation + ", imgUrl="
-				+ imgUrl + "]";
+		StringBuilder builder = new StringBuilder();
+		builder.append("Mountain [id=").append(id)
+				.append(", name=").append(name)
+				.append(", numberOfRuns=").append(numberOfRuns)
+				.append(", numberOfLifts=").append(numberOfLifts)
+				.append(", baseElevation=").append(baseElevation)
+				.append(", peakElevation=").append(peakElevation)
+				.append(", imgUrl=").append(imgUrl)
+				.append(", resort=").append(resort)
+				.append(", reports=").append(reports.size())
+				.append(", trails=").append(trails.size())
+				.append("]");
+		return builder.toString();
 	}
+
+	/*
+	 * constructors
+	 */
+	public Mountain() {
+		super();
+	}
+
+	public Mountain(int id, String name, Integer numberOfRuns, Integer numberOfLifts, Integer baseElevation,
+			Integer peakElevation, String imgUrl, Resort resort, List<Report> reports, List<Trail> trails) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.numberOfRuns = numberOfRuns;
+		this.numberOfLifts = numberOfLifts;
+		this.baseElevation = baseElevation;
+		this.peakElevation = peakElevation;
+		this.imgUrl = imgUrl;
+		this.resort = resort;
+		this.reports = reports;
+		this.trails = trails;
+	}
+ 
+	
 }

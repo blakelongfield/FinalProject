@@ -23,9 +23,13 @@ public class User {
 	private String lastName;
 	
 	private String userName;
+	
 	private String password;
+	
 	private String email;
+	
 	private String role;
+	
 	private Boolean active;
 	
 	@Column(name="profile_pic_url")
@@ -36,11 +40,10 @@ public class User {
 	
 	@OneToMany(mappedBy="user")
 	private List<Report> reports;
-	
-	public User() {
-		
-	}
 
+	/*
+	 * getters / setters
+	 */
 	public int getId() {
 		return id;
 	}
@@ -129,6 +132,9 @@ public class User {
 		this.reports = reports;
 	}
 
+	/*
+	 * hashCode / equals
+	 */
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -151,35 +157,30 @@ public class User {
 		return true;
 	}
 
+	/*
+	 * toString
+	 */
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("User [id=");
-		builder.append(id);
-		builder.append(", firstName=");
-		builder.append(firstName);
-		builder.append(", lastName=");
-		builder.append(lastName);
-		builder.append(", userName=");
-		builder.append(userName);
-		builder.append(", password=");
-		builder.append(password);
-		builder.append(", email=");
-		builder.append(email);
-		builder.append(", role=");
-		builder.append(role);
-		builder.append(", active=");
-		builder.append(active);
-		builder.append(", imgUrl=");
-		builder.append(imgUrl);
-		builder.append(", comments=");
-		builder.append(comments);
-		builder.append(", reports=");
-		builder.append(reports);
-		builder.append("]");
+		builder.append("User [id=").append(id)
+				.append(", firstName=").append(firstName)
+				.append(", lastName=").append(lastName)
+				.append(", userName=").append(userName)
+				.append(", password=").append(password)
+				.append(", email=").append(email)
+				.append(", role=").append(role)
+				.append(", active=").append(active)
+				.append(", imgUrl=").append(imgUrl)
+				.append(", comments=").append(comments.size())
+				.append(", reports=").append(reports.size())
+				.append("]");
 		return builder.toString();
 	}
 
+	/*
+	 * constructors
+	 */
 	public User(int id, String firstName, String lastName, String userName, String password, String email, String role,
 			Boolean active, String imgUrl, List<Comment> comments, List<Report> reports) {
 		super();
@@ -194,6 +195,10 @@ public class User {
 		this.imgUrl = imgUrl;
 		this.comments = comments;
 		this.reports = reports;
+	}
+
+	public User() {
+		super();
 	}
 	
 	
