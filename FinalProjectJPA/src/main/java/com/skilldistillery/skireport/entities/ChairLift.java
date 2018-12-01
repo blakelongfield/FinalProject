@@ -23,7 +23,6 @@ public class ChairLift {
 	@Column(name="ride_length")
 	private Double rideLength;
 	
-	
 	@ManyToOne
 	@JoinColumn(name="chairlift_type_id")
 	private LiftType type;

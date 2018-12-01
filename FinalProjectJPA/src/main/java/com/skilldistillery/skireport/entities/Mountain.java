@@ -34,7 +34,7 @@ public class Mountain {
 	@Column(name="mountain_map_url")
 	private String imgUrl;
 	
-	@OneToMany(mappedBy="mountain")
+	@OneToMany(mappedBy="mountainReports")
 	private List<Report> reports;
 	
 	@OneToMany(mappedBy="mountain")

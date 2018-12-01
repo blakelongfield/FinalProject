@@ -34,7 +34,7 @@ public class Comment {
 	
 	@ManyToOne
 	@JoinColumn(name="user_id")
-	private User user;
+	private User userComment;
 	
 	public Comment() {
 		
@@ -81,11 +81,11 @@ public class Comment {
 	}
 
 	public User getUser() {
-		return user;
+		return userComment;
 	}
 
 	public void setUser(User user) {
-		this.user = user;
+		this.userComment = user;
 	}
 
 	
@@ -125,19 +125,19 @@ public class Comment {
 		builder.append(", comments=");
 		builder.append(comments);
 		builder.append(", user=");
-		builder.append(user);
+		builder.append(userComment);
 		builder.append("]");
 		return builder.toString();
 	}
 
-	public Comment(int id, String commentText, Report report, Comment mainComment, List<Comment> comments, User user) {
+	public Comment(int id, String commentText, Report report, Comment mainComment, List<Comment> comments, User userComment) {
 		super();
 		this.id = id;
 		this.commentText = commentText;
 		this.report = report;
 		this.mainComment = mainComment;
 		this.comments = comments;
-		this.user = user;
+		this.userComment = userComment;
 	}
 
 }

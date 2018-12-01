@@ -31,7 +31,7 @@ public class User {
 	@Column(name="profile_pic_url")
 	private String imgUrl;
 		
-	@OneToMany(mappedBy="user")
+	@OneToMany(mappedBy="userComment")
 	private List<Comment> comments;
 	
 	@OneToMany(mappedBy="user")

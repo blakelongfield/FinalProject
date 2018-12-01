@@ -44,7 +44,7 @@ public class Report {
 	
 	@ManyToOne
 	@JoinColumn(name="mountain_id")
-	private Mountain mountain;
+	private Mountain mountainReports;
 	
 	@Override
 	public int hashCode() {

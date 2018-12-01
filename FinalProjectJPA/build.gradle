@@ -42,7 +42,7 @@ buildscript {
 */
 ext {
   hibernateVersion = "5.2.17.Final"
-    springVersion = "4.3.14.RELEASE"		
+    // springVersion = "4.3.14.RELEASE"		
 }
 
 // define project specific dependencies
@@ -59,7 +59,14 @@ dependencies {
     'org.junit.platform:junit-platform-launcher:1.0.1',
     'org.junit.platform:junit-platform-runner:1.0.1')
     
-    compile group: 'org.springframework', name: 'spring-context', version:"$springVersion"
-	compile group: 'com.fasterxml.jackson.core', name: 'jackson-annotations', version: '2.9.6'
+  // compile group: 'org.springframework', name: 'spring-context', version:"$springVersion"
+  compile group: 'com.fasterxml.jackson.core', name: 'jackson-annotations', version: '2.9.7'
 }
 
+
+
+//dependencies {
+	
+//	compile group: 'com.fasterxml.jackson.core', name: 'jackson-core', version: '2.9.7'
+//	compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.9.7'
+//}
