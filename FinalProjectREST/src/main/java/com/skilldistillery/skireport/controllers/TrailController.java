@@ -15,7 +15,7 @@ public class TrailController {
 	private TrailService trailService;
 	
 	@GetMapping("ping")
-	public String pong() {
+	public String ping() {
 		return "pong";
 	}
 }

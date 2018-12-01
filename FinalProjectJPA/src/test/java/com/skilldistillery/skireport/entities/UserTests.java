@@ -24,7 +24,7 @@ public class UserTests {
 
 	@BeforeAll
 	public static void BeforeAll() throws Exception {
-		emf = Persistence.createEntityManagerFactory("SkiReport");
+		emf = Persistence.createEntityManagerFactory("SkiReview");
 	}
 
 	@AfterAll

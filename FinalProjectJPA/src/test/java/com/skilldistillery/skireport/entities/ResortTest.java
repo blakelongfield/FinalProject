@@ -26,7 +26,7 @@ class ResortTest {
 
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
-	emf = Persistence.createEntityManagerFactory("SkiReport");
+	emf = Persistence.createEntityManagerFactory("SkiReview");
 	}
 
 	@AfterAll

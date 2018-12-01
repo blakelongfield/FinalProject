@@ -23,7 +23,7 @@ class TrailTest {
 
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
-	emf = Persistence.createEntityManagerFactory("SkiReport");
+	emf = Persistence.createEntityManagerFactory("SkiReview");
 	}
 
 	@AfterAll
@@ -44,8 +44,8 @@ class TrailTest {
 	}
 	
 	@Test
-	@DisplayName("Test Resort mappings")
-	void test_resort_mappings() {
+	@DisplayName("Test Trail mappings")
+	void test_trail_mappings() {
 		assertNotNull(trail);
 		assertEquals("Lower Chisholm Trail", trail.getName());
 		assertEquals(Difficulty.BEGINNER, trail.getDifficulty());

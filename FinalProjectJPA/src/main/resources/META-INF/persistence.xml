@@ -5,7 +5,7 @@
   xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
 
 <!-- the persistence-unit name must be the same that is used to create database connection -->
-  <persistence-unit name="SkiReport">
+  <persistence-unit name="SkiReview">
     <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
     
     <!-- entities goes here -->
