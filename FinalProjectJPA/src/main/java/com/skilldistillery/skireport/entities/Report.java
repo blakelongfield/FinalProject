@@ -16,6 +16,9 @@ import javax.persistence.TemporalType;
 
 import org.hibernate.annotations.CreationTimestamp;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 public class Report {
 	@Id
@@ -27,9 +30,6 @@ public class Report {
 	
 	private Integer rating;
 	
-	@Column(name="vote")
-	private Integer votes;
-	
 	@Column(name="image_url")
 	private String imgUrl;
 	
@@ -38,57 +38,31 @@ public class Report {
 	@Column(name="date_created")
 	private Date dateCreated;
 	
+	@Column(name="vote")
+	private Integer votes;
+	
+	@JsonBackReference(value="userToReport")
 	@ManyToOne
 	@JoinColumn(name="user_id")
 	private User user;
 	
-	@ManyToOne
-	@JoinColumn(name="mountain_id")
-	private Mountain mountain;
-	
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + id;
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Report other = (Report) obj;
-		if (id != other.id)
-			return false;
-		return true;
-	}
-
+	@JsonBackReference(value="trailToReport")
 	@ManyToOne
 	@JoinColumn(name="trail_id")
 	private Trail trail;
 	
+	@JsonBackReference(value="mountainToReport")
+	@ManyToOne
+	@JoinColumn(name="mountain_id")
+	private Mountain mountainReports;
+	
+	@JsonManagedReference(value="reportToComment")
 	@OneToMany(mappedBy="report")
 	private List<Comment> comments;
-	
-	public Report() {
-		super();
-	}
 
-	public Report(int id, String reportText, Integer rating, Integer votes, String imgUrl, Date dateCreated) {
-		super();
-		this.id = id;
-		this.reportText = reportText;
-		this.rating = rating;
-		this.votes = votes;
-		this.imgUrl = imgUrl;
-		this.dateCreated = dateCreated;
-	}
-
+	/*
+	 * getters / setters
+	 */
 	public int getId() {
 		return id;
 	}
@@ -113,14 +87,6 @@ public class Report {
 		this.rating = rating;
 	}
 
-	public Integer getVotes() {
-		return votes;
-	}
-
-	public void setVotes(Integer votes) {
-		this.votes = votes;
-	}
-
 	public String getImgUrl() {
 		return imgUrl;
 	}
@@ -137,9 +103,111 @@ public class Report {
 		this.dateCreated = dateCreated;
 	}
 
+	public Integer getVotes() {
+		return votes;
+	}
+
+	public void setVotes(Integer votes) {
+		this.votes = votes;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	public Trail getTrail() {
+		return trail;
+	}
+
+	public void setTrail(Trail trail) {
+		this.trail = trail;
+	}
+
+	public Mountain getMountainReports() {
+		return mountainReports;
+	}
+
+	public void setMountainReports(Mountain mountainReports) {
+		this.mountainReports = mountainReports;
+	}
+
+	public List<Comment> getComments() {
+		return comments;
+	}
+
+	public void setComments(List<Comment> comments) {
+		this.comments = comments;
+	}
+
+	/*
+	 * hashCode / Equals
+	 */
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + id;
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Report other = (Report) obj;
+		if (id != other.id)
+			return false;
+		return true;
+	}
+
+	/*
+	 * toString
+	 */
 	@Override
 	public String toString() {
-		return "Report [id=" + id + ", reportText=" + reportText + ", rating=" + rating + ", votes=" + votes
-				+ ", imgUrl=" + imgUrl + ", dateCreated=" + dateCreated + "]";
+		StringBuilder builder = new StringBuilder();
+		builder.append("Report [id=").append(id)
+				.append(", reportText=").append(reportText)
+				.append(", rating=").append(rating)
+				.append(", imgUrl=").append(imgUrl)
+				.append(", dateCreated=").append(dateCreated)
+				.append(", votes=").append(votes)
+				.append(", user=").append(user)
+				.append(", trail=").append(trail)
+				.append(", mountainReports=").append(mountainReports)
+				.append(", comments=").append(comments.size())
+				.append("]");
+		return builder.toString();
 	}
+
+	/*
+	 * constructors
+	 */
+	public Report() {
+		super();
+	}
+	
+	public Report(int id, String reportText, Integer rating, String imgUrl, Date dateCreated, Integer votes, User user,
+			Trail trail, Mountain mountainReports, List<Comment> comments) {
+		super();
+		this.id = id;
+		this.reportText = reportText;
+		this.rating = rating;
+		this.imgUrl = imgUrl;
+		this.dateCreated = dateCreated;
+		this.votes = votes;
+		this.user = user;
+		this.trail = trail;
+		this.mountainReports = mountainReports;
+		this.comments = comments;
+	}
+	
 }

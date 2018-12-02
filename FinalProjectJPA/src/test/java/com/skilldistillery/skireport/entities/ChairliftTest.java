@@ -23,7 +23,7 @@ class ChairliftTest {
 
 	@BeforeAll
 	public static void setupALL() {
-		emf = Persistence.createEntityManagerFactory("SkiReport");
+		emf = Persistence.createEntityManagerFactory("SkiReview");
 	}
 
 	@AfterAll

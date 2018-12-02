@@ -12,6 +12,9 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name="chairlift")
 public class ChairLift {
@@ -20,28 +23,40 @@ public class ChairLift {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
+	private String name;
+	
 	@Column(name="ride_length")
 	private Double rideLength;
 	
-	
+	@JsonBackReference(value="liftTypeToChairLift")
 	@ManyToOne
 	@JoinColumn(name="chairlift_type_id")
 	private LiftType type;
 	
 	private String hours;
 	
+//	@JsonBackReference(value="trailToChairLift")
+	@JsonIgnore
 	@ManyToMany(mappedBy="lifts")
 	private List<Trail> trails;
-	
-	
-	//GETTERS AND SETTERS
 
+	/*
+	 * getters / setters
+	 */
 	public int getId() {
 		return id;
 	}
 
 	public void setId(int id) {
 		this.id = id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public Double getRideLength() {
@@ -76,8 +91,9 @@ public class ChairLift {
 		this.trails = trails;
 	}
 
-	
-	// HASH CODE AND EQAULS
+	/*
+	 * hashCode / equals
+	 */
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -100,37 +116,38 @@ public class ChairLift {
 		return true;
 	}
 
-	
-	// TO STRING
+	/*
+	 * toString
+	 */
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("ChairLift [id=");
-		builder.append(id);
-		builder.append(", rideLength=");
-		builder.append(rideLength);
-		builder.append(", type=");
-		builder.append(type);
-		builder.append(", hours=");
-		builder.append(hours);
-		builder.append(", trails=");
-		builder.append(trails);
-		builder.append("]");
+		builder.append("ChairLift [id=").append(id)
+				.append(", name=").append(name)
+				.append(", rideLength=").append(rideLength)
+				.append(", type=").append(type)
+				.append(", hours=").append(hours)
+				.append(", trails=").append(trails.size())
+				.append("]");
 		return builder.toString();
 	}
-	
-	// CONSTRUCTORS
 
-	public ChairLift(int id, Double rideLength, LiftType type, String hours, List<Trail> trails) {
+	/*
+	 * constructors
+	 */
+	public ChairLift() {
+		super();
+	}
+
+	public ChairLift(int id, String name, Double rideLength, LiftType type, String hours, List<Trail> trails) {
 		super();
 		this.id = id;
+		this.name = name;
 		this.rideLength = rideLength;
 		this.type = type;
 		this.hours = hours;
 		this.trails = trails;
 	}
-
-	public ChairLift() {}
 	
 	
 	

@@ -13,48 +13,42 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-class TrailTest {
-
-	private static EntityManagerFactory emf;
-
-	private EntityManager em;
+class CommentTest {
 	
-	private Trail trail;
+	private static EntityManagerFactory emf;
+	private EntityManager em;
 
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
-	emf = Persistence.createEntityManagerFactory("SkiReview");
+		emf = Persistence.createEntityManagerFactory("SkiReview");
 	}
 
 	@AfterAll
 	static void tearDownAfterClass() throws Exception {
 		emf.close();
 	}
-	
+
 	@BeforeEach
-	public void setUp() throws Exception {
+	void setUp() throws Exception {
 		em = emf.createEntityManager();
-		trail = em.find(Trail.class, 1);
 	}
 
 	@AfterEach
-	public void tearDown() throws Exception {
+	void tearDown() throws Exception {
 		em.close();
-		trail = null;
+	}
+
+	@Test
+	@DisplayName("test comments connects to database")
+	void test() {
+		Comment comment = em.find(Comment.class, 1);
+		
+		assertNotNull(comment);
+		assertEquals("Awesome powder", comment.getCommentText());
+		assertEquals(2, comment.getComments().size());
+		assertEquals("Totally", comment.getComments().get(0).getCommentText());
 	}
 	
-	@Test
-	@DisplayName("Test Trail mappings")
-	void test_trail_mappings() {
-		assertNotNull(trail);
-		assertEquals("Lower Chisholm Trail", trail.getName());
-		assertEquals(Difficulty.BEGINNER, trail.getDifficulty());
-		assertNull(trail.getLength());
-		assertNull(trail.getElevationGainLoss());
-		assertNull(trail.getFeatures());
-		assertEquals(1, trail.getMountain().getId());
-		assertEquals(1, trail.getLifts().get(0).getId());
-		assertEquals(1, trail.getReports().get(0).getId());
-	}
+	
 
 }

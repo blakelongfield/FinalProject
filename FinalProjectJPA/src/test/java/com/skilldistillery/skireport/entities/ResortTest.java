@@ -3,6 +3,7 @@ package com.skilldistillery.skireport.entities;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -25,7 +26,7 @@ class ResortTest {
 
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
-	emf = Persistence.createEntityManagerFactory("SkiReport");
+	emf = Persistence.createEntityManagerFactory("SkiReview");
 	}
 
 	@AfterAll
@@ -46,9 +47,18 @@ class ResortTest {
 	}
 	
 	@Test
-	@DisplayName("Test Address mappings")
-	void test_address_mappings() {
+	@DisplayName("Test Resort mappings")
+	void test_resort_mappings() {
 		assertNotNull(resort);
+		assertEquals("28194 US Hwy 6", resort.getStreet());
+		assertNull(resort.getStreet2());
+		assertEquals("Keystone", resort.getCity());
+		assertEquals("CO", resort.getState());
+		assertEquals("80435", resort.getZip());
+		assertEquals("Arapahoe Basin", resort.getName());
+		assertEquals(1428, resort.getAcres().intValue());
+		assertEquals(1, resort.getMountains().size());
+		assertEquals("Arapahoe Basin", resort.getMountains().get(0).getName());
 	}
 
 }

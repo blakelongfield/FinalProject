@@ -2,6 +2,7 @@ package com.skilldistillery.skireport.entities;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,6 +11,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 public class Comment {
@@ -21,25 +25,29 @@ public class Comment {
 	@Column(name="comment_text")
 	private String commentText;
 	
+	@JsonBackReference(value="reportToComment")
 	@ManyToOne
 	@JoinColumn(name="report_id")
 	private Report report;
 	
-	@ManyToOne
-	@JoinColumn(name="comment_id")
-	private Comment mainComment;
-	
-	@OneToMany(mappedBy="mainComment")
-	private List<Comment> comments;
-	
+	@JsonBackReference(value="userToComment")
 	@ManyToOne
 	@JoinColumn(name="user_id")
 	private User user;
 	
-	public Comment() {
-		
-	}
+	@JsonBackReference(value="commentToComment")
+	@ManyToOne
+	@JoinColumn(name="comment_id")
+	private Comment mainComment;
+	
+	@JsonManagedReference(value="commentToComment")
+	@OneToMany(cascade = {CascadeType.PERSIST, CascadeType.REMOVE},mappedBy="mainComment")
+	private List<Comment> comments;
 
+	
+	/*
+	 * getters / setters
+	 */
 	public int getId() {
 		return id;
 	}
@@ -64,6 +72,14 @@ public class Comment {
 		this.report = report;
 	}
 
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
 	public Comment getMainComment() {
 		return mainComment;
 	}
@@ -80,15 +96,9 @@ public class Comment {
 		this.comments = comments;
 	}
 
-	public User getUser() {
-		return user;
-	}
-
-	public void setUser(User user) {
-		this.user = user;
-	}
-
-	
+	/*
+	 * hashCode / equals
+	 */
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -111,33 +121,40 @@ public class Comment {
 		return true;
 	}
 
-	@Override
-	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("Comment [id=");
-		builder.append(id);
-		builder.append(", commentText=");
-		builder.append(commentText);
-		builder.append(", report=");
-		builder.append(report);
-		builder.append(", mainComment=");
-		builder.append(mainComment);
-		builder.append(", comments=");
-		builder.append(comments);
-		builder.append(", user=");
-		builder.append(user);
-		builder.append("]");
-		return builder.toString();
+	/*
+	 * toString
+	 */
+//	@Override
+//	public String toString() {
+//		StringBuilder builder = new StringBuilder();
+//		builder.append("Comment [id=").append(id)
+//				.append(", commentText=").append(commentText)
+//				.append(", report=").append(report)
+//				.append(", userComment=").append(user)
+//				.append(", mainComment=").append(mainComment)
+////				.append(", comments=").append(comments.size())
+//				.append("]");
+//		return builder.toString();
+//	}
+
+	/*
+	 * constructors
+	 */
+	public Comment() {
+		super();
 	}
 
-	public Comment(int id, String commentText, Report report, Comment mainComment, List<Comment> comments, User user) {
+	public Comment(int id, String commentText, Report report, User user, Comment mainComment,
+			List<Comment> comments) {
 		super();
 		this.id = id;
 		this.commentText = commentText;
 		this.report = report;
+		this.user = user;
 		this.mainComment = mainComment;
 		this.comments = comments;
-		this.user = user;
 	}
+	
+	
 
 }

@@ -1,2 +1,2 @@
 rootProject.name = 'FinalProjectREST'
-includeFlat "FinalProjectJPA"
+includeFlat 'FinalProjectJPA'

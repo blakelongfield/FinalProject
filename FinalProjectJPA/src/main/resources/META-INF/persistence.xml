@@ -5,18 +5,18 @@
   xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
 
 <!-- the persistence-unit name must be the same that is used to create database connection -->
-  <persistence-unit name="SkiReport">
+  <persistence-unit name="SkiReview">
     <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
     
     <!-- entities goes here -->
     <class>com.skilldistillery.skireport.entities.ChairLift</class>
     <class>com.skilldistillery.skireport.entities.Comment</class>
+    <class>com.skilldistillery.skireport.entities.LiftType</class>
     <class>com.skilldistillery.skireport.entities.Mountain</class>
     <class>com.skilldistillery.skireport.entities.Report</class>
     <class>com.skilldistillery.skireport.entities.Resort</class>
     <class>com.skilldistillery.skireport.entities.Trail</class>
     <class>com.skilldistillery.skireport.entities.User</class>
-    <class>com.skilldistillery.skireport.entities.LiftType</class>
     
     <!-- Sort by alphabetical to make each entity easy to find -->
    
