@@ -85,7 +85,7 @@ DROP TABLE IF EXISTS `trail` ;
 CREATE TABLE IF NOT EXISTS `trail` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(255) NOT NULL,
-  `difficulty` ENUM('BEGINNER', 'INTERMEDIATE', 'HARD', 'EXPERT') NOT NULL DEFAULT 'BEGINNER',
+  `difficulty` ENUM('BEGINNER', 'INTERMEDIATE', 'HARD', 'EXPERT') NULL DEFAULT 'BEGINNER',
   `length` INT NULL,
   `elevation_gain_loss` INT NULL,
   `features` VARCHAR(100) NULL,
@@ -157,6 +157,7 @@ DROP TABLE IF EXISTS `chairlift` ;
 
 CREATE TABLE IF NOT EXISTS `chairlift` (
   `id` INT NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(45) NOT NULL,
   `ride_length` INT NULL,
   `hours` VARCHAR(45) NULL,
   `chairlift_type_id` INT NOT NULL,
@@ -276,7 +277,161 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `skireviewdb`;
-INSERT INTO `trail` (`id`, `name`, `difficulty`, `length`, `elevation_gain_loss`, `features`, `mountain_id`) VALUES (1, 'Lower Chisholm Trail', 'BEGINNER', NULL, NULL, NULL, 1);
+INSERT INTO `trail` (`id`, `name`, `difficulty`, `length`, `elevation_gain_loss`, `features`, `mountain_id`) VALUES (1, 'High Noon', 'INTERMEDIATE', NULL, NULL, 'Groomed', 1);
+INSERT INTO `trail` (`id`, `name`, `difficulty`, `length`, `elevation_gain_loss`, `features`, `mountain_id`) VALUES (2, 'Lynx Lane', 'INTERMEDIATE', NULL, NULL, NULL, 1);
+INSERT INTO `trail` (`id`, `name`, `difficulty`, `length`, `elevation_gain_loss`, `features`, `mountain_id`) VALUES (3, 'Moose Hollow', 'INTERMEDIATE', NULL, NULL, NULL, 1);
+INSERT INTO `trail` (`id`, `name`, `difficulty`, `length`, `elevation_gain_loss`, `features`, `mountain_id`) VALUES (4, 'North Fork', 'INTERMEDIATE', NULL, NULL, NULL, 1);
+INSERT INTO `trail` (`id`, `name`, `difficulty`, `length`, `elevation_gain_loss`, `features`, `mountain_id`) VALUES (5, 'Ramrod', 'INTERMEDIATE', NULL, NULL, 'Groomed', 1);
+INSERT INTO `trail` (`id`, `name`, `difficulty`, `length`, `elevation_gain_loss`, `features`, `mountain_id`) VALUES (6, 'TB Glades', 'INTERMEDIATE', NULL, NULL, NULL, 1);
+INSERT INTO `trail` (`id`, `name`, `difficulty`, `length`, `elevation_gain_loss`, `features`, `mountain_id`) VALUES (7, 'Weasel Way', 'INTERMEDIATE', NULL, NULL, NULL, 1);
+INSERT INTO `trail` (`id`, `name`, `difficulty`, `length`, `elevation_gain_loss`, `features`, `mountain_id`) VALUES (8, 'Lower Chisholm Trail', 'BEGINNER', NULL, NULL, 'Groomed', 1);
+INSERT INTO `trail` (`id`, `name`, `difficulty`, `length`, `elevation_gain_loss`, `features`, `mountain_id`) VALUES (9, 'Upper Chisholm Trail', 'BEGINNER', NULL, NULL, 'Groomed', 1);
+INSERT INTO `trail` (`id`, `name`, `difficulty`, `length`, `elevation_gain_loss`, `features`, `mountain_id`) VALUES (10, 'Sundance', 'BEGINNER', NULL, NULL, 'Groomed', 1);
+INSERT INTO `trail` (`id`, `name`, `difficulty`, `length`, `elevation_gain_loss`, `features`, `mountain_id`) VALUES (11, 'Wrangler', 'BEGINNER', NULL, NULL, 'Groomed', 1);
+INSERT INTO `trail` (`id`, `name`, `difficulty`, `length`, `elevation_gain_loss`, `features`, `mountain_id`) VALUES (12, 'High Divide', NULL, NULL, NULL, 'Terrain Park', 1);
+INSERT INTO `trail` (`id`, `name`, `difficulty`, `length`, `elevation_gain_loss`, `features`, `mountain_id`) VALUES (13, 'Banana Park', NULL, NULL, NULL, 'Terrain Park, Groomed', 1);
+INSERT INTO `trail` (`id`, `name`, `difficulty`, `length`, `elevation_gain_loss`, `features`, `mountain_id`) VALUES (14, 'East Wall - Below the Traverse', 'EXPERT', NULL, NULL, NULL, 1);
+INSERT INTO `trail` (`id`, `name`, `difficulty`, `length`, `elevation_gain_loss`, `features`, `mountain_id`) VALUES (15, 'Land of the Giants', 'EXPERT', NULL, NULL, NULL, 1);
+INSERT INTO `trail` (`id`, `name`, `difficulty`, `length`, `elevation_gain_loss`, `features`, `mountain_id`) VALUES (16, 'Corner Chute', 'EXPERT', NULL, NULL, NULL, 1);
+INSERT INTO `trail` (`id`, `name`, `difficulty`, `length`, `elevation_gain_loss`, `features`, `mountain_id`) VALUES (17, 'North Pole', 'EXPERT', NULL, NULL, NULL, 1);
+INSERT INTO `trail` (`id`, `name`, `difficulty`, `length`, `elevation_gain_loss`, `features`, `mountain_id`) VALUES (18, 'North Y Chute', 'EXPERT', NULL, NULL, NULL, 1);
+INSERT INTO `trail` (`id`, `name`, `difficulty`, `length`, `elevation_gain_loss`, `features`, `mountain_id`) VALUES (19, 'South Y Chute', 'EXPERT', NULL, NULL, NULL, 1);
+INSERT INTO `trail` (`id`, `name`, `difficulty`, `length`, `elevation_gain_loss`, `features`, `mountain_id`) VALUES (20, 'Tree Chute 1', 'EXPERT', NULL, NULL, NULL, 1);
+INSERT INTO `trail` (`id`, `name`, `difficulty`, `length`, `elevation_gain_loss`, `features`, `mountain_id`) VALUES (21, 'Tree Chute 2', 'EXPERT', NULL, NULL, NULL, 1);
+INSERT INTO `trail` (`id`, `name`, `difficulty`, `length`, `elevation_gain_loss`, `features`, `mountain_id`) VALUES (22, 'Tree Chute 3', 'EXPERT', NULL, NULL, NULL, 1);
+INSERT INTO `trail` (`id`, `name`, `difficulty`, `length`, `elevation_gain_loss`, `features`, `mountain_id`) VALUES (23, 'Tree Chute 4', 'EXPERT', NULL, NULL, NULL, 1);
+INSERT INTO `trail` (`id`, `name`, `difficulty`, `length`, `elevation_gain_loss`, `features`, `mountain_id`) VALUES (24, 'Tree Chute 5', 'EXPERT', NULL, NULL, NULL, 1);
+INSERT INTO `trail` (`id`, `name`, `difficulty`, `length`, `elevation_gain_loss`, `features`, `mountain_id`) VALUES (25, 'Tree Chute 6', 'EXPERT', NULL, NULL, NULL, 1);
+INSERT INTO `trail` (`id`, `name`, `difficulty`, `length`, `elevation_gain_loss`, `features`, `mountain_id`) VALUES (26, 'Tree Chute 7', 'EXPERT', NULL, NULL, NULL, 1);
+INSERT INTO `trail` (`id`, `name`, `difficulty`, `length`, `elevation_gain_loss`, `features`, `mountain_id`) VALUES (27, 'Tree Chute 8', 'EXPERT', NULL, NULL, NULL, 1);
+INSERT INTO `trail` (`id`, `name`, `difficulty`, `length`, `elevation_gain_loss`, `features`, `mountain_id`) VALUES (28, 'Willy\'s Wide', 'EXPERT', NULL, NULL, NULL, 1);
+INSERT INTO `trail` (`id`, `name`, `difficulty`, `length`, `elevation_gain_loss`, `features`, `mountain_id`) VALUES (29, 'Cabin Glades', 'INTERMEDIATE', NULL, NULL, NULL, 1);
+INSERT INTO `trail` (`id`, `name`, `difficulty`, `length`, `elevation_gain_loss`, `features`, `mountain_id`) VALUES (30, 'Dragon', 'INTERMEDIATE', NULL, NULL, NULL, 1);
+INSERT INTO `trail` (`id`, `name`, `difficulty`, `length`, `elevation_gain_loss`, `features`, `mountain_id`) VALUES (31, 'East Gully', 'INTERMEDIATE', NULL, NULL, NULL, 1);
+INSERT INTO `trail` (`id`, `name`, `difficulty`, `length`, `elevation_gain_loss`, `features`, `mountain_id`) VALUES (32, 'Falcon', 'HARD', NULL, NULL, NULL, 1);
+INSERT INTO `trail` (`id`, `name`, `difficulty`, `length`, `elevation_gain_loss`, `features`, `mountain_id`) VALUES (33, 'Gentry', 'INTERMEDIATE', NULL, NULL, NULL, 1);
+INSERT INTO `trail` (`id`, `name`, `difficulty`, `length`, `elevation_gain_loss`, `features`, `mountain_id`) VALUES (34, 'Half Moon Glades', 'HARD', NULL, NULL, NULL, 1);
+INSERT INTO `trail` (`id`, `name`, `difficulty`, `length`, `elevation_gain_loss`, `features`, `mountain_id`) VALUES (35, 'Lenawee Parks', 'INTERMEDIATE', NULL, NULL, NULL, 1);
+INSERT INTO `trail` (`id`, `name`, `difficulty`, `length`, `elevation_gain_loss`, `features`, `mountain_id`) VALUES (36, 'Mountain Goat Alley', 'INTERMEDIATE', NULL, NULL, NULL, 1);
+INSERT INTO `trail` (`id`, `name`, `difficulty`, `length`, `elevation_gain_loss`, `features`, `mountain_id`) VALUES (37, 'West Gully', 'INTERMEDIATE', NULL, NULL, NULL, 1);
+INSERT INTO `trail` (`id`, `name`, `difficulty`, `length`, `elevation_gain_loss`, `features`, `mountain_id`) VALUES (38, 'Treeline', NULL, NULL, NULL, 'Terrain Park', 1);
+INSERT INTO `trail` (`id`, `name`, `difficulty`, `length`, `elevation_gain_loss`, `features`, `mountain_id`) VALUES (39, 'Dercum\'s Gulch', 'INTERMEDIATE', NULL, NULL, 'Groomed', 1);
+INSERT INTO `trail` (`id`, `name`, `difficulty`, `length`, `elevation_gain_loss`, `features`, `mountain_id`) VALUES (40, 'Humbug', 'INTERMEDIATE', NULL, NULL, 'Groomed', 1);
+INSERT INTO `trail` (`id`, `name`, `difficulty`, `length`, `elevation_gain_loss`, `features`, `mountain_id`) VALUES (41, 'Jamie\'s Face', 'INTERMEDIATE', NULL, NULL, NULL, 1);
+INSERT INTO `trail` (`id`, `name`, `difficulty`, `length`, `elevation_gain_loss`, `features`, `mountain_id`) VALUES (42, 'Lenawee Face', 'INTERMEDIATE', NULL, NULL, 'Groomed', 1);
+INSERT INTO `trail` (`id`, `name`, `difficulty`, `length`, `elevation_gain_loss`, `features`, `mountain_id`) VALUES (43, 'Norway Face', 'INTERMEDIATE', NULL, NULL, NULL, 1);
+INSERT INTO `trail` (`id`, `name`, `difficulty`, `length`, `elevation_gain_loss`, `features`, `mountain_id`) VALUES (44, 'Norway Mountain Run', 'INTERMEDIATE', NULL, NULL, NULL, 1);
+INSERT INTO `trail` (`id`, `name`, `difficulty`, `length`, `elevation_gain_loss`, `features`, `mountain_id`) VALUES (45, 'Powerline', 'INTERMEDIATE', NULL, NULL, NULL, 1);
+INSERT INTO `trail` (`id`, `name`, `difficulty`, `length`, `elevation_gain_loss`, `features`, `mountain_id`) VALUES (46, 'Cornice Run', 'INTERMEDIATE', NULL, NULL, 'Groomed', 1);
+INSERT INTO `trail` (`id`, `name`, `difficulty`, `length`, `elevation_gain_loss`, `features`, `mountain_id`) VALUES (47, 'King Cornice', 'INTERMEDIATE', NULL, NULL, NULL, 1);
+INSERT INTO `trail` (`id`, `name`, `difficulty`, `length`, `elevation_gain_loss`, `features`, `mountain_id`) VALUES (48, 'Knolls', 'INTERMEDIATE', NULL, NULL, NULL, 1);
+INSERT INTO `trail` (`id`, `name`, `difficulty`, `length`, `elevation_gain_loss`, `features`, `mountain_id`) VALUES (49, 'West Wall', 'INTERMEDIATE', NULL, NULL, 'Groomed', 1);
+INSERT INTO `trail` (`id`, `name`, `difficulty`, `length`, `elevation_gain_loss`, `features`, `mountain_id`) VALUES (50, 'Challenger', 'HARD', NULL, NULL, NULL, 1);
+INSERT INTO `trail` (`id`, `name`, `difficulty`, `length`, `elevation_gain_loss`, `features`, `mountain_id`) VALUES (51, 'No Name', 'HARD', NULL, NULL, NULL, 1);
+INSERT INTO `trail` (`id`, `name`, `difficulty`, `length`, `elevation_gain_loss`, `features`, `mountain_id`) VALUES (52, 'Radical', 'HARD', NULL, NULL, NULL, 1);
+INSERT INTO `trail` (`id`, `name`, `difficulty`, `length`, `elevation_gain_loss`, `features`, `mountain_id`) VALUES (53, 'Scudder', 'HARD', NULL, NULL, NULL, 1);
+INSERT INTO `trail` (`id`, `name`, `difficulty`, `length`, `elevation_gain_loss`, `features`, `mountain_id`) VALUES (54, '13 Cornices', 'EXPERT', NULL, NULL, NULL, 1);
+INSERT INTO `trail` (`id`, `name`, `difficulty`, `length`, `elevation_gain_loss`, `features`, `mountain_id`) VALUES (55, 'Bear Trap', 'EXPERT', NULL, NULL, NULL, 1);
+INSERT INTO `trail` (`id`, `name`, `difficulty`, `length`, `elevation_gain_loss`, `features`, `mountain_id`) VALUES (56, 'International', 'EXPERT', NULL, NULL, NULL, 1);
+INSERT INTO `trail` (`id`, `name`, `difficulty`, `length`, `elevation_gain_loss`, `features`, `mountain_id`) VALUES (57, 'My Chute', 'EXPERT', NULL, NULL, NULL, 1);
+INSERT INTO `trail` (`id`, `name`, `difficulty`, `length`, `elevation_gain_loss`, `features`, `mountain_id`) VALUES (58, 'North Glade', 'EXPERT', NULL, NULL, NULL, 1);
+INSERT INTO `trail` (`id`, `name`, `difficulty`, `length`, `elevation_gain_loss`, `features`, `mountain_id`) VALUES (59, 'Roller Coaster', 'EXPERT', NULL, NULL, NULL, 1);
+INSERT INTO `trail` (`id`, `name`, `difficulty`, `length`, `elevation_gain_loss`, `features`, `mountain_id`) VALUES (60, 'Timber Glades', 'EXPERT', NULL, NULL, NULL, 1);
+INSERT INTO `trail` (`id`, `name`, `difficulty`, `length`, `elevation_gain_loss`, `features`, `mountain_id`) VALUES (61, '1st Alley - David\'s Run', 'EXPERT', NULL, NULL, NULL, 1);
+INSERT INTO `trail` (`id`, `name`, `difficulty`, `length`, `elevation_gain_loss`, `features`, `mountain_id`) VALUES (62, '2nd Alley', 'EXPERT', NULL, NULL, NULL, 1);
+INSERT INTO `trail` (`id`, `name`, `difficulty`, `length`, `elevation_gain_loss`, `features`, `mountain_id`) VALUES (63, '3rd Alley', 'EXPERT', NULL, NULL, NULL, 1);
+INSERT INTO `trail` (`id`, `name`, `difficulty`, `length`, `elevation_gain_loss`, `features`, `mountain_id`) VALUES (64, '4th Alley (West Alley)', 'EXPERT', NULL, NULL, NULL, 1);
+INSERT INTO `trail` (`id`, `name`, `difficulty`, `length`, `elevation_gain_loss`, `features`, `mountain_id`) VALUES (65, 'East Avenue', 'EXPERT', NULL, NULL, NULL, 1);
+INSERT INTO `trail` (`id`, `name`, `difficulty`, `length`, `elevation_gain_loss`, `features`, `mountain_id`) VALUES (66, 'Gauthier', 'EXPERT', NULL, NULL, NULL, 1);
+INSERT INTO `trail` (`id`, `name`, `difficulty`, `length`, `elevation_gain_loss`, `features`, `mountain_id`) VALUES (67, 'Pali Face', 'EXPERT', NULL, NULL, NULL, 1);
+INSERT INTO `trail` (`id`, `name`, `difficulty`, `length`, `elevation_gain_loss`, `features`, `mountain_id`) VALUES (68, 'Pali Main Street', 'EXPERT', NULL, NULL, NULL, 1);
+INSERT INTO `trail` (`id`, `name`, `difficulty`, `length`, `elevation_gain_loss`, `features`, `mountain_id`) VALUES (69, 'Pali Wog', 'EXPERT', NULL, NULL, NULL, 1);
+INSERT INTO `trail` (`id`, `name`, `difficulty`, `length`, `elevation_gain_loss`, `features`, `mountain_id`) VALUES (70, 'Rock Garden', 'EXPERT', NULL, NULL, NULL, 1);
+INSERT INTO `trail` (`id`, `name`, `difficulty`, `length`, `elevation_gain_loss`, `features`, `mountain_id`) VALUES (71, 'The Spine', 'EXPERT', NULL, NULL, NULL, 1);
+INSERT INTO `trail` (`id`, `name`, `difficulty`, `length`, `elevation_gain_loss`, `features`, `mountain_id`) VALUES (72, 'Turbo', 'EXPERT', NULL, NULL, NULL, 1);
+INSERT INTO `trail` (`id`, `name`, `difficulty`, `length`, `elevation_gain_loss`, `features`, `mountain_id`) VALUES (73, 'West Turbo', 'EXPERT', NULL, NULL, NULL, 1);
+INSERT INTO `trail` (`id`, `name`, `difficulty`, `length`, `elevation_gain_loss`, `features`, `mountain_id`) VALUES (74, 'Grizzly Road', 'INTERMEDIATE', NULL, NULL, 'Groomed', 1);
+INSERT INTO `trail` (`id`, `name`, `difficulty`, `length`, `elevation_gain_loss`, `features`, `mountain_id`) VALUES (75, 'North Chute', 'HARD', NULL, NULL, NULL, 1);
+INSERT INTO `trail` (`id`, `name`, `difficulty`, `length`, `elevation_gain_loss`, `features`, `mountain_id`) VALUES (76, 'Nose', 'HARD', NULL, NULL, NULL, 1);
+INSERT INTO `trail` (`id`, `name`, `difficulty`, `length`, `elevation_gain_loss`, `features`, `mountain_id`) VALUES (77, 'Powder Keg', 'HARD', NULL, NULL, NULL, 1);
+INSERT INTO `trail` (`id`, `name`, `difficulty`, `length`, `elevation_gain_loss`, `features`, `mountain_id`) VALUES (78, 'Slalom Slope', 'HARD', NULL, NULL, NULL, 1);
+INSERT INTO `trail` (`id`, `name`, `difficulty`, `length`, `elevation_gain_loss`, `features`, `mountain_id`) VALUES (79, 'South Chute', 'HARD', NULL, NULL, NULL, 1);
+INSERT INTO `trail` (`id`, `name`, `difficulty`, `length`, `elevation_gain_loss`, `features`, `mountain_id`) VALUES (80, 'Wildcate', 'HARD', NULL, NULL, NULL, 1);
+INSERT INTO `trail` (`id`, `name`, `difficulty`, `length`, `elevation_gain_loss`, `features`, `mountain_id`) VALUES (81, 'Exhibition', 'HARD', NULL, NULL, NULL, 1);
+INSERT INTO `trail` (`id`, `name`, `difficulty`, `length`, `elevation_gain_loss`, `features`, `mountain_id`) VALUES (82, 'Standard', 'HARD', NULL, NULL, NULL, 1);
+INSERT INTO `trail` (`id`, `name`, `difficulty`, `length`, `elevation_gain_loss`, `features`, `mountain_id`) VALUES (83, 'The Gulch', 'HARD', NULL, NULL, NULL, 1);
+INSERT INTO `trail` (`id`, `name`, `difficulty`, `length`, `elevation_gain_loss`, `features`, `mountain_id`) VALUES (84, 'Bald Spot', 'EXPERT', NULL, NULL, NULL, 1);
+INSERT INTO `trail` (`id`, `name`, `difficulty`, `length`, `elevation_gain_loss`, `features`, `mountain_id`) VALUES (85, 'Christmas Trees', 'EXPERT', NULL, NULL, NULL, 1);
+INSERT INTO `trail` (`id`, `name`, `difficulty`, `length`, `elevation_gain_loss`, `features`, `mountain_id`) VALUES (86, 'Grand Portage', 'EXPERT', NULL, NULL, NULL, 1);
+INSERT INTO `trail` (`id`, `name`, `difficulty`, `length`, `elevation_gain_loss`, `features`, `mountain_id`) VALUES (87, 'Janitors Only', 'EXPERT', NULL, NULL, NULL, 1);
+INSERT INTO `trail` (`id`, `name`, `difficulty`, `length`, `elevation_gain_loss`, `features`, `mountain_id`) VALUES (88, 'SG1', 'EXPERT', NULL, NULL, NULL, 1);
+INSERT INTO `trail` (`id`, `name`, `difficulty`, `length`, `elevation_gain_loss`, `features`, `mountain_id`) VALUES (89, 'SG2', 'EXPERT', NULL, NULL, NULL, 1);
+INSERT INTO `trail` (`id`, `name`, `difficulty`, `length`, `elevation_gain_loss`, `features`, `mountain_id`) VALUES (90, 'SG3', 'EXPERT', NULL, NULL, NULL, 1);
+INSERT INTO `trail` (`id`, `name`, `difficulty`, `length`, `elevation_gain_loss`, `features`, `mountain_id`) VALUES (91, 'SG4', 'EXPERT', NULL, NULL, NULL, 1);
+INSERT INTO `trail` (`id`, `name`, `difficulty`, `length`, `elevation_gain_loss`, `features`, `mountain_id`) VALUES (92, 'SG5', 'EXPERT', NULL, NULL, NULL, 1);
+INSERT INTO `trail` (`id`, `name`, `difficulty`, `length`, `elevation_gain_loss`, `features`, `mountain_id`) VALUES (93, 'The Cellar', 'EXPERT', NULL, NULL, NULL, 1);
+INSERT INTO `trail` (`id`, `name`, `difficulty`, `length`, `elevation_gain_loss`, `features`, `mountain_id`) VALUES (94, 'Steep Gullies Hike Back Trail', 'EXPERT', NULL, NULL, NULL, 1);
+INSERT INTO `trail` (`id`, `name`, `difficulty`, `length`, `elevation_gain_loss`, `features`, `mountain_id`) VALUES (95, 'Bierstadt', 'HARD', NULL, NULL, NULL, 1);
+INSERT INTO `trail` (`id`, `name`, `difficulty`, `length`, `elevation_gain_loss`, `features`, `mountain_id`) VALUES (96, 'Grays', 'HARD', NULL, NULL, NULL, 1);
+INSERT INTO `trail` (`id`, `name`, `difficulty`, `length`, `elevation_gain_loss`, `features`, `mountain_id`) VALUES (97, 'Lightning Traverse', 'HARD', NULL, NULL, NULL, 1);
+INSERT INTO `trail` (`id`, `name`, `difficulty`, `length`, `elevation_gain_loss`, `features`, `mountain_id`) VALUES (98, 'Log Roll', 'HARD', NULL, NULL, NULL, 1);
+INSERT INTO `trail` (`id`, `name`, `difficulty`, `length`, `elevation_gain_loss`, `features`, `mountain_id`) VALUES (99, 'Mountain Goat Traverse', 'HARD', NULL, NULL, NULL, 1);
+INSERT INTO `trail` (`id`, `name`, `difficulty`, `length`, `elevation_gain_loss`, `features`, `mountain_id`) VALUES (100, 'Northern Spy', 'HARD', NULL, NULL, NULL, 1);
+INSERT INTO `trail` (`id`, `name`, `difficulty`, `length`, `elevation_gain_loss`, `features`, `mountain_id`) VALUES (101, 'Placer Junction', 'HARD', NULL, NULL, NULL, 1);
+INSERT INTO `trail` (`id`, `name`, `difficulty`, `length`, `elevation_gain_loss`, `features`, `mountain_id`) VALUES (102, 'Tieze\'s Claim', 'HARD', NULL, NULL, NULL, 1);
+INSERT INTO `trail` (`id`, `name`, `difficulty`, `length`, `elevation_gain_loss`, `features`, `mountain_id`) VALUES (103, 'Torreys', 'HARD', NULL, NULL, NULL, 1);
+INSERT INTO `trail` (`id`, `name`, `difficulty`, `length`, `elevation_gain_loss`, `features`, `mountain_id`) VALUES (104, 'Black Forest', 'EXPERT', NULL, NULL, NULL, 1);
+INSERT INTO `trail` (`id`, `name`, `difficulty`, `length`, `elevation_gain_loss`, `features`, `mountain_id`) VALUES (105, 'Crags', 'EXPERT', NULL, NULL, NULL, 1);
+INSERT INTO `trail` (`id`, `name`, `difficulty`, `length`, `elevation_gain_loss`, `features`, `mountain_id`) VALUES (106, 'Davo', 'EXPERT', NULL, NULL, NULL, 1);
+INSERT INTO `trail` (`id`, `name`, `difficulty`, `length`, `elevation_gain_loss`, `features`, `mountain_id`) VALUES (107, 'Lightning Trees', 'EXPERT', NULL, NULL, NULL, 1);
+INSERT INTO `trail` (`id`, `name`, `difficulty`, `length`, `elevation_gain_loss`, `features`, `mountain_id`) VALUES (108, 'Elephant\'s Trunk - Lower', 'EXPERT', NULL, NULL, NULL, 1);
+INSERT INTO `trail` (`id`, `name`, `difficulty`, `length`, `elevation_gain_loss`, `features`, `mountain_id`) VALUES (109, 'Black Bear', 'HARD', NULL, NULL, NULL, 1);
+INSERT INTO `trail` (`id`, `name`, `difficulty`, `length`, `elevation_gain_loss`, `features`, `mountain_id`) VALUES (110, 'Durrance', 'EXPERT', NULL, NULL, NULL, 1);
+INSERT INTO `trail` (`id`, `name`, `difficulty`, `length`, `elevation_gain_loss`, `features`, `mountain_id`) VALUES (111, 'Groswold', 'EXPERT', NULL, NULL, NULL, 1);
+INSERT INTO `trail` (`id`, `name`, `difficulty`, `length`, `elevation_gain_loss`, `features`, `mountain_id`) VALUES (112, 'Long Chute', 'HARD', NULL, NULL, NULL, 1);
+INSERT INTO `trail` (`id`, `name`, `difficulty`, `length`, `elevation_gain_loss`, `features`, `mountain_id`) VALUES (113, 'Max', 'EXPERT', NULL, NULL, NULL, 1);
+INSERT INTO `trail` (`id`, `name`, `difficulty`, `length`, `elevation_gain_loss`, `features`, `mountain_id`) VALUES (114, 'Zuma Cornice', 'EXPERT', NULL, NULL, NULL, 1);
+INSERT INTO `trail` (`id`, `name`, `difficulty`, `length`, `elevation_gain_loss`, `features`, `mountain_id`) VALUES (115, 'Columbine', 'INTERMEDIATE', NULL, NULL, NULL, 1);
+INSERT INTO `trail` (`id`, `name`, `difficulty`, `length`, `elevation_gain_loss`, `features`, `mountain_id`) VALUES (116, 'Elk Meadows', 'INTERMEDIATE', NULL, NULL, NULL, 1);
+INSERT INTO `trail` (`id`, `name`, `difficulty`, `length`, `elevation_gain_loss`, `features`, `mountain_id`) VALUES (117, 'Independence', 'INTERMEDIATE', NULL, NULL, NULL, 1);
+INSERT INTO `trail` (`id`, `name`, `difficulty`, `length`, `elevation_gain_loss`, `features`, `mountain_id`) VALUES (118, 'Larkspur', 'INTERMEDIATE', NULL, NULL, NULL, 1);
+INSERT INTO `trail` (`id`, `name`, `difficulty`, `length`, `elevation_gain_loss`, `features`, `mountain_id`) VALUES (119, 'Miner\'s Glade', 'INTERMEDIATE', NULL, NULL, NULL, 1);
+INSERT INTO `trail` (`id`, `name`, `difficulty`, `length`, `elevation_gain_loss`, `features`, `mountain_id`) VALUES (120, 'Ned\'s Cache', 'INTERMEDIATE', NULL, NULL, NULL, 1);
+INSERT INTO `trail` (`id`, `name`, `difficulty`, `length`, `elevation_gain_loss`, `features`, `mountain_id`) VALUES (121, 'Shining Light', 'INTERMEDIATE', NULL, NULL, NULL, 1);
+INSERT INTO `trail` (`id`, `name`, `difficulty`, `length`, `elevation_gain_loss`, `features`, `mountain_id`) VALUES (122, 'Elephant\'s Trunk - Upper', 'EXPERT', NULL, NULL, NULL, 1);
+INSERT INTO `trail` (`id`, `name`, `difficulty`, `length`, `elevation_gain_loss`, `features`, `mountain_id`) VALUES (123, 'End Zone', 'EXPERT', NULL, NULL, NULL, 1);
+INSERT INTO `trail` (`id`, `name`, `difficulty`, `length`, `elevation_gain_loss`, `features`, `mountain_id`) VALUES (124, 'Eureka', 'HARD', NULL, NULL, NULL, 1);
+INSERT INTO `trail` (`id`, `name`, `difficulty`, `length`, `elevation_gain_loss`, `features`, `mountain_id`) VALUES (125, 'Gentling\'s Glade', 'HARD', NULL, NULL, NULL, 1);
+INSERT INTO `trail` (`id`, `name`, `difficulty`, `length`, `elevation_gain_loss`, `features`, `mountain_id`) VALUES (126, 'Jump', 'EXPERT', NULL, NULL, NULL, 1);
+INSERT INTO `trail` (`id`, `name`, `difficulty`, `length`, `elevation_gain_loss`, `features`, `mountain_id`) VALUES (127, 'Monezuma\'s Revenge', 'HARD', NULL, NULL, NULL, 1);
+INSERT INTO `trail` (`id`, `name`, `difficulty`, `length`, `elevation_gain_loss`, `features`, `mountain_id`) VALUES (128, 'Schauffler', 'EXPERT', NULL, NULL, NULL, 1);
+INSERT INTO `trail` (`id`, `name`, `difficulty`, `length`, `elevation_gain_loss`, `features`, `mountain_id`) VALUES (129, 'Winning Card', 'HARD', NULL, NULL, NULL, 1);
+INSERT INTO `trail` (`id`, `name`, `difficulty`, `length`, `elevation_gain_loss`, `features`, `mountain_id`) VALUES (130, 'Davis', 'INTERMEDIATE', NULL, NULL, NULL, 1);
+INSERT INTO `trail` (`id`, `name`, `difficulty`, `length`, `elevation_gain_loss`, `features`, `mountain_id`) VALUES (131, 'Loafer', 'INTERMEDIATE', NULL, NULL, NULL, 1);
+INSERT INTO `trail` (`id`, `name`, `difficulty`, `length`, `elevation_gain_loss`, `features`, `mountain_id`) VALUES (132, 'Bailey Bros.', 'HARD', NULL, NULL, NULL, 1);
+INSERT INTO `trail` (`id`, `name`, `difficulty`, `length`, `elevation_gain_loss`, `features`, `mountain_id`) VALUES (133, 'Castor', 'HARD', NULL, NULL, NULL, 1);
+INSERT INTO `trail` (`id`, `name`, `difficulty`, `length`, `elevation_gain_loss`, `features`, `mountain_id`) VALUES (134, 'East Woods', 'HARD', NULL, NULL, NULL, 1);
+INSERT INTO `trail` (`id`, `name`, `difficulty`, `length`, `elevation_gain_loss`, `features`, `mountain_id`) VALUES (135, 'Face Shot Gully', 'HARD', NULL, NULL, NULL, 1);
+INSERT INTO `trail` (`id`, `name`, `difficulty`, `length`, `elevation_gain_loss`, `features`, `mountain_id`) VALUES (136, 'Porcupine', 'HARD', NULL, NULL, NULL, 1);
+INSERT INTO `trail` (`id`, `name`, `difficulty`, `length`, `elevation_gain_loss`, `features`, `mountain_id`) VALUES (137, 'Thick & Thin', 'HARD', NULL, NULL, NULL, 1);
+INSERT INTO `trail` (`id`, `name`, `difficulty`, `length`, `elevation_gain_loss`, `features`, `mountain_id`) VALUES (138, 'Digger', 'HARD', NULL, NULL, NULL, 1);
+INSERT INTO `trail` (`id`, `name`, `difficulty`, `length`, `elevation_gain_loss`, `features`, `mountain_id`) VALUES (139, 'Alex', 'HARD', NULL, NULL, NULL, 1);
+INSERT INTO `trail` (`id`, `name`, `difficulty`, `length`, `elevation_gain_loss`, `features`, `mountain_id`) VALUES (140, 'Beaver Bowl', 'HARD', NULL, NULL, NULL, 1);
+INSERT INTO `trail` (`id`, `name`, `difficulty`, `length`, `elevation_gain_loss`, `features`, `mountain_id`) VALUES (141, 'Bighorn', 'HARD', NULL, NULL, NULL, 1);
+INSERT INTO `trail` (`id`, `name`, `difficulty`, `length`, `elevation_gain_loss`, `features`, `mountain_id`) VALUES (142, 'Dreamcatcher', 'HARD', NULL, NULL, NULL, 1);
+INSERT INTO `trail` (`id`, `name`, `difficulty`, `length`, `elevation_gain_loss`, `features`, `mountain_id`) VALUES (143, 'Drummond', 'HARD', NULL, NULL, NULL, 1);
+INSERT INTO `trail` (`id`, `name`, `difficulty`, `length`, `elevation_gain_loss`, `features`, `mountain_id`) VALUES (144, 'Faculty Club', 'HARD', NULL, NULL, NULL, 1);
+INSERT INTO `trail` (`id`, `name`, `difficulty`, `length`, `elevation_gain_loss`, `features`, `mountain_id`) VALUES (145, 'Glockenspiel Glade', 'HARD', NULL, NULL, NULL, 1);
+INSERT INTO `trail` (`id`, `name`, `difficulty`, `length`, `elevation_gain_loss`, `features`, `mountain_id`) VALUES (146, 'Hauk', 'HARD', NULL, NULL, NULL, 1);
+INSERT INTO `trail` (`id`, `name`, `difficulty`, `length`, `elevation_gain_loss`, `features`, `mountain_id`) VALUES (147, 'Jaeger', 'HARD', NULL, NULL, NULL, 1);
+INSERT INTO `trail` (`id`, `name`, `difficulty`, `length`, `elevation_gain_loss`, `features`, `mountain_id`) VALUES (148, 'Jetta', 'HARD', NULL, NULL, NULL, 1);
+INSERT INTO `trail` (`id`, `name`, `difficulty`, `length`, `elevation_gain_loss`, `features`, `mountain_id`) VALUES (149, 'Marmot', 'HARD', NULL, NULL, NULL, 1);
+INSERT INTO `trail` (`id`, `name`, `difficulty`, `length`, `elevation_gain_loss`, `features`, `mountain_id`) VALUES (150, 'Peaceful Valley', 'HARD', NULL, NULL, NULL, 1);
+INSERT INTO `trail` (`id`, `name`, `difficulty`, `length`, `elevation_gain_loss`, `features`, `mountain_id`) VALUES (151, 'Pioneet Willy', 'HARD', NULL, NULL, NULL, 1);
+INSERT INTO `trail` (`id`, `name`, `difficulty`, `length`, `elevation_gain_loss`, `features`, `mountain_id`) VALUES (152, 'Ptarmigan', 'HARD', NULL, NULL, NULL, 1);
+INSERT INTO `trail` (`id`, `name`, `difficulty`, `length`, `elevation_gain_loss`, `features`, `mountain_id`) VALUES (153, 'The Last Waltz', 'HARD', NULL, NULL, NULL, 1);
+INSERT INTO `trail` (`id`, `name`, `difficulty`, `length`, `elevation_gain_loss`, `features`, `mountain_id`) VALUES (154, 'Molly Hogan', 'BEGINNER', NULL, NULL, 'Groomed', 1);
+INSERT INTO `trail` (`id`, `name`, `difficulty`, `length`, `elevation_gain_loss`, `features`, `mountain_id`) VALUES (155, 'Pika Place', 'BEGINNER', NULL, NULL, 'Groomed', 1);
 
 COMMIT;
 
@@ -297,7 +452,12 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `skireviewdb`;
-INSERT INTO `chairlift_type` (`id`, `type`, `capacity`) VALUES (1, 'Express', '4');
+INSERT INTO `chairlift_type` (`id`, `type`, `capacity`) VALUES (1, 'Express Chairlift', '4');
+INSERT INTO `chairlift_type` (`id`, `type`, `capacity`) VALUES (2, 'Chairlift', '4');
+INSERT INTO `chairlift_type` (`id`, `type`, `capacity`) VALUES (3, 'Chairlift', '3');
+INSERT INTO `chairlift_type` (`id`, `type`, `capacity`) VALUES (4, 'Chairlift', '2');
+INSERT INTO `chairlift_type` (`id`, `type`, `capacity`) VALUES (5, 'Carpet lift', '1');
+INSERT INTO `chairlift_type` (`id`, `type`, `capacity`) VALUES (6, 'Surface lift', '1');
 
 COMMIT;
 
@@ -307,7 +467,15 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `skireviewdb`;
-INSERT INTO `chairlift` (`id`, `ride_length`, `hours`, `chairlift_type_id`) VALUES (1, NULL, '9:00 AM - 4:00 PM', 1);
+INSERT INTO `chairlift` (`id`, `name`, `ride_length`, `hours`, `chairlift_type_id`) VALUES (1, 'Black Mountain Express Lift', NULL, NULL, 1);
+INSERT INTO `chairlift` (`id`, `name`, `ride_length`, `hours`, `chairlift_type_id`) VALUES (2, 'Zuma Lift', NULL, NULL, 2);
+INSERT INTO `chairlift` (`id`, `name`, `ride_length`, `hours`, `chairlift_type_id`) VALUES (3, 'Beavers Lift', NULL, NULL, 2);
+INSERT INTO `chairlift` (`id`, `name`, `ride_length`, `hours`, `chairlift_type_id`) VALUES (4, 'Lenawee Mountain Lift', NULL, NULL, 3);
+INSERT INTO `chairlift` (`id`, `name`, `ride_length`, `hours`, `chairlift_type_id`) VALUES (5, 'Pallavicini Lift', NULL, NULL, 4);
+INSERT INTO `chairlift` (`id`, `name`, `ride_length`, `hours`, `chairlift_type_id`) VALUES (6, 'MollyHogan Lift', NULL, NULL, 4);
+INSERT INTO `chairlift` (`id`, `name`, `ride_length`, `hours`, `chairlift_type_id`) VALUES (7, 'Molly Carpet Lift', NULL, NULL, 5);
+INSERT INTO `chairlift` (`id`, `name`, `ride_length`, `hours`, `chairlift_type_id`) VALUES (8, 'Pika Place Carpet Lift', NULL, NULL, 5);
+INSERT INTO `chairlift` (`id`, `name`, `ride_length`, `hours`, `chairlift_type_id`) VALUES (9, 'Lazy J Tow', NULL, NULL, 6);
 
 COMMIT;
 
