@@ -2,6 +2,7 @@ package com.skilldistillery.skireport.entities;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -32,7 +33,7 @@ public class Resort {
 	private Integer acres;
 	
 	@JsonManagedReference(value="resortToMountain")
-	@OneToMany(mappedBy="resort")
+	@OneToMany(cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, mappedBy="resort")
 	private List<Mountain> mountains;
 	
 	/*
@@ -138,21 +139,21 @@ public class Resort {
 	/*
 	 * toString
 	 */
-	@Override
-	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("Resort [id=").append(id)
-				.append(", street=").append(street)
-				.append(", street2=").append(street2)
-				.append(", city=").append(city)
-				.append(", state=").append(state)
-				.append(", zip=").append(zip)
-				.append(", name=").append(name)
-				.append(", acres=").append(acres)
-				.append(", mountains=").append(mountains.size())
-				.append("]");
-		return builder.toString();
-	}
+//	@Override
+//	public String toString() {
+//		StringBuilder builder = new StringBuilder();
+//		builder.append("Resort [id=").append(id)
+//				.append(", street=").append(street)
+//				.append(", street2=").append(street2)
+//				.append(", city=").append(city)
+//				.append(", state=").append(state)
+//				.append(", zip=").append(zip)
+//				.append(", name=").append(name)
+//				.append(", acres=").append(acres)
+//				.append(", mountains=").append(mountains.size())
+//				.append("]");
+//		return builder.toString();
+//	}
 
 	/*
 	 * constructors
