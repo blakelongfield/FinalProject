@@ -50,8 +50,8 @@ class ChairliftTest {
 		
 		assertNotNull( cl );
 		assertEquals( "Express", cl.getType().getType());
-		assertEquals( 1, cl.getTrails().size());
 		
+		assertEquals( 1, cl.getTrails().size());
 	
 		
 	}

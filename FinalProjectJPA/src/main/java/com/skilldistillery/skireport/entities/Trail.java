@@ -28,11 +28,17 @@ public class Trail {
 	@Column(name="elevation_gain_loss")
 	private Integer elevationGainLoss;
 	private String features;
+	
+	
+	
 	@ManyToMany
 	@JoinTable(name="chairlift_has_trail", 
 	joinColumns=@JoinColumn(name="trail_id"),
 	inverseJoinColumns=@JoinColumn(name="chairlift_id"))
 	private List<ChairLift> lifts;
+	
+	
+	
 	@OneToMany(mappedBy="trail")
 	private List<Report> reports;
 	@ManyToOne
