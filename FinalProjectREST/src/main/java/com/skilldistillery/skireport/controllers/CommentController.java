@@ -2,6 +2,9 @@ package com.skilldistillery.skireport.controllers;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -22,49 +25,78 @@ import com.skilldistillery.skireport.services.CommentService;
 public class CommentController {
 	@Autowired
 	private CommentService commentService;
-	
-	//hardcoded for now
+
+	// hard-coded until we start using Angular
 	private String username = "blake";
-	
-	@GetMapping(path="comments")
-	public List<Comment> getAllComments() {
+
+	@GetMapping(path = "comments")
+	public List<Comment> getAllComments(HttpServletResponse resp, HttpServletRequest req) {
 		List<Comment> comments = null;
 		comments = commentService.findAll();
+		if (comments.isEmpty()) {
+			resp.setStatus(404);
+		}
 		return comments;
 	}
-	
-	@GetMapping(path="comments/{commentId}")
-	public Comment findCommentById(@PathVariable("commentId") int commentId) {
-		Comment comment = null;
-		comment = commentService.findById(commentId);
+
+	@GetMapping(path = "comments/{commentId}")
+	public Comment findCommentById(@PathVariable("commentId") int commentId, HttpServletResponse resp,
+			HttpServletRequest req) {
+		Comment comment = commentService.findById(commentId);
+		if (comment == null) {
+			resp.setStatus(404);
+		}
 		return comment;
 	}
-	
-	@PostMapping(path="comments/reports/{reportId}")
-	public Comment createCommentOnReport(@RequestBody Comment comment, @PathVariable("reportId") Integer reportId) {
+
+	@PostMapping(path = "comments/reports/{reportId}")
+	public Comment createCommentOnReport(@RequestBody Comment comment, @PathVariable("reportId") Integer reportId,
+			HttpServletResponse resp, HttpServletRequest req) {
 		Integer commentId = null;
 		comment = commentService.create(comment, username, reportId, commentId);
+		if (comment == null) {
+			resp.setStatus(400);
+		} else {
+			resp.setStatus(201);
+		}
 		return comment;
 	}
-	
-	@PostMapping(path="comments/comments/{commentId}")
-	public Comment createCommentOnComment(@RequestBody Comment comment, @PathVariable("commentId") int commentId) {
+
+	@PostMapping(path = "comments/comments/{commentId}")
+	public Comment createCommentOnComment(@RequestBody Comment comment, @PathVariable("commentId") int commentId,
+			HttpServletResponse resp, HttpServletRequest req) {
 		Integer reportId = null;
 		comment = commentService.create(comment, username, reportId, commentId);
+		if (comment == null) {
+			resp.setStatus(400);
+		} else {
+			resp.setStatus(201);
+		}
 		return comment;
 	}
-	
-	@PutMapping(path="comments/{commentId}")
-	public Comment updateComment(@RequestBody Comment comment, @PathVariable("commentId") int commentId) {
+
+	@PutMapping(path = "comments/{commentId}")
+	public Comment updateComment(@RequestBody Comment comment, @PathVariable("commentId") int commentId,
+			HttpServletResponse resp, HttpServletRequest req) {
 		comment = commentService.update(comment, commentId, username);
+		if (comment != null) {
+			resp.setStatus(202);
+		} else {
+			resp.setStatus(400);
+		}
 		return comment;
 	}
-	
-	@DeleteMapping(path="comments/{commentId}")
-	public Boolean deleteComment(@PathVariable("commentId") int commentId) {
+
+	@DeleteMapping(path = "comments/{commentId}")
+	public Boolean deleteComment(@PathVariable("commentId") int commentId, HttpServletResponse resp,
+			HttpServletRequest req) {
 		Boolean deletedComment = false;
 		deletedComment = commentService.destroy(commentId, username);
+		if (deletedComment == true) {
+			resp.setStatus(200);
+		} else {
+			resp.setStatus(400);
+		}
 		return deletedComment;
 	}
 }
-
