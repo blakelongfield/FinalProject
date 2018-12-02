@@ -23,6 +23,8 @@ public class ChairLift {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
+	private String name;
+	
 	@Column(name="ride_length")
 	private Double rideLength;
 	
@@ -47,6 +49,14 @@ public class ChairLift {
 
 	public void setId(int id) {
 		this.id = id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public Double getRideLength() {
@@ -113,6 +123,7 @@ public class ChairLift {
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
 		builder.append("ChairLift [id=").append(id)
+				.append(", name=").append(name)
 				.append(", rideLength=").append(rideLength)
 				.append(", type=").append(type)
 				.append(", hours=").append(hours)
@@ -128,9 +139,10 @@ public class ChairLift {
 		super();
 	}
 
-	public ChairLift(int id, Double rideLength, LiftType type, String hours, List<Trail> trails) {
+	public ChairLift(int id, String name, Double rideLength, LiftType type, String hours, List<Trail> trails) {
 		super();
 		this.id = id;
+		this.name = name;
 		this.rideLength = rideLength;
 		this.type = type;
 		this.hours = hours;
