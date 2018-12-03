@@ -24,6 +24,8 @@ public class UserController {
 	@Autowired
 	private UserService userServ;
 
+	private String username = "test";
+
 //	Lists all Users
 	@RequestMapping(path = "users", method = RequestMethod.GET)
 	public List<User> index() {
@@ -64,9 +66,9 @@ public class UserController {
 	}
 
 //	Updates a User
-	@RequestMapping(path = "users/{id}", method = RequestMethod.PATCH)
-	public User updateUser(@RequestBody User user, @PathVariable("id") Integer id, HttpServletResponse resp) {
-		User updatedUser = userServ.update(user, id);
+	@RequestMapping(path = "users", method = RequestMethod.PATCH)
+	public User updateUser(@RequestBody User user, HttpServletResponse resp) {
+		User updatedUser = userServ.update(user, username);
 
 		if (updatedUser != null) {
 			resp.setStatus(201);
@@ -80,19 +82,20 @@ public class UserController {
 	}
 
 //	Deletes User
-	@RequestMapping(path = "users/{id}", method = RequestMethod.DELETE)
-	public Boolean deleteUser(@PathVariable("id") Integer id, HttpServletResponse resp) {
+	@RequestMapping(path = "users", method = RequestMethod.DELETE)
+	public Boolean deleteUser(HttpServletResponse resp) {
 		Boolean deletedUser = null;
-			deletedUser = userServ.destroy(id);
+		deletedUser = userServ.destroy(username);
 		if (deletedUser) {
-			resp.setStatus(204);
+			resp.setStatus(200);
 			resp.setHeader("Message", "User deleted succesfully");
-		} 
-		
+			
+		}
+
 		else {
 			resp.setStatus(404);
-			resp.setHeader("message", "User failed to be deleted");
-			
+			resp.setHeader("Message", "User failed to be deleted");
+
 		}
 		return deletedUser;
 	}

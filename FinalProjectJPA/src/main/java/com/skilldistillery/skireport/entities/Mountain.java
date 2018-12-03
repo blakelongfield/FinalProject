@@ -171,9 +171,9 @@ public class Mountain {
 				.append(", baseElevation=").append(baseElevation)
 				.append(", peakElevation=").append(peakElevation)
 				.append(", imgUrl=").append(imgUrl)
-				.append(", resort=").append(resort)
-				.append(", reports=").append(reports.size())
-				.append(", trails=").append(trails.size())
+//				.append(", resort=").append(resort)
+//				.append(", reports=").append(reports.size())
+//				.append(", trails=").append(trails.size())
 				.append("]");
 		return builder.toString();
 	}

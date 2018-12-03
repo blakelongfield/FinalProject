@@ -15,8 +15,8 @@ public interface UserService {
 	User create(User user);
 
 	//	Patch
-	User update(User user, Integer id);
+	User update(User user, String username);
 
-	Boolean destroy(Integer id);
+	Boolean destroy(String username);
 
 }

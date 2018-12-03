@@ -10,6 +10,13 @@ public interface MountainService {
 	
 	Mountain findById(Integer id);
 	
+	Mountain create(Mountain mountain, Integer resortId, String username);
+	
+//	patch
+	Mountain update(Mountain mountain, Integer mountainId, String username);
+	
+	Boolean destroy(Integer mountainId, String username);
+	
 
 
 }
