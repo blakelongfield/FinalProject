@@ -176,8 +176,8 @@ public class User {
 				.append(", role=").append(role)
 				.append(", active=").append(active)
 				.append(", imgUrl=").append(imgUrl)
-				.append(", comments=").append(comments.size())
-				.append(", reports=").append(reports.size())
+//				.append(", comments=").append(comments.size())
+//				.append(", reports=").append(reports.size())
 				.append("]");
 		return builder.toString();
 	}

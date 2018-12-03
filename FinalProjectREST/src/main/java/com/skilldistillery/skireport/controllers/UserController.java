@@ -24,7 +24,7 @@ public class UserController {
 	@Autowired
 	private UserService userServ;
 
-	private String username = "test";
+	private String username = "zach";
 
 //	Lists all Users
 	@RequestMapping(path = "users", method = RequestMethod.GET)
@@ -69,6 +69,8 @@ public class UserController {
 	@RequestMapping(path = "users", method = RequestMethod.PATCH)
 	public User updateUser(@RequestBody User user, HttpServletResponse resp) {
 		User updatedUser = userServ.update(user, username);
+		System.out.println("************************************");
+		System.out.println(updatedUser);
 
 		if (updatedUser != null) {
 			resp.setStatus(201);

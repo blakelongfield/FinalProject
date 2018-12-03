@@ -33,6 +33,18 @@ return this.http.get<User[]>(this.url + '?sortedtrue')
     );
   }
 
+  // show user by id
+  showById(id) {
+    return this.http.get<User>(this.url  + '/' + id)
+    .pipe(
+      catchError((err: any) => {
+        console.error(err);
+        return throwError('Error listing user');
+      })
+    );
+
+  }
+
 // creates a new user
 
 // public create(user: User) {
@@ -46,7 +58,7 @@ return this.http.get<User[]>(this.url + '?sortedtrue')
 // }
 // updates a user
 public update(user: User) {
-  return this.http.patch<User>(this.url + '/' + user.id, user, this.httpOptions)
+  return this.http.patch<User>(this.url, user, this.httpOptions)
   .pipe(
     catchError((err: any) => {
       console.error(err);
