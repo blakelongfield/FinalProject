@@ -12,6 +12,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
@@ -42,7 +43,7 @@ public class Mountain {
 	@JoinColumn(name="resort_id")
 	private Resort resort;
 	
-	@JsonManagedReference(value="mountainToReport")
+	@JsonIgnore
 	@OneToMany(mappedBy="mountainReports")
 	private List<Report> reports;
 	
