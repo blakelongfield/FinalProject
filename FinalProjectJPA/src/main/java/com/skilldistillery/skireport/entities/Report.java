@@ -51,7 +51,7 @@ public class Report {
 	
 	@ManyToOne
 	@JoinColumn(name="mountain_id")
-	private Mountain mountainReports;
+	private Mountain mountain;
 	
 	@OneToMany(mappedBy="report")
 	private List<Comment> comments;
@@ -123,12 +123,12 @@ public class Report {
 		this.trail = trail;
 	}
 
-	public Mountain getMountainReports() {
-		return mountainReports;
+	public Mountain getMountain() {
+		return mountain;
 	}
 
-	public void setMountainReports(Mountain mountainReports) {
-		this.mountainReports = mountainReports;
+	public void setMountain(Mountain mountain) {
+		this.mountain = mountain;
 	}
 
 	public List<Comment> getComments() {
@@ -178,7 +178,7 @@ public class Report {
 				.append(", votes=").append(votes)
 				.append(", user=").append(user)
 				.append(", trail=").append(trail)
-				.append(", mountainReports=").append(mountainReports)
+				.append(", mountainReports=").append(mountain)
 				.append(", comments=").append(comments.size())
 				.append("]");
 		return builder.toString();
@@ -192,7 +192,7 @@ public class Report {
 	}
 	
 	public Report(int id, String reportText, Integer rating, String imgUrl, Date dateCreated, Integer votes, User user,
-			Trail trail, Mountain mountainReports, List<Comment> comments) {
+			Trail trail, Mountain mountain, List<Comment> comments) {
 		super();
 		this.id = id;
 		this.reportText = reportText;
@@ -202,7 +202,7 @@ public class Report {
 		this.votes = votes;
 		this.user = user;
 		this.trail = trail;
-		this.mountainReports = mountainReports;
+		this.mountain = mountain;
 		this.comments = comments;
 	}
 	
