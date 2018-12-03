@@ -8,9 +8,9 @@ import com.skilldistillery.skireport.entities.Report;
 
 public interface ReportRepository extends JpaRepository<Report, Integer> {
 	
-	List<Report> findByUserUsername(String username);
+	List<Report> findByUserId(Integer uid);
 	
-	List<Report> findByTrailName(String trailName);
+	List<Report> findByTrailId(Integer tid);
 	
-	List<Report> findByMountainReportsName(String mtnName);
+	List<Report> findByMountainReportsId(Integer mid);
 }

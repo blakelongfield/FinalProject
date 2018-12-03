@@ -36,22 +36,22 @@ public class ReportServiceImpl implements ReportService {
 
 	// FIND REPORTS BY USERNAME
 	@Override
-	public List<Report> findByUsername(String username) {
+	public List<Report> findByUserId(Integer uid) {
 
-		return repo.findByUserUsername(username);
+		return repo.findByUserId(uid);
 	}
 
 	// FIND REPORTS BY MTN NAME
 	@Override
-	public List<Report> findByMountainName(String mtnName) {
-		return repo.findByMountainReportsName(mtnName);
+	public List<Report> findByMountainId(Integer mid) {
+		return repo.findByMountainReportsId(mid);
 	}
 
 	// FIND REPORTS BY TRAIL NAME
 	@Override
-	public List<Report> findByTrailName(String trailName) {
+	public List<Report> findByTrailId(Integer tid) {
 
-		return repo.findByTrailName(trailName);
+		return repo.findByTrailId(tid);
 	}
 
 	// FIND REPORT BY REPORT ID
