@@ -1,3 +1,11 @@
-<p>
-  profile works!
-</p>
+<div>
+    <form>
+      First Name: <input type="text" name="firstname" placeholder="First Name" [(ngModel)]="updateUser.firstName" /> <br>
+      Last Name: <input type="text" name="lastname"  placeholder="Last Name" [(ngModel)]="updateUser.lastName" /> <br>
+      Password:<input type="text" name="password" [(ngModel)]="updateUser.password" /> <br>
+      Email:<input type="text" name="email" [(ngModel)]="updateUser.email" /> <br>
+      Image:<input type="text" name="profilepic" [(ngModel)]="updateUser.profilePic" /> <br>
+      <button (click)="update(updateUser)">Save</button>
+      <button (click)="cancel()">Cancel</button>
+    </form>
+  </div>

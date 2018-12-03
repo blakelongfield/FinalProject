@@ -35,15 +35,15 @@ return this.http.get<User[]>(this.url + '?sortedtrue')
 
 // creates a new user
 
-public create(user: User) {
-  return this.http.post<User>(this.url, user, this.httpOptions)
-  .pipe(
-    catchError((err: any) => {
-      console.error(err);
-      return throwError('Error creating new user');
-    })
-  );
-}
+// public create(user: User) {
+//   return this.http.post<User>(this.url, user, this.httpOptions)
+//   .pipe(
+//     catchError((err: any) => {
+//       console.error(err);
+//       return throwError('Error creating new user');
+//     })
+//   );
+// }
 // updates a user
 public update(user: User) {
   return this.http.patch<User>(this.url + '/' + user.id, user, this.httpOptions)

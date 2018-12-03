@@ -1,4 +1,5 @@
-import { UserService } from './../user.service';
+import { AuthService } from './../auth.service';
+
 import { Component, OnInit } from '@angular/core';
 import { User } from '../models/user';
 import { Router } from '@angular/router';
@@ -12,13 +13,14 @@ export class RegisterComponent implements OnInit {
 
   newUser: User = new User();
 
-  constructor(private userService: UserService, private router: Router) { }
+  constructor(private router: Router,
+    private authService: AuthService) { }
 
   ngOnInit() {
   }
 // registers a new user (create)
   public register(newUser) {
-    this.userService.create(newUser).subscribe(
+    this.authService.register(newUser).subscribe(
     data => {
       this.router.navigateByUrl('home');
     },
