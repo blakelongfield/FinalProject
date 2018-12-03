@@ -20,7 +20,7 @@ export class RegisterComponent implements OnInit {
   public register(newUser) {
     this.userService.create(newUser).subscribe(
     data => {
-      this.router.navigateByUrl('blank');
+      this.router.navigateByUrl('home');
     },
     err => {
       console.error('Error creating new User');
