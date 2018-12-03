@@ -1,2 +1,22 @@
-<h1>Admin</h1>
+<h1>{{title}}</h1>
 
+<div *ngIf="!mountain">
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <button class="btn btn-primary" (click)="addMountain()">Add Mountain</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="newMountain">
+  <form>
+    <div class="form-group row">
+      <label class="col-lg-2 col-form-label col-form-label-lg" for="name">Name:</label>
+      <div>
+        <input type="text" name="name" [(ngModel)]="newMountain.name">
+      </div>
+    </div>
+  </form>
+</div>
