@@ -1,5 +1,11 @@
 <form>
-<input type="text" name="firstname" placeholder="First Name" [(ngModel)]="newUser.firstName" />
 
+<input type="text" name="firstname" placeholder="First Name" [(ngModel)]="newUser.firstName" />
+<input type="text" name="lastname" placeholder="Last Name" [(ngModel)]="newUser.lastName" />
+<input type="text" name="username" placeholder="Username" [(ngModel)]="newUser.username" />
+<input type="text" name="password" placeholder="Password" [(ngModel)]="newUser.password" />
+<input type="text" name="email" placeholder="Email" [(ngModel)]="newUser.email" />
+<input type="text" name="imgUrl" placeholder="Image Url" [(ngModel)]="newUser.imgUrl" />
+<button (click)="register(newUser)">Register</button>
 
 </form>
