@@ -119,18 +119,18 @@ public class ChairLift {
 	/*
 	 * toString
 	 */
-	@Override
-	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("ChairLift [id=").append(id)
-				.append(", name=").append(name)
-				.append(", rideLength=").append(rideLength)
-				.append(", type=").append(type)
-				.append(", hours=").append(hours)
-				.append(", trails=").append(trails.size())
-				.append("]");
-		return builder.toString();
-	}
+//	@Override
+//	public String toString() {
+//		StringBuilder builder = new StringBuilder();
+//		builder.append("ChairLift [id=").append(id)
+//				.append(", name=").append(name)
+//				.append(", rideLength=").append(rideLength)
+//				.append(", type=").append(type)
+//				.append(", hours=").append(hours)
+//				.append(", trails=").append(trails.size())
+//				.append("]");
+//		return builder.toString();
+//	}
 
 	/*
 	 * constructors
