@@ -6,17 +6,13 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.skilldistillery.skireport.entities.Mountain;
 import com.skilldistillery.skireport.entities.Resort;
-import com.skilldistillery.skireport.repositories.MountainRepository;
 import com.skilldistillery.skireport.repositories.ResortRepository;
 
 @Service
 public class ResortServiceImpl implements ResortService {
 	@Autowired
 	private ResortRepository resortRepo;
-	@Autowired
-	private MountainRepository mountainRepo;
 
 	@Override
 	public List<Resort> findAll() {
@@ -33,15 +29,13 @@ public class ResortServiceImpl implements ResortService {
 		}
 		return resort;
 	}
-
-	//doesn't work yet. Need to figure out how to create a mountain first
+	
 	@Override
 	public Resort create(Resort resort, String username) {
-		Resort newResort = null;
 		if (username != null) {
-			
+			resortRepo.saveAndFlush(resort);
 		}
-		return newResort;
+		return resort;
 	}
 
 	@Override
@@ -62,7 +56,6 @@ public class ResortServiceImpl implements ResortService {
 		return managedResort;
 	}
 
-	//doesn't work yet. Need to delete/persist the mountains first? 
 	@Override
 	public Boolean destroy(int resortId, String username) {
 		Boolean deletedResort = false;
