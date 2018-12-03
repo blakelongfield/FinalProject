@@ -1,4 +1,5 @@
 import { MountainService } from './mountain.service';
+
 import { AuthService } from './auth.service';
 import { UserService } from './user.service';
 import { BrowserModule } from '@angular/platform-browser';
@@ -35,7 +36,7 @@ import { TrailDetailsService } from './trail-details.service';
     FormsModule,
     HttpClientModule
   ],
-  providers: [UserService, AuthService, MountainService, ReportService, TrailDetailsService],
+  providers: [UserService, AuthService, ReportService, TrailDetailsService, MountainService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

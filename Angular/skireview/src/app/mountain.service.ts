@@ -11,14 +11,15 @@ import { throwError } from 'rxjs';
 })
 export class MountainService {
 
-  private url = environment.baseUrl + 'api/mountains';
+  private baseUrl = environment.baseUrl;
+  private url = this.baseUrl + 'api/mountains';
   private httpOptions = {
     headers: new HttpHeaders({
       'Content-type': 'application/json'
     })
   };
 
-  constructor(private http: HttpClient, private router: Route) { }
+  constructor(private http: HttpClient) { }
 
   public index() {
     return this.http.get<Mountain[]>(this.url).pipe(
