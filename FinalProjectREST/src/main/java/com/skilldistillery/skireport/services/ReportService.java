@@ -8,11 +8,11 @@ public interface ReportService {
 
 	List<Report> findAll();
 	
-	List<Report> findByUsername(String username);
+	List<Report> findByUserId(Integer uid);
 	
-	List<Report> findByMountainName(String mtnName);
+	List<Report> findByMountainId(Integer mid);
 	
-	List<Report> findByTrailName(String trailName);
+	List<Report> findByTrailId(Integer tid);
 	
 	Report findById( Integer id);
 	

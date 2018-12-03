@@ -32,25 +32,25 @@ public class ReportController {
 		
 	}
 	
-	//GET REPORTS BY USERNAME
-	@GetMapping("reports/user/{username}")
-	public List<Report> showByUsername(@PathVariable("username") String username) {
+	//GET REPORTS BY USER ID
+	@GetMapping("reports/user/{id}")
+	public List<Report> showByUsername(@PathVariable("id") Integer uid) {
 		
-		return rServ.findByUsername(username);
+		return rServ.findByUserId(uid);
 	}
 	
-	//GET REPORTS BY MTN NAME
-	@GetMapping("reports/mtn/{mtnName}")
-	public List<Report> showByMtnName( @PathVariable("mtnName") String mtnName) {
+	//GET REPORTS BY MTN ID
+	@GetMapping("reports/mountains/{id}")
+	public List<Report> showByMtnName( @PathVariable("id") Integer mid) {
 		
-		return rServ.findByMountainName(mtnName);
+		return rServ.findByMountainId(mid);
 	}
 	
-	//GET REPORTS BY TRAIL NAME
-	@GetMapping("reports/trail/{trailName}")
-	public List<Report> showByTrailName( @PathVariable("trailName")String trailName) {
+	//GET REPORTS BY TRAIL ID
+	@GetMapping("reports/trail/{id}")
+	public List<Report> showByTrailName( @PathVariable("id") Integer tid) {
 		
-		return rServ.findByTrailName(trailName);
+		return rServ.findByTrailId(tid);
 	}
 	
 	//GET REPORT BY ID
