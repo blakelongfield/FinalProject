@@ -16,7 +16,7 @@ public interface ReportService {
 	
 	Report findById( Integer id);
 	
-	Report create( Report report);
+	Report create( Report report, String username, Integer trailId, Integer mountainId);
 	
 	Report update( Integer rid, Report report);
 	

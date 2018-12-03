@@ -63,21 +63,31 @@ public class ReportServiceImpl implements ReportService {
 
 	// CREATE NEW REPORT
 	@Override
-	public Report create(Report report) {
-
-		Optional<User> opt1 = urepo.findById(2);
-		User user = opt1.get();
-		Optional<Mountain> opt2 = mrepo.findById(1);
-		Mountain mtn = opt2.get();
-		Optional<Trail> opt3 = trepo.findById(1);
-		Trail trail = opt3.get();
-
-		report.setUser(user);
-		report.setMountainReports(mtn);
-		report.setTrail(trail);
-
+	public Report create(Report report, String username, Integer trailId, Integer mountainId) {
+		Trail trail = null;
+		Mountain mountain = null;
+		if (username != null) {
+			User user = urepo.findByUsername(username);
+			report.setUser(user);
+			if (trailId != null) {
+			Optional<Trail> trailOpt = trepo.findById(trailId);
+				if (trailOpt.isPresent()) {
+					trail = trailOpt.get();
+					report.setTrail(trail);
+					Optional<Mountain> mountainOpt = mrepo.findById(trail.getMountain().getId());
+					mountain = mountainOpt.get();
+					report.setMountainReports(mountain);
+				}
+			}
+			else if (mountainId != null) {
+				Optional<Mountain> mountainOpt = mrepo.findById(mountainId);
+				if (mountainOpt.isPresent()) {
+					mountain = mountainOpt.get();
+					report.setMountainReports(mountain);
+				}
+			}
 		repo.saveAndFlush(report);
-
+		}
 		return report;
 	}
 
