@@ -1,3 +1,23 @@
-<p>
-  trail-details works!
-</p>
+<div *ngIf="!selected">
+  <table class="center">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Difficulty</th>
+        <th>Length</th>
+        <th>Elevation Gain/Loss</th>
+        <th>Features</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let trail of trails" (click)="displayTrail(trail)">
+        <td><strong>{{trail.id}}</strong></td>
+        <td>{{trail.name}}</td>
+        <td>{{trail.difficulty}}</td>
+        <td>{{trail.length}}</td>
+        <td>{{trail.elevationGainLoss}}</td>
+      </tr>
+    </tbody>
+  </table>
+  </div>

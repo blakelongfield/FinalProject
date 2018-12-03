@@ -10,6 +10,7 @@ import { Trail } from '../models/trail';
 export class TrailDetailsComponent implements OnInit {
   newTrail = null;
   editTrail = null;
+  selected = null;
   trails: Trail[] = [];
 
   constructor(private trailDetailsService: TrailDetailsService) { }
@@ -83,8 +84,8 @@ export class TrailDetailsComponent implements OnInit {
     );
   }
 
-  public displayTrail() {
-
+  public displayTrail(trail) {
+    this.selected = trail;
   }
 
 }

@@ -7,6 +7,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { TrailDetailsComponent } from './trail-details/trail-details.component';
 import { ProfileComponent } from './profile/profile.component';
 import { RegisterComponent } from './register/register.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'home' },
@@ -16,10 +17,8 @@ const routes: Routes = [
   { path: 'logout', component: LogoutComponent },
   { path: 'profile', component: ProfileComponent },
   { path: 'register', component: RegisterComponent },
-  { path: 'admin', component: AdminComponent }
-  // { path: 'resort', component: ResortCompent }
-
-  // { path: '**', component: NotFoundComponent }
+  { path: 'admin', component: AdminComponent },
+  { path: '**', component: NotFoundComponent }
 ];
 
 @NgModule({
