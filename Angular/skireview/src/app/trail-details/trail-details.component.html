@@ -26,13 +26,28 @@
     <table class="center">
       <thead>
         <tr>
-          <th>Comments on Trail: {{selected.name}}</th>
+          <th>Reports on Trail: {{selected.name}}</th>
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let report of reports">
-          <td>This is a comment on the trail: {{report.reportText}}</td>
+          <td>This is a REPORT on the TRAIL: {{report.reportText}}</td>
         </tr>
       </tbody>
     </table>
   </div>
+
+  <div *ngIf="selected">
+      <table class="center">
+        <thead>
+          <tr>
+            <th>Comments on Trail: {{selected.name}}</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let comment of comments">
+            <td>This is a COMMENT on the trail: {{report.}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
