@@ -17,7 +17,6 @@ import com.skilldistillery.skireport.repositories.UserRepository;
 
 @Service
 public class ReportServiceImpl implements ReportService {
-
 	@Autowired
 	ReportRepository repo;
 	@Autowired
