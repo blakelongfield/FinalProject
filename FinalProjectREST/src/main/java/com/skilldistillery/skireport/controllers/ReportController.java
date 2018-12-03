@@ -20,14 +20,14 @@ import com.skilldistillery.skireport.services.ReportServiceImpl;
 @RequestMapping("api")
 @CrossOrigin({ "*", "http://localhost:4205" })
 public class ReportController {
-	
 	@Autowired
 	ReportServiceImpl rServ;
+	
+	private String username = "kyle";
 	
 	//INDEX 
 	@GetMapping("reports")
 	public List<Report> index () {
-		
 		return rServ.findAll();
 		
 	}
@@ -60,11 +60,18 @@ public class ReportController {
 		return rServ.findById(id);
 	}
 	
-	//CREATE NEW REPORT
-	@PostMapping("reports")
-	public Report create( @RequestBody Report report) {
-		
-		return rServ.create(report);
+	//CREATE NEW REPORT ON A TRAIL
+	@PostMapping("reports/trails/{trailId}")
+	public Report createReportOnTrail(@RequestBody Report report, @PathVariable("trailId") Integer trailId) {
+		Integer mountainId = null;
+		return rServ.create(report, username, trailId, mountainId);
+	}
+	
+	//CREATE NEW REPORT ON A MOUNTAIN
+	@PostMapping("reports/mountains/{mountainId}")
+	public Report createReportOnMountain(@RequestBody Report report, @PathVariable("mountainId") Integer mountainId) {
+		Integer trailId = null;
+		return rServ.create(report, username, trailId, mountainId);
 	}
 	
 	//UPDATE REPORT (PATCH)
@@ -80,11 +87,6 @@ public class ReportController {
 		return rServ.delete( id );
 		
 	}
-	
-	
-	
-	
-	
-	
+
 
 }
