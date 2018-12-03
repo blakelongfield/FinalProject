@@ -16,8 +16,7 @@ import javax.persistence.TemporalType;
 
 import org.hibernate.annotations.CreationTimestamp;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Report {
@@ -45,6 +44,7 @@ public class Report {
 	@JoinColumn(name="user_id")
 	private User user;
 	
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name="trail_id")
 	private Trail trail;

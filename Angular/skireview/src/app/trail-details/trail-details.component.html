@@ -20,4 +20,19 @@
       </tr>
     </tbody>
   </table>
+</div>
+
+<div *ngIf="selected">
+    <table class="center">
+      <thead>
+        <tr>
+          <th>Comments on Trail: {{selected.name}}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let report of reports">
+          <td>This is a comment on the trail: {{report.reportText}}</td>
+        </tr>
+      </tbody>
+    </table>
   </div>
