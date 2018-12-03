@@ -44,7 +44,7 @@ public class Mountain {
 	private Resort resort;
 	
 	@JsonIgnore
-	@OneToMany(mappedBy="mountainReports")
+	@OneToMany(mappedBy="mountain")
 	private List<Report> reports;
 	
 	@JsonManagedReference(value="mountainToTrails")
