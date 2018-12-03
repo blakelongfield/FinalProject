@@ -88,5 +88,4 @@ public class CommentServiceImpl implements CommentService {
 		}
 		return deleted;
 	}
-
 }
