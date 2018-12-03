@@ -28,8 +28,17 @@ export class TrailDetailsService {
     );
   }
 
+  public findTrailById(id: number) {
+    return this.http.get<Trail>(this.url + '/' + id).pipe(
+      catchError((error: any) => {
+        console.log(error);
+        return throwError('ERROR - trail-details.findTrailById(): Error finding a trail by ID');
+      })
+    );
+  }
+
   public createTrail(trail: Trail) {
-    return this.http.post<Trail>(this.url, trail).pipe(
+    return this.http.post<Trail>(this.url + '/mountains/' + trail.id, trail).pipe(
       catchError((error: any) => {
         console.log(error);
         return throwError('ERROR - trail-details.createTrail(): Error creating new trail');
@@ -37,14 +46,24 @@ export class TrailDetailsService {
     );
   }
 
-  public updateTrail(trail: Trail) {
-    return this.http.put<Trail>(this.url, trail).pipe(
+  public putTrail(trail: Trail) {
+    return this.http.put<Trail>(this.url + '/' + trail.id, trail).pipe(
       catchError((error: any) => {
         console.log(error);
-        return throwError('ERROR - trail-details.updateTrail(): Error updating trail');
+        return throwError('ERROR - trail-details.putTrail(): Error updating trail');
       })
     );
   }
+
+  public patchTrail(trail: Trail) {
+    return this.http.put<Trail>(this.url + '/' + trail.id, trail).pipe(
+      catchError((error: any) => {
+        console.log(error);
+        return throwError('ERROR - trail-details.patchTrail(): Error updating trail');
+      })
+    );
+  }
+
 
   public deleteTrail(id: number) {
     return this.http.delete<Trail>(this.url).pipe(
@@ -54,6 +73,4 @@ export class TrailDetailsService {
       })
     );
   }
-
-
 }
