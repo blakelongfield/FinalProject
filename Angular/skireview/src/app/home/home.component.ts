@@ -1,7 +1,9 @@
+import { UserService } from './../user.service';
 
 import { ReportService } from '../report.service';
 import { Component, OnInit } from '@angular/core';
 import { Report } from '../models/report';
+import { User } from '../models/user';
 
 @Component({
   selector: 'app-home',
@@ -12,6 +14,7 @@ export class HomeComponent implements OnInit {
   // FIELDS
 
   reports: Report [] = [];
+
 
 
 
@@ -36,12 +39,15 @@ export class HomeComponent implements OnInit {
 
 
 
+
+
   // CONSTRUCTOR & INIT
 
-  constructor(private reportServ: ReportService) { }
+  constructor(private reportServ: ReportService, private userServ: UserService) { }
 
   ngOnInit() {
     this.loadReports();
+
   }
 
 }

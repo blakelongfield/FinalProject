@@ -44,6 +44,7 @@ public class MountainServiceImpl implements MountainService {
 //	 Creates a new mountain
 	@Override
 	public Mountain create(Mountain mountain, Integer resortId, String username) {
+		System.out.println(mountain);
 		Mountain newMountain = null;
 		User user = userRepo.findByUsername(username);
 		if (user != null) {

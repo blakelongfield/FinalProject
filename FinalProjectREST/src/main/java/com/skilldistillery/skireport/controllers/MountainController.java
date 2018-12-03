@@ -56,9 +56,10 @@ public class MountainController {
 	@RequestMapping(path = "mountains", method = RequestMethod.POST)
 	public Mountain createMountain(@RequestBody Mountain mountain, HttpServletResponse resp, HttpServletRequest req) {
 
+		System.out.println("In create mountain" + mountain);
 		// will need to pull in resort id
 		Mountain newMountain = mountServ.create(mountain, 1, username);
-
+		System.out.println("After create mountain" + newMountain);
 		if (newMountain == null) {
 			resp.setStatus(404);
 		} else {
