@@ -44,14 +44,27 @@ export class TrailDetailsComponent implements OnInit {
     );
   }
 
-  public update() {
-    this.trailDetailsService.updateTrail(this.editTrail).subscribe(
+  public updatePut() {
+    this.trailDetailsService.putTrail(this.editTrail).subscribe(
       data => {
         this.reload();
         this.editTrail = null;
       },
       err => {
-        console.error('trail-details.component.update(): Error updating trail');
+        console.error('trail-details.component.updatePut(): Error updating trail');
+        console.log(err);
+      }
+    );
+  }
+
+  public updatePatch() {
+    this.trailDetailsService.patchTrail(this.editTrail).subscribe(
+      data => {
+        this.reload();
+        this.editTrail = null;
+      },
+      err => {
+        console.error('trail-details.component.updatePatch(): Error updating trail');
         console.log(err);
       }
     );
