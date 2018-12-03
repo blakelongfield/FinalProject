@@ -44,6 +44,28 @@ public create(user: User) {
     })
   );
 }
+// updates a user
+public update(user: User) {
+  return this.http.patch<User>(this.url + '/' + user.id, user, this.httpOptions)
+  .pipe(
+    catchError((err: any) => {
+      console.error(err);
+      return throwError('Error updating user');
+    })
+  );
+}
+
+// deletes a user
+public destroy(id: number) {
+return this.http.delete(this.url + '/' + id, this.httpOptions )
+  .pipe(
+    catchError((err: any) => {
+      console.error(err);
+      return throwError('Error deleting user');
+    })
+  );
+}
+
 
 
 }

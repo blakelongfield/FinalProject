@@ -1,4 +1,6 @@
+import { UserService } from './../user.service';
 import { Component, OnInit } from '@angular/core';
+import { User } from '../models/user';
 
 @Component({
   selector: 'app-profile',
@@ -7,9 +9,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProfileComponent implements OnInit {
 
-  constructor() { }
+  updateUser: User = null;
+
+  constructor(private userService: UserService) { }
 
   ngOnInit() {
+  }
+
+  update() {
+    this.userService.update(this.updateUser).subscribe(
+      updated => {
+        console.log('Updated User: ' + updated );
+
+      },
+      err => {
+        console.error(err);
+         console.error('Error updating user');
+      }
+    );
   }
 
 }
