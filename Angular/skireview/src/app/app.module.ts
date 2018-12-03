@@ -18,6 +18,7 @@ import { HomeComponent } from './home/home.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ReportService } from './report.service';
 import { TrailDetailsService } from './trail-details.service';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { TrailDetailsService } from './trail-details.service';
     LogoutComponent,
     RegisterComponent,
     ProfileComponent,
-    HomeComponent
+    HomeComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,
