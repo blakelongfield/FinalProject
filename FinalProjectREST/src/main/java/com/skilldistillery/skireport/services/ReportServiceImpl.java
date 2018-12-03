@@ -43,7 +43,7 @@ public class ReportServiceImpl implements ReportService {
 	// FIND REPORTS BY MTN NAME
 	@Override
 	public List<Report> findByMountainId(Integer mid) {
-		return repo.findByMountainReportsId(mid);
+		return repo.findByMountainId(mid);
 	}
 
 	// FIND REPORTS BY TRAIL NAME
@@ -75,14 +75,14 @@ public class ReportServiceImpl implements ReportService {
 					report.setTrail(trail);
 					Optional<Mountain> mountainOpt = mrepo.findById(trail.getMountain().getId());
 					mountain = mountainOpt.get();
-					report.setMountainReports(mountain);
+					report.setMountain(mountain);
 				}
 			}
 			else if (mountainId != null) {
 				Optional<Mountain> mountainOpt = mrepo.findById(mountainId);
 				if (mountainOpt.isPresent()) {
 					mountain = mountainOpt.get();
-					report.setMountainReports(mountain);
+					report.setMountain(mountain);
 				}
 			}
 		repo.saveAndFlush(report);

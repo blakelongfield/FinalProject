@@ -14,7 +14,7 @@ export class HomeComponent implements OnInit {
   // FIELDS
 
   reports: Report [] = [];
-  users: User [] = [];
+
 
 
 
@@ -33,17 +33,7 @@ export class HomeComponent implements OnInit {
     );
   }
 
-  // LOAD ALL USERS
-  loadUsers() {
-    this.userServ.index().subscribe(
-      users => {
-        this.users = users;
-      },
-      err => {
-        console.error('Observer got error: ' + err);
-      }
-    );
-  }
+
 
 
 
@@ -57,7 +47,7 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     this.loadReports();
-    this.loadUsers();
+
   }
 
 }

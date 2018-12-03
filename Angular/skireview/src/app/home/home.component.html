@@ -1,9 +1,38 @@
-<h1> HOME PAGE</h1>
-<div *ngFor="let report of reports">
+<h1> ALL REPORTS<h1>
+  <table class="table table-striped table-hover">
+      <thead class="thead-dark">
+        <tr>
+          <th>Username</th>
+          <th>Mountain</th>
+          <th>Trail</th>
+          <th>Report text</th>
+          <th>Rating</th>
+        </tr>
+        </thead>
+        <tr *ngFor="let report of reports">
+          <td>{{report.user.username}}</td>
 
-<h4>{{report.user.username}}</h4>
-<ul>
-  <li>{{report.reportText}}</li>
-  <li>{{report.rating}}</li>
-</ul>
-</div>
+          <div *ngIf="report.mountain; else noMTN">
+            <td> {{report.mountain.name}} </td>
+          </div>
+            <ng-template #noMTN><td></td>
+            </ng-template>
+
+        <div *ngIf="report.trail; else noTrail">
+          <td>{{report.trail.name}}</td>
+        </div>
+          <ng-template #noTrail><td></td>
+          </ng-template>
+
+          <td>{{report.reportText}}</td>
+          <td>{{report.rating}}</td>
+        </tr>
+  </table>
+
+
+
+
+
+
+
+

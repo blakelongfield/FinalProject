@@ -12,5 +12,5 @@ public interface ReportRepository extends JpaRepository<Report, Integer> {
 	
 	List<Report> findByTrailId(Integer tid);
 	
-	List<Report> findByMountainReportsId(Integer mid);
+	List<Report> findByMountainId(Integer mid);
 }
