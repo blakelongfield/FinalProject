@@ -1,3 +1,4 @@
+import { MountainService } from './../mountain.service';
 import { Mountain } from './../models/mountain';
 import { Component, OnInit } from '@angular/core';
 
@@ -8,10 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdminComponent implements OnInit {
 
+
   title = 'Admin';
+  mainTitle = 'Admin';
 
   newMountain: Mountain = null;
-  constructor() { }
+  constructor(
+    private mountainService: MountainService
+  ) { }
 
   ngOnInit() {
   }
@@ -21,8 +26,23 @@ export class AdminComponent implements OnInit {
     this.newMountain = new Mountain();
   }
 
+  submitMountain() {
+    console.log(this.newMountain);
+
+    this.mountainService.create(this.newMountain).subscribe(
+      created => {
+        console.log(created);
+        this.cancel();
+      },
+      error => {
+        console.error('admin.submitMountain(): Error creating Mountain');
+        console.error(error);
+      }
+    );
+  }
+
   cancel() {
-    this.title = this.title;
+    this.title = this.mainTitle;
     this.newMountain = null;
   }
 

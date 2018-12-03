@@ -1,6 +1,6 @@
 <h1>{{title}}</h1>
 
-<div *ngIf="!mountain">
+<div *ngIf="! newMountain">
   <div class="container">
     <div class="row">
       <div class="col">
@@ -14,9 +14,41 @@
   <form>
     <div class="form-group row">
       <label class="col-lg-2 col-form-label col-form-label-lg" for="name">Name:</label>
-      <div>
-        <input type="text" name="name" [(ngModel)]="newMountain.name">
+      <div class="col-lg-5">
+        <input class="form-control form-control-lg" type="text" name="name" [(ngModel)]="newMountain.name">
       </div>
     </div>
+    <div class="form-group row">
+      <label class="col-lg-2 col-form-label col-form-label-lg" for="numberOfTrails">Number Of Trails:</label>
+      <div class="col-lg-5">
+        <input class="form-control form-control-lg" type="text" name="numberOfTrails" [(ngModel)]="newMountain.numberOfRuns">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-lg-2 col-form-label col-form-label-lg" for="numberOfLifts">Number Of Lifts:</label>
+      <div class="col-lg-5">
+        <input class="form-control form-control-lg" type="text" name="numberOfLifts" [(ngModel)]="newMountain.numberOfLifts">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-lg-2 col-form-label col-form-label-lg" for="elevationBase">Elevation Base:</label>
+      <div class="col-lg-5">
+        <input class="form-control form-control-lg" type="text" name="elevationBase" [(ngModel)]="newMountain.baseElevation">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-lg-2 col-form-label col-form-label-lg" for="elevationPeak">Elevation Peak:</label>
+      <div class="col-lg-5">
+        <input class="form-control form-control-lg" type="text" name="elevationPeak" [(ngModel)]="newMountain.peakElevation">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-lg-2 col-form-label col-form-label-lg" for="mountainMapUrl">Mountain Map Url:</label>
+      <div class="col-lg-5">
+        <input class="form-control form-control-lg" type="text" name="mountainMapUrl" [(ngModel)]="newMountain.mountainMapUrl">
+      </div>
+    </div>
+    <button class="btn btn-outline-danger" (click)="cancel()">Cancel</button>
+    <button class="btn btn-outline-success" (click)="submitMountain()">Submit</button>
   </form>
 </div>

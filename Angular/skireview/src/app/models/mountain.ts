@@ -1,20 +1,20 @@
 export class Mountain {
   id: number;
   name: string;
-  numberOfTrails: number;
+  numberOfRuns: number;
   numberOfLifts: number;
-  elevationBase: number;
-  elevationPeak: number;
+  baseElevation: number;
+  peakElevation: number;
   mountainMapUrl: string;
 
   // tslint:disable-next-line:max-line-length
-  constructor(id?: number, name?: string, numberOfTrails?: number, numberOfLifts?: number, elevationBase?: number, elevationPeak?: number, mountainMapUrl?: string) {
+  constructor(id?: number, name?: string, numberOfRuns?: number, numberOfLifts?: number, baseElevation?: number, peakElevation?: number, mountainMapUrl?: string) {
     this.id = id;
     this.name = name;
-    this.numberOfTrails = numberOfTrails;
+    this.numberOfRuns = numberOfRuns;
     this.numberOfLifts = numberOfLifts;
-    this.elevationBase = elevationBase;
-    this.elevationPeak = elevationPeak;
+    this.baseElevation = baseElevation;
+    this.peakElevation = peakElevation;
     this.mountainMapUrl = mountainMapUrl;
   }
 }

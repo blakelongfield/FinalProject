@@ -30,8 +30,8 @@ export class MountainService {
     );
   }
 
-  public show() {
-    return this.http.get<Mountain>(this.url).pipe(
+  public show(mountainId: number) {
+    return this.http.get<Mountain>(this.url + `/${mountainId}`).pipe(
       catchError((error: any) => {
         console.error(error);
         return throwError('mountainService.show(): Error getting mountain');
@@ -39,10 +39,12 @@ export class MountainService {
     );
   }
   public create(mountain: Mountain) {
+    console.log(mountain);
+
     return this.http.post<Mountain>(this.url, mountain, this.httpOptions).pipe(
       catchError((error: any) => {
         console.error(error);
-        return throwError('mountainService.show(): Error creating mountain');
+        return throwError('mountainService.create(): Error creating mountain');
       })
     );
   }
@@ -60,7 +62,7 @@ export class MountainService {
     return this.http.delete(this.url + `/${id}`).pipe(
       catchError((error: any) => {
         console.error(error);
-        return throwError('mountainService.patch(): Error deleting mountain');
+        return throwError('mountainService.delete(): Error deleting mountain');
       })
     );
   }
