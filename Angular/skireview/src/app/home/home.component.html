@@ -1,3 +1,9 @@
-<p>
-  home works!
-</p>
+<h1> HOME PAGE</h1>
+<div *ngFor="let report of reports">
+
+<h4>{{report.user.username}}</h4>
+<ul>
+  <li>{{report.reportText}}</li>
+  <li>{{report.rating}}</li>
+</ul>
+</div>

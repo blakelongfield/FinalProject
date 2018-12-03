@@ -1,3 +1,5 @@
+import { MountainService } from './mountain.service';
+import { AuthService } from './auth.service';
 import { UserService } from './user.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -12,6 +14,9 @@ import { LogoutComponent } from './logout/logout.component';
 import { RegisterComponent } from './register/register.component';
 import { ProfileComponent } from './profile/profile.component';
 import { HomeComponent } from './home/home.component';
+import { HttpClientModule } from '@angular/common/http';
+import { ReportService } from './report.service';
+import { TrailDetailsService } from './trail-details.service';
 
 @NgModule({
   declarations: [
@@ -27,9 +32,10 @@ import { HomeComponent } from './home/home.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
-  providers: [UserService],
+  providers: [UserService, AuthService, MountainService, ReportService, TrailDetailsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
