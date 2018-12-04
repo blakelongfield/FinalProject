@@ -685,8 +685,11 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `skireviewdb`;
-INSERT INTO `report` (`id`, `report_text`, `rating`, `image_url`, `date_created`, `vote`, `user_id`, `trail_id`, `mountain_id`) VALUES (1, 'Great Powder Today', 5, NULL, '2019-01-01 00:00:00', NULL, 1, 1, NULL);
-INSERT INTO `report` (`id`, `report_text`, `rating`, `image_url`, `date_created`, `vote`, `user_id`, `trail_id`, `mountain_id`) VALUES (2, 'This place is awesome', NULL, NULL, '2019-01-01 00:00:00', NULL, 1, NULL, 1);
+INSERT INTO `report` (`id`, `report_text`, `rating`, `image_url`, `date_created`, `vote`, `user_id`, `trail_id`, `mountain_id`) VALUES (1, 'Great Powder Today', 5, NULL, '2019-01-01 00:00:00', NULL, 5, 1, NULL);
+INSERT INTO `report` (`id`, `report_text`, `rating`, `image_url`, `date_created`, `vote`, `user_id`, `trail_id`, `mountain_id`) VALUES (2, 'This place is awesome', NULL, NULL, '2019-01-01 00:00:00', NULL, 5, NULL, 1);
+INSERT INTO `report` (`id`, `report_text`, `rating`, `image_url`, `date_created`, `vote`, `user_id`, `trail_id`, `mountain_id`) VALUES (3, 'Blake is awesome', 1, NULL, '2019-01-01 00:00:00', NULL, 5, 1, NULL);
+INSERT INTO `report` (`id`, `report_text`, `rating`, `image_url`, `date_created`, `vote`, `user_id`, `trail_id`, `mountain_id`) VALUES (4, 'Blake is awesomer', 3, NULL, '2019-01-01 00:00:00', NULL, 5, 2, NULL);
+INSERT INTO `report` (`id`, `report_text`, `rating`, `image_url`, `date_created`, `vote`, `user_id`, `trail_id`, `mountain_id`) VALUES (5, 'What happened to Blake?', 4, NULL, '2019-01-01 00:00:00', NULL, 5, NULL, 2);
 
 COMMIT;
 
@@ -897,6 +900,8 @@ INSERT INTO `comment` (`id`, `comment_text`, `report_id`, `user_id`, `comment_id
 INSERT INTO `comment` (`id`, `comment_text`, `report_id`, `user_id`, `comment_id`) VALUES (2, 'Totally', NULL, 5, 1);
 INSERT INTO `comment` (`id`, `comment_text`, `report_id`, `user_id`, `comment_id`) VALUES (3, 'Yes', NULL, 5, 2);
 INSERT INTO `comment` (`id`, `comment_text`, `report_id`, `user_id`, `comment_id`) VALUES (4, 'Nope', NULL, 5, 1);
+INSERT INTO `comment` (`id`, `comment_text`, `report_id`, `user_id`, `comment_id`) VALUES (5, 'Hello', 3, 5, NULL);
+INSERT INTO `comment` (`id`, `comment_text`, `report_id`, `user_id`, `comment_id`) VALUES (6, 'Hi Blake', 1, 5, NULL);
 
 COMMIT;
 

@@ -52,6 +52,7 @@ export class AdminComponent implements OnInit {
   addMountainForm() {
     this.title = 'Add Mountain';
     this.addMountain = new Mountain();
+    this.findAllResorts();
   }
 
   updateMountainForm() {
@@ -141,10 +142,6 @@ export class AdminComponent implements OnInit {
   }
 
   submitUpdatedMountain() {
-    // const updateForm = form.value;
-    // console.log(updateForm);
-    console.log(this.mountainToUpdate);
-    console.log(this.updateMountain);
     this.updateMountain.id = this.mountainToUpdate.id;
 
     // console.log(this.updateMountain);

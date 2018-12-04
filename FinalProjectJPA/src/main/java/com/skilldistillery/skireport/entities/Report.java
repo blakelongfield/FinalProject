@@ -41,20 +41,23 @@ public class Report {
 	@Column(name="vote")
 	private Integer votes;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
+//	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
+	@ManyToOne
 	@JoinColumn(name="user_id")
 	private User user;
 	
 	@JsonIgnore
-	@ManyToOne(cascade = CascadeType.ALL)
+//	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
+	@ManyToOne
 	@JoinColumn(name="trail_id")
 	private Trail trail;
 	@JsonIgnore
-	@ManyToOne(cascade = CascadeType.ALL)
+//	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
+	@ManyToOne
 	@JoinColumn(name="mountain_id")
 	private Mountain mountain;
 	
-	@OneToMany(mappedBy="report", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy="report", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
 	private List<Comment> comments;
 
 	/*

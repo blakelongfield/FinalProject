@@ -30,7 +30,8 @@ public class ChairLift {
 	private Double rideLength;
 	
 	@JsonBackReference(value="liftTypeToChairLift")
-	@ManyToOne(cascade = CascadeType.ALL)
+//	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
+	@ManyToOne
 	@JoinColumn(name="chairlift_type_id")
 	private LiftType type;
 	
@@ -38,7 +39,7 @@ public class ChairLift {
 	
 //	@JsonBackReference(value="trailToChairLift")
 	@JsonIgnore
-	@ManyToMany(mappedBy="lifts", cascade = CascadeType.ALL)
+	@ManyToMany(mappedBy="lifts", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
 	private List<Trail> trails;
 
 	/*

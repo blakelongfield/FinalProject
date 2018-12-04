@@ -38,10 +38,9 @@ export class MountainService {
       })
     );
   }
-  public create(mountain: Mountain) {
-    console.log(mountain);
 
-    return this.http.post<Mountain>(this.url, mountain, this.httpOptions).pipe(
+  public create(mountain: Mountain) {
+    return this.http.post<Mountain>(this.url + `/resorts/${mountain.resort}`, mountain, this.httpOptions).pipe(
       catchError((error: any) => {
         console.error(error);
         return throwError('mountainService.create(): Error creating mountain');
