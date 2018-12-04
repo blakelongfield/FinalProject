@@ -46,6 +46,13 @@ public class TrailController {
 			resp.setStatus(404);
 		}
 		return trails;
+		
+	}
+	
+	@GetMapping("trails/sort/{mid}/{search}")
+	public List<Trail> sortBy( @PathVariable("search") String search, @PathVariable("mid") Integer mid) {
+		System.out.println("************************" + search);
+		return trailService.sortBy(search, mid);
 	}
 
 	@GetMapping("trails/{trailId}")

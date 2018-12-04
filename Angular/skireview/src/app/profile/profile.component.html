@@ -1,10 +1,10 @@
 <div *ngIf="!selected">
 
- <li (click)="selectedUser(user)">{{user.firstName}}</li>
- <li (click)="selectedUser(user)">{{user.lastName}}</li>
- <li (click)="selectedUser(user)">{{user.password}}</li>
- <li (click)="selectedUser(user)">{{user.email}}</li>
- <li (click)="selectedUser(user)" >{{user.profilePic}}</li>
+ <h2 (click)="selectedUser(user)">{{user.firstName}}</h2><br>
+ <h2 (click)="selectedUser(user)">{{user.lastName}}</h2><br>
+ <h2 (click)="selectedUser(user)">{{user.password}}</h2><br>
+ <h2 (click)="selectedUser(user)">{{user.email}}</h2><br>
+ <h2  (click)="selectedUser(user)" >{{user.profilePic}}</h2><br>
 
  <button (click)="editUser()">Edit</button>
 

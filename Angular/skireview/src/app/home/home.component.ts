@@ -1,3 +1,4 @@
+import { TrailDetailsService } from './../trail-details.service';
 import { FormControl } from '@angular/forms';
 import { MountainService } from './../mountain.service';
 import { UserService } from './../user.service';
@@ -7,6 +8,9 @@ import { Component, OnInit } from '@angular/core';
 import { Report } from '../models/report';
 import { User } from '../models/user';
 import { Mountain } from '../models/mountain';
+
+import { Router } from '@angular/router';
+import { Trail } from '../models/trail';
 
 @Component({
   selector: 'app-home',
@@ -18,12 +22,15 @@ export class HomeComponent implements OnInit {
 
   reports: Report [] = [];
   mReports: Report [] = [];
+  sortedTrails: Trail [] = [];
   users: User [] = [];
   mountains: Mountain [] = [];
   mountFormControl = new FormControl();
   selectedMTN: Mountain = null;
   mountain: Mountain = new Mountain();
+  trailSelected = null;
   mtnId;
+  searchBy;
 
 
 
@@ -87,6 +94,7 @@ export class HomeComponent implements OnInit {
     this.mtnServ.show(id).subscribe(
       mountain => {
       this.selectedMTN = mountain;
+      this.sortedTrails = this.selectedMTN.trails;
       },
       err => {
         console.error('Observer got error: ' + err);
@@ -95,6 +103,32 @@ export class HomeComponent implements OnInit {
     this.mountainReports(id);
 
   }
+  //// SELECTS TRAIL AND MOVES TO TRAIL DETAIL PAGE
+  public selectedTrail(id) {
+    console.log('selected trail with id of' + id);
+    this.trailServ.findTrailById(id).subscribe(
+      data => {
+        this.trailSelected = data;
+        console.log(data + ' %%%%%%%%%%%%%%%%%%%%%%%%');
+        this.route.navigateByUrl('/trail/' + id);
+      },
+      err => {
+        console.log('ERROR in home.component selectedTrail()');
+      }
+    );
+  }
+  //// SORTS TRAILS BY TRAIL NAME
+  public sortTrailByName( search ) {
+    console.log(search);
+    this.trailServ.sortTrailByName( search, this.mtnId ).subscribe(
+      trails => {
+        this.sortedTrails = trails;
+      },
+      err => {
+        console.log('ERROR in sorted trails');
+      }
+    );
+    }
 
 
 
@@ -106,7 +140,8 @@ export class HomeComponent implements OnInit {
 
   // CONSTRUCTOR & INIT
 
-  constructor(private reportServ: ReportService, private userServ: UserService, private mtnServ: MountainService) { }
+  // tslint:disable-next-line:max-line-length
+  constructor(private reportServ: ReportService, private userServ: UserService, private mtnServ: MountainService, private trailServ: TrailDetailsService, private route: Router) { }
 
   ngOnInit() {
     this.loadReports();
@@ -116,3 +151,4 @@ export class HomeComponent implements OnInit {
   }
 
 }
+

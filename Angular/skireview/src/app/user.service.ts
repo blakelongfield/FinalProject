@@ -48,11 +48,13 @@ return this.http.get<User[]>(this.url + '?sortedtrue')
 // creates a new user
 
 public create(user: User) {
+  console.log('*************' + user);
+
   return this.http.post<User>(this.url, user, this.httpOptions)
-  .pipe(
-    catchError((err: any) => {
-      console.error(err);
-      return throwError('Error creating new user');
+    .pipe(
+      catchError((err: any) => {
+        console.error(err);
+          return throwError('Error creating new user');
     })
   );
 }

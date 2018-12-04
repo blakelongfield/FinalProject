@@ -73,4 +73,17 @@ export class TrailDetailsService {
       })
     );
   }
+
+  // SORT TRAIL BY TRAIL NAME
+  public sortTrailByName( search, mid ) {
+    return this.http.get<Trail[]>(this.url + '/sort/' + mid + '/' + search)
+    .pipe(
+      catchError((error: any) => {
+        console.log(error);
+        return throwError('ERROR - COULD NOT GET SORTED TRAIL LIST');
+      })
+    );
+  }
+
+
 }
