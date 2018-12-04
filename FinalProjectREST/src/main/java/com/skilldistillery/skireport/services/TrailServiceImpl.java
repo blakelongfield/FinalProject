@@ -40,9 +40,11 @@ public class TrailServiceImpl implements TrailService {
 		if( searchParam.equals("Name")) {
 		TrailSortByName sort = new TrailSortByName();
 		Collections.sort(trails, sort);
-		
 			
-			
+		}
+		else if(searchParam.equals("Difficulty")) {
+		TrailSortByDifficulty sortDiff = new TrailSortByDifficulty();
+		Collections.sort(trails, sortDiff);
 		}
 		
 		

@@ -1,8 +1,26 @@
 package com.skilldistillery.skireport.entities;
 
 public enum Difficulty {
-	BEGINNER, 
-	INTERMEDIATE, 
-	HARD, 
+	BEGINNER,
+	INTERMEDIATE,
+	HARD,
 	EXPERT
+	
+//	
+//	Difficulty(String diff) {
+//		this.level = diff;
+//		
+//	}
+//	
+//	final private String level;
+//
+//	public String getLevel() {
+//		return level;
+//	}
+//	
+//	  @Override
+//	  public String toString() {
+//	    return level;
+//	  }
+	
 }
