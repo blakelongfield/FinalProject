@@ -33,10 +33,9 @@
 
   <!-- MOUNTAIN REPORTS -->
   <h1> Mountain Reports<h1>
-    <div class= "form-group">
+    <div class= "form-group" >
       <select class="form-control" name="mountain" [(ngModel)]="mountain.id">
           <option *ngFor="let mountain of mountains" value="{{mountain.id}}"  >{{mountain.name}}</option>
-
         </select >
 
         <input type="submit" (click)="selectMountain(mountain.id)" value='submit'>
