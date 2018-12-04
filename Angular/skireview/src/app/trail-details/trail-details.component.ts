@@ -3,6 +3,7 @@ import { TrailDetailsService } from '../trail-details.service';
 import { Trail } from '../models/trail';
 import { ReportService } from '../report.service';
 import { Report } from '../models/report';
+import { CommentService } from '../comment.service';
 
 @Component({
   selector: 'app-trail-details',
@@ -15,8 +16,10 @@ export class TrailDetailsComponent implements OnInit {
   selected = null;
   trails: Trail[] = [];
   reports: Report[] = [];
+  comments: Comment[] = [];
 
-  constructor(private trailDetailsService: TrailDetailsService, private reportService: ReportService) { }
+  // tslint:disable-next-line:max-line-length
+  constructor(private trailDetailsService: TrailDetailsService, private reportService: ReportService, private commentService: CommentService) { }
 
   ngOnInit() {
     this.reload();
@@ -41,6 +44,17 @@ export class TrailDetailsComponent implements OnInit {
       },
       err => {
         console.error('trail-details.component.reportsOnTrail(): Error retreiving reports on trail');
+      }
+    );
+  }
+
+  public commentsOnReport(id) {
+    this.commentService.findCommentsByReportId(id).subscribe(
+      data => {
+        console.log(data);
+      },
+      err => {
+        console.error('trail-details.component.commentsOnreport(): Error retreving comments on report');
       }
     );
   }

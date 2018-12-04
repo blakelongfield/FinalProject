@@ -32,6 +32,7 @@
       <tbody>
         <tr *ngFor="let report of reports">
           <td>This is a REPORT on the TRAIL: {{report.reportText}}</td>
+          <td>This is a COMMENT on a REPORT: {{report.comments[0].commentText}}</td>
         </tr>
       </tbody>
     </table>
@@ -45,9 +46,9 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let comment of comments">
-            <td>This is a COMMENT on the trail: {{report.}}</td>
-          </tr>
+          <!-- <tr *ngFor="let comment of comments">
+            <td>This is a COMMENT on the trail: {{report}}</td>
+          </tr> -->
         </tbody>
       </table>
     </div>

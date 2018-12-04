@@ -7,6 +7,7 @@ import com.skilldistillery.skireport.entities.Trail;
 public interface TrailService {
 
 	List<Trail> findAll();
+	
 
 	Trail findById(int trailId);
 

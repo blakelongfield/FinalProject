@@ -8,6 +8,8 @@ public interface CommentService {
 	List<Comment> findAll();
 
 	Comment findById(int commentId);
+	
+	List<Comment> getCommentsOnAReport(int reportId);
 
 	Comment create(Comment comment, String username, Integer reportId, Integer commentId);
 
