@@ -8,6 +8,7 @@ public interface TrailService {
 
 	List<Trail> findAll();
 	
+	List<Trail> sortBy( String searchParam);
 
 	Trail findById(int trailId);
 
@@ -18,5 +19,7 @@ public interface TrailService {
 	Trail patch(Trail trail, int trailId, String username);
 
 	Boolean destroy(int trailId, String username);
+	
+	
 
 }
