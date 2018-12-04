@@ -5,6 +5,7 @@ import { ReportService } from '../report.service';
 import { Report } from '../models/report';
 import { CommentService } from '../comment.service';
 import { ActivatedRoute } from '@angular/router';
+import { forEach } from '@angular/router/src/utils/collection';
 
 @Component({
   selector: 'app-trail-details',
@@ -20,22 +21,22 @@ export class TrailDetailsComponent implements OnInit {
   reports: Report[] = [];
   comments: Comment[] = [];
   trailId;
+  reportId;
+  comment = null;
 
   // tslint:disable-next-line:max-line-length
   constructor(private trailDetailsService: TrailDetailsService, private reportService: ReportService, private commentService: CommentService, private activeRouter: ActivatedRoute) { }
 
   ngOnInit() {
     this.trailId = this.activeRouter.snapshot.paramMap.get('id');
-    console.log('*********' + this.trailId);
     this.reload();
     this.displayTrail(this.trailId);
-    console.log('****');
+    this.reportsOnTrail(this.trailId);
   }
 
   public reload() {
     this.trailDetailsService.index().subscribe(
       data => {
-        console.log(data);
         this.trails = data;
        },
       err => {
@@ -49,9 +50,24 @@ export class TrailDetailsComponent implements OnInit {
     this.reportService.findReportsByTrailId(id).subscribe(
       data => {
         this.reports = data;
+        for (let i = 0; i < this.reports.length; i++) {
+          this.comment = this.commentsOnReport(this.reports[i].id);
+          this.comments.push(this.comment);
+        }
       },
       err => {
         console.error('trail-details.component.reportsOnTrail(): Error retreiving reports on trail');
+      }
+    );
+  }
+
+  public commentsOnReport(id) {
+    this.commentService.findCommentsByReportId(id).subscribe(
+      data => {
+        console.log(data);
+      },
+      err => {
+        console.error('trail-details.component.commentsOnreport(): Error retreving comments on report');
       }
     );
   }
@@ -67,17 +83,6 @@ export class TrailDetailsComponent implements OnInit {
       }
     );
   }
-
-  // public commentsOnReport(id) {
-  //   this.commentService.findCommentsByReportId(id).subscribe(
-  //     data => {
-  //       console.log(data);
-  //     },
-  //     err => {
-  //       console.error('trail-details.component.commentsOnreport(): Error retreving comments on report');
-  //     }
-  //   );
-  // }
 
   public create(newTrail) {
     this.trailDetailsService.createTrail(this.newTrail).subscribe(

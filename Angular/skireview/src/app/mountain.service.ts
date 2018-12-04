@@ -40,8 +40,6 @@ export class MountainService {
   }
 
   public create(mountain: Mountain) {
-    console.log(mountain);
-    console.log(mountain.resort);
     return this.http.post<Mountain>(this.url + `/resorts/${mountain.resort}`, mountain, this.httpOptions).pipe(
       catchError((error: any) => {
         console.error(error);
