@@ -1,5 +1,5 @@
-<div>
-  <h1> ALL REPORTS</h1>
+<div *ngIf="!selectedMTN">
+  <h1> Recent Reports</h1>
 
   <table class="table table-striped table-hover">
 
@@ -36,21 +36,36 @@
   </table>
 </div>
 
-<br>
-<br>
-<br>
+
 
 
 
 <!-- MOUNTAIN REPORTS -->
-<h1> Select Mountain:</h1>
+<h3> Select Mountain:</h3>
 <div class="form-group">
   <select class="form-control" name="mountain" [(ngModel)]="mtnId">
     <option *ngFor="let mountain of mountains" value="{{mountain.id}}">{{mountain.name}}</option>
   </select>
   <input type="submit" (click)="selectMountain(mtnId)" value='submit' />
 </div>
+
+
+<!-- SELCTED MOUNTAIN  -->
+
+
 <div *ngIf="selectedMTN">
+  <div class='embed-responsive' style='padding-bottom: 70%'>
+    <div *ngIf="selectedMTN.id === 1; else vail">
+      <object data="assets/Maps/abasin.pdf" type="application/pdf" width='100%' height='600px'></object>
+    </div>
+    <ng-template #vail>
+        <object data="assets/Maps/vail.pdf" type="application/pdf" width='600px' height='500px'></object>
+    </ng-template>
+  </div>
+
+
+
+
   <h1 *ngIf="selectedMTN"> Mountain Reports</h1>
   <table class="table table-striped table-hover">
 
@@ -99,7 +114,7 @@
   <div class="form-group">
     <select class="form-control" name="sortby" [(ngModel)]="searchBy">
       <option value="Name">Name</option>
-      <option value="Feature">Feature</option>
+      <option value="Features">Features</option>
       <option value="Difficulty">Difficulty</option>
     </select>
     <input type="submit" (click)="sortTrailByName(searchBy)" value='Sort By' />
