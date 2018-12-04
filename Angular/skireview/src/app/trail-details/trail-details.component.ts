@@ -22,6 +22,7 @@ export class TrailDetailsComponent implements OnInit {
   comments: Comment[] = [];
   trailId;
   reportId;
+  comment = null;
 
   // tslint:disable-next-line:max-line-length
   constructor(private trailDetailsService: TrailDetailsService, private reportService: ReportService, private commentService: CommentService, private activeRouter: ActivatedRoute) { }
@@ -50,12 +51,23 @@ export class TrailDetailsComponent implements OnInit {
       data => {
         this.reports = data;
         for (let i = 0; i < this.reports.length; i++) {
-          this.commentsOnReport(this.reports[i].id);
+          this.comment = this.commentsOnReport(this.reports[i].id);
+          this.comments.push(this.comment);
         }
-        console.log('***********' + this.reportId);
       },
       err => {
         console.error('trail-details.component.reportsOnTrail(): Error retreiving reports on trail');
+      }
+    );
+  }
+
+  public commentsOnReport(id) {
+    this.commentService.findCommentsByReportId(id).subscribe(
+      data => {
+        console.log(data);
+      },
+      err => {
+        console.error('trail-details.component.commentsOnreport(): Error retreving comments on report');
       }
     );
   }
@@ -68,17 +80,6 @@ export class TrailDetailsComponent implements OnInit {
       },
       err => {
         console.error('trail-details.component.show(): Error retreiving trial by id');
-      }
-    );
-  }
-
-  public commentsOnReport(id) {
-    this.commentService.findCommentsByReportId(id).subscribe(
-      data => {
-        console.log(data);
-      },
-      err => {
-        console.error('trail-details.component.commentsOnreport(): Error retreving comments on report');
       }
     );
   }
