@@ -24,6 +24,17 @@
         <button class="btn btn-primary" (click)="deleteTrailForm()">Delete Trail</button>
       </div>
     </div>
+    <div class="row">
+      <div class="col">
+        <button class="btn btn-primary" (click)="addResortForm()">Add Resort</button>
+      </div>
+      <div class="col">
+        <button class="btn btn-primary" (click)="updateResortForm()">Add Update Resort</button>
+      </div>
+      <div class="col">
+        <button class="btn btn-primary" (click)="deleteResortForm()">Delete Resort</button>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -65,7 +76,7 @@
         <input class="form-control form-control-lg" type="text" name="mountainMapUrl" [(ngModel)]="addMountain.mountainMapUrl">
       </div>
     </div>
-    <button class="btn btn-outline-danger" (click)="cancel()">Cancel</button>
+    <button class="btn btn-outline-danger" (click)="cancelMountain()">Cancel</button>
     <button class="btn btn-outline-success" (click)="submitNewMountain()">Submit</button>
   </form>
 </div>
@@ -115,7 +126,7 @@
         <input class="form-control form-control-lg" type="text" name="mountainMapUrl" [(ngModel)]="updateMountain.mountainMapUrl">
       </div>
     </div>
-    <button class="btn btn-outline-danger" (click)="cancel()">Cancel</button>
+    <button class="btn btn-outline-danger" (click)="cancelMountain()">Cancel</button>
     <button class="btn btn-outline-success" (click)="submitUpdatedMountain()">Submit</button>
   </form>
 </div>
@@ -126,7 +137,7 @@
       <option *ngFor="let mountain of mountainList" name="mountain" >{{mountain.name}}</option>
     </select>
     <input type="submit" (click)="findSingleMountain(mountain.id)" value="submit" > -->
-    <button class="btn btn-outline-danger" (click)="cancel()">Cancel</button>
+    <button class="btn btn-outline-danger" (click)="cancelMountain()">Cancel</button>
     <button class="btn btn-outline-success" (click)="deleteMountainForm()">Submit</button>
 </div>
 

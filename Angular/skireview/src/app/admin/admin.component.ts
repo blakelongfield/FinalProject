@@ -76,6 +76,22 @@ export class AdminComponent implements OnInit {
     this.deleteTrail = true;
   }
 
+  addResortForm() {
+    this.title = 'Add Resort';
+    this.addResort = new Resort;
+  }
+
+  updateResortForm() {
+    this.title = 'Update Resort';
+    this.updateResort = new Resort();
+    this.findAllResorts();
+  }
+
+  deleteResortForm() {
+    this.title = 'Delete Resort';
+    this.deleteResort = true;
+  }
+
   cancelMountain() {
     this.title = this.mainTitle;
     this.addMountain = null;

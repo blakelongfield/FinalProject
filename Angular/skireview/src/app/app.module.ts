@@ -19,6 +19,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ReportService } from './report.service';
 import { TrailDetailsService } from './trail-details.service';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { NavigationComponent } from './navigation/navigation.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { NotFoundComponent } from './not-found/not-found.component';
     RegisterComponent,
     ProfileComponent,
     HomeComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    NavigationComponent
   ],
   imports: [
     BrowserModule,
@@ -38,7 +40,13 @@ import { NotFoundComponent } from './not-found/not-found.component';
     FormsModule,
     HttpClientModule
   ],
-  providers: [UserService, AuthService, ReportService, TrailDetailsService, MountainService],
+  providers: [
+    UserService,
+    AuthService,
+    ReportService,
+    TrailDetailsService,
+    MountainService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
