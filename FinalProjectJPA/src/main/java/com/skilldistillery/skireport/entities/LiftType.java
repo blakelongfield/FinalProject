@@ -26,7 +26,7 @@ public class LiftType {
 	private Integer capacity;
 	
 	@JsonManagedReference(value="liftTypeToChairLift")
-	@OneToMany(mappedBy="type", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy="type", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
 	private List<ChairLift> lifts;
 
 	/*

@@ -38,17 +38,18 @@ public class Mountain {
 	private String imgUrl;
 	
 	@JsonIgnore
-	@ManyToOne(cascade = CascadeType.ALL)
+//	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
+	@ManyToOne
 	@JoinColumn(name="resort_id")
 	private Resort resort;
 	
 	@JsonIgnore
-	@OneToMany(mappedBy="mountain", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy="mountain", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
 	private List<Report> reports;
 	
 //	@JsonBackReference(value="mountainToTrail")
 	//@JsonIgnore
-	@OneToMany(mappedBy="mountain", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy="mountain", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
 	private List<Trail> trails;
 
 	/*
