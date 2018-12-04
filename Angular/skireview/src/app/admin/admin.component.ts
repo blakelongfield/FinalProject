@@ -13,7 +13,9 @@ export class AdminComponent implements OnInit {
   title = 'Admin';
   mainTitle = 'Admin';
 
-  newMountain: Mountain = null;
+  addMountain: Mountain = null;
+  updateMountain: Mountain = null;
+
   constructor(
     private mountainService: MountainService
   ) { }
@@ -21,29 +23,46 @@ export class AdminComponent implements OnInit {
   ngOnInit() {
   }
 
-  addMountain() {
+  addMountainForm() {
     this.title = 'Add Mountain';
-    this.newMountain = new Mountain();
+    this.addMountain = new Mountain();
   }
 
-  submitMountain() {
-    console.log(this.newMountain);
+  updateMountainForm() {
+    this.title = 'Update Mountain';
+    this.updateMountain = new Mountain();
+  }
 
-    this.mountainService.create(this.newMountain).subscribe(
+  cancel() {
+    this.title = this.mainTitle;
+    this.addMountain = null;
+    this.updateMountain = null;
+  }
+
+  submitNewMountain() {
+    this.mountainService.create(this.addMountain).subscribe(
       created => {
         console.log(created);
         this.cancel();
       },
       error => {
-        console.error('admin.submitMountain(): Error creating Mountain');
+        console.error('admin.submitNewMountain(): Error creating Mountain');
         console.error(error);
       }
     );
   }
 
-  cancel() {
-    this.title = this.mainTitle;
-    this.newMountain = null;
+  submitUpdatedMountain() {
+    this.mountainService.patch(this.updateMountain).subscribe(
+      updated => {
+        console.log(updated);
+        this.cancel();
+      },
+      error => {
+        console.error('admin.submitUpdatedMountain(): Error updating Mountain');
+        console.error(error);
+      }
+    );
   }
 
 }
