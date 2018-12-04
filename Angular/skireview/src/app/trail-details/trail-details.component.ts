@@ -52,8 +52,6 @@ export class TrailDetailsComponent implements OnInit {
     this.commentService.findCommentsByReportId(id).subscribe(
       data => {
         console.log(data);
-        console.log('***********************');
-        this.comments = data;
       },
       err => {
         console.error('trail-details.component.commentsOnreport(): Error retreving comments on report');
