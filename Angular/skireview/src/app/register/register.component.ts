@@ -20,7 +20,7 @@ export class RegisterComponent implements OnInit {
   ngOnInit() {
   }
 // registers a new user (create)
-  public register(newUser) {
+  public register(newUser: User) {
 
     // use during auth service
     // this.authService.register(newUser).subscribe(
@@ -32,6 +32,9 @@ export class RegisterComponent implements OnInit {
     //   console.error(err);
     // }
     // );
+
+    newUser.active = true;
+    newUser.role = 'Standard';
 
     this.userService.create(newUser).subscribe(
       data => {
