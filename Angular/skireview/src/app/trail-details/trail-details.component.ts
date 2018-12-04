@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { TrailDetailsService } from '../trail-details.service';
 import { Trail } from '../models/trail';
+import { ReportService } from '../report.service';
+import { Report } from '../models/report';
 
 @Component({
   selector: 'app-trail-details',
@@ -12,8 +14,9 @@ export class TrailDetailsComponent implements OnInit {
   editTrail = null;
   selected = null;
   trails: Trail[] = [];
+  reports: Report[] = [];
 
-  constructor(private trailDetailsService: TrailDetailsService) { }
+  constructor(private trailDetailsService: TrailDetailsService, private reportService: ReportService) { }
 
   ngOnInit() {
     this.reload();
@@ -27,6 +30,17 @@ export class TrailDetailsComponent implements OnInit {
       err => {
         console.error('trail-details.component.reload(): Error retreiving trails');
         console.log(err);
+      }
+    );
+  }
+
+  public reportsOnTrail(id) {
+    this.reportService.findReportsByTrailId(id).subscribe(
+      data => {
+        this.reports = data;
+      },
+      err => {
+        console.error('trail-details.component.reportsOnTrail(): Error retreiving reports on trail');
       }
     );
   }
@@ -45,11 +59,12 @@ export class TrailDetailsComponent implements OnInit {
     );
   }
 
-  public updatePut() {
+  public updatePut(id) {
     this.trailDetailsService.putTrail(this.editTrail).subscribe(
       data => {
         this.reload();
         this.editTrail = null;
+        console.log('successfully updated(put) a trail');
       },
       err => {
         console.error('trail-details.component.updatePut(): Error updating trail');
@@ -63,6 +78,7 @@ export class TrailDetailsComponent implements OnInit {
       data => {
         this.reload();
         this.editTrail = null;
+        console.log('successfully updated(patch) a trail');
       },
       err => {
         console.error('trail-details.component.updatePatch(): Error updating trail');
@@ -74,7 +90,7 @@ export class TrailDetailsComponent implements OnInit {
   public delete(trailId) {
     this.trailDetailsService.deleteTrail(trailId).subscribe(
       data => {
-        console.log('deleted');
+        console.log('successfully deleted a trail');
         this.reload();
       },
       err => {
@@ -85,7 +101,10 @@ export class TrailDetailsComponent implements OnInit {
   }
 
   public displayTrail(trail) {
+    console.log('you are now viewing a specific trail');
+    console.log('******************************************');
     this.selected = trail;
+    console.log(this.selected);
+    this.reportsOnTrail(trail.id);
   }
-
 }
