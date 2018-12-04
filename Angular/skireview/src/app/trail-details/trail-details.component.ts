@@ -4,6 +4,7 @@ import { Trail } from '../models/trail';
 import { ReportService } from '../report.service';
 import { Report } from '../models/report';
 import { CommentService } from '../comment.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-trail-details',
@@ -11,18 +12,23 @@ import { CommentService } from '../comment.service';
   styleUrls: ['./trail-details.component.css']
 })
 export class TrailDetailsComponent implements OnInit {
+  trail = new Trail();
   newTrail = null;
   editTrail = null;
   selected = null;
   trails: Trail[] = [];
   reports: Report[] = [];
   comments: Comment[] = [];
+  trailId;
 
   // tslint:disable-next-line:max-line-length
-  constructor(private trailDetailsService: TrailDetailsService, private reportService: ReportService, private commentService: CommentService) { }
+  constructor(private trailDetailsService: TrailDetailsService, private reportService: ReportService, private commentService: CommentService, private activeRouter: ActivatedRoute) { }
 
   ngOnInit() {
+    this.trailId = this.activeRouter.snapshot.paramMap.get('id');
+    console.log('*********' + this.trailId);
     this.reload();
+    this.displayTrail(this.trailId);
     console.log('****');
   }
 
@@ -46,6 +52,18 @@ export class TrailDetailsComponent implements OnInit {
       },
       err => {
         console.error('trail-details.component.reportsOnTrail(): Error retreiving reports on trail');
+      }
+    );
+  }
+
+  public show(id) {
+    this.trailDetailsService.findTrailById(id).subscribe(
+      data => {
+        this.trail = data;
+        console.log(this.trail);
+      },
+      err => {
+        console.error('trail-details.component.show(): Error retreiving trial by id');
       }
     );
   }
@@ -116,11 +134,16 @@ export class TrailDetailsComponent implements OnInit {
     );
   }
 
-  public displayTrail(trail) {
-    console.log('you are now viewing a specific trail');
+  public displayTrail(id) {
+    console.log('displayTrail' + id);
     console.log('******************************************');
-    this.selected = trail;
-    console.log(this.selected);
-    this.reportsOnTrail(trail.id);
+    this.trailDetailsService.findTrailById(id).subscribe(
+      data => {
+        console.log('in displayTrail - finding trail by id');
+        this.selected = data;
+        console.log(data);
+        this.reportsOnTrail(this.trail.id);
+      }
+    );
   }
 }

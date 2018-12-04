@@ -97,7 +97,7 @@
               </tr>
               </thead>
               <tr *ngFor="let trail of selectedMTN.trails">
-                <td>{{trail.name}}</td>
+                <td (click)="selectedTrail(trail.id)">{{trail.name}}</td>
                 <td>{{trail.difficulty}}</td>
                    <!-- IF -->
                 <td *ngIf="trail.length; else length">
