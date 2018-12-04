@@ -57,6 +57,7 @@ public class TrailController {
 		}
 		return trail;
 	}
+	
 
 	@PostMapping("trails/mountains/{mountainId}")
 	public Trail create(@RequestBody Trail trail, @PathVariable("mountainId") int mountainId, HttpServletResponse resp,
