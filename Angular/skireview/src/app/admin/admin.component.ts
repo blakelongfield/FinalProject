@@ -309,7 +309,9 @@ export class AdminComponent implements OnInit {
     this.resortService.findResortById(resortId).subscribe(
       singleResort => {
         console.log(singleResort);
+        this.updateResort = singleResort;
         this.resortToUpdate = singleResort;
+        this.tempMountain = true;
       },
       error => {
         console.error('admin.findSingleResort(): Error finding Resort');
