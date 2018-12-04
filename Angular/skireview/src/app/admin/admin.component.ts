@@ -20,14 +20,17 @@ export class AdminComponent implements OnInit {
 
   addMountain: Mountain = null;
   updateMountain: Mountain = null;
+  mountain: Mountain = new Mountain();
   mountainList: Mountain[] = [];
   mountainToUpdate: Mountain = null;
   deleteMountain: boolean = null;
+
   addTrail: Trail = null;
   updateTrail: Trail = null;
   trailList: Trail[] = [];
   trailToUpdate: Trail = null;
   deleteTrail: boolean = null;
+
   addResort: Resort = null;
   updateResort: Resort = null;
   resortList: Resort[] = [];
@@ -162,7 +165,6 @@ export class AdminComponent implements OnInit {
 
     this.mountainService.show(mountainId).subscribe(
       singleMountain => {
-        console.log(singleMountain);
         this.mountainToUpdate = singleMountain;
       },
       error => {
@@ -315,7 +317,5 @@ export class AdminComponent implements OnInit {
       }
     );
   }
-
-
 
 }
