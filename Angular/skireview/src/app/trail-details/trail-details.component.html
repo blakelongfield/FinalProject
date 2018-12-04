@@ -1,4 +1,4 @@
-<div *ngIf="!selected">
+<!-- <div *ngIf="!selected">
   <table class="center">
     <thead>
       <tr>
@@ -20,7 +20,7 @@
       </tr>
     </tbody>
   </table>
-</div>
+</div> -->
 
 <div class="trailDetails" *ngIf="selected">
   <p>{{selected.imgUrl}}</p>
@@ -28,9 +28,9 @@
   Difficulty: <p>{{selected.difficulty}}</p>
   Length: <p>{{selected.length}}</p>
   Elevation gain/loss: <p>{{selected.elevationGainLoss}}</p>
-  Features: <p>{{selected.features}}</p>
+  Features: <p>{{selected.features}}</p> <hr>
   <form *ngFor="let report of reports">
     <p>This is a REPORT on the TRAIL: {{report.reportText}}<p>
-      <p>This is a COMMENT on a REPORT: {{report.comments[0].commentText}}</p>
+    <p>This is a COMMENT on a REPORT: {{report.comments[0].commentText}}</p>
     </form>
   </div>
