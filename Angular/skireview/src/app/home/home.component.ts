@@ -84,14 +84,14 @@ export class HomeComponent implements OnInit {
     console.log(id);
 
 
-    // this.mtnServ.show(id).subscribe(
-    //   mountain => {
-    //   this.selectedMTN = mountain;
-    //   },
-    //   err => {
-    //     console.error('Observer got error: ' + err);
-    //   }
-    // );
+    this.mtnServ.show(id).subscribe(
+      mountain => {
+      this.selectedMTN = mountain;
+      },
+      err => {
+        console.error('Observer got error: ' + err);
+      }
+    );
     this.mountainReports(id);
 
   }

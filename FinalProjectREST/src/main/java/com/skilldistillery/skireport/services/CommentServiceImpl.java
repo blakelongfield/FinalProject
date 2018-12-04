@@ -88,4 +88,16 @@ public class CommentServiceImpl implements CommentService {
 		}
 		return deleted;
 	}
+
+	@Override
+	public List<Comment> getCommentsOnAReport(int reportId) {
+		Report report = null;
+		List<Comment> comments = null;
+		Optional<Report> reportOpt = reportRepo.findById(reportId);
+		if (reportOpt.isPresent()) {
+			report = reportOpt.get();
+			comments = commentRepo.findCommentsOnReport(reportId);
+		}
+		return comments;
+	}
 }

@@ -45,7 +45,7 @@ public class MountainController {
 		if (mountById == null) {
 			resp.setStatus(404);
 		} else {
-			resp.setStatus(302);
+			resp.setStatus(200);
 		}
 
 		return mountById;

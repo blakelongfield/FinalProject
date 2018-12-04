@@ -1,9 +1,9 @@
 export class Comment {
   id: number;
-  text: string;
+  commentText: string;
 
-  constructor( id?: number, text?: string ) {
+  constructor( id?: number, commentText?: string ) {
   this.id = id;
-  this.text = text;
+  this.commentText = commentText;
   }
 }

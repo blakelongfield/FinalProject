@@ -48,6 +48,13 @@ public class CommentController {
 		}
 		return comment;
 	}
+	
+	@GetMapping(path="comments/reports/{reportId}")
+	public List<Comment> getCommentsOnAReport(@PathVariable("reportId") int reportId, HttpServletResponse resp,
+			HttpServletRequest req) {
+		List<Comment> comments = commentService.getCommentsOnAReport(reportId);
+		return comments;
+	}
 
 	@PostMapping(path = "comments/reports/{reportId}")
 	public Comment createCommentOnReport(@RequestBody Comment comment, @PathVariable("reportId") Integer reportId,
