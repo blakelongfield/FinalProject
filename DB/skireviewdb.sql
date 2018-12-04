@@ -85,7 +85,7 @@ DROP TABLE IF EXISTS `trail` ;
 CREATE TABLE IF NOT EXISTS `trail` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(255) NOT NULL,
-  `difficulty` ENUM('BEGINNER', 'INTERMEDIATE', 'HARD', 'EXPERT') NULL DEFAULT 'BEGINNER',
+  `difficulty` ENUM('BEGINNER', 'INTERMEDIATE', 'HARD', 'EXPERT', 'TERRAIN PARK') NOT NULL DEFAULT 'BEGINNER',
   `length` INT NULL,
   `elevation_gain_loss` INT NULL,
   `features` VARCHAR(100) NULL,
@@ -227,6 +227,54 @@ CREATE TABLE IF NOT EXISTS `comment` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
+
+-- -----------------------------------------------------
+-- Table `day_of_week`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `day_of_week` ;
+
+CREATE TABLE IF NOT EXISTS `day_of_week` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `weekday` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `hours`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `hours` ;
+
+CREATE TABLE IF NOT EXISTS `hours` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `time` TIME NOT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `day_of_week_has_hours`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `day_of_week_has_hours` ;
+
+CREATE TABLE IF NOT EXISTS `day_of_week_has_hours` (
+  `day_of_week_id` INT NOT NULL,
+  `hours_id` INT NOT NULL,
+  PRIMARY KEY (`day_of_week_id`, `hours_id`),
+  INDEX `fk_day_of_week_has_hours_hours1_idx` (`hours_id` ASC),
+  INDEX `fk_day_of_week_has_hours_day_of_week1_idx` (`day_of_week_id` ASC),
+  CONSTRAINT `fk_day_of_week_has_hours_day_of_week1`
+    FOREIGN KEY (`day_of_week_id`)
+    REFERENCES `day_of_week` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_day_of_week_has_hours_hours1`
+    FOREIGN KEY (`hours_id`)
+    REFERENCES `hours` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
 SET SQL_MODE = '';
 DROP USER IF EXISTS user@localhost;
 SET SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
@@ -269,7 +317,7 @@ COMMIT;
 START TRANSACTION;
 USE `skireviewdb`;
 INSERT INTO `mountain` (`id`, `name`, `number_of_trails`, `number_of_lifts`, `elevation_base`, `elevation_peak`, `mountain_map_url`, `resort_id`) VALUES (1, 'Arapahoe Basin', 145, 9, 10780, 13050, NULL, 1);
-INSERT INTO `mountain` (`id`, `name`, `number_of_trails`, `number_of_lifts`, `elevation_base`, `elevation_peak`, `mountain_map_url`, `resort_id`) VALUES (2, 'Battle Mountain', 195, 31, 8120, 11570, NULL, 2);
+INSERT INTO `mountain` (`id`, `name`, `number_of_trails`, `number_of_lifts`, `elevation_base`, `elevation_peak`, `mountain_map_url`, `resort_id`) VALUES (2, 'Vail', 195, 31, 8120, 11570, NULL, 2);
 
 COMMIT;
 
@@ -290,8 +338,8 @@ INSERT INTO `trail` (`id`, `name`, `difficulty`, `length`, `elevation_gain_loss`
 INSERT INTO `trail` (`id`, `name`, `difficulty`, `length`, `elevation_gain_loss`, `features`, `mountain_id`) VALUES (9, 'Upper Chisholm Trail', 'BEGINNER', NULL, NULL, 'Groomed', 1);
 INSERT INTO `trail` (`id`, `name`, `difficulty`, `length`, `elevation_gain_loss`, `features`, `mountain_id`) VALUES (10, 'Sundance', 'BEGINNER', NULL, NULL, 'Groomed', 1);
 INSERT INTO `trail` (`id`, `name`, `difficulty`, `length`, `elevation_gain_loss`, `features`, `mountain_id`) VALUES (11, 'Wrangler', 'BEGINNER', NULL, NULL, 'Groomed', 1);
-INSERT INTO `trail` (`id`, `name`, `difficulty`, `length`, `elevation_gain_loss`, `features`, `mountain_id`) VALUES (12, 'High Divide', NULL, NULL, NULL, 'Terrain Park', 1);
-INSERT INTO `trail` (`id`, `name`, `difficulty`, `length`, `elevation_gain_loss`, `features`, `mountain_id`) VALUES (13, 'Banana Park', NULL, NULL, NULL, 'Terrain Park, Groomed', 1);
+INSERT INTO `trail` (`id`, `name`, `difficulty`, `length`, `elevation_gain_loss`, `features`, `mountain_id`) VALUES (12, 'High Divide', 'TERRAIN PARK', NULL, NULL, 'Terrain Park', 1);
+INSERT INTO `trail` (`id`, `name`, `difficulty`, `length`, `elevation_gain_loss`, `features`, `mountain_id`) VALUES (13, 'Banana Park', 'TERRAIN PARK', NULL, NULL, 'Terrain Park, Groomed', 1);
 INSERT INTO `trail` (`id`, `name`, `difficulty`, `length`, `elevation_gain_loss`, `features`, `mountain_id`) VALUES (14, 'East Wall - Below the Traverse', 'EXPERT', NULL, NULL, NULL, 1);
 INSERT INTO `trail` (`id`, `name`, `difficulty`, `length`, `elevation_gain_loss`, `features`, `mountain_id`) VALUES (15, 'Land of the Giants', 'EXPERT', NULL, NULL, NULL, 1);
 INSERT INTO `trail` (`id`, `name`, `difficulty`, `length`, `elevation_gain_loss`, `features`, `mountain_id`) VALUES (16, 'Corner Chute', 'EXPERT', NULL, NULL, NULL, 1);
@@ -316,7 +364,7 @@ INSERT INTO `trail` (`id`, `name`, `difficulty`, `length`, `elevation_gain_loss`
 INSERT INTO `trail` (`id`, `name`, `difficulty`, `length`, `elevation_gain_loss`, `features`, `mountain_id`) VALUES (35, 'Lenawee Parks', 'INTERMEDIATE', NULL, NULL, NULL, 1);
 INSERT INTO `trail` (`id`, `name`, `difficulty`, `length`, `elevation_gain_loss`, `features`, `mountain_id`) VALUES (36, 'Mountain Goat Alley', 'INTERMEDIATE', NULL, NULL, NULL, 1);
 INSERT INTO `trail` (`id`, `name`, `difficulty`, `length`, `elevation_gain_loss`, `features`, `mountain_id`) VALUES (37, 'West Gully', 'INTERMEDIATE', NULL, NULL, NULL, 1);
-INSERT INTO `trail` (`id`, `name`, `difficulty`, `length`, `elevation_gain_loss`, `features`, `mountain_id`) VALUES (38, 'Treeline', NULL, NULL, NULL, 'Terrain Park', 1);
+INSERT INTO `trail` (`id`, `name`, `difficulty`, `length`, `elevation_gain_loss`, `features`, `mountain_id`) VALUES (38, 'Treeline', 'TERRAIN PARK', NULL, NULL, 'Terrain Park', 1);
 INSERT INTO `trail` (`id`, `name`, `difficulty`, `length`, `elevation_gain_loss`, `features`, `mountain_id`) VALUES (39, 'Dercum\'s Gulch', 'INTERMEDIATE', NULL, NULL, 'Groomed', 1);
 INSERT INTO `trail` (`id`, `name`, `difficulty`, `length`, `elevation_gain_loss`, `features`, `mountain_id`) VALUES (40, 'Humbug', 'INTERMEDIATE', NULL, NULL, 'Groomed', 1);
 INSERT INTO `trail` (`id`, `name`, `difficulty`, `length`, `elevation_gain_loss`, `features`, `mountain_id`) VALUES (41, 'Jamie\'s Face', 'INTERMEDIATE', NULL, NULL, NULL, 1);
@@ -473,8 +521,8 @@ INSERT INTO `trail` (`id`, `name`, `difficulty`, `length`, `elevation_gain_loss`
 INSERT INTO `trail` (`id`, `name`, `difficulty`, `length`, `elevation_gain_loss`, `features`, `mountain_id`) VALUES (192, 'Prima Cornice', 'EXPERT', NULL, NULL, NULL, 2);
 INSERT INTO `trail` (`id`, `name`, `difficulty`, `length`, `elevation_gain_loss`, `features`, `mountain_id`) VALUES (193, 'Pronto', 'EXPERT', NULL, NULL, NULL, 2);
 INSERT INTO `trail` (`id`, `name`, `difficulty`, `length`, `elevation_gain_loss`, `features`, `mountain_id`) VALUES (194, 'Roger\'s Run', 'EXPERT', NULL, NULL, NULL, 2);
-INSERT INTO `trail` (`id`, `name`, `difficulty`, `length`, `elevation_gain_loss`, `features`, `mountain_id`) VALUES (195, 'Golden Peak Half Pipe', NULL, NULL, NULL, 'Half Pipe', 2);
-INSERT INTO `trail` (`id`, `name`, `difficulty`, `length`, `elevation_gain_loss`, `features`, `mountain_id`) VALUES (196, 'Golden Peak Terrain Park', NULL, NULL, NULL, 'Terrain Park', 2);
+INSERT INTO `trail` (`id`, `name`, `difficulty`, `length`, `elevation_gain_loss`, `features`, `mountain_id`) VALUES (195, 'Golden Peak Half Pipe', 'TERRAIN PARK', NULL, NULL, 'Half Pipe', 2);
+INSERT INTO `trail` (`id`, `name`, `difficulty`, `length`, `elevation_gain_loss`, `features`, `mountain_id`) VALUES (196, 'Golden Peak Terrain Park', 'TERRAIN PARK', NULL, NULL, 'Terrain Park', 2);
 INSERT INTO `trail` (`id`, `name`, `difficulty`, `length`, `elevation_gain_loss`, `features`, `mountain_id`) VALUES (197, 'Cold Feet', 'BEGINNER', NULL, NULL, 'Groomed', 2);
 INSERT INTO `trail` (`id`, `name`, `difficulty`, `length`, `elevation_gain_loss`, `features`, `mountain_id`) VALUES (198, 'Gitalong Road', 'BEGINNER', NULL, NULL, 'Groomed', 2);
 INSERT INTO `trail` (`id`, `name`, `difficulty`, `length`, `elevation_gain_loss`, `features`, `mountain_id`) VALUES (199, 'Overeasy', 'BEGINNER', NULL, NULL, 'Groomed', 2);
@@ -557,8 +605,8 @@ INSERT INTO `trail` (`id`, `name`, `difficulty`, `length`, `elevation_gain_loss`
 INSERT INTO `trail` (`id`, `name`, `difficulty`, `length`, `elevation_gain_loss`, `features`, `mountain_id`) VALUES (276, 'Ouzo', 'HARD', NULL, NULL, NULL, 2);
 INSERT INTO `trail` (`id`, `name`, `difficulty`, `length`, `elevation_gain_loss`, `features`, `mountain_id`) VALUES (277, 'Ouzo Glade', 'HARD', NULL, NULL, NULL, 2);
 INSERT INTO `trail` (`id`, `name`, `difficulty`, `length`, `elevation_gain_loss`, `features`, `mountain_id`) VALUES (278, 'Wildcard', 'HARD', NULL, NULL, NULL, 2);
-INSERT INTO `trail` (`id`, `name`, `difficulty`, `length`, `elevation_gain_loss`, `features`, `mountain_id`) VALUES (279, 'Bwana Park', NULL, NULL, NULL, 'Terrain Park', 2);
-INSERT INTO `trail` (`id`, `name`, `difficulty`, `length`, `elevation_gain_loss`, `features`, `mountain_id`) VALUES (280, 'Pride Park', NULL, NULL, NULL, 'Terrain Park', 2);
+INSERT INTO `trail` (`id`, `name`, `difficulty`, `length`, `elevation_gain_loss`, `features`, `mountain_id`) VALUES (279, 'Bwana Park', 'TERRAIN PARK', NULL, NULL, 'Terrain Park', 2);
+INSERT INTO `trail` (`id`, `name`, `difficulty`, `length`, `elevation_gain_loss`, `features`, `mountain_id`) VALUES (280, 'Pride Park', 'TERRAIN PARK', NULL, NULL, 'Terrain Park', 2);
 INSERT INTO `trail` (`id`, `name`, `difficulty`, `length`, `elevation_gain_loss`, `features`, `mountain_id`) VALUES (281, 'Sleepytime Road', 'INTERMEDIATE', NULL, NULL, 'Groomed', 2);
 INSERT INTO `trail` (`id`, `name`, `difficulty`, `length`, `elevation_gain_loss`, `features`, `mountain_id`) VALUES (282, 'Apres Vous', 'HARD', NULL, NULL, NULL, 2);
 INSERT INTO `trail` (`id`, `name`, `difficulty`, `length`, `elevation_gain_loss`, `features`, `mountain_id`) VALUES (283, 'Campbells', 'HARD', NULL, NULL, NULL, 2);
@@ -715,7 +763,6 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `skireviewdb`;
-INSERT INTO `chairlift_has_trail` (`chairlift_id`, `trail_id`) VALUES (1, 1);
 INSERT INTO `chairlift_has_trail` (`chairlift_id`, `trail_id`) VALUES (18, 159);
 INSERT INTO `chairlift_has_trail` (`chairlift_id`, `trail_id`) VALUES (18, 191);
 INSERT INTO `chairlift_has_trail` (`chairlift_id`, `trail_id`) VALUES (18, 180);
@@ -815,6 +862,28 @@ INSERT INTO `chairlift_has_trail` (`chairlift_id`, `trail_id`) VALUES (39, 327);
 INSERT INTO `chairlift_has_trail` (`chairlift_id`, `trail_id`) VALUES (39, 344);
 INSERT INTO `chairlift_has_trail` (`chairlift_id`, `trail_id`) VALUES (39, 343);
 INSERT INTO `chairlift_has_trail` (`chairlift_id`, `trail_id`) VALUES (39, 334);
+INSERT INTO `chairlift_has_trail` (`chairlift_id`, `trail_id`) VALUES (6, 154);
+INSERT INTO `chairlift_has_trail` (`chairlift_id`, `trail_id`) VALUES (1, 1);
+INSERT INTO `chairlift_has_trail` (`chairlift_id`, `trail_id`) VALUES (1, 12);
+INSERT INTO `chairlift_has_trail` (`chairlift_id`, `trail_id`) VALUES (1, 10);
+INSERT INTO `chairlift_has_trail` (`chairlift_id`, `trail_id`) VALUES (1, 2);
+INSERT INTO `chairlift_has_trail` (`chairlift_id`, `trail_id`) VALUES (1, 11);
+INSERT INTO `chairlift_has_trail` (`chairlift_id`, `trail_id`) VALUES (5, 68);
+INSERT INTO `chairlift_has_trail` (`chairlift_id`, `trail_id`) VALUES (5, 134);
+INSERT INTO `chairlift_has_trail` (`chairlift_id`, `trail_id`) VALUES (5, 78);
+INSERT INTO `chairlift_has_trail` (`chairlift_id`, `trail_id`) VALUES (5, 74);
+INSERT INTO `chairlift_has_trail` (`chairlift_id`, `trail_id`) VALUES (3, 131);
+INSERT INTO `chairlift_has_trail` (`chairlift_id`, `trail_id`) VALUES (3, 46);
+INSERT INTO `chairlift_has_trail` (`chairlift_id`, `trail_id`) VALUES (4, 45);
+INSERT INTO `chairlift_has_trail` (`chairlift_id`, `trail_id`) VALUES (4, 42);
+INSERT INTO `chairlift_has_trail` (`chairlift_id`, `trail_id`) VALUES (4, 43);
+INSERT INTO `chairlift_has_trail` (`chairlift_id`, `trail_id`) VALUES (4, 112);
+INSERT INTO `chairlift_has_trail` (`chairlift_id`, `trail_id`) VALUES (2, 99);
+INSERT INTO `chairlift_has_trail` (`chairlift_id`, `trail_id`) VALUES (2, 1);
+INSERT INTO `chairlift_has_trail` (`chairlift_id`, `trail_id`) VALUES (2, 118);
+INSERT INTO `chairlift_has_trail` (`chairlift_id`, `trail_id`) VALUES (9, 99);
+INSERT INTO `chairlift_has_trail` (`chairlift_id`, `trail_id`) VALUES (9, 1);
+INSERT INTO `chairlift_has_trail` (`chairlift_id`, `trail_id`) VALUES (9, 118);
 
 COMMIT;
 
@@ -828,6 +897,620 @@ INSERT INTO `comment` (`id`, `comment_text`, `report_id`, `user_id`, `comment_id
 INSERT INTO `comment` (`id`, `comment_text`, `report_id`, `user_id`, `comment_id`) VALUES (2, 'Totally', NULL, 5, 1);
 INSERT INTO `comment` (`id`, `comment_text`, `report_id`, `user_id`, `comment_id`) VALUES (3, 'Yes', NULL, 5, 2);
 INSERT INTO `comment` (`id`, `comment_text`, `report_id`, `user_id`, `comment_id`) VALUES (4, 'Nope', NULL, 5, 1);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `day_of_week`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `skireviewdb`;
+INSERT INTO `day_of_week` (`id`, `weekday`) VALUES (1, 'Sunday');
+INSERT INTO `day_of_week` (`id`, `weekday`) VALUES (2, 'Monday');
+INSERT INTO `day_of_week` (`id`, `weekday`) VALUES (3, 'Tuesday');
+INSERT INTO `day_of_week` (`id`, `weekday`) VALUES (4, 'Wednesday');
+INSERT INTO `day_of_week` (`id`, `weekday`) VALUES (5, 'Thursday');
+INSERT INTO `day_of_week` (`id`, `weekday`) VALUES (6, 'Friday');
+INSERT INTO `day_of_week` (`id`, `weekday`) VALUES (7, 'Saturday');
+INSERT INTO `day_of_week` (`id`, `weekday`) VALUES (8, 'Weekdays');
+INSERT INTO `day_of_week` (`id`, `weekday`) VALUES (9, 'Weekends');
+INSERT INTO `day_of_week` (`id`, `weekday`) VALUES (10, 'Holidays');
+INSERT INTO `day_of_week` (`id`, `weekday`) VALUES (11, '7 days a week');
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `hours`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `skireviewdb`;
+INSERT INTO `hours` (`id`, `time`) VALUES (1, '00:00');
+INSERT INTO `hours` (`id`, `time`) VALUES (2, '00:30');
+INSERT INTO `hours` (`id`, `time`) VALUES (3, '01:00');
+INSERT INTO `hours` (`id`, `time`) VALUES (4, '01:30');
+INSERT INTO `hours` (`id`, `time`) VALUES (5, '02:00');
+INSERT INTO `hours` (`id`, `time`) VALUES (6, '02:30');
+INSERT INTO `hours` (`id`, `time`) VALUES (7, '03:00');
+INSERT INTO `hours` (`id`, `time`) VALUES (8, '03:30');
+INSERT INTO `hours` (`id`, `time`) VALUES (9, '04:00');
+INSERT INTO `hours` (`id`, `time`) VALUES (10, '04:30');
+INSERT INTO `hours` (`id`, `time`) VALUES (11, '05:00');
+INSERT INTO `hours` (`id`, `time`) VALUES (12, '05:30');
+INSERT INTO `hours` (`id`, `time`) VALUES (13, '06:00');
+INSERT INTO `hours` (`id`, `time`) VALUES (14, '06:30');
+INSERT INTO `hours` (`id`, `time`) VALUES (15, '07:00');
+INSERT INTO `hours` (`id`, `time`) VALUES (16, '07:30');
+INSERT INTO `hours` (`id`, `time`) VALUES (17, '08:00');
+INSERT INTO `hours` (`id`, `time`) VALUES (18, '08:30');
+INSERT INTO `hours` (`id`, `time`) VALUES (19, '09:00');
+INSERT INTO `hours` (`id`, `time`) VALUES (20, '09:30');
+INSERT INTO `hours` (`id`, `time`) VALUES (21, '10:00');
+INSERT INTO `hours` (`id`, `time`) VALUES (22, '10:30');
+INSERT INTO `hours` (`id`, `time`) VALUES (23, '11:00');
+INSERT INTO `hours` (`id`, `time`) VALUES (24, '11:30');
+INSERT INTO `hours` (`id`, `time`) VALUES (25, '12:00');
+INSERT INTO `hours` (`id`, `time`) VALUES (26, '12:30');
+INSERT INTO `hours` (`id`, `time`) VALUES (27, '13:00');
+INSERT INTO `hours` (`id`, `time`) VALUES (28, '13:30');
+INSERT INTO `hours` (`id`, `time`) VALUES (29, '14:00');
+INSERT INTO `hours` (`id`, `time`) VALUES (30, '14:30');
+INSERT INTO `hours` (`id`, `time`) VALUES (31, '15:00');
+INSERT INTO `hours` (`id`, `time`) VALUES (32, '15:30');
+INSERT INTO `hours` (`id`, `time`) VALUES (33, '16:00');
+INSERT INTO `hours` (`id`, `time`) VALUES (34, '16:30');
+INSERT INTO `hours` (`id`, `time`) VALUES (35, '17:00');
+INSERT INTO `hours` (`id`, `time`) VALUES (36, '17:30');
+INSERT INTO `hours` (`id`, `time`) VALUES (37, '18:00');
+INSERT INTO `hours` (`id`, `time`) VALUES (38, '18:30');
+INSERT INTO `hours` (`id`, `time`) VALUES (39, '19:00');
+INSERT INTO `hours` (`id`, `time`) VALUES (40, '19:30');
+INSERT INTO `hours` (`id`, `time`) VALUES (41, '20:00');
+INSERT INTO `hours` (`id`, `time`) VALUES (42, '20:30');
+INSERT INTO `hours` (`id`, `time`) VALUES (43, '21:00');
+INSERT INTO `hours` (`id`, `time`) VALUES (44, '21:30');
+INSERT INTO `hours` (`id`, `time`) VALUES (45, '22:00');
+INSERT INTO `hours` (`id`, `time`) VALUES (46, '22:30');
+INSERT INTO `hours` (`id`, `time`) VALUES (47, '23:00');
+INSERT INTO `hours` (`id`, `time`) VALUES (48, '23:30');
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `day_of_week_has_hours`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `skireviewdb`;
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (1, 1);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (1, 2);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (1, 3);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (1, 4);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (1, 5);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (1, 6);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (1, 7);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (1, 8);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (1, 9);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (1, 10);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (1, 11);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (1, 12);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (1, 13);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (1, 14);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (1, 15);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (1, 16);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (1, 17);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (1, 18);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (1, 19);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (1, 20);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (1, 21);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (1, 22);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (1, 23);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (1, 24);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (1, 25);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (1, 26);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (1, 27);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (1, 28);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (1, 29);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (1, 30);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (1, 31);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (1, 32);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (1, 33);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (1, 34);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (1, 35);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (1, 36);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (1, 37);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (1, 38);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (1, 39);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (1, 40);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (1, 41);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (1, 42);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (1, 43);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (1, 44);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (1, 45);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (1, 46);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (1, 47);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (1, 48);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (2, 1);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (2, 2);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (2, 3);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (2, 4);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (2, 5);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (2, 6);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (2, 7);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (2, 8);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (2, 9);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (2, 10);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (2, 11);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (2, 12);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (2, 13);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (2, 14);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (2, 15);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (2, 16);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (2, 17);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (2, 18);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (2, 19);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (2, 20);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (2, 21);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (2, 22);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (2, 23);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (2, 24);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (2, 25);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (2, 26);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (2, 27);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (2, 28);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (2, 29);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (2, 30);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (2, 31);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (2, 32);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (2, 33);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (2, 34);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (2, 35);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (2, 36);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (2, 37);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (2, 38);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (2, 39);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (2, 40);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (2, 41);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (2, 42);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (2, 43);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (2, 44);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (2, 45);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (2, 46);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (2, 47);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (2, 48);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (3, 1);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (3, 2);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (3, 3);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (3, 4);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (3, 5);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (3, 6);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (3, 7);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (3, 8);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (3, 9);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (3, 10);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (3, 11);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (3, 12);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (3, 13);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (3, 14);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (3, 15);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (3, 16);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (3, 17);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (3, 18);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (3, 19);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (3, 20);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (3, 21);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (3, 22);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (3, 23);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (3, 24);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (3, 25);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (3, 26);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (3, 27);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (3, 28);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (3, 29);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (3, 30);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (3, 31);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (3, 32);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (3, 33);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (3, 34);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (3, 35);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (3, 36);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (3, 37);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (3, 38);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (3, 39);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (3, 40);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (3, 41);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (3, 42);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (3, 43);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (3, 44);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (3, 45);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (3, 46);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (3, 47);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (3, 48);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (4, 1);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (4, 2);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (4, 3);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (4, 4);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (4, 5);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (4, 6);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (4, 7);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (4, 8);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (4, 9);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (4, 10);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (4, 11);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (4, 12);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (4, 13);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (4, 14);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (4, 15);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (4, 16);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (4, 17);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (4, 18);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (4, 19);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (4, 20);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (4, 21);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (4, 22);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (4, 23);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (4, 24);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (4, 25);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (4, 26);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (4, 27);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (4, 28);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (4, 29);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (4, 30);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (4, 31);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (4, 32);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (4, 33);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (4, 34);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (4, 35);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (4, 36);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (4, 37);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (4, 38);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (4, 39);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (4, 40);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (4, 41);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (4, 42);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (4, 43);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (4, 44);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (4, 45);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (4, 46);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (4, 47);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (4, 48);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (5, 1);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (5, 2);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (5, 3);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (5, 4);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (5, 5);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (5, 6);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (5, 7);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (5, 8);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (5, 9);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (5, 10);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (5, 11);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (5, 12);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (5, 13);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (5, 14);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (5, 15);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (5, 16);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (5, 17);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (5, 18);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (5, 19);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (5, 20);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (5, 21);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (5, 22);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (5, 23);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (5, 24);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (5, 25);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (5, 26);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (5, 27);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (5, 28);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (5, 29);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (5, 30);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (5, 31);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (5, 32);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (5, 33);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (5, 34);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (5, 35);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (5, 36);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (5, 37);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (5, 38);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (5, 39);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (5, 40);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (5, 41);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (5, 42);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (5, 43);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (5, 44);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (5, 45);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (5, 46);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (5, 47);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (5, 48);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (6, 1);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (6, 2);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (6, 3);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (6, 4);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (6, 5);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (6, 6);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (6, 7);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (6, 8);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (6, 9);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (6, 10);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (6, 11);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (6, 12);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (6, 13);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (6, 14);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (6, 15);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (6, 16);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (6, 17);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (6, 18);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (6, 19);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (6, 20);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (6, 21);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (6, 22);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (6, 23);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (6, 24);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (6, 25);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (6, 26);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (6, 27);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (6, 28);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (6, 29);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (6, 30);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (6, 31);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (6, 32);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (6, 33);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (6, 34);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (6, 35);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (6, 36);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (6, 37);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (6, 38);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (6, 39);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (6, 40);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (6, 41);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (6, 42);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (6, 43);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (6, 44);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (6, 45);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (6, 46);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (6, 47);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (6, 48);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (7, 1);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (7, 2);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (7, 3);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (7, 4);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (7, 5);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (7, 6);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (7, 7);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (7, 8);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (7, 9);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (7, 10);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (7, 11);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (7, 12);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (7, 13);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (7, 14);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (7, 15);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (7, 16);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (7, 17);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (7, 18);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (7, 19);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (7, 20);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (7, 21);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (7, 22);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (7, 23);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (7, 24);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (7, 25);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (7, 26);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (7, 27);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (7, 28);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (7, 29);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (7, 30);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (7, 31);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (7, 32);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (7, 33);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (7, 34);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (7, 35);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (7, 36);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (7, 37);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (7, 38);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (7, 39);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (7, 40);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (7, 41);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (7, 42);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (7, 43);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (7, 44);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (7, 45);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (7, 46);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (7, 47);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (7, 48);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (8, 1);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (8, 2);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (8, 3);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (8, 4);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (8, 5);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (8, 6);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (8, 7);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (8, 8);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (8, 9);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (8, 10);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (8, 11);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (8, 12);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (8, 13);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (8, 14);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (8, 15);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (8, 16);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (8, 17);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (8, 18);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (8, 19);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (8, 20);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (8, 21);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (8, 22);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (8, 23);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (8, 24);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (8, 25);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (8, 26);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (8, 27);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (8, 28);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (8, 29);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (8, 30);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (8, 31);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (8, 32);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (8, 33);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (8, 34);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (8, 35);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (8, 36);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (8, 37);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (8, 38);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (8, 39);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (8, 40);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (8, 41);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (8, 42);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (8, 43);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (8, 44);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (8, 45);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (8, 46);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (8, 47);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (8, 48);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (9, 1);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (9, 2);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (9, 3);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (9, 4);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (9, 5);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (9, 6);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (9, 7);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (9, 8);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (9, 9);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (9, 10);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (9, 11);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (9, 12);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (9, 13);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (9, 14);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (9, 15);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (9, 16);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (9, 17);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (9, 18);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (9, 19);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (9, 20);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (9, 21);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (9, 22);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (9, 23);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (9, 24);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (9, 25);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (9, 26);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (9, 27);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (9, 28);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (9, 29);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (9, 30);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (9, 31);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (9, 32);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (9, 33);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (9, 34);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (9, 35);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (9, 36);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (9, 37);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (9, 38);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (9, 39);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (9, 40);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (9, 41);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (9, 42);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (9, 43);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (9, 44);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (9, 45);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (9, 46);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (9, 47);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (9, 48);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (10, 1);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (10, 2);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (10, 3);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (10, 4);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (10, 5);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (10, 6);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (10, 7);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (10, 8);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (10, 9);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (10, 10);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (10, 11);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (10, 12);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (10, 13);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (10, 14);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (10, 15);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (10, 16);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (10, 17);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (10, 18);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (10, 19);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (10, 20);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (10, 21);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (10, 22);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (10, 23);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (10, 24);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (10, 25);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (10, 26);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (10, 27);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (10, 28);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (10, 29);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (10, 30);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (10, 31);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (10, 32);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (10, 33);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (10, 34);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (10, 35);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (10, 36);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (10, 37);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (10, 38);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (10, 39);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (10, 40);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (10, 41);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (10, 42);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (10, 43);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (10, 44);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (10, 45);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (10, 46);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (10, 47);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (10, 48);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (11, 1);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (11, 2);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (11, 3);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (11, 4);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (11, 5);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (11, 6);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (11, 7);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (11, 8);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (11, 9);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (11, 10);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (11, 11);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (11, 12);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (11, 13);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (11, 14);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (11, 15);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (11, 16);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (11, 17);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (11, 18);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (11, 19);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (11, 20);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (11, 21);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (11, 22);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (11, 23);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (11, 24);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (11, 25);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (11, 26);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (11, 27);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (11, 28);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (11, 29);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (11, 30);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (11, 31);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (11, 32);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (11, 33);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (11, 34);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (11, 35);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (11, 36);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (11, 37);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (11, 38);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (11, 39);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (11, 40);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (11, 41);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (11, 42);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (11, 43);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (11, 44);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (11, 45);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (11, 46);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (11, 47);
+INSERT INTO `day_of_week_has_hours` (`day_of_week_id`, `hours_id`) VALUES (11, 48);
 
 COMMIT;
 

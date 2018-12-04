@@ -3,9 +3,9 @@ import { MountainService } from './../mountain.service';
 import { Mountain } from './../models/mountain';
 import { Component, OnInit } from '@angular/core';
 import { Trail } from '../models/trail';
-import { THROW_IF_NOT_FOUND } from '@angular/core/src/di/injector';
 import { ResortService } from '../resort.service';
 import { Resort } from '../models/resort';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-admin',
@@ -23,7 +23,9 @@ export class AdminComponent implements OnInit {
   mountain: Mountain = new Mountain();
   mountainList: Mountain[] = [];
   mountainToUpdate: Mountain = null;
+  mountainToDelete: Mountain = null;
   deleteMountain: boolean = null;
+  tempMountain = false;
 
   addTrail: Trail = null;
   updateTrail: Trail = null;
@@ -60,7 +62,9 @@ export class AdminComponent implements OnInit {
 
   deleteMountainForm() {
     this.title = 'Delete Mountain';
+    this.mountainToDelete = new Mountain();
     this.deleteMountain = true;
+    this.findAllMountains();
   }
 
   addTrailForm() {
@@ -102,6 +106,8 @@ export class AdminComponent implements OnInit {
     this.mountainList = [];
     this.mountainToUpdate = null;
     this.deleteMountain = null;
+    this.tempMountain = false;
+    this.mountainToDelete = null;
   }
 
   cancelTrail() {
@@ -135,6 +141,13 @@ export class AdminComponent implements OnInit {
   }
 
   submitUpdatedMountain() {
+    // const updateForm = form.value;
+    // console.log(updateForm);
+    console.log(this.mountainToUpdate);
+    console.log(this.updateMountain);
+    this.updateMountain.id = this.mountainToUpdate.id;
+
+    // console.log(this.updateMountain);
     this.mountainService.patch(this.updateMountain).subscribe(
       updated => {
         console.log(updated);
@@ -165,7 +178,10 @@ export class AdminComponent implements OnInit {
 
     this.mountainService.show(mountainId).subscribe(
       singleMountain => {
+        this.updateMountain = singleMountain;
         this.mountainToUpdate = singleMountain;
+        this.tempMountain = true;
+        console.log(singleMountain);
       },
       error => {
         console.error('admin.findSingleMountain(): Error finding Mountain');

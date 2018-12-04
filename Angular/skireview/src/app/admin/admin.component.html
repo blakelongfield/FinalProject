@@ -1,41 +1,25 @@
 <h1>{{ title }}</h1>
 
 <div
-  *ngIf="
-    !addMountain &&
-    !updateMountain &&
-    !deleteMountain &&
-    !addTrail &&
-    !updateTrail &&
-    !deleteTrail
-  "
->
+  *ngIf="!addMountain && !updateMountain && !deleteMountain && !addTrail && !updateTrail && !deleteTrail">
   <div class="container">
     <div class="row">
       <div class="col">
-        <button class="btn btn-primary" (click)="addMountainForm()">
-          Add Mountain
-        </button>
+        <button class="btn btn-primary" (click)="addMountainForm()">Add Mountain</button>
       </div>
       <div class="col">
-        <button class="btn btn-primary" (click)="updateMountainForm()">
-          Add Update Mountain
-        </button>
+        <button class="btn btn-primary" (click)="updateMountainForm()">Update Mountain</button>
       </div>
       <div class="col">
-        <button class="btn btn-primary" (click)="deleteMountainForm()">
-          Delete Mountain
-        </button>
+        <button class="btn btn-primary" (click)="deleteMountainForm()">Delete Mountain</button>
       </div>
     </div>
     <div class="row">
       <div class="col">
-        <button class="btn btn-primary" (click)="addTrailForm()">
-          Add Trail
-        </button>
+        <button class="btn btn-primary" (click)="addTrailForm()">Add Trail</button>
       </div>
       <div class="col">
-        <button class="btn btn-primary" (click)="updateTrailForm()">Add Update Trail</button>
+        <button class="btn btn-primary" (click)="updateTrailForm()">Update Trail</button>
       </div>
       <div class="col">
         <button class="btn btn-primary" (click)="deleteTrailForm()">Delete Trail</button>
@@ -46,7 +30,7 @@
         <button class="btn btn-primary" (click)="addResortForm()">Add Resort</button>
       </div>
       <div class="col">
-        <button class="btn btn-primary" (click)="updateResortForm()">Add Update Resort</button>
+        <button class="btn btn-primary" (click)="updateResortForm()">Update Resort</button>
       </div>
       <div class="col">
         <button class="btn btn-primary" (click)="deleteResortForm()">Delete Resort</button>
@@ -99,131 +83,65 @@
 </div>
 
 <div *ngIf="updateMountain">
-
-    <div class="form-group">
-      <label class="col-lg-2 col-form-label col-form-label-lg" for="mountainSelector"></label>
-      <select class="form-control" name="mountainSelector" [(ngModel)]="mountain.id">
-        <option *ngFor="let mountain of mountainList" value="{{mountain.id}}" >{{mountain.name}}</option>
-      </select>
-      <input type="submit" (click)="findSingleMountain(mountain.id)" value="submit" >
-    </div>
-
-  <form>
-    <div class="form-group row">
-      <label class="col-lg-2 col-form-label col-form-label-lg" for="name"
-        >Name:</label
-      >
-      <div class="col-lg-5">
-        <input
-          class="form-control form-control-lg"
-          type="text"
-          name="name"
-          [(ngModel)]="updateMountain.name"
-          value="{{mountainToUpdate.name}}"
-        />
+  <div class="form-group">
+    <label class="col-lg-2 col-form-label col-form-label-lg" for="mountainSelector">Select Mountain</label>
+    <select class="form-control" name="mountainSelector" [(ngModel)]="updateMountain.id">
+      <option *ngFor="let mountain of mountainList" value="{{mountain.id}}" >{{mountain.name}}</option>
+    </select>
+    <input class="btn btn-outline-success" type="submit" (click)="findSingleMountain(updateMountain.id)" value="submit" >
+  </div>
+  <div *ngIf="tempMountain">
+    <form>
+      <div class="form-group row">
+        <label class="col-lg-2 col-form-label col-form-label-lg" for="name">Name:</label>
+        <div class="col-lg-5">
+          <input class="form-control form-control-lg" type="text" name="name" [(ngModel)]="updateMountain.name" value="{{mountainToUpdate.name}}" />
+        </div>
       </div>
-    </div>
-    <div class="form-group row">
-      <label
-        class="col-lg-2 col-form-label col-form-label-lg"
-        for="numberOfTrails"
-        >Number Of Trails:</label
-      >
-      <div class="col-lg-5">
-        <input
-          class="form-control form-control-lg"
-          type="number"
-          name="numberOfTrails"
-          [(ngModel)]="updateMountain.numberOfRuns"
-          value="{{mountainToUpdate.numberOfRuns}}"
-        />
+      <div class="form-group row">
+        <label class="col-lg-2 col-form-label col-form-label-lg" for="numberOfTrails" >Number Of Trails:</label>
+        <div class="col-lg-5">
+          <input class="form-control form-control-lg" type="number" name="numberOfRuns" [(ngModel)]="updateMountain.numberOfRuns" value="{{mountainToUpdate.numberOfRuns}}" />
+        </div>
       </div>
-    </div>
-    <div class="form-group row">
-      <label
-        class="col-lg-2 col-form-label col-form-label-lg"
-        for="numberOfLifts"
-        >Number Of Lifts:</label
-      >
-      <div class="col-lg-5">
-        <input
-          class="form-control form-control-lg"
-          type="number"
-          name="numberOfLifts"
-          [(ngModel)]="updateMountain.numberOfLifts"
-          value="{{mountainToUpdate.numberOfLifts}}"
-        />
+      <div class="form-group row">
+        <label class="col-lg-2 col-form-label col-form-label-lg" for="numberOfLifts" >Number Of Lifts:</label>
+        <div class="col-lg-5">
+          <input class="form-control form-control-lg" type="number" name="numberOfLifts" [(ngModel)]="updateMountain.numberOfLifts" value="{{mountainToUpdate.numberOfLifts}}"/>
+        </div>
       </div>
-    </div>
-    <div class="form-group row">
-      <label
-        class="col-lg-2 col-form-label col-form-label-lg"
-        for="elevationBase"
-        >Elevation Base:</label
-      >
-      <div class="col-lg-5">
-        <input
-          class="form-control form-control-lg"
-          type="number"
-          name="elevationBase"
-          [(ngModel)]="updateMountain.baseElevation"
-          value="{{mountainToUpdate.baseElevation}}"
-        />
+      <div class="form-group row">
+        <label class="col-lg-2 col-form-label col-form-label-lg" for="elevationBase" >Elevation Base:</label>
+        <div class="col-lg-5">
+          <input class="form-control form-control-lg" type="number" name="elevationBase" [(ngModel)]="updateMountain.baseElevation" value="{{mountainToUpdate.baseElevation}}" />
+        </div>
       </div>
-    </div>
-    <div class="form-group row">
-      <label
-        class="col-lg-2 col-form-label col-form-label-lg"
-        for="elevationPeak"
-        >Elevation Peak:</label
-      >
-      <div class="col-lg-5">
-        <input
-          class="form-control form-control-lg"
-          type="number"
-          name="elevationPeak"
-          [(ngModel)]="updateMountain.peakElevation"
-          value="{{mountainToUpdate.peakElevation}}"
-        />
+      <div class="form-group row">
+        <label class="col-lg-2 col-form-label col-form-label-lg" for="elevationPeak" >Elevation Peak:</label>
+        <div class="col-lg-5">
+          <input class="form-control form-control-lg" type="number" name="elevationPeak" [(ngModel)]="updateMountain.peakElevation" value="{{mountainToUpdate.peakElevation}}" />
+        </div>
       </div>
-    </div>
-    <div class="form-group row">
-      <label
-        class="col-lg-2 col-form-label col-form-label-lg"
-        for="mountainMapUrl"
-        >Mountain Map Url:</label
-      >
-      <div class="col-lg-5">
-        <input
-          class="form-control form-control-lg"
-          type="text"
-          name="mountainMapUrl"
-          [(ngModel)]="updateMountain.mountainMapUrl"
-          value="{{mountainToUpdate.mountainMapUrl}}"
-        />
+      <div class="form-group row">
+        <label class="col-lg-2 col-form-label col-form-label-lg" for="mapUrl" >Mountain Map Url:</label>
+        <div class="col-lg-5">
+          <input class="form-control form-control-lg" type="text" name="mapUrl" [(ngModel)]="updateMountain.mountainMapUrl" value="{{mountainToUpdate.mountainMapUrl}}"/>
+        </div>
       </div>
-    </div>
-    <button class="btn btn-outline-danger" (click)="cancelMountain()">
-      Cancel
-    </button>
-    <button class="btn btn-outline-success" (click)="submitUpdatedMountain()">
-      Submit
-    </button>
-  </form>
+      <input type="hidden" name="id" [(ngModel)]="updateMountain.id" value="{{mountainToUpdate.id}}" >
+      <button class="btn btn-outline-danger" (click)="cancelMountain()">Cancel</button>
+      <button class="btn btn-outline-success" (click)="submitUpdatedMountain()">Submit</button>
+    </form>
+  </div>
 </div>
 
 <div *ngIf="deleteMountain">
-  <!--
-    <label class="col-lg-2 col-form-label col-form-label-lg" for="mountainToDelete"></label>
-    <select class="form-control" name="mountainToDelete" [(ngModel)]="deleteMountain.id">
-      <option *ngFor="let mountain of mountainList" name="mountain" >{{mountain.name}}</option>
-    </select>
-    <input type="submit" (click)="findSingleMountain(mountain.id)" value="submit" >
-  -->
-  <button class="btn btn-outline-danger" (click)="cancelMountain()">
-    Cancel
-  </button>
-  <button class="btn btn-outline-success" (click)="deleteMountainForm()">
-    Submit
-  </button>
+    <div class="form-group">
+      <label class="col-lg-2 col-form-label col-form-label-lg" for="mountainSelector">Select Mountain</label>
+      <select class="form-control" name="mountainSelector" [(ngModel)]="mountainToDelete.id">
+        <option *ngFor="let mountain of mountainList" value="{{mountain.id}}" >{{mountain.name}}</option>
+      </select>
+      <button class="btn btn-outline-danger" (click)="cancelMountain()">Cancel</button>
+      <button class="btn btn-outline-success" (click)="submitDeleteMountain(mountainToDelete.id)">Submit</button>
+    </div>
 </div>
