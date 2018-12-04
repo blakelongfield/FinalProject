@@ -47,7 +47,7 @@ public class ReportController {
 	}
 	
 	//GET REPORTS BY TRAIL ID
-	@GetMapping("reports/trail/{id}")
+	@GetMapping("reports/trails/{id}")
 	public List<Report> showByTrailName( @PathVariable("id") Integer tid) {
 		
 		return rServ.findByTrailId(tid);

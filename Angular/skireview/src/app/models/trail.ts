@@ -6,7 +6,8 @@ export class Trail {
   elevationGainLoss: number;
   features: string;
 
-  constructor(id?: number, name?: string, difficulty?: string, length?: number, elevationGainLoss?: number, features?: string ) {
+  // tslint:disable-next-line:max-line-length
+  constructor(id?: number, name?: string, difficulty?: string, length?: number, elevationGainLoss?: number, features?: string) {
 
     this.id = id;
     this.name = name;
@@ -14,6 +15,5 @@ export class Trail {
     this.length = length;
     this.elevationGainLoss = elevationGainLoss;
     this.features = features;
-
   }
 }
