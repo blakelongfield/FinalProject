@@ -1,27 +1,3 @@
-<!-- <div *ngIf="!selected">
-  <table class="center">
-    <thead>
-      <tr>
-        <th>ID</th>
-        <th>Name</th>
-        <th>Difficulty</th>
-        <th>Length</th>
-        <th>Elevation Gain/Loss</th>
-        <th>Features</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let trail of trails" (click)="displayTrail(trail)">
-        <td><strong>{{trail.id}}</strong></td>
-        <td>{{trail.name}}</td>
-        <td>{{trail.difficulty}}</td>
-        <td>{{trail.length}}</td>
-        <td>{{trail.elevationGainLoss}}</td>
-      </tr>
-    </tbody>
-  </table>
-</div> -->
-
 <div class="trailDetails" *ngIf="selected">
   <p>{{selected.imgUrl}}</p>
   Trail Name: <p><strong>{{selected.name}}</strong></p>
@@ -31,8 +7,8 @@
   Features: <p>{{selected.features}}</p> <hr>
     <form *ngFor="let report of reports">
       <p>This is a REPORT on the TRAIL: {{report.reportText}}<p>
-        <form id="commentsOnReports" *ngFor="let comment of commentsOnReports">
-      <p>This is a COMMENT on a REPORT: {{comment}}</p>
+        <form id="commentsOnReports" *ngFor="let comment of comments">
+      <p>...........This is a COMMENT on a REPORT: {{comment.commentText}}</p>
        </form>
     </form>
   </div>
