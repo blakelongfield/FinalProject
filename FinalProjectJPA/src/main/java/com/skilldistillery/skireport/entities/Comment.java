@@ -13,7 +13,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Comment {
@@ -25,7 +25,8 @@ public class Comment {
 	@Column(name="comment_text")
 	private String commentText;
 	
-	@JsonBackReference(value="reportToComment")
+//	@JsonBackReference(value="reportToComment")
+	@JsonIgnore
 	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
 	@JoinColumn(name="report_id")
 	private Report report;
@@ -40,7 +41,8 @@ public class Comment {
 	@JoinColumn(name="comment_id")
 	private Comment mainComment;
 	
-	@JsonManagedReference(value="commentToComment")
+//	@JsonManagedReference(value="commentToComment")
+	@JsonIgnore
 	@OneToMany(cascade = {CascadeType.PERSIST, CascadeType.REMOVE} ,mappedBy="mainComment")
 	private List<Comment> comments;
 

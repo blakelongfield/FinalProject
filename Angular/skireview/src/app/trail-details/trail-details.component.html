@@ -5,10 +5,12 @@
   Length: <p>{{selected.length}}</p>
   Elevation gain/loss: <p>{{selected.elevationGainLoss}}</p>
   Features: <p>{{selected.features}}</p> <hr>
-    <form *ngFor="let report of reports">
+    <div *ngFor="let report of reports">
       <p>This is a REPORT on the TRAIL: {{report.reportText}}<p>
-        <form id="commentsOnReports" *ngFor="let comment of comments">
+        <!-- <form id="commentsOnReports" *ngFor="let comment of comments"> -->
+          <div *ngFor="let comment of report.comments">
       <p>...........This is a COMMENT on a REPORT: {{comment.commentText}}</p>
-       </form>
-    </form>
+       <!-- </form> -->
+      </div>
+    </div>
   </div>
