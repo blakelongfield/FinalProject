@@ -18,7 +18,7 @@
   position: relative;
   margin-top: 10%;
 }
-#selectMTN {
+#selectMTNHome {
 
 position: relative;
 padding-top: 40%;
@@ -26,3 +26,16 @@ margin-left: 70%;;
 width:300px;
 
 }
+#selectMTN {
+
+  position: relative;
+  padding-top: 5%;
+  margin-left: 10%;;
+  width:300px;
+
+  }
+  #sortBy {
+    padding-top: 2%;
+    padding-left: 2%;
+    width:300px;
+  }
