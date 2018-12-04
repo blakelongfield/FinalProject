@@ -5,3 +5,24 @@
   padding: 0;
   overflow: hidden;
 }
+
+#vid1 {
+  position: absolute;
+  margin-left: -5%;
+  z-index: -1;
+  width: 108%;
+  height: 100%;
+  pointer-events: none;
+}
+#recentReports{
+  position: relative;
+  margin-top: 10%;
+}
+#selectMTN {
+
+position: relative;
+padding-top: 40%;
+margin-left: 70%;;
+width:300px;
+
+}
