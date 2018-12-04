@@ -40,12 +40,12 @@ public class User {
 	private String imgUrl;
 	
 	@JsonManagedReference(value="userToComment")
-	@OneToMany(mappedBy="user", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy="user", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
 	private List<Comment> comments;
 	
 //	@JsonManagedReference(value="userToReport")
 	@JsonIgnore
-	@OneToMany(mappedBy="user", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy="user", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
 	private List<Report> reports;
 
 	/*

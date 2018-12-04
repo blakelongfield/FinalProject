@@ -53,12 +53,12 @@ public class MountainController {
 	}
 
 //	Creates a new mountain
-	@RequestMapping(path = "mountains", method = RequestMethod.POST)
-	public Mountain createMountain(@RequestBody Mountain mountain, HttpServletResponse resp, HttpServletRequest req) {
+	@RequestMapping(path = "mountains/resorts/{resortId}", method = RequestMethod.POST)
+	public Mountain createMountain(@RequestBody Mountain mountain, @PathVariable("resortId") int resortId, HttpServletResponse resp, HttpServletRequest req) {
 
 		System.out.println("In create mountain" + mountain);
 		// will need to pull in resort id
-		Mountain newMountain = mountServ.create(mountain, 1, username);
+		Mountain newMountain = mountServ.create(mountain, resortId, username);
 		System.out.println("After create mountain" + newMountain);
 		if (newMountain == null) {
 			resp.setStatus(404);

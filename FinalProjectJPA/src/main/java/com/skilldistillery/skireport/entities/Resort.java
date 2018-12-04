@@ -33,7 +33,7 @@ public class Resort {
 	private Integer acres;
 	
 	@JsonManagedReference(value="resortToMountain")
-	@OneToMany(cascade = CascadeType.ALL, mappedBy="resort")
+	@OneToMany(cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, mappedBy="resort")
 	private List<Mountain> mountains;
 	
 	/*

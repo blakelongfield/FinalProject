@@ -10,7 +10,7 @@ import { throwError } from 'rxjs';
 })
 export class ResortService {
   private resorts: Resort[] = [];
-  private url = environment.baseUrl + 'api/trails';
+  private url = environment.baseUrl + 'api/resorts';
   private httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json'

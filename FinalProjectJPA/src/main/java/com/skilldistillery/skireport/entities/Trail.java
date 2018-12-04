@@ -41,20 +41,21 @@ public class Trail {
 	
 //	@JsonBackReference(value="mountainToTrails")
 	@JsonIgnore
-	@ManyToOne(cascade = CascadeType.ALL)
+//	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
+	@ManyToOne
 	@JoinColumn(name="mountain_id")
 	private Mountain mountain;
 
 //	@JsonManagedReference(value="trailToChairLift")
 	@JsonIgnore
-	@ManyToMany(cascade = CascadeType.ALL)
+	@ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
 	@JoinTable(name="chairlift_has_trail", 
 	joinColumns=@JoinColumn(name="trail_id"),
 	inverseJoinColumns=@JoinColumn(name="chairlift_id"))
 	private List<ChairLift> lifts;
 	
 	@JsonIgnore
-	@OneToMany(mappedBy="trail", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy="trail", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
 	private List<Report> reports;
 
 	/*
