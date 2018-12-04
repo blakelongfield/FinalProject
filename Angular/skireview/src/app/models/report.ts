@@ -10,8 +10,10 @@ export class Report {
   user: User;
   trail: Trail;
   mountain: Mountain;
+  comment: Comment;
 
-  constructor( id?: number, rtext?: string, rating?: number, image?: string, vote?: number, user?: User, mtn?: Mountain, trail?: Trail) {
+  // tslint:disable-next-line:max-line-length
+  constructor( id?: number, rtext?: string, rating?: number, image?: string, vote?: number, user?: User, mtn?: Mountain, trail?: Trail, comment?: Comment) {
     this.id = id;
     this.reportText = rtext;
     this.rating = rating;
@@ -20,5 +22,6 @@ export class Report {
     this.user = user;
     this.trail = trail;
     this.mountain = mtn;
+    this.comment = comment;
   }
 }
