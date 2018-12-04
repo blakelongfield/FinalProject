@@ -1,11 +1,12 @@
 package com.skilldistillery.skireport.entities;
 
 public enum Difficulty {
+	TERRAINPARK,
 	BEGINNER,
 	INTERMEDIATE,
 	HARD,
-	EXPERT,
-	TERRAINPARK
+	EXPERT
+
 	
 //	
 //	Difficulty(String diff) {
