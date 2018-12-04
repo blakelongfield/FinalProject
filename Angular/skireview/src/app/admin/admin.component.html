@@ -1,9 +1,10 @@
+
 <!-- HEADER -->
 <h1>{{ title }}</h1>
 
+
 <!-- BUTTONS -->
-<div
-  *ngIf="!addMountain && !updateMountain && !deleteMountain && !addTrail && !updateTrail && !deleteTrail && !addResort && !updateResort && !deleteResort">
+<div *ngIf="!addMountain && !updateMountain && !deleteMountain && !addTrail && !updateTrail && !deleteTrail && !addResort && !updateResort && !deleteResort">
   <div class="container">
     <div class="row">
       <div class="col">
@@ -15,7 +16,7 @@
       <div class="col">
         <button class="btn btn-primary" (click)="deleteMountainForm()">Delete Mountain</button>
       </div>
-    </div>
+    </div><!-- mountain row -->
     <div class="row">
       <div class="col">
         <button class="btn btn-primary" (click)="addTrailForm()">Add Trail</button>
@@ -26,7 +27,7 @@
       <div class="col">
         <button class="btn btn-primary" (click)="deleteTrailForm()">Delete Trail</button>
       </div>
-    </div>
+    </div><!-- trail row -->
     <div class="row">
       <div class="col">
         <button class="btn btn-primary" (click)="addResortForm()">Add Resort</button>
@@ -37,9 +38,9 @@
       <div class="col">
         <button class="btn btn-primary" (click)="deleteResortForm()">Delete Resort</button>
       </div>
-    </div>
-  </div>
-</div>
+    </div> <!-- resort row -->
+  </div> <!-- container -->
+</div> <!-- *ngIf -->
 
 
 <!--
@@ -99,10 +100,12 @@
         <input class="form-control form-control-lg" type="text" name="mountainMapUrl" [(ngModel)]="addMountain.mountainMapUrl"/>
       </div>
     </div>
+    <!-- buttons -->
     <button class="btn btn-outline-danger" (click)="cancelMountain()">Cancel</button>
     <button class="btn btn-outline-success" (click)="submitNewMountain()">Submit</button>
-  </form>
-</div>
+  </form> <!-- add mountian form -->
+</div> <!-- *ngIf add mountain -->
+
 
 <!-- UPDATE MOUNTAIN -->
 <div *ngIf="updateMountain">
@@ -112,8 +115,8 @@
     <select class="form-control" name="mountainSelector" [(ngModel)]="updateMountain.id">
       <option *ngFor="let mountain of mountainList" value="{{mountain.id}}" >{{mountain.name}}</option>
     </select>
-    <input class="btn btn-outline-success" type="submit" (click)="findSingleMountain(updateMountain.id)" value="submit" >
-  </div>
+    <input class="btn btn-outline-success" type="submit" (click)="findSingleMountain(updateMountain.id)" value="Submit" >
+  </div> <!-- mountain selector -->
   <div *ngIf="tempMountain">
     <form>
       <!-- name -->
@@ -158,12 +161,15 @@
           <input class="form-control form-control-lg" type="text" name="mapUrl" [(ngModel)]="updateMountain.mountainMapUrl" value="{{mountainToUpdate.mountainMapUrl}}"/>
         </div>
       </div>
-      <input type="hidden" name="id" [(ngModel)]="updateMountain.id" value="{{mountainToUpdate.id}}" >
+
+      <!-- <input type="hidden" name="id" [(ngModel)]="updateMountain.id" value="{{mountainToUpdate.id}}" > -->
+      <!-- buttons -->
       <button class="btn btn-outline-danger" (click)="cancelMountain()">Cancel</button>
       <button class="btn btn-outline-success" (click)="submitUpdatedMountain()">Submit</button>
-    </form>
-  </div>
-</div>
+    </form> <!-- update mountain form -->
+  </div> <!-- temp mountain -->
+</div> <!-- *ngIf update mountain -->
+
 
 <!-- DELETE MOUNTAIN -->
 <div *ngIf="deleteMountain">
@@ -175,7 +181,7 @@
       <button class="btn btn-outline-danger" (click)="cancelMountain()">Cancel</button>
       <button class="btn btn-outline-success" (click)="submitDeleteMountain(mountainToDelete.id)">Submit</button>
     </div>
-</div>
+</div> <!-- *ngIf delete mountain -->
 
 
 <!--
@@ -185,136 +191,140 @@
 
 <!-- ADD RESORT -->
 <div *ngIf="addResort">
+  <form>
+    <!-- name -->
+    <div class="form-group row">
+      <label class="col-lg-2 col-form-label col-form-label-lg" for="name">Name:</label>
+      <div class="col-lg-5">
+        <input class="form-control form-control-lg" type="text" name="name" [(ngModel)]="addResort.name"/>
+      </div>
+    </div>
+    <!-- acres -->
+    <div class="form-group row">
+      <label class="col-lg-2 col-form-label col-form-label-lg" for="acres" >Acres:</label>
+      <div class="col-lg-5">
+        <input class="form-control form-control-lg" type="number" name="acres" [(ngModel)]="addResort.acres"/>
+      </div>
+    </div>
+    <!-- street -->
+    <div class="form-group row">
+      <label class="col-lg-2 col-form-label col-form-label-lg" for="street" >Street:</label>
+      <div class="col-lg-5">
+        <input class="form-control form-control-lg" type="text" name="street" [(ngModel)]="addResort.street"/>
+      </div>
+    </div>
+    <!-- street2 -->
+    <div class="form-group row">
+      <label class="col-lg-2 col-form-label col-form-label-lg" for="street2" >Street2:</label>
+      <div class="col-lg-5">
+        <input class="form-control form-control-lg" type="text" name="street2" [(ngModel)]="addResort.street2"/>
+      </div>
+    </div>
+    <!-- city -->
+    <div class="form-group row">
+      <label class="col-lg-2 col-form-label col-form-label-lg" for="city">City:</label>
+      <div class="col-lg-5">
+        <input class="form-control form-control-lg" type="text" name="city" [(ngModel)]="addResort.city"/>
+      </div>
+    </div>
+    <!-- state -->
+    <div class="form-group row">
+      <label class="col-lg-2 col-form-label col-form-label-lg" for="state">State:</label>
+      <div class="col-lg-5">
+        <input class="form-control form-control-lg" type="text" name="state" [(ngModel)]="addResort.state"/>
+      </div>
+    </div>
+    <!-- zip -->
+    <div class="form-group row">
+      <label class="col-lg-2 col-form-label col-form-label-lg" for="zip">zip:</label>
+      <div class="col-lg-5">
+        <input class="form-control form-control-lg" type="text" name="zip" [(ngModel)]="addResort.zip"/>
+      </div>
+    </div>
+    <!-- buttons -->
+    <button class="btn btn-outline-danger" (click)="cancelResort()">Cancel</button>
+    <button class="btn btn-outline-success" (click)="submitNewResort()">Submit</button>
+  </form> <!-- add resort form -->
+</div> <!-- *ngIf add resort -->
+
+
+<!-- UPDATE RESORT -->
+<div *ngIf="updateResort">
+  <!-- select resort to update -->
+  <div class="form-group">
+    <label class="col-lg-2 col-form-label col-form-label-lg" for="resortSelector">Select Resort</label>
+    <select class="form-control" name="resortSelector" [(ngModel)]="updateResort.id">
+      <option *ngFor="let resort of resortList" value="{{resort.id}}" >{{resort.name}}</option>
+    </select>
+    <input class="btn btn-outline-success" type="submit" (click)="findSingleResort(updateResort.id)" value="Submit" >
+  </div> <!-- resort selector -->
+  <div *ngIf="tempResort">
     <form>
       <!-- name -->
       <div class="form-group row">
         <label class="col-lg-2 col-form-label col-form-label-lg" for="name">Name:</label>
         <div class="col-lg-5">
-          <input class="form-control form-control-lg" type="text" name="name" [(ngModel)]="addResort.name"/>
+          <input class="form-control form-control-lg" type="text" name="name" [(ngModel)]="updateResort.name" value="{{resortToUpdate.name}}"/>
         </div>
       </div>
       <!-- acres -->
       <div class="form-group row">
         <label class="col-lg-2 col-form-label col-form-label-lg" for="acres" >Acres:</label>
         <div class="col-lg-5">
-          <input class="form-control form-control-lg" type="number" name="acres" [(ngModel)]="addResort.acres"/>
+          <input class="form-control form-control-lg" type="number" name="acres" [(ngModel)]="updateResort.acres" value="{{resortToUpdate.acres}}"/>
         </div>
       </div>
       <!-- street -->
       <div class="form-group row">
         <label class="col-lg-2 col-form-label col-form-label-lg" for="street" >Street:</label>
         <div class="col-lg-5">
-          <input class="form-control form-control-lg" type="text" name="street" [(ngModel)]="addResort.street"/>
+          <input class="form-control form-control-lg" type="text" name="street" [(ngModel)]="updateResort.street" value="{{resortToUpdate.street}}"/>
         </div>
       </div>
       <!-- street2 -->
       <div class="form-group row">
         <label class="col-lg-2 col-form-label col-form-label-lg" for="street2" >Street2:</label>
         <div class="col-lg-5">
-          <input class="form-control form-control-lg" type="text" name="street2" [(ngModel)]="addResort.street2"/>
+          <input class="form-control form-control-lg" type="text" name="street2" [(ngModel)]="updateResort.street2" value="{{resortToUpdate.street2}}"/>
         </div>
       </div>
       <!-- city -->
       <div class="form-group row">
         <label class="col-lg-2 col-form-label col-form-label-lg" for="city">City:</label>
         <div class="col-lg-5">
-          <input class="form-control form-control-lg" type="text" name="city" [(ngModel)]="addResort.city"/>
+          <input class="form-control form-control-lg" type="text" name="city" [(ngModel)]="updateResort.city" value="{{resortToUpdate.city}}"/>
         </div>
       </div>
       <!-- state -->
       <div class="form-group row">
         <label class="col-lg-2 col-form-label col-form-label-lg" for="state">State:</label>
         <div class="col-lg-5">
-          <input class="form-control form-control-lg" type="text" name="state" [(ngModel)]="addResort.state"/>
+          <input class="form-control form-control-lg" type="text" name="state" [(ngModel)]="updateResort.state" value="{{resortToUpdate.state}}"/>
         </div>
       </div>
       <!-- zip -->
       <div class="form-group row">
         <label class="col-lg-2 col-form-label col-form-label-lg" for="zip">zip:</label>
         <div class="col-lg-5">
-          <input class="form-control form-control-lg" type="text" name="zip" [(ngModel)]="addResort.zip"/>
+          <input class="form-control form-control-lg" type="text" name="zip" [(ngModel)]="updateResort.zip" value="{{resortToUpdate.zip}}"/>
         </div>
       </div>
+      <!-- buttons -->
       <button class="btn btn-outline-danger" (click)="cancelResort()">Cancel</button>
-      <button class="btn btn-outline-success" (click)="submitNewResort()">Submit</button>
-    </form>
-  </div>
+      <button class="btn btn-outline-success" (click)="submitUpdatedResort()">Submit</button>
+    </form> <!-- update resort form -->
+  </div> <!-- temp resort -->
+</div> <!-- *ngIf update mountain -->
 
-  <!-- UPDATE RESORT -->
-  <div *ngIf="updateResort">
-    <!-- select resort to update -->
+
+<!-- DELETE RESORT -->
+<div *ngIf="deleteResort">
     <div class="form-group">
-      <label class="col-lg-2 col-form-label col-form-label-lg" for="resortSelector">Select Resort</label>
-      <select class="form-control" name="mountainSelector" [(ngModel)]="updateMountain.id">
+      <label class="col-lg-2 col-form-label col-form-label-lg" for="mountainSelector">Select Mountain</label>
+      <select class="form-control" name="mountainSelector" [(ngModel)]="mountainToDelete.id">
         <option *ngFor="let mountain of mountainList" value="{{mountain.id}}" >{{mountain.name}}</option>
       </select>
-      <input class="btn btn-outline-success" type="submit" (click)="findSingleMountain(updateMountain.id)" value="submit" >
+      <button class="btn btn-outline-danger" (click)="cancelMountain()">Cancel</button>
+      <button class="btn btn-outline-success" (click)="submitDeleteMountain(mountainToDelete.id)">Submit</button>
     </div>
-    <div *ngIf="tempMountain">
-      <form>
-        <!-- name -->
-        <div class="form-group row">
-          <label class="col-lg-2 col-form-label col-form-label-lg" for="name">Name:</label>
-          <div class="col-lg-5">
-            <input class="form-control form-control-lg" type="text" name="name" [(ngModel)]="addResort.name"/>
-          </div>
-        </div>
-        <!-- acres -->
-        <div class="form-group row">
-          <label class="col-lg-2 col-form-label col-form-label-lg" for="acres" >Acres:</label>
-          <div class="col-lg-5">
-            <input class="form-control form-control-lg" type="number" name="acres" [(ngModel)]="addResort.acres"/>
-          </div>
-        </div>
-        <!-- street -->
-        <div class="form-group row">
-          <label class="col-lg-2 col-form-label col-form-label-lg" for="street" >Street:</label>
-          <div class="col-lg-5">
-            <input class="form-control form-control-lg" type="text" name="street" [(ngModel)]="addResort.street"/>
-          </div>
-        </div>
-        <!-- street2 -->
-        <div class="form-group row">
-          <label class="col-lg-2 col-form-label col-form-label-lg" for="street2" >Street2:</label>
-          <div class="col-lg-5">
-            <input class="form-control form-control-lg" type="text" name="street2" [(ngModel)]="addResort.street2"/>
-          </div>
-        </div>
-        <!-- city -->
-        <div class="form-group row">
-          <label class="col-lg-2 col-form-label col-form-label-lg" for="city">City:</label>
-          <div class="col-lg-5">
-            <input class="form-control form-control-lg" type="text" name="city" [(ngModel)]="addResort.city"/>
-          </div>
-        </div>
-        <!-- state -->
-        <div class="form-group row">
-          <label class="col-lg-2 col-form-label col-form-label-lg" for="state">State:</label>
-          <div class="col-lg-5">
-            <input class="form-control form-control-lg" type="text" name="state" [(ngModel)]="addResort.state"/>
-          </div>
-        </div>
-        <!-- zip -->
-        <div class="form-group row">
-          <label class="col-lg-2 col-form-label col-form-label-lg" for="zip">zip:</label>
-          <div class="col-lg-5">
-            <input class="form-control form-control-lg" type="text" name="zip" [(ngModel)]="addResort.zip"/>
-          </div>
-        </div>
-        <button class="btn btn-outline-danger" (click)="cancelResort()">Cancel</button>
-        <button class="btn btn-outline-success" (click)="submitNewResort()">Submit</button>
-      </form>
-    </div>
-  </div>
-
-  <!-- DELETE RESORT -->
-  <div *ngIf="deleteResort">
-      <div class="form-group">
-        <label class="col-lg-2 col-form-label col-form-label-lg" for="mountainSelector">Select Mountain</label>
-        <select class="form-control" name="mountainSelector" [(ngModel)]="mountainToDelete.id">
-          <option *ngFor="let mountain of mountainList" value="{{mountain.id}}" >{{mountain.name}}</option>
-        </select>
-        <button class="btn btn-outline-danger" (click)="cancelMountain()">Cancel</button>
-        <button class="btn btn-outline-success" (click)="submitDeleteMountain(mountainToDelete.id)">Submit</button>
-      </div>
-  </div>
+</div> <!-- *ngIf delete resort -->
