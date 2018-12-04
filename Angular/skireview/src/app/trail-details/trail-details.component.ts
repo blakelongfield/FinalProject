@@ -19,7 +19,7 @@ export class TrailDetailsComponent implements OnInit {
   selected = null;
   trails: Trail[] = [];
   reports: Report[] = [];
-  comments: Comment[] = [];
+  comments: any = [];
   trailId;
   reportId;
   comment = null;
@@ -51,8 +51,7 @@ export class TrailDetailsComponent implements OnInit {
       data => {
         this.reports = data;
         for (let i = 0; i < this.reports.length; i++) {
-          this.comment = this.commentsOnReport(this.reports[i].id);
-          this.comments.push(this.comment);
+              this.commentsOnReport(this.reports[i].id);
         }
       },
       err => {
@@ -64,6 +63,7 @@ export class TrailDetailsComponent implements OnInit {
   public commentsOnReport(id) {
     this.commentService.findCommentsByReportId(id).subscribe(
       data => {
+        this.comments = data;
         console.log(data);
       },
       err => {
@@ -140,13 +140,10 @@ export class TrailDetailsComponent implements OnInit {
   }
 
   public displayTrail(id) {
-    console.log('displayTrail' + id);
-    console.log('******************************************');
     this.trailDetailsService.findTrailById(id).subscribe(
       data => {
         console.log('in displayTrail - finding trail by id');
         this.selected = data;
-        console.log(data);
         this.reportsOnTrail(this.trail.id);
       }
     );
