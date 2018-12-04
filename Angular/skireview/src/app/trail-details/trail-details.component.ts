@@ -72,6 +72,28 @@ export class TrailDetailsComponent implements OnInit {
     );
   }
 
+  public deleteComment(id) {
+    this.commentService.delete(id).subscribe(
+      data => {
+      console.log('deleted');
+      },
+      err => {
+        console.error('trail-details.component.deleteComment(): Error deleteing comment');
+      }
+    );
+  }
+
+  public deleteReport(id) {
+    this.reportService.delete(id).subscribe(
+      data => {
+        console.log('deleted');
+      },
+      err => {
+        console.error('trail-details.component.deleteReport(): Error deleting report');
+      }
+    );
+  }
+
   public show(id) {
     this.trailDetailsService.findTrailById(id).subscribe(
       data => {
