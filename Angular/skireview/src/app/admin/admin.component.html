@@ -157,47 +157,47 @@
       <div class="form-group row">
         <label class="col-lg-2 col-form-label col-form-label-lg" for="name">Name:</label>
         <div class="col-lg-5">
-          <input class="form-control form-control-lg" type="text" name="name" [(ngModel)]="addMountain.name"/>
+          <input class="form-control form-control-lg" type="text" name="name" [(ngModel)]="addResort.name"/>
         </div>
       </div>
       <div class="form-group row">
-          <label class="col-lg-2 col-form-label col-form-label-lg" for="resortSelector">Select Mountain</label>
-          <select class="form-control" name="resortSelector" [(ngModel)]="addMountain.resort">
-            <option *ngFor="let resort of resortList" value="{{resort.id}}" >{{resort.name}}</option>
-          </select>
-        </div>
-      <div class="form-group row">
-        <label class="col-lg-2 col-form-label col-form-label-lg" for="numberOfTrails" >Number Of Trails:</label>
+        <label class="col-lg-2 col-form-label col-form-label-lg" for="acres" >Acres:</label>
         <div class="col-lg-5">
-          <input class="form-control form-control-lg" type="number" name="numberOfTrails" [(ngModel)]="addMountain.numberOfRuns"/>
+          <input class="form-control form-control-lg" type="number" name="acres" [(ngModel)]="addResort.acres"/>
         </div>
       </div>
       <div class="form-group row">
-        <label class="col-lg-2 col-form-label col-form-label-lg" for="numberOfLifts" >Number Of Lifts:</label>
+        <label class="col-lg-2 col-form-label col-form-label-lg" for="street" >Street:</label>
         <div class="col-lg-5">
-          <input class="form-control form-control-lg" type="number" name="numberOfLifts" [(ngModel)]="addMountain.numberOfLifts"/>
+          <input class="form-control form-control-lg" type="text" name="street" [(ngModel)]="addResort.street"/>
         </div>
       </div>
       <div class="form-group row">
-        <label class="col-lg-2 col-form-label col-form-label-lg" for="elevationBase" >Elevation Base:</label>
+        <label class="col-lg-2 col-form-label col-form-label-lg" for="street2" >Street2:</label>
         <div class="col-lg-5">
-          <input class="form-control form-control-lg" type="number" name="elevationBase" [(ngModel)]="addMountain.baseElevation"/>
+          <input class="form-control form-control-lg" type="text" name="street2" [(ngModel)]="addResort.street2"/>
         </div>
       </div>
       <div class="form-group row">
-        <label class="col-lg-2 col-form-label col-form-label-lg" for="elevationPeak">Elevation Peak:</label>
+        <label class="col-lg-2 col-form-label col-form-label-lg" for="city">City:</label>
         <div class="col-lg-5">
-          <input class="form-control form-control-lg" type="number" name="elevationPeak" [(ngModel)]="addMountain.peakElevation"/>
+          <input class="form-control form-control-lg" type="text" name="city" [(ngModel)]="addResort.city"/>
         </div>
       </div>
       <div class="form-group row">
-        <label class="col-lg-2 col-form-label col-form-label-lg" for="mountainMapUrl">Mountain Map Url:</label>
+        <label class="col-lg-2 col-form-label col-form-label-lg" for="state">State:</label>
         <div class="col-lg-5">
-          <input class="form-control form-control-lg" type="text" name="mountainMapUrl" [(ngModel)]="addMountain.mountainMapUrl"/>
+          <input class="form-control form-control-lg" type="text" name="state" [(ngModel)]="addResort.state"/>
         </div>
       </div>
-      <button class="btn btn-outline-danger" (click)="cancelMountain()">Cancel</button>
-      <button class="btn btn-outline-success" (click)="submitNewMountain()">Submit</button>
+      <div class="form-group row">
+        <label class="col-lg-2 col-form-label col-form-label-lg" for="zip">zip:</label>
+        <div class="col-lg-5">
+          <input class="form-control form-control-lg" type="text" name="zip" [(ngModel)]="addResort.zip"/>
+        </div>
+      </div>
+      <button class="btn btn-outline-danger" (click)="cancelResort()">Cancel</button>
+      <button class="btn btn-outline-success" (click)="submitNewResort()">Submit</button>
     </form>
   </div>
 
