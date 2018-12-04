@@ -22,33 +22,15 @@
   </table>
 </div>
 
-<div *ngIf="selected">
-    <table class="center">
-      <thead>
-        <tr>
-          <th>Reports on Trail: {{selected.name}}</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let report of reports">
-          <td>This is a REPORT on the TRAIL: {{report.reportText}}</td>
-          <td>This is a COMMENT on a REPORT: {{report.comments[0].commentText}}</td>
-        </tr>
-      </tbody>
-    </table>
+<div class="trailDetails" *ngIf="selected">
+  <p>{{selected.imgUrl}}</p>
+  Trail Name: <p><strong>{{selected.name}}</strong></p>
+  Difficulty: <p>{{selected.difficulty}}</p>
+  Length: <p>{{selected.length}}</p>
+  Elevation gain/loss: <p>{{selected.elevationGainLoss}}</p>
+  Features: <p>{{selected.features}}</p>
+  <form *ngFor="let report of reports">
+    <p>This is a REPORT on the TRAIL: {{report.reportText}}<p>
+      <p>This is a COMMENT on a REPORT: {{report.comments[0].commentText}}</p>
+    </form>
   </div>
-
-  <div *ngIf="selected">
-      <table class="center">
-        <thead>
-          <tr>
-            <th>Comments on Trail: {{selected.name}}</th>
-          </tr>
-        </thead>
-        <tbody>
-          <!-- <tr *ngFor="let comment of comments">
-            <td>This is a COMMENT on the trail: {{report}}</td>
-          </tr> -->
-        </tbody>
-      </table>
-    </div>
