@@ -2,6 +2,7 @@ package com.skilldistillery.skireport.entities;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -29,7 +30,7 @@ public class ChairLift {
 	private Double rideLength;
 	
 	@JsonBackReference(value="liftTypeToChairLift")
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="chairlift_type_id")
 	private LiftType type;
 	
@@ -37,7 +38,7 @@ public class ChairLift {
 	
 //	@JsonBackReference(value="trailToChairLift")
 	@JsonIgnore
-	@ManyToMany(mappedBy="lifts")
+	@ManyToMany(mappedBy="lifts", cascade = CascadeType.ALL)
 	private List<Trail> trails;
 
 	/*

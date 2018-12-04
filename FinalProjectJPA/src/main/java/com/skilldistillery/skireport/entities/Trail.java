@@ -2,6 +2,7 @@ package com.skilldistillery.skireport.entities;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -40,20 +41,20 @@ public class Trail {
 	
 //	@JsonBackReference(value="mountainToTrails")
 	@JsonIgnore
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="mountain_id")
 	private Mountain mountain;
 
 //	@JsonManagedReference(value="trailToChairLift")
 	@JsonIgnore
-	@ManyToMany
+	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable(name="chairlift_has_trail", 
 	joinColumns=@JoinColumn(name="trail_id"),
 	inverseJoinColumns=@JoinColumn(name="chairlift_id"))
 	private List<ChairLift> lifts;
 	
 	@JsonIgnore
-	@OneToMany(mappedBy="trail")
+	@OneToMany(mappedBy="trail", cascade = CascadeType.ALL)
 	private List<Report> reports;
 
 	/*

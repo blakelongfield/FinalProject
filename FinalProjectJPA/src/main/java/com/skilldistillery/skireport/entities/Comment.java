@@ -26,22 +26,22 @@ public class Comment {
 	private String commentText;
 	
 	@JsonBackReference(value="reportToComment")
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="report_id")
 	private Report report;
 	
 	@JsonBackReference(value="userToComment")
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="user_id")
 	private User user;
 	
 	@JsonBackReference(value="commentToComment")
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="comment_id")
 	private Comment mainComment;
 	
 	@JsonManagedReference(value="commentToComment")
-	@OneToMany(cascade = {CascadeType.PERSIST, CascadeType.REMOVE},mappedBy="mainComment")
+	@OneToMany(cascade = CascadeType.ALL,mappedBy="mainComment")
 	private List<Comment> comments;
 
 	

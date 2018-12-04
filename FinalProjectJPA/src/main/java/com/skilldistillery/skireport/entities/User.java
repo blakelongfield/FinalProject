@@ -2,6 +2,7 @@ package com.skilldistillery.skireport.entities;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -39,12 +40,12 @@ public class User {
 	private String imgUrl;
 	
 	@JsonManagedReference(value="userToComment")
-	@OneToMany(mappedBy="user")
+	@OneToMany(mappedBy="user", cascade = CascadeType.ALL)
 	private List<Comment> comments;
 	
 //	@JsonManagedReference(value="userToReport")
 	@JsonIgnore
-	@OneToMany(mappedBy="user")
+	@OneToMany(mappedBy="user", cascade = CascadeType.ALL)
 	private List<Report> reports;
 
 	/*

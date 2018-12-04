@@ -3,6 +3,7 @@ package com.skilldistillery.skireport.entities;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -40,20 +41,20 @@ public class Report {
 	@Column(name="vote")
 	private Integer votes;
 	
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="user_id")
 	private User user;
 	
 	@JsonIgnore
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="trail_id")
 	private Trail trail;
 	@JsonIgnore
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="mountain_id")
 	private Mountain mountain;
 	
-	@OneToMany(mappedBy="report")
+	@OneToMany(mappedBy="report", cascade = CascadeType.ALL)
 	private List<Comment> comments;
 
 	/*

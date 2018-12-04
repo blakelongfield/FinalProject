@@ -4,7 +4,8 @@ public enum Difficulty {
 	BEGINNER,
 	INTERMEDIATE,
 	HARD,
-	EXPERT
+	EXPERT,
+	TERRAINPARK
 	
 //	
 //	Difficulty(String diff) {

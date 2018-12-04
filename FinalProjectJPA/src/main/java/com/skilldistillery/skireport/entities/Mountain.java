@@ -2,6 +2,7 @@ package com.skilldistillery.skireport.entities;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,9 +12,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 public class Mountain {
@@ -39,17 +38,17 @@ public class Mountain {
 	private String imgUrl;
 	
 	@JsonIgnore
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="resort_id")
 	private Resort resort;
 	
 	@JsonIgnore
-	@OneToMany(mappedBy="mountain")
+	@OneToMany(mappedBy="mountain", cascade = CascadeType.ALL)
 	private List<Report> reports;
 	
 //	@JsonBackReference(value="mountainToTrail")
 	//@JsonIgnore
-	@OneToMany(mappedBy="mountain")
+	@OneToMany(mappedBy="mountain", cascade = CascadeType.ALL)
 	private List<Trail> trails;
 
 	/*

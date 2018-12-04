@@ -2,6 +2,7 @@ package com.skilldistillery.skireport.entities;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -25,7 +26,7 @@ public class LiftType {
 	private Integer capacity;
 	
 	@JsonManagedReference(value="liftTypeToChairLift")
-	@OneToMany(mappedBy="type")
+	@OneToMany(mappedBy="type", cascade = CascadeType.ALL)
 	private List<ChairLift> lifts;
 
 	/*
