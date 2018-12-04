@@ -39,7 +39,7 @@ public class Trail {
 	private String features;
 	
 //	@JsonBackReference(value="mountainToTrails")
-	//@JsonIgnore
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name="mountain_id")
 	private Mountain mountain;
@@ -52,7 +52,7 @@ public class Trail {
 	inverseJoinColumns=@JoinColumn(name="chairlift_id"))
 	private List<ChairLift> lifts;
 	
-//	@JsonIgnore
+	@JsonIgnore
 	@OneToMany(mappedBy="trail")
 	private List<Report> reports;
 

@@ -23,11 +23,13 @@ export class TrailDetailsComponent implements OnInit {
 
   ngOnInit() {
     this.reload();
+    console.log('****');
   }
 
   public reload() {
     this.trailDetailsService.index().subscribe(
       data => {
+        console.log(data);
         this.trails = data;
        },
       err => {
@@ -48,18 +50,16 @@ export class TrailDetailsComponent implements OnInit {
     );
   }
 
-  public commentsOnReport(id) {
-    this.commentService.findCommentsByReportId(id).subscribe(
-      data => {
-        console.log(data);
-        console.log('***********************');
-        this.comments = data;
-      },
-      err => {
-        console.error('trail-details.component.commentsOnreport(): Error retreving comments on report');
-      }
-    );
-  }
+  // public commentsOnReport(id) {
+  //   this.commentService.findCommentsByReportId(id).subscribe(
+  //     data => {
+  //       console.log(data);
+  //     },
+  //     err => {
+  //       console.error('trail-details.component.commentsOnreport(): Error retreving comments on report');
+  //     }
+  //   );
+  // }
 
   public create(newTrail) {
     this.trailDetailsService.createTrail(this.newTrail).subscribe(
