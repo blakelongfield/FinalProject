@@ -32,9 +32,10 @@ public class TrailServiceImpl implements TrailService {
 	}
 	
 	@Override
-	public List<Trail> sortBy( String searchParam) {
-		List<Trail> trails = trailRepo.findAll();
-		List<Trail> sorted = new ArrayList<>();
+	public List<Trail> sortBy( String searchParam, Integer mid) {
+		
+		List<Trail> trails = trailRepo.findByMountainId(mid);
+		//List<Trail> sorted = new ArrayList<>();
 		
 		if( searchParam.equals("Name")) {
 		TrailSortByName sort = new TrailSortByName();

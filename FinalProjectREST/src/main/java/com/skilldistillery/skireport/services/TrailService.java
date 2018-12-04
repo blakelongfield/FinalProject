@@ -8,7 +8,7 @@ public interface TrailService {
 
 	List<Trail> findAll();
 	
-	List<Trail> sortBy( String searchParam);
+	List<Trail> sortBy( String searchParam, Integer id);
 
 	Trail findById(int trailId);
 
