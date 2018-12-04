@@ -14,10 +14,11 @@ import { NgForm } from '@angular/forms';
 })
 export class AdminComponent implements OnInit {
 
-
+  // title information
   title = 'Admin';
   mainTitle = 'Admin';
 
+  // mountain variables
   addMountain: Mountain = null;
   updateMountain: Mountain = null;
   mountain: Mountain = new Mountain();
@@ -27,40 +28,50 @@ export class AdminComponent implements OnInit {
   deleteMountain: boolean = null;
   tempMountain = false;
 
+  // trail variables
   addTrail: Trail = null;
   updateTrail: Trail = null;
   trailList: Trail[] = [];
   trailToUpdate: Trail = null;
+  trailToDelete: Trail = null;
   deleteTrail: boolean = null;
+  tempTrail = false;
 
+  // resort variables
   addResort: Resort = null;
   updateResort: Resort = null;
   resortList: Resort[] = [];
   resortToUpdate: Resort = null;
+  resortToDelete: Rerort = null;
   deleteResort: boolean = null;
+  tempResort = false;
 
-
+  // constructor
   constructor(
     private mountainService: MountainService,
     private trailService: TrailDetailsService,
     private resortService: ResortService
   ) { }
 
+  // nothing happeing on init
   ngOnInit() {
   }
 
+  // button click event that shows the add mountain form
   addMountainForm() {
     this.title = 'Add Mountain';
     this.addMountain = new Mountain();
     this.findAllResorts();
   }
 
+  // button click event that shows the update mountain form
   updateMountainForm() {
     this.title = 'Update Mountain';
     this.updateMountain = new Mountain();
     this.findAllMountains();
   }
 
+  // button click event that shows the delete mountain form
   deleteMountainForm() {
     this.title = 'Delete Mountain';
     this.mountainToDelete = new Mountain();
@@ -68,38 +79,45 @@ export class AdminComponent implements OnInit {
     this.findAllMountains();
   }
 
+  // button click event that shows the add trail form
   addTrailForm() {
     this.title = 'Add Trail';
     this.addTrail = new Trail;
   }
 
+  // button click event that shows the update trail form
   updateTrailForm() {
     this.title = 'Update Trail';
     this.updateTrail = new Trail();
     this.findAllTrails();
   }
 
+  // button click event that shows the delete trail form
   deleteTrailForm() {
     this.title = 'Delete Trail';
     this.deleteTrail = true;
   }
 
+  // button click event that shows the add resort form
   addResortForm() {
     this.title = 'Add Resort';
     this.addResort = new Resort;
   }
 
+  // button click event that shows the update resort form
   updateResortForm() {
     this.title = 'Update Resort';
     this.updateResort = new Resort();
     this.findAllResorts();
   }
 
+  // button click event that shows the delete resort form
   deleteResortForm() {
     this.title = 'Delete Resort';
     this.deleteResort = true;
   }
 
+  // button click event that returns back to initial buttons
   cancelMountain() {
     this.title = this.mainTitle;
     this.addMountain = null;
@@ -110,7 +128,7 @@ export class AdminComponent implements OnInit {
     this.tempMountain = false;
     this.mountainToDelete = null;
   }
-
+  // button click event that returns back to initial buttons
   cancelTrail() {
     this.title = this.mainTitle;
     this.addTrail = null;
@@ -120,14 +138,19 @@ export class AdminComponent implements OnInit {
     this.deleteTrail = null;
   }
 
+  // button click event that returns back to initial buttons
   cancelResort() {
+    this.title = this.mainTitle;
     this.addResort = null;
     this.updateResort = null;
     this.resortList = [];
     this.resortToUpdate = null;
     this.deleteResort = null;
+    this.tempResort = false;
+    this.resortToDelete = null;
   }
 
+  // add new mountain
   submitNewMountain() {
     this.mountainService.create(this.addMountain).subscribe(
       created => {
@@ -141,10 +164,9 @@ export class AdminComponent implements OnInit {
     );
   }
 
+  // update mountain
   submitUpdatedMountain() {
     this.updateMountain.id = this.mountainToUpdate.id;
-
-    // console.log(this.updateMountain);
     this.mountainService.patch(this.updateMountain).subscribe(
       updated => {
         console.log(updated);
@@ -157,6 +179,7 @@ export class AdminComponent implements OnInit {
     );
   }
 
+  // find add mountains
   findAllMountains() {
     this.mountainService.index().subscribe(
       mountainIndex => {
@@ -170,9 +193,8 @@ export class AdminComponent implements OnInit {
     );
   }
 
+  // find single mountain
   findSingleMountain(mountainId: number) {
-    console.log(mountainId);
-
     this.mountainService.show(mountainId).subscribe(
       singleMountain => {
         this.updateMountain = singleMountain;
@@ -187,6 +209,7 @@ export class AdminComponent implements OnInit {
     );
   }
 
+  // delete mountain
   submitDeleteMountain(deleteId: number) {
     this.mountainService.delete(deleteId).subscribe(
       deletedMountain => {
@@ -200,6 +223,7 @@ export class AdminComponent implements OnInit {
     );
   }
 
+  // add trail
   submitNewTrail() {
     this.trailService.createTrail(this.addTrail).subscribe(
       created => {
@@ -213,6 +237,7 @@ export class AdminComponent implements OnInit {
     );
   }
 
+  // update trail
   submitUpdatedTrail() {
     this.trailService.patchTrail(this.updateTrail).subscribe(
       updated => {
@@ -226,6 +251,7 @@ export class AdminComponent implements OnInit {
     );
   }
 
+  // find all trails
   findAllTrails() {
     this.trailService.index().subscribe(
       trailIndex => {
@@ -239,8 +265,8 @@ export class AdminComponent implements OnInit {
     );
   }
 
+  // find single trail
   findSingleTrail(trailId: number) {
-    console.log(trailId);
     this.trailService.findTrailById(trailId).subscribe(
       singleTrail => {
         console.log(singleTrail);
@@ -253,6 +279,7 @@ export class AdminComponent implements OnInit {
     );
   }
 
+  // delete trail
   submitDeleteTrail(deleteId: number) {
     this.trailService.deleteTrail(deleteId).subscribe(
       deleteTrail => {
@@ -266,6 +293,7 @@ export class AdminComponent implements OnInit {
     );
   }
 
+  // add resort
   submitNewResort() {
     this.resortService.createResort(this.addResort).subscribe(
       created => {
@@ -279,7 +307,9 @@ export class AdminComponent implements OnInit {
     );
   }
 
+  // update resort
   submitUpdatedResort() {
+    this.updateResort.id = this.resortToUpdate.id;
     this.resortService.putResort(this.updateResort).subscribe(
       updated => {
         console.log(updated);
@@ -292,6 +322,7 @@ export class AdminComponent implements OnInit {
     );
   }
 
+  // find all resorts
   findAllResorts() {
     this.resortService.index().subscribe(
       resortIndex => {
@@ -305,13 +336,14 @@ export class AdminComponent implements OnInit {
     );
   }
 
+  // find single resort
   findSingleResort(resortId: number) {
     this.resortService.findResortById(resortId).subscribe(
       singleResort => {
         console.log(singleResort);
         this.updateResort = singleResort;
         this.resortToUpdate = singleResort;
-        this.tempMountain = true;
+        this.tempResort = true;
       },
       error => {
         console.error('admin.findSingleResort(): Error finding Resort');
@@ -320,6 +352,7 @@ export class AdminComponent implements OnInit {
     );
   }
 
+  // delete resort
   submitDeleteResort(deleteId: number) {
     this.resortService.deleteResort(deleteId).subscribe(
       deleteTrail => {
