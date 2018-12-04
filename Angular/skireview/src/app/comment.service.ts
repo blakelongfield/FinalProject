@@ -28,6 +28,15 @@ export class CommentService {
     );
   }
 
+  public findCommentsByReportId(id: number) {
+    return this.http.get<Comment>(this.url + '/reports/' + id).pipe(
+      catchError((error: any) => {
+        console.log(error);
+        return throwError('ERROR - trail-details.findCommentsByReportId(): Error finding comments on the report');
+      })
+    );
+  }
+
   public show(id: number) {
     return this.http.get<Comment>(this.url + '/' + id).pipe(
       catchError((error: any) => {
