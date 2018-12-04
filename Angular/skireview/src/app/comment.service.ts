@@ -65,6 +65,7 @@ export class CommentService {
   }
 
   public delete(id: number) {
+    console.log(id);
     return this.http.delete(this.url + '/' + id).pipe(
       catchError((error: any) => {
         console.error(error);
