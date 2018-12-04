@@ -1,5 +1,7 @@
+
 <h1> ALL REPORTS<h1>
   <table class="table table-striped table-hover">
+      <div>
       <thead class="thead-dark">
         <tr>
           <th>Username</th>
@@ -25,25 +27,27 @@
           <td>{{report.reportText}}</td>
           <td>{{report.rating}}</td>
         </tr>
+      </div>
   </table>
+
   <br>
   <br>
   <br>
+
 
 
   <!-- MOUNTAIN REPORTS -->
-  <h1> Mountain Reports<h1>
+  <h1> Select Mountain:<h1>
     <div class= "form-group" >
       <select class="form-control" name="mountain" [(ngModel)]="mountain.id">
           <option *ngFor="let mountain of mountains" value="{{mountain.id}}"  >{{mountain.name}}</option>
         </select >
-
-        <input type="submit" (click)="selectMountain(mountain.id)" value='submit'>
+        <input type="submit" (click)="selectMountain(mountain.id)" value='submit'/>
       </div>
 
-      <div *ngIf="mReports">
-      <table class="table table-striped table-hover"
-      >
+          <h1 *ngIf="selectedMTN"> Mountain Reports<h1>
+      <table class="table table-striped table-hover">
+          <div *ngIf="selectedMTN">
           <thead class="thead-dark">
             <tr>
               <th>Username</th>
@@ -63,8 +67,60 @@
               <td>{{report.reportText}}</td>
               <td>{{report.rating}}</td>
             </tr>
+          </div>
       </table>
-      </div>
+
+
+
+
+      <!-- ALL TRAILS ON MTN -->
+
+      <!-- <div class= "form-group" >
+        <select class="form-control" name="mountain" [(ngModel)]="mountain.id">
+            <option *ngFor="let mountain of mountains" value="{{mountain.id}}"  >{{mountain.name}}</option>
+          </select > -->
+
+          <!-- <input type="submit" (click)="selectMountain(mountain.id)" value='submit'>
+        </div> -->
+
+
+            <h1 *ngIf="selectedMTN"> Mountain Trails<h1>
+        <table class="table table-striped table-hover">
+            <div *ngIf="selectedMTN">
+            <thead class="thead-dark">
+              <tr>
+                <th>Name</th>
+                <th>Difficulty</th>
+                <th>Length</th>
+                <th>Elevation Gain/Loss</th>
+                <th>Features</th>
+              </tr>
+              </thead>
+              <tr *ngFor="let trail of selectedMTN.trails">
+                <td>{{trail.name}}</td>
+                <td>{{trail.difficulty}}</td>
+                   <!-- IF -->
+                <td *ngIf="trail.length; else length">
+                  {{trail.length}}</td>
+                  <!-- ELSE -->
+                <ng-template #length><td></td>
+                </ng-template>
+                  <!-- IF -->
+                  <td *ngIf="trail.elevationGainLoss; else gainLoss">
+                      {{trail.elevationGainLoss}}</td>
+                      <!-- ELSE -->
+                    <ng-template #gainLoss><td></td>
+                    </ng-template>
+
+                <td>{{trail.features}}</td>
+
+              </tr>
+            </div>
+        </table>
+
+
+
+
 
 
 
