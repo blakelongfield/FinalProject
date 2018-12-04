@@ -48,7 +48,7 @@ public class Report {
 	@ManyToOne
 	@JoinColumn(name="trail_id")
 	private Trail trail;
-	
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name="mountain_id")
 	private Mountain mountain;

@@ -39,7 +39,7 @@ public class Trail {
 	private String features;
 	
 //	@JsonBackReference(value="mountainToTrails")
-	//@JsonIgnore
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name="mountain_id")
 	private Mountain mountain;
