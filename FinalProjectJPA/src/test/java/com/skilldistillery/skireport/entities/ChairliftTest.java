@@ -20,6 +20,7 @@ class ChairliftTest {
 	
 	private static EntityManagerFactory emf;
 	private EntityManager em;
+	private ChairLift cl;
 
 	@BeforeAll
 	public static void setupALL() {
@@ -34,24 +35,21 @@ class ChairliftTest {
 	@BeforeEach
 	public void setUpBeforeClass() throws Exception {
 		em = emf.createEntityManager();
+		cl = em.find(ChairLift.class, 1);
 	}
 
 	@AfterEach
 	public void tearDownAfterClass() throws Exception {
 		em.close();
-
 	}
 
 	@Test
 	@DisplayName("testing connection to data base")
 	void test() {
-		
-		ChairLift cl = em.find (ChairLift.class, 1);
-		
 		assertNotNull( cl );
-		assertEquals( "Express", cl.getType().getType());
-		
-		assertEquals( 1, cl.getTrails().size());
+		assertEquals( "Express Chairlift", cl.getType().getType());
+		assertEquals( 5, cl.getTrails().size());
+		assertEquals("Arapahoe Basin", cl.getMountain().getName());
 	
 		
 	}

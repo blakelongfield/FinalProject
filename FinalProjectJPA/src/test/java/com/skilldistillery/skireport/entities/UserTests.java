@@ -65,16 +65,16 @@ public class UserTests {
 	public void test2() {
 		User user = em.find(User.class, 5);
 		
-		assertEquals(4, user.getComments().size());
+		assertEquals(6, user.getComments().size());
 		
 	}
 	
 	@Test
 	@DisplayName("test user to report")
 	public void test3() {
-		User user = em.find(User.class, 1);
+		User user = em.find(User.class, 5);
 		
-		assertEquals(2, user.getReports().size());
+		assertEquals(5, user.getReports().size());
 		
 		
 	}

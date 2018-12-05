@@ -185,6 +185,131 @@
 
 
 <!--
+  TRAIL
+-->
+
+
+<!-- ADD TRAIL -->
+<div *ngIf="addTrail">
+  <form>
+    <!-- name -->
+    <div class="form-group row">
+      <label class="col-lg-2 col-form-label col-form-label-lg" for="name">Name:</label>
+      <div class="col-lg-5">
+        <input class="form-control form-control-lg" type="text" name="name" [(ngModel)]="addTrail.name"/>
+      </div>
+    </div>
+    <!-- mountain -->
+    <div class="form-group row">
+      <label class="col-lg-2 col-form-label col-form-label-lg" for="mountainSelector">Select Mountain</label>
+      <select class="form-control" name="mountainSelector" [(ngModel)]="addTrail.mountain">
+        <option *ngFor="let mountain of mountainList" value="{{mountain.id}}" >{{mountain.name}}</option>
+      </select>
+    </div>
+    <!-- difficulty -->
+    <div class="form-group row">
+      <label class="col-lg-2 col-form-label col-form-label-lg" for="difficulty" >Difficulty:</label>
+      <div class="col-lg-5">
+        <input class="form-control form-control-lg" type="text" name="difficulty" [(ngModel)]="addTrail.difficulty"/>
+      </div>
+    </div>
+    <!-- length -->
+    <div class="form-group row">
+      <label class="col-lg-2 col-form-label col-form-label-lg" for="length" >Length:</label>
+      <div class="col-lg-5">
+        <input class="form-control form-control-lg" type="number" name="length" [(ngModel)]="addTrail.length"/>
+      </div>
+    </div>
+    <!-- elevationGainLoss -->
+    <div class="form-group row">
+      <label class="col-lg-2 col-form-label col-form-label-lg" for="elevationGainLoss" >Elevation Gain/Loss:</label>
+      <div class="col-lg-5">
+        <input class="form-control form-control-lg" type="number" name="elevationGainLoss" [(ngModel)]="addTrail.elevationGainLoss"/>
+      </div>
+    </div>
+    <!-- features -->
+    <div class="form-group row">
+      <label class="col-lg-2 col-form-label col-form-label-lg" for="features">Features:</label>
+      <div class="col-lg-5">
+        <input class="form-control form-control-lg" type="text" name="features" [(ngModel)]="addTrail.features"/>
+      </div>
+    </div>
+    <!-- buttons -->
+    <button class="btn btn-outline-danger" (click)="cancelTrail()">Cancel</button>
+    <button class="btn btn-outline-success" (click)="submitNewTrail()">Submit</button>
+  </form> <!-- add trail form -->
+</div> <!-- *ngIf add trail -->
+
+
+<!-- UPDATE TRAIL -->
+<div *ngIf="updateTrail">
+  <!-- select trail to update -->
+  <div class="form-group">
+    <label class="col-lg-2 col-form-label col-form-label-lg" for="trailSelector">Select Trail</label>
+    <select class="form-control" name="trailSelector" [(ngModel)]="updateTrail.id">
+      <option *ngFor="let trail of trailList" value="{{trail.id}}" >{{trail.name}}</option>
+    </select>
+    <input class="btn btn-outline-success" type="submit" (click)="findSingleTrail(updateTrail.id)" value="Submit" >
+  </div> <!-- trail selector -->
+  <div *ngIf="tempTrail">
+    <form>
+      <!-- name -->
+      <div class="form-group row">
+        <label class="col-lg-2 col-form-label col-form-label-lg" for="name">Name:</label>
+        <div class="col-lg-5">
+          <input class="form-control form-control-lg" type="text" name="name" [(ngModel)]="updateTrail.name" value="{{trailToUpdate.name}}"/>
+        </div>
+      </div>
+      <!-- difficulty -->
+      <div class="form-group row">
+        <label class="col-lg-2 col-form-label col-form-label-lg" for="difficulty" >Difficulty:</label>
+        <div class="col-lg-5">
+          <input class="form-control form-control-lg" type="text" name="difficulty" [(ngModel)]="updateTrail.difficulty" value="{{trailToUpdate.difficulty}}"/>
+        </div>
+      </div>
+      <!-- length -->
+      <div class="form-group row">
+        <label class="col-lg-2 col-form-label col-form-label-lg" for="length" >Length:</label>
+        <div class="col-lg-5">
+          <input class="form-control form-control-lg" type="number" name="length" [(ngModel)]="updateTrail.length" value="{{trailToUpdate.length}}"/>
+        </div>
+      </div>
+      <!-- elevationGainLoss -->
+      <div class="form-group row">
+        <label class="col-lg-2 col-form-label col-form-label-lg" for="elevationGainLoss" >Elevation Gain/Loss:</label>
+        <div class="col-lg-5">
+          <input class="form-control form-control-lg" type="number" name="elevationGainLoss" [(ngModel)]="updateTrail.elevationGainLoss" value="{{trailToUpdate.elevationGainLoss}}"/>
+        </div>
+      </div>
+      <!-- features -->
+      <div class="form-group row">
+        <label class="col-lg-2 col-form-label col-form-label-lg" for="features">Features:</label>
+        <div class="col-lg-5">
+          <input class="form-control form-control-lg" type="text" name="features" [(ngModel)]="updateTrail.features" value="{{trailToUpdate.features}}"/>
+        </div>
+      </div>
+      <!-- buttons -->
+      <button class="btn btn-outline-danger" (click)="cancelTrail()">Cancel</button>
+      <button class="btn btn-outline-success" (click)="submitUpdatedTrail()">Submit</button>
+    </form> <!-- update trail form -->
+  </div> <!-- temp trail -->
+</div> <!-- *ngIf update trail -->
+
+
+  <!-- DELETE TRAIL -->
+  <div *ngIf="deleteTrail">
+    <div class="form-group">
+      <label class="col-lg-2 col-form-label col-form-label-lg" for="trailSelector">Select Trail</label>
+      <select class="form-control" name="trailSelector" [(ngModel)]="trailToDelete.id">
+        <option *ngFor="let trail of trailList" value="{{trail.id}}" >{{trail.name}}</option>
+      </select>
+      <button class="btn btn-outline-danger" (click)="cancelTrail()">Cancel</button>
+      <button class="btn btn-outline-success" (click)="submitDeleteTrail(trailToDelete.id)">Submit</button>
+    </div>
+</div> <!-- *ngIf delete trail -->
+
+
+<!--
   RESORT
 -->
 
@@ -314,7 +439,7 @@
       <button class="btn btn-outline-success" (click)="submitUpdatedResort()">Submit</button>
     </form> <!-- update resort form -->
   </div> <!-- temp resort -->
-</div> <!-- *ngIf update mountain -->
+</div> <!-- *ngIf update resort -->
 
 
 <!-- DELETE RESORT -->

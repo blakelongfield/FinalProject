@@ -16,9 +16,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 public class Trail {
@@ -38,6 +36,8 @@ public class Trail {
 	private Integer elevationGainLoss;
 	
 	private String features;
+	
+	private Boolean active;
 	
 //	@JsonBackReference(value="mountainToTrails")
 	@JsonIgnore
@@ -107,6 +107,14 @@ public class Trail {
 
 	public void setFeatures(String features) {
 		this.features = features;
+	}
+
+	public Boolean getActive() {
+		return active;
+	}
+
+	public void setActive(Boolean active) {
+		this.active = active;
 	}
 
 	public Mountain getMountain() {
@@ -180,8 +188,12 @@ public class Trail {
 	/*
 	 * constructors
 	 */
+	public Trail() {
+		super();
+	}
+
 	public Trail(int id, String name, Difficulty difficulty, Integer length, Integer elevationGainLoss, String features,
-			Mountain mountain, List<ChairLift> lifts, List<Report> reports) {
+			Boolean active, Mountain mountain, List<ChairLift> lifts, List<Report> reports) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -189,13 +201,10 @@ public class Trail {
 		this.length = length;
 		this.elevationGainLoss = elevationGainLoss;
 		this.features = features;
+		this.active = active;
 		this.mountain = mountain;
 		this.lifts = lifts;
 		this.reports = reports;
-	}
-
-	public Trail() {
-		super();
 	}
 	
 

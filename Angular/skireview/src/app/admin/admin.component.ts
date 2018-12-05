@@ -1,3 +1,4 @@
+import { ChairliftService } from './../chairlift.service';
 import { TrailDetailsService } from './../trail-details.service';
 import { MountainService } from './../mountain.service';
 import { Mountain } from './../models/mountain';
@@ -42,7 +43,7 @@ export class AdminComponent implements OnInit {
   updateResort: Resort = null;
   resortList: Resort[] = [];
   resortToUpdate: Resort = null;
-  resortToDelete: Rerort = null;
+  resortToDelete: Resort = null;
   deleteResort: boolean = null;
   tempResort = false;
 
@@ -50,7 +51,8 @@ export class AdminComponent implements OnInit {
   constructor(
     private mountainService: MountainService,
     private trailService: TrailDetailsService,
-    private resortService: ResortService
+    private resortService: ResortService,
+    private chairliftService: ChairliftService
   ) { }
 
   // nothing happeing on init
@@ -83,6 +85,7 @@ export class AdminComponent implements OnInit {
   addTrailForm() {
     this.title = 'Add Trail';
     this.addTrail = new Trail;
+    this.findAllMountains();
   }
 
   // button click event that shows the update trail form
@@ -127,6 +130,7 @@ export class AdminComponent implements OnInit {
     this.deleteMountain = null;
     this.tempMountain = false;
     this.mountainToDelete = null;
+    this.resortList = [];
   }
   // button click event that returns back to initial buttons
   cancelTrail() {
@@ -136,6 +140,9 @@ export class AdminComponent implements OnInit {
     this.trailList = [];
     this.trailToUpdate = null;
     this.deleteTrail = null;
+    this.tempTrail = false;
+    this.trailToDelete = null;
+    this.mountainList = [];
   }
 
   // button click event that returns back to initial buttons
@@ -271,6 +278,8 @@ export class AdminComponent implements OnInit {
       singleTrail => {
         console.log(singleTrail);
         this.trailToUpdate = singleTrail;
+        this.updateTrail = singleTrail;
+        this.tempTrail = true;
       },
       error => {
         console.error('admin.findSingleTrail(): Error finding Trail');

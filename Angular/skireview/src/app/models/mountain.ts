@@ -8,11 +8,22 @@ export class Mountain {
   baseElevation: number;
   peakElevation: number;
   mountainMapUrl: string;
+  active: boolean;
   trails: Trail[];
   resort: Resort;
 
-  // tslint:disable-next-line:max-line-length
-  constructor(id?: number, name?: string, numberOfRuns?: number, numberOfLifts?: number, baseElevation?: number, peakElevation?: number, mountainMapUrl?: string, trails ?: Trail[], resort?: Resort) {
+  constructor(
+    id?: number,
+    name?: string,
+    numberOfRuns?: number,
+    numberOfLifts?: number,
+    baseElevation?: number,
+    peakElevation?: number,
+    mountainMapUrl?: string,
+    active?: boolean,
+    trails ?: Trail[],
+    resort?: Resort
+    ) {
     this.id = id;
     this.name = name;
     this.numberOfRuns = numberOfRuns;
@@ -20,6 +31,7 @@ export class Mountain {
     this.baseElevation = baseElevation;
     this.peakElevation = peakElevation;
     this.mountainMapUrl = mountainMapUrl;
+    this.active = active;
     this.trails = trails;
     this.resort = resort;
   }

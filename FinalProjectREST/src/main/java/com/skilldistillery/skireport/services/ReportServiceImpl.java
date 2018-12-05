@@ -30,7 +30,7 @@ public class ReportServiceImpl implements ReportService {
 	@Override
 	public List<Report> findAll() {
 
-		return repo.findAll();
+		return repo.findAllWhereActiveIsTrue();
 	}
 
 	// FIND REPORTS BY USERNAME

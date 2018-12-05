@@ -6,22 +6,34 @@ export class Report {
   reportText: string;
   rating: number;
   imageURL: string;
-  vote: number;
+  votes: number;
+  active: boolean;
   user: User;
   trail: Trail;
   mountain: Mountain;
   comment: Comment;
 
-  // tslint:disable-next-line:max-line-length
-  constructor( id?: number, rtext?: string, rating?: number, image?: string, vote?: number, user?: User, mtn?: Mountain, trail?: Trail, comment?: Comment) {
+  constructor(
+    id?: number,
+    rtext?: string,
+    rating?: number,
+    image?: string,
+    votes?: number,
+    active?: boolean,
+    user?: User,
+    mountain?: Mountain,
+    trail?: Trail,
+    comment?: Comment
+    ) {
     this.id = id;
     this.reportText = rtext;
     this.rating = rating;
     this.imageURL = image;
-    this.vote = vote;
+    this.votes = votes;
+    this.active = active;
     this.user = user;
     this.trail = trail;
-    this.mountain = mtn;
+    this.mountain = mountain;
     this.comment = comment;
   }
 }

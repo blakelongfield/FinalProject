@@ -29,7 +29,7 @@ public class MountainServiceImpl implements MountainService {
 	@Override
 	public List<Mountain> findAll() {
 
-		return mountRepo.findAll();
+		return mountRepo.findAllWhereActiveIsTrue();
 	}
 
 //	Lists mountain by ID

@@ -32,6 +32,8 @@ public class Resort {
 	
 	private Integer acres;
 	
+	private Boolean active;
+	
 	@JsonIgnore
 	@OneToMany(cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, mappedBy="resort")
 	private List<Mountain> mountains;
@@ -103,6 +105,14 @@ public class Resort {
 		this.acres = acres;
 	}
 	
+	public Boolean getActive() {
+		return active;
+	}
+
+	public void setActive(Boolean active) {
+		this.active = active;
+	}
+
 	public List<Mountain> getMountains() {
 		return mountains;
 	}
@@ -158,8 +168,12 @@ public class Resort {
 	/*
 	 * constructors
 	 */
+	public Resort() {
+		super();
+	}
+
 	public Resort(int id, String street, String street2, String city, String state, String zip, String name,
-			Integer acres, List<Mountain> mountains) {
+			Integer acres, Boolean active, List<Mountain> mountains) {
 		super();
 		this.id = id;
 		this.street = street;
@@ -169,11 +183,8 @@ public class Resort {
 		this.zip = zip;
 		this.name = name;
 		this.acres = acres;
+		this.active = active;
 		this.mountains = mountains;
-	}
-
-	public Resort() {
-		super();
 	}
 	
 }

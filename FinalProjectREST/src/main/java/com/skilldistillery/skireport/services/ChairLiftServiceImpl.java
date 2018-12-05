@@ -23,7 +23,7 @@ public class ChairLiftServiceImpl implements ChairLiftService {
 	@Override
 	public List<ChairLift> findAll() {
 		
-		return repo.findAll();
+		return repo.findAllWhereActiveIsTrue();
 	}
 
 	//FIND CHAIRLIFT BY ID
