@@ -7,12 +7,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.skilldistillery.skireport.entities.Resort;
+import com.skilldistillery.skireport.entities.User;
 import com.skilldistillery.skireport.repositories.ResortRepository;
+import com.skilldistillery.skireport.repositories.UserRepository;
 
 @Service
 public class ResortServiceImpl implements ResortService {
 	@Autowired
 	private ResortRepository resortRepo;
+	
+	@Autowired
+	private UserRepository userRepo;
 
 	@Override
 	public List<Resort> findAll() {
@@ -58,6 +63,46 @@ public class ResortServiceImpl implements ResortService {
 	}
 
 	@Override
+	public Boolean disable(int resortId, String username) {
+		Boolean disableResort = false;
+		Resort resortFound = null;
+		User user = userRepo.findByUsername(username);
+		if(user != null) {
+			if(user.getRole().equals("Admin")) {
+				Optional<Resort> optionalResort = resortRepo.findById(resortId);
+				if(optionalResort.isPresent()) {
+					resortFound = optionalResort.get();
+					for (int h = 0; h < resortFound.getMountains().size()-1; h++) { // get mountains on resort
+						for (int h2 = 0; h2 < resortFound.getMountains().get(h).getReports().size()-1; h2++) { // get reports on mountains on resort
+							resortFound.getMountains().get(h).getReports().get(h2).setActive(false);
+						}
+						for (int h3 = 0; h3 < resortFound.getMountains().get(h).getChairlifts().size()-1; h3++) {
+							resortFound.getMountains().get(h).getChairlifts().get(h3).setActive(false);
+						}
+						for (int i = 0; i < resortFound.getMountains().get(h).getTrails().size()-1; i++) { //get trails on mountain on resort
+							for (int j = 0; j < resortFound.getMountains().get(h).getTrails().get(i).getReports().size()-1; j++) { // get reports on trails on mountain on resort
+								for (int j2 = 0; j2 < resortFound.getMountains().get(h).getTrails().get(i).getReports().get(j).getComments().size()-1; j2++) { // get comments on reports on trails on mountain on resort
+									for (int k = 0; k < resortFound.getMountains().get(h).getTrails().get(i).getReports().get(j).getComments().get(j2).getComments().size()-1; k++) { // get comments on comments on reports on trails on mountain
+										resortFound.getMountains().get(h).getTrails().get(i).getReports().get(j).getComments().get(j2).getComments().get(k).setActive(false);
+									}
+									resortFound.getMountains().get(h).getTrails().get(i).getReports().get(j).getComments().get(j2).setActive(false);
+								}
+								resortFound.getMountains().get(h).getTrails().get(i).getReports().get(j).setActive(false);;
+							}
+							resortFound.getMountains().get(h).getTrails().get(i).setActive(false);
+						}
+						resortFound.getMountains().get(h).setActive(false);
+					}
+					resortFound.setActive(false);
+					disableResort = true;
+					resortRepo.saveAndFlush(resortFound);
+				}
+			}
+		}
+		return disableResort;
+	}
+
+	@Override
 	public Boolean destroy(int resortId, String username) {
 		Boolean deletedResort = false;
 		if (resortRepo.existsById(resortId)) {
@@ -66,4 +111,5 @@ public class ResortServiceImpl implements ResortService {
 		}
 		return deletedResort;
 	}
+
 }

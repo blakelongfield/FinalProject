@@ -70,6 +70,18 @@ public class ResortController {
 		}
 		return resort;
 	}
+	
+	@DeleteMapping("resorts/disable/{resortId}")
+	public Boolean disableResort(@PathVariable("resortId") int resortId, HttpServletResponse resp) {
+		Boolean disableResort = null;
+		disableResort = resortService.disable(resortId, username);
+		if (disableResort) {
+			resp.setStatus(200);
+		} else {
+			resp.setStatus(400);
+		}
+		return disableResort;
+	}
 
 	@DeleteMapping(path = "resorts/{resortId}")
 	public Boolean deleteResort(@PathVariable("resortId") int resortId, HttpServletResponse resp,
