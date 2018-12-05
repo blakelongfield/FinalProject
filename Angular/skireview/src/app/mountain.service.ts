@@ -57,6 +57,15 @@ export class MountainService {
     );
   }
 
+  public disable(id: number) {
+    return this.http.delete(this.url + `/disable/${id}`).pipe(
+      catchError((error: any) => {
+        console.error(error);
+        return throwError('mountainService.disable(): Error disabling mountain');
+      })
+    );
+  }
+
   public delete(id: number) {
     return this.http.delete(this.url + `/${id}`).pipe(
       catchError((error: any) => {
