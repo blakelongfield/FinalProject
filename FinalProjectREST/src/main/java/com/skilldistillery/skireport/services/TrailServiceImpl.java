@@ -164,9 +164,15 @@ public class TrailServiceImpl implements TrailService {
 
 	@Override
 	public List<Trail> findTrailsWithLiftsByMtnId(Integer id) {
-		
-		return trailRepo.findTrailswithCLByMtnId(id);
+		// TODO Auto-generated method stub
+		return null;
 	}
+
+//	@Override
+//	public List<Trail> findTrailsWithLiftsByMtnId(Integer id) {
+//		
+//		return trailRepo.findTrailswithCLByMtnId(id);
+//	}
 
 	
 
