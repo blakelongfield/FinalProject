@@ -170,4 +170,16 @@ export class TrailDetailsComponent implements OnInit {
       }
     );
   }
+
+  public createReportOnTrail(report, id) {
+    this.reportService.createReportTrail(report, id).subscribe(
+      data => {
+        console.log('creating a comment on a report');
+      },
+      err => {
+        console.error('trail-details.component.createReportOnTrail(): Error creating report');
+        console.log(err);
+      }
+    );
+  }
 }
