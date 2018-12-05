@@ -33,6 +33,7 @@ public class ResortServiceImpl implements ResortService {
 	@Override
 	public Resort create(Resort resort, String username) {
 		if (username != null) {
+			resort.setActive(true);
 			resortRepo.saveAndFlush(resort);
 		}
 		return resort;
