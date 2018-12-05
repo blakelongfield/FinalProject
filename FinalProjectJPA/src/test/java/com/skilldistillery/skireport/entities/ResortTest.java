@@ -59,6 +59,7 @@ class ResortTest {
 		assertEquals(1428, resort.getAcres().intValue());
 		assertEquals(1, resort.getMountains().size());
 		assertEquals("Arapahoe Basin", resort.getMountains().get(0).getName());
+		assertTrue(resort.getActive());
 	}
 
 }

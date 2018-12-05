@@ -1,6 +1,7 @@
 package com.skilldistillery.skireport.entities;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -28,12 +29,6 @@ class ReportTests {
 		report = em.find(Report.class, 1);
 	}
 	
-	@Test
-	void test1() {
-		assertEquals(5, report.getRating().intValue());
-		assertEquals("Great Powder Today", report.getReportText());
-	}
-	
 	@AfterAll
 	static void tearDownAfterClasS() {
 		emf.close();
@@ -43,4 +38,12 @@ class ReportTests {
 	void tearDown() throws Exception {
 		em.close();
 	}
+	
+	@Test
+	void test1() {
+		assertEquals("report 1 on trail 1", report.getReportText());
+		assertEquals(5, report.getRating().intValue());
+		assertTrue(report.getActive());
+	}
+	
 }

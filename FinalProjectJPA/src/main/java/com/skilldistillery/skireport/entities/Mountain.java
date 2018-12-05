@@ -37,6 +37,8 @@ public class Mountain {
 	@Column(name="mountain_map_url")
 	private String imgUrl;
 	
+	private Boolean active;
+	
 	@JsonIgnore
 //	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
 	@ManyToOne
@@ -51,6 +53,9 @@ public class Mountain {
 	//@JsonIgnore
 	@OneToMany(mappedBy="mountain", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
 	private List<Trail> trails;
+	
+	@OneToMany(mappedBy="mountain")
+	private List<ChairLift> chairlifts;
 
 	/*
 	 * getters / setters
@@ -111,6 +116,14 @@ public class Mountain {
 		this.imgUrl = imgUrl;
 	}
 
+	public Boolean getActive() {
+		return active;
+	}
+
+	public void setActive(Boolean active) {
+		this.active = active;
+	}
+
 	public Resort getResort() {
 		return resort;
 	}
@@ -133,6 +146,14 @@ public class Mountain {
 
 	public void setTrails(List<Trail> trails) {
 		this.trails = trails;
+	}
+
+	public List<ChairLift> getChairlifts() {
+		return chairlifts;
+	}
+
+	public void setChairlifts(List<ChairLift> chairlifts) {
+		this.chairlifts = chairlifts;
 	}
 
 	/*
