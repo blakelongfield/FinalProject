@@ -65,8 +65,8 @@ export class TrailDetailsService {
   }
 
 
-  public deleteTrail(id: number) {
-    return this.http.delete<Trail>(this.url).pipe(
+  public disableTrail(id: number) {
+    return this.http.delete<Trail>(this.url + `/${id}`).pipe(
       catchError((error: any) => {
         console.log(error);
         return throwError('ERROR - trail-details.deleteTrail(): Error deleting trail');

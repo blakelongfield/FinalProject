@@ -113,6 +113,18 @@ public class TrailController {
 		}
 		return patchTrail;
 	}
+	
+	@DeleteMapping("trails/disable/{trailId}")
+	public Boolean disable(@PathVariable("trailId") int trailId, HttpServletResponse resp) {
+		Boolean disableTrail = null;
+		disableTrail = trailService.disable(trailId, username);
+		if (disableTrail) {
+			resp.setStatus(200);
+		} else {
+			resp.setStatus(400);
+		}
+		return disableTrail;
+	}
 
 	@DeleteMapping("trails/{trailId}")
 	public Boolean destroy(@PathVariable("trailId") int trailId, HttpServletResponse resp) {

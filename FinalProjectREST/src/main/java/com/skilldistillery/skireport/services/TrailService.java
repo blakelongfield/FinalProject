@@ -21,6 +21,8 @@ public interface TrailService {
 	Trail patch(Trail trail, int trailId, String username);
 
 	Boolean destroy(int trailId, String username);
+
+	Boolean disable(int trailId, String username);
 	
 	
 
