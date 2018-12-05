@@ -148,6 +148,27 @@ public class TrailServiceImpl implements TrailService {
 	}
 
 	@Override
+	public Boolean disable(int trailId, String username) {
+		boolean disableTrail = false;
+		Trail trailFound = null;
+		User user = userRepository.findByUsername(username);
+		if(user != null) {
+			if(user.getRole().equals("Admin")) {
+				Optional<Trail> optionalTrail = trailRepo.findById(trailId);
+				if(optionalTrail.isPresent()) {
+					
+					trailFound = optionalTrail.get();
+					trailFound.setActive(false);
+					disableTrail = true;
+					trailRepo.saveAndFlush(trailFound);
+					
+				}
+			}
+		}
+		return disableTrail;
+	}
+
+	@Override
 	public Boolean destroy(int trailId, String username) {
 		boolean destroy = false;
 		User user = userRepository.findByUsername(username);
@@ -167,6 +188,7 @@ public class TrailServiceImpl implements TrailService {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
 
 //	@Override
 //	public List<Trail> findTrailsWithLiftsByMtnId(Integer id) {
