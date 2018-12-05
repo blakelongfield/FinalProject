@@ -33,7 +33,7 @@ public class Comment {
 	@JoinColumn(name="report_id")
 	private Report report;
 	
-	@JsonBackReference(value="userToComment")
+//	@JsonBackReference(value="userToComment")
 	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
 	@JoinColumn(name="user_id")
 	private User user;

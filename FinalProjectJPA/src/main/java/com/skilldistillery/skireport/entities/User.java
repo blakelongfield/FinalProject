@@ -39,7 +39,8 @@ public class User {
 	@Column(name="profile_pic_url")
 	private String imgUrl;
 	
-	@JsonManagedReference(value="userToComment")
+//	@JsonManagedReference(value="userToComment")
+	@JsonIgnore
 	@OneToMany(mappedBy="user", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
 	private List<Comment> comments;
 	
