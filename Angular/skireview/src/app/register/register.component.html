@@ -1,11 +1,31 @@
-<form>
+<div id="backgroundBox">
 
-<input type="text" name="firstname" placeholder="First Name" [(ngModel)]="newUser.firstName" /><br>
-<input type="text" name="lastname" placeholder="Last Name" [(ngModel)]="newUser.lastName" /><br>
-<input type="text" name="username" placeholder="Username" [(ngModel)]="newUser.username" /><br>
-<input type="text" name="password" placeholder="Password" [(ngModel)]="newUser.password" /><br>
-<input type="text" name="email" placeholder="Email" [(ngModel)]="newUser.email" /><br>
+<!-- <img class="registerPhoto" src="assets/whistler-blackcomb-vail.jpg" alt="Photo of Whistler Mountain"> -->
+
+
+
+</div>
+
+
+<div id="box">
+
+<h3 id="registrationText">Register New Account</h3>
+
+<form id="registration">
+ <div>
+<input type="text" name="firstname" placeholder="First Name" [(ngModel)]="newUser.firstName" />
+<input type="text" name="lastname" placeholder="Last Name" [(ngModel)]="newUser.lastName" />
+</div>
+
+<div>
+<input type="text" name="username" placeholder="Username" [(ngModel)]="newUser.username" />
+<input type="text" name="password" placeholder="Password" [(ngModel)]="newUser.password" />
+</div>
+<input type="text" name="email" placeholder="Email" [(ngModel)]="newUser.email" />
 <input type="text" name="imgUrl" placeholder="Image Url" [(ngModel)]="newUser.profilePic" /><br>
 <button (click)="register(newUser)">Register</button>
 
 </form>
+</div>
+
+
