@@ -5,7 +5,6 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
-import org.apache.logging.log4j.util.PropertySource.Comparator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -28,7 +27,7 @@ public class TrailServiceImpl implements TrailService {
 
 	@Override
 	public List<Trail> findAll() {
-		return trailRepo.findAll();
+		return trailRepo.findAllWhereActiveIsTrue();
 	}
 	
 	@Override
@@ -53,24 +52,17 @@ public class TrailServiceImpl implements TrailService {
 			TrailSortByFeature sortFeature = new TrailSortByFeature();
 			for (int i = 0; i < trails.size() -1; i++) {
 				if(trails.get(i).getFeatures() != null ) {
-					// adds null trails to new nullList array
+					// adds trails with features  to new featureList array
 					featureList.add(trails.get(i));
 					// removes null trails from original trails list
-					trails.remove(trails.get(i));
+					//trails.remove(trails.get(i));
 					
 					
 				}
 			}
-			System.out.println(featureList.size());
-			System.out.println("*************************" + trails.size());
 			trails = featureList;
 			Collections.sort(trails, sortFeature);
-			
 		}
-		
-		
-		
-		
 		return trails;
 	}
 

@@ -37,10 +37,17 @@ public class ChairLift {
 	
 	private String hours;
 	
+	private Boolean active;
+	
 //	@JsonBackReference(value="trailToChairLift")
 	@JsonIgnore
 	@ManyToMany(mappedBy="lifts", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
 	private List<Trail> trails;
+	
+	@JsonIgnore
+	@ManyToOne
+	@JoinColumn(name="mountain_id")
+	private Mountain mountain;
 
 	/*
 	 * getters / setters
@@ -85,12 +92,28 @@ public class ChairLift {
 		this.hours = hours;
 	}
 
+	public Boolean getActive() {
+		return active;
+	}
+
+	public void setActive(Boolean active) {
+		this.active = active;
+	}
+
 	public List<Trail> getTrails() {
 		return trails;
 	}
 
 	public void setTrails(List<Trail> trails) {
 		this.trails = trails;
+	}
+
+	public Mountain getMountain() {
+		return mountain;
+	}
+
+	public void setMountain(Mountain mountain) {
+		this.mountain = mountain;
 	}
 
 	/*
@@ -141,14 +164,17 @@ public class ChairLift {
 		super();
 	}
 
-	public ChairLift(int id, String name, Double rideLength, LiftType type, String hours, List<Trail> trails) {
+	public ChairLift(int id, String name, Double rideLength, LiftType type, String hours, Boolean active,
+			List<Trail> trails, Mountain mountain) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.rideLength = rideLength;
 		this.type = type;
 		this.hours = hours;
+		this.active = active;
 		this.trails = trails;
+		this.mountain = mountain;
 	}
 	
 	

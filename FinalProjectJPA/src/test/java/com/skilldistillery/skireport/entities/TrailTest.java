@@ -47,14 +47,15 @@ class TrailTest {
 	@DisplayName("Test Trail mappings")
 	void test_trail_mappings() {
 		assertNotNull(trail);
-		assertEquals("Lower Chisholm Trail", trail.getName());
-		assertEquals(Difficulty.BEGINNER, trail.getDifficulty());
+		assertEquals("High Noon", trail.getName());
+		assertEquals(Difficulty.INTERMEDIATE, trail.getDifficulty());
 		assertNull(trail.getLength());
 		assertNull(trail.getElevationGainLoss());
-		assertNull(trail.getFeatures());
+		assertEquals("Groomed", trail.getFeatures());
 		assertEquals(1, trail.getMountain().getId());
 		assertEquals(1, trail.getLifts().get(0).getId());
 		assertEquals(1, trail.getReports().get(0).getId());
+		assertTrue(trail.getActive());
 	}
 
 }

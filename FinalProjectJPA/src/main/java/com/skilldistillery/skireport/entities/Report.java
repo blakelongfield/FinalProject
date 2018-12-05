@@ -41,6 +41,8 @@ public class Report {
 	@Column(name="vote")
 	private Integer votes;
 	
+	private Boolean active;
+	
 //	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
 	@ManyToOne
 	@JoinColumn(name="user_id")
@@ -109,6 +111,14 @@ public class Report {
 
 	public void setVotes(Integer votes) {
 		this.votes = votes;
+	}
+
+	public Boolean getActive() {
+		return active;
+	}
+
+	public void setActive(Boolean active) {
+		this.active = active;
 	}
 
 	public User getUser() {
@@ -194,9 +204,9 @@ public class Report {
 	public Report() {
 		super();
 	}
-	
-	public Report(int id, String reportText, Integer rating, String imgUrl, Date dateCreated, Integer votes, User user,
-			Trail trail, Mountain mountain, List<Comment> comments) {
+
+	public Report(int id, String reportText, Integer rating, String imgUrl, Date dateCreated, Integer votes,
+			Boolean active, User user, Trail trail, Mountain mountain, List<Comment> comments) {
 		super();
 		this.id = id;
 		this.reportText = reportText;
@@ -204,6 +214,7 @@ public class Report {
 		this.imgUrl = imgUrl;
 		this.dateCreated = dateCreated;
 		this.votes = votes;
+		this.active = active;
 		this.user = user;
 		this.trail = trail;
 		this.mountain = mountain;

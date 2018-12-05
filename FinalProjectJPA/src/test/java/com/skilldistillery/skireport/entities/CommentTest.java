@@ -17,6 +17,7 @@ class CommentTest {
 	
 	private static EntityManagerFactory emf;
 	private EntityManager em;
+	private Comment comment;
 
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
@@ -31,6 +32,7 @@ class CommentTest {
 	@BeforeEach
 	void setUp() throws Exception {
 		em = emf.createEntityManager();
+		comment = em.find(Comment.class, 1);
 	}
 
 	@AfterEach
@@ -41,12 +43,12 @@ class CommentTest {
 	@Test
 	@DisplayName("test comments connects to database")
 	void test() {
-		Comment comment = em.find(Comment.class, 1);
 		
 		assertNotNull(comment);
-		assertEquals("Awesome powder", comment.getCommentText());
+		assertEquals("comment 1 on report 1", comment.getCommentText());
 		assertEquals(2, comment.getComments().size());
-		assertEquals("Totally", comment.getComments().get(0).getCommentText());
+		assertEquals("comment 1 on comment 1", comment.getComments().get(0).getCommentText());
+		assertTrue(comment.getActive());
 	}
 	
 	

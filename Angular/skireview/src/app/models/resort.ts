@@ -7,9 +7,19 @@ export class Resort {
   zip: string;
   name: string;
   acres: number;
+  active: boolean;
 
-  // tslint:disable-next-line:max-line-length
-  constructor(id?: number, street?: string, street2?: string, city?: string, state?: string, zip?: string, name?: string, acres?: number) {
+  constructor(
+    id?: number,
+    street?: string,
+    street2?: string,
+    city?: string,
+    state?: string,
+    zip?: string,
+    name?: string,
+    acres?: number,
+    active?: boolean
+    ) {
     this.id = id;
     this.street = street;
     this.street2 = street2;
@@ -18,5 +28,6 @@ export class Resort {
     this.zip = zip;
     this.name = name;
     this.acres = acres;
+    this.active = active;
 }
 }
