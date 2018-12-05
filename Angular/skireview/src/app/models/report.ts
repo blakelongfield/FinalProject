@@ -12,6 +12,8 @@ export class Report {
   trail: Trail;
   mountain: Mountain;
   comment: Comment;
+  dateCreated: Date;
+
 
   constructor(
     id?: number,
