@@ -156,8 +156,16 @@ public class TrailServiceImpl implements TrailService {
 			if(user.getRole().equals("Admin")) {
 				Optional<Trail> optionalTrail = trailRepo.findById(trailId);
 				if(optionalTrail.isPresent()) {
-					
 					trailFound = optionalTrail.get();
+					for (int i = 0; i < trailFound.getReports().size()-1; i++) { 
+						for (int j = 0; j < trailFound.getReports().get(i).getComments().size()-1; j++) {
+							for (int j2 = 0; j2 < trailFound.getReports().get(i).getComments().get(j).getComments().size()-1; j2++) {
+								trailFound.getReports().get(i).getComments().get(j).getComments().get(j2).setActive(false);
+							}
+							trailFound.getReports().get(i).getComments().get(j).setActive(false);
+						}
+						trailFound.getReports().get(i).setActive(false);
+					}
 					trailFound.setActive(false);
 					disableTrail = true;
 					trailRepo.saveAndFlush(trailFound);
