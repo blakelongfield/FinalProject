@@ -308,7 +308,8 @@ INSERT INTO `user` (`id`, `first_name`, `last_name`, `username`, `password`, `em
 INSERT INTO `user` (`id`, `first_name`, `last_name`, `username`, `password`, `email`, `role`, `active`, `profile_pic_url`) VALUES (2, 'Kyle', 'Paladini', 'kyle', 'kyle', 'kyle@kyle.com', 'Admin', true, NULL);
 INSERT INTO `user` (`id`, `first_name`, `last_name`, `username`, `password`, `email`, `role`, `active`, `profile_pic_url`) VALUES (3, 'Tyler', 'Paladini', 'tyler', 'tyler', 'tyler@tyler.com', 'Admin', true, NULL);
 INSERT INTO `user` (`id`, `first_name`, `last_name`, `username`, `password`, `email`, `role`, `active`, `profile_pic_url`) VALUES (4, 'Blake', 'Longfield', 'blake', 'blake', 'blake@blake.com', 'Admin', true, NULL);
-INSERT INTO `user` (`id`, `first_name`, `last_name`, `username`, `password`, `email`, `role`, `active`, `profile_pic_url`) VALUES (5, 'John', 'smith', 'john', 'john', 'john@john.com', 'Standard', true, NULL);
+INSERT INTO `user` (`id`, `first_name`, `last_name`, `username`, `password`, `email`, `role`, `active`, `profile_pic_url`) VALUES (5, 'John', 'Smith', 'john', 'john', 'john@john.com', 'Standard', true, NULL);
+INSERT INTO `user` (`id`, `first_name`, `last_name`, `username`, `password`, `email`, `role`, `active`, `profile_pic_url`) VALUES (6, 'John', 'Smith', 'smith', 'smith', 'smith@smith.com', 'Standard', false, NULL);
 
 COMMIT;
 
@@ -320,6 +321,7 @@ START TRANSACTION;
 USE `skireviewdb`;
 INSERT INTO `resort` (`id`, `street`, `street2`, `city`, `state`, `zip`, `name`, `acres`, `active`) VALUES (1, '28194 US Hwy 6', NULL, 'Keystone', 'CO', '80435', 'Arapahoe Basin', 1428, true);
 INSERT INTO `resort` (`id`, `street`, `street2`, `city`, `state`, `zip`, `name`, `acres`, `active`) VALUES (2, 'Vail', NULL, 'Vail', 'CO', '81658', 'Vail', 5289, true);
+INSERT INTO `resort` (`id`, `street`, `street2`, `city`, `state`, `zip`, `name`, `acres`, `active`) VALUES (3, 'Test Street', 'Test Street2', 'Test City', 'CO', '00000', 'Test Name', 100, false);
 
 COMMIT;
 
@@ -331,6 +333,7 @@ START TRANSACTION;
 USE `skireviewdb`;
 INSERT INTO `mountain` (`id`, `name`, `number_of_trails`, `number_of_lifts`, `elevation_base`, `elevation_peak`, `mountain_map_url`, `active`, `resort_id`) VALUES (1, 'Arapahoe Basin', 145, 9, 10780, 13050, NULL, true, 1);
 INSERT INTO `mountain` (`id`, `name`, `number_of_trails`, `number_of_lifts`, `elevation_base`, `elevation_peak`, `mountain_map_url`, `active`, `resort_id`) VALUES (2, 'Vail', 195, 31, 8120, 11570, NULL, true, 2);
+INSERT INTO `mountain` (`id`, `name`, `number_of_trails`, `number_of_lifts`, `elevation_base`, `elevation_peak`, `mountain_map_url`, `active`, `resort_id`) VALUES (3, 'Test Name', 100, 100, 100, 101, NULL, false, 3);
 
 COMMIT;
 
@@ -689,6 +692,7 @@ INSERT INTO `trail` (`id`, `name`, `difficulty`, `length`, `elevation_gain_loss`
 INSERT INTO `trail` (`id`, `name`, `difficulty`, `length`, `elevation_gain_loss`, `features`, `active`, `mountain_id`) VALUES (347, 'Dragon\'s Teeth', 'HARD', NULL, NULL, NULL, TRUE, 2);
 INSERT INTO `trail` (`id`, `name`, `difficulty`, `length`, `elevation_gain_loss`, `features`, `active`, `mountain_id`) VALUES (348, 'Eagle\'s Nest Expressway', 'BEGINNER', NULL, NULL, NULL, TRUE, 2);
 INSERT INTO `trail` (`id`, `name`, `difficulty`, `length`, `elevation_gain_loss`, `features`, `active`, `mountain_id`) VALUES (349, 'Ridge Route', 'BEGINNER', NULL, NULL, NULL, TRUE, 2);
+INSERT INTO `trail` (`id`, `name`, `difficulty`, `length`, `elevation_gain_loss`, `features`, `active`, `mountain_id`) VALUES (350, 'Test Trail', 'EXPERT', NULL, NULL, NULL, false, 1);
 
 COMMIT;
 
@@ -702,7 +706,9 @@ INSERT INTO `report` (`id`, `report_text`, `rating`, `image_url`, `date_created`
 INSERT INTO `report` (`id`, `report_text`, `rating`, `image_url`, `date_created`, `vote`, `active`, `user_id`, `trail_id`, `mountain_id`) VALUES (2, 'report 1 on mountain 1', NULL, NULL, '2019-01-01 00:00:00', NULL, true, 5, NULL, 1);
 INSERT INTO `report` (`id`, `report_text`, `rating`, `image_url`, `date_created`, `vote`, `active`, `user_id`, `trail_id`, `mountain_id`) VALUES (3, 'report 2 on trail 1', 1, NULL, '2019-01-01 00:00:00', NULL, true, 5, 1, NULL);
 INSERT INTO `report` (`id`, `report_text`, `rating`, `image_url`, `date_created`, `vote`, `active`, `user_id`, `trail_id`, `mountain_id`) VALUES (4, 'report 1 on trail 2', 3, NULL, '2019-01-01 00:00:00', NULL, true, 5, 2, NULL);
-INSERT INTO `report` (`id`, `report_text`, `rating`, `image_url`, `date_created`, `vote`, `active`, `user_id`, `trail_id`, `mountain_id`) VALUES (5, 'report 2 on mountain 2', 4, NULL, '2019-01-01 00:00:00', NULL, true, 5, NULL, 2);
+INSERT INTO `report` (`id`, `report_text`, `rating`, `image_url`, `date_created`, `vote`, `active`, `user_id`, `trail_id`, `mountain_id`) VALUES (5, 'report 2 on mountain 2', NULL, NULL, '2019-01-01 00:00:00', NULL, true, 5, NULL, 2);
+INSERT INTO `report` (`id`, `report_text`, `rating`, `image_url`, `date_created`, `vote`, `active`, `user_id`, `trail_id`, `mountain_id`) VALUES (6, 'Test Report on Trail', 3, NULL, '2019-01-01 00:00:00', NULL, false, 5, 1, NULL);
+INSERT INTO `report` (`id`, `report_text`, `rating`, `image_url`, `date_created`, `vote`, `active`, `user_id`, `trail_id`, `mountain_id`) VALUES (7, 'Test Report on Mountain', 3, NULL, '2019-01-01 00:00:00', NULL, false, 5, NULL, 1);
 
 COMMIT;
 
@@ -771,6 +777,7 @@ INSERT INTO `chairlift` (`id`, `name`, `ride_length`, `hours`, `active`, `chairl
 INSERT INTO `chairlift` (`id`, `name`, `ride_length`, `hours`, `active`, `chairlift_type_id`, `mountain_id`) VALUES (38, 'SkyLine Express Lift', NULL, NULL, true, 1, 2);
 INSERT INTO `chairlift` (`id`, `name`, `ride_length`, `hours`, `active`, `chairlift_type_id`, `mountain_id`) VALUES (39, 'Earl\'s Express Lift', NULL, NULL, true, 1, 2);
 INSERT INTO `chairlift` (`id`, `name`, `ride_length`, `hours`, `active`, `chairlift_type_id`, `mountain_id`) VALUES (40, 'Pete\'s Express Lift', NULL, NULL, true, 1, 2);
+INSERT INTO `chairlift` (`id`, `name`, `ride_length`, `hours`, `active`, `chairlift_type_id`, `mountain_id`) VALUES (41, 'Test Chairlift', NULL, NULL, false, 10, 2);
 
 COMMIT;
 
@@ -916,6 +923,8 @@ INSERT INTO `comment` (`id`, `comment_text`, `active`, `report_id`, `user_id`, `
 INSERT INTO `comment` (`id`, `comment_text`, `active`, `report_id`, `user_id`, `comment_id`) VALUES (4, 'comment 2 on comment 1', true, NULL, 5, 1);
 INSERT INTO `comment` (`id`, `comment_text`, `active`, `report_id`, `user_id`, `comment_id`) VALUES (5, 'comment 1 on report 2', true, 3, 5, NULL);
 INSERT INTO `comment` (`id`, `comment_text`, `active`, `report_id`, `user_id`, `comment_id`) VALUES (6, 'comment 3 on report 1', true, 1, 5, NULL);
+INSERT INTO `comment` (`id`, `comment_text`, `active`, `report_id`, `user_id`, `comment_id`) VALUES (7, 'Test Comment on Report', false, 1, 5, NULL);
+INSERT INTO `comment` (`id`, `comment_text`, `active`, `report_id`, `user_id`, `comment_id`) VALUES (8, 'Test Comment on Comment', false, NULL, 5, 1);
 
 COMMIT;
 
