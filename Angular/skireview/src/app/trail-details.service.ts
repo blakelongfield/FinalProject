@@ -38,7 +38,7 @@ export class TrailDetailsService {
   }
 
   public createTrail(trail: Trail) {
-    return this.http.post<Trail>(this.url + '/mountains/' + trail.id, trail).pipe(
+    return this.http.post<Trail>(this.url + `/mountains/${trail.mountain}`, trail).pipe(
       catchError((error: any) => {
         console.log(error);
         return throwError('ERROR - trail-details.createTrail(): Error creating new trail');
