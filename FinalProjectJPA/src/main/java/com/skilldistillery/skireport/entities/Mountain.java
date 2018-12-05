@@ -194,6 +194,7 @@ public class Mountain {
 				.append(", baseElevation=").append(baseElevation)
 				.append(", peakElevation=").append(peakElevation)
 				.append(", imgUrl=").append(imgUrl)
+				.append(", active=").append(active)
 //				.append(", resort=").append(resort)
 //				.append(", reports=").append(reports.size())
 //				.append(", trails=").append(trails.size())

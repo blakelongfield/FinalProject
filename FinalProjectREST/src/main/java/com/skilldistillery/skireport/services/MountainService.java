@@ -16,6 +16,8 @@ public interface MountainService {
 	Mountain update(Mountain mountain, Integer mountainId, String username);
 	
 	Boolean destroy(Integer mountainId, String username);
+
+	Boolean disable(int mountainId, String username);
 	
 
 
