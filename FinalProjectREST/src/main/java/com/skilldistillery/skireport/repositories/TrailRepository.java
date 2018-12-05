@@ -14,8 +14,8 @@ public interface TrailRepository extends JpaRepository<Trail, Integer> {
 	@Query("SELECT trail FROM Trail trail WHERE active = true")
 	List<Trail> findAllWhereActiveIsTrue();
 	
-	@Query("SELECT tr FROM Trail tr JOIN FETCH Chairlift cl WHERE tr.mountain.id = :id")
-	List<Trail> findTrailswithCLByMtnId( Integer id);
+//	@Query("SELECT tr FROM Trail tr JOIN FETCH Chairlift cl WHERE tr.mountain.id = :id")
+//	List<Trail> findTrailswithCLByMtnId( Integer id);
 }
 
 
