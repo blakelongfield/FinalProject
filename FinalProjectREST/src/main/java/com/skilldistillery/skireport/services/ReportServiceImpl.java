@@ -85,6 +85,7 @@ public class ReportServiceImpl implements ReportService {
 					report.setMountain(mountain);
 				}
 			}
+		report.setActive(true);
 		repo.saveAndFlush(report);
 		}
 		return report;
