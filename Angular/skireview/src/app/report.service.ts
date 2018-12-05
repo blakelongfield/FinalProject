@@ -81,7 +81,7 @@ export class ReportService {
     }
 
     //// CREATE NEW REPORT ON A TRAIL
-    public createReportTrail(report: Report, trailId ) {
+    public createReportTrail(report, trailId ) {
       console.log('ReportService createReport(): report= ' + report);
       console.log('ReportService createReport(): trailId = ' + trailId);
       return this.http.post<Report>(this.url + '/trails/' + trailId, report, this.httpOptions)
@@ -95,7 +95,7 @@ export class ReportService {
     //// CREATE NEW REPORT ON A MTN
     public createReportMountain(report: Report, mtnId ) {
 
-      return this.http.post<Report>(this.url + '/trails/' + mtnId, report, this.httpOptions)
+      return this.http.post<Report>(this.url + '/trails/' + mtnId, report)
       .pipe(catchError((err: any) => {
         console.log(err);
         return throwError('COULD NOT CREATE MOUNTAIN REPORT');
