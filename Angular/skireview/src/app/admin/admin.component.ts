@@ -337,6 +337,8 @@ export class AdminComponent implements OnInit {
   deleteResortForm() {
     this.title = 'Delete Resort';
     this.deleteResort = true;
+    this.resortToDelete = new Resort();
+    this.findAllResorts();
   }
 
   // button click event that returns back to initial buttons
@@ -433,21 +435,21 @@ export class AdminComponent implements OnInit {
 
   // button click event that shows the add chairlift form
   addChairliftForm() {
-    this.title = 'Add Resort';
-    this.addResort = new Resort;
+    this.title = 'Add Chairlift';
+    this.addChairlift = new Chairlift;
   }
 
   // button click event that shows the update chairlift form
   updateChairliftForm() {
-    this.title = 'Update Resort';
-    this.updateResort = new Resort();
-    this.findAllResorts();
+    this.title = 'Update Chairlift';
+    this.updateChairlift = new Chairlift();
+    this.findAllChairlifts();
   }
 
   // button click event that shows the delete chairlift form
   deleteChairliftForm() {
-    this.title = 'Delete Resort';
-    this.deleteResort = true;
+    this.title = 'Delete Chairlift';
+    this.deleteChairlift = true;
   }
 
   // button click event that returns back to initial buttons
@@ -460,5 +462,78 @@ export class AdminComponent implements OnInit {
     this.deleteChairlift = null;
     this.tempChairlift = false;
     this.chairliftToDelete = null;
+  }
+
+  // add chairlift
+  submitNewChairlift() {
+    this.chairliftService.create(this.addChairlift).subscribe(
+      created => {
+        console.log(created);
+        this.cancelChairlift();
+      },
+      error => {
+        console.error('admin.submitNewChairlift(): Error creating Chairlift');
+        console.error(error);
+      }
+    );
+  }
+
+  // update resort
+  submitUpdatedChairlift() {
+    this.updateChairlift.id = this.chairliftToUpdate.id;
+    this.chairliftService.update(this.updateChairlift).subscribe(
+      updated => {
+        console.log(updated);
+        this.cancelChairlift();
+      },
+      error => {
+        console.error('admin.submitUpdatedChairlift(): Error updating Chairlift');
+        console.error(error);
+      }
+    );
+  }
+
+  // find all resorts
+  findAllChairlifts() {
+    this.chairliftService.index().subscribe(
+      chairliftIndex => {
+        console.log(chairliftIndex);
+        this.chairliftList = chairliftIndex;
+      },
+      error => {
+        console.error('admin.findAllChairlifts(): Error finding all Chairlifts');
+        console.error(error);
+      }
+    );
+  }
+
+  // find single resort
+  findSingleChairlift(chairliftId: number) {
+    this.chairliftService.show(chairliftId).subscribe(
+      singleChairlift => {
+        console.log(singleChairlift);
+        this.updateChairlift = singleChairlift;
+        this.chairliftToUpdate = singleChairlift;
+        this.tempChairlift = true;
+      },
+      error => {
+        console.error('admin.findSingleChairlift(): Error finding Chairlift');
+        console.error(error);
+      }
+    );
+  }
+
+  // delete resort
+  submitDeleteChairlift(deleteId: number) {
+    this.chairliftService.delete(deleteId).subscribe(
+      deleteChairlift => {
+        console.log(deleteChairlift);
+        this.cancelChairlift();
+      },
+      error => {
+        console.error('admin.submitDeleteChairlift(): Error deleting Chairlift');
+        console.error(error);
+      }
+    );
   }
 }

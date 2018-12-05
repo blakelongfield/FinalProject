@@ -29,7 +29,7 @@ export class ChairliftService {
   }
 
   public show(id: number) {
-    return this.http.get<Comment>(this.url + `/${id}`).pipe(
+    return this.http.get<Chairlift>(this.url + `/${id}`).pipe(
       catchError((error: any) => {
         console.error(error);
         return throwError('chairliftService.show(): Error getting chairlift');
