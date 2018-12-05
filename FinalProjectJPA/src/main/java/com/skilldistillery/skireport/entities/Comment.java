@@ -25,6 +25,8 @@ public class Comment {
 	@Column(name="comment_text")
 	private String commentText;
 	
+	private Boolean active;
+	
 //	@JsonBackReference(value="reportToComment")
 	@JsonIgnore
 	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
@@ -64,6 +66,14 @@ public class Comment {
 
 	public void setCommentText(String commentText) {
 		this.commentText = commentText;
+	}
+
+	public Boolean getActive() {
+		return active;
+	}
+
+	public void setActive(Boolean active) {
+		this.active = active;
 	}
 
 	public Report getReport() {
@@ -146,11 +156,12 @@ public class Comment {
 		super();
 	}
 
-	public Comment(int id, String commentText, Report report, User user, Comment mainComment,
+	public Comment(int id, String commentText, Boolean active, Report report, User user, Comment mainComment,
 			List<Comment> comments) {
 		super();
 		this.id = id;
 		this.commentText = commentText;
+		this.active = active;
 		this.report = report;
 		this.user = user;
 		this.mainComment = mainComment;

@@ -83,6 +83,7 @@ export class AdminComponent implements OnInit {
   addTrailForm() {
     this.title = 'Add Trail';
     this.addTrail = new Trail;
+    this.findAllMountains();
   }
 
   // button click event that shows the update trail form
@@ -127,6 +128,7 @@ export class AdminComponent implements OnInit {
     this.deleteMountain = null;
     this.tempMountain = false;
     this.mountainToDelete = null;
+    this.resortList = [];
   }
   // button click event that returns back to initial buttons
   cancelTrail() {
@@ -136,6 +138,9 @@ export class AdminComponent implements OnInit {
     this.trailList = [];
     this.trailToUpdate = null;
     this.deleteTrail = null;
+    this.tempTrail = false;
+    this.trailToDelete = null;
+    this.mountainList = [];
   }
 
   // button click event that returns back to initial buttons
@@ -271,6 +276,8 @@ export class AdminComponent implements OnInit {
       singleTrail => {
         console.log(singleTrail);
         this.trailToUpdate = singleTrail;
+        this.updateTrail = singleTrail;
+        this.tempTrail = true;
       },
       error => {
         console.error('admin.findSingleTrail(): Error finding Trail');

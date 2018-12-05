@@ -1,6 +1,7 @@
 package com.skilldistillery.skireport.entities;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -44,6 +45,8 @@ class MountainTests {
 		assertEquals(145, mountain.getNumberOfRuns().intValue());
 		assertEquals(10780, mountain.getBaseElevation().intValue());
 		assertEquals(13050, mountain.getPeakElevation().intValue());
+		assertEquals(9, mountain.getChairlifts().size());
+		assertTrue(mountain.getActive());
 	}
 
 	@Test

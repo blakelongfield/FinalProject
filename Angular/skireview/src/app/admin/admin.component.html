@@ -203,7 +203,7 @@
     <div class="form-group row">
       <label class="col-lg-2 col-form-label col-form-label-lg" for="mountainSelector">Select Mountain</label>
       <select class="form-control" name="mountainSelector" [(ngModel)]="addTrail.mountain">
-        <option *ngFor="let resort of resortList" value="{{resort.id}}" >{{resort.name}}</option>
+        <option *ngFor="let mountain of mountainList" value="{{mountain.id}}" >{{mountain.name}}</option>
       </select>
     </div>
     <!-- difficulty -->
@@ -257,35 +257,35 @@
       <div class="form-group row">
         <label class="col-lg-2 col-form-label col-form-label-lg" for="name">Name:</label>
         <div class="col-lg-5">
-          <input class="form-control form-control-lg" type="text" name="name" [(ngModel)]="addTrail.name"/>
+          <input class="form-control form-control-lg" type="text" name="name" [(ngModel)]="updateTrail.name" value="{{trailToUpdate.name}}"/>
         </div>
       </div>
       <!-- difficulty -->
       <div class="form-group row">
         <label class="col-lg-2 col-form-label col-form-label-lg" for="difficulty" >Difficulty:</label>
         <div class="col-lg-5">
-          <input class="form-control form-control-lg" type="number" name="difficulty" [(ngModel)]="addTrail.difficulty"/>
+          <input class="form-control form-control-lg" type="text" name="difficulty" [(ngModel)]="updateTrail.difficulty" value="{{trailToUpdate.difficulty}}"/>
         </div>
       </div>
       <!-- length -->
       <div class="form-group row">
         <label class="col-lg-2 col-form-label col-form-label-lg" for="length" >Length:</label>
         <div class="col-lg-5">
-          <input class="form-control form-control-lg" type="text" name="length" [(ngModel)]="addTrail.length"/>
+          <input class="form-control form-control-lg" type="number" name="length" [(ngModel)]="updateTrail.length" value="{{trailToUpdate.length}}"/>
         </div>
       </div>
       <!-- elevationGainLoss -->
       <div class="form-group row">
         <label class="col-lg-2 col-form-label col-form-label-lg" for="elevationGainLoss" >Elevation Gain/Loss:</label>
         <div class="col-lg-5">
-          <input class="form-control form-control-lg" type="text" name="elevationGainLoss" [(ngModel)]="addTrail.elevationGainLoss"/>
+          <input class="form-control form-control-lg" type="number" name="elevationGainLoss" [(ngModel)]="updateTrail.elevationGainLoss" value="{{trailToUpdate.elevationGainLoss}}"/>
         </div>
       </div>
       <!-- features -->
       <div class="form-group row">
         <label class="col-lg-2 col-form-label col-form-label-lg" for="features">Features:</label>
         <div class="col-lg-5">
-          <input class="form-control form-control-lg" type="text" name="features" [(ngModel)]="addTrail.features"/>
+          <input class="form-control form-control-lg" type="text" name="features" [(ngModel)]="updateTrail.features" value="{{trailToUpdate.features}}"/>
         </div>
       </div>
       <!-- buttons -->
