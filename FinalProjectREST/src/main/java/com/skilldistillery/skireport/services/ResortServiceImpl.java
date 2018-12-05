@@ -16,7 +16,7 @@ public class ResortServiceImpl implements ResortService {
 
 	@Override
 	public List<Resort> findAll() {
-		List<Resort> resorts = resortRepo.findAll();
+		List<Resort> resorts = resortRepo.findAllWhereActiveIsTrue();
 		return resorts;
 	}
 
@@ -59,12 +59,9 @@ public class ResortServiceImpl implements ResortService {
 	@Override
 	public Boolean destroy(int resortId, String username) {
 		Boolean deletedResort = false;
-		Resort resort = null;
-		Optional<Resort> resortOpt = resortRepo.findById(resortId);
-		if (resortOpt.isPresent()) {
-			resort = resortOpt.get();
+		if (resortRepo.existsById(resortId)) {
 			resortRepo.deleteById(resortId);
-			deletedResort = true;
+			deletedResort = true;			
 		}
 		return deletedResort;
 	}

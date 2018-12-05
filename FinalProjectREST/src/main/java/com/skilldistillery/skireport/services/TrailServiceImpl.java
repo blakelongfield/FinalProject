@@ -5,7 +5,6 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
-import org.apache.logging.log4j.util.PropertySource.Comparator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -28,7 +27,7 @@ public class TrailServiceImpl implements TrailService {
 
 	@Override
 	public List<Trail> findAll() {
-		return trailRepo.findAll();
+		return trailRepo.findAllWhereActiveIsTrue();
 	}
 	
 	@Override

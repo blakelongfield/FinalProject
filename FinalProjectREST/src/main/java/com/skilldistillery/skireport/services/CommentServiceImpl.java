@@ -79,10 +79,7 @@ public class CommentServiceImpl implements CommentService {
 	@Override
 	public Boolean destroy(int commentId, String username) {
 		Boolean deleted = false; 
-		Comment comment = null;
-		Optional<Comment> commentOpt = commentRepo.findById(commentId);
-		if (commentOpt.isPresent()) {
-			comment = commentOpt.get();
+		if (commentRepo.existsById(commentId)) {
 			commentRepo.deleteById(commentId);
 			deleted = true;
 		}
