@@ -15,11 +15,15 @@
     <h3>Here's what people are saying about the gnar today</h3> <br>
     <div *ngFor="let report of reports">
       <p>Report: {{report.reportText}}<p>
+        <form>
+          <input type="text" name="commentText" placeholder="Reply to report" [(ngModel)]="newCommentOnReport.commentText">
+          <input type="submit" name="submit" (click)="createCommentOnReport(report.id)">
+        </form>
         <div *ngFor="let comment of report.comments">
           <p>........Comment: {{comment.commentText}}</p>
         </div>
-      </div>
-      <br>
+      </div> <br>
+
       <textarea rows="4" cols="50" name="comment" form="usrform" placeholder="Is the gnar on par today?" [(ngModel)]="newReport.reportText"></textarea><br>
       <button (click)="createReportOnTrail()">Submit</button>
     </form>
