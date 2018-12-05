@@ -36,6 +36,7 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public User create(User user) {
 
+		user.setActive(true);
 		User createUser = userRepo.saveAndFlush(user);
 
 		return createUser;

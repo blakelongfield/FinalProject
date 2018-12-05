@@ -42,6 +42,7 @@ public class ChairLiftServiceImpl implements ChairLiftService {
 			
 		if( chairLift != null) {
 			chairLift.setType(lt);
+			chairLift.setActive(true);
 			repo.saveAndFlush( chairLift );
 		}
 		return chairLift;
