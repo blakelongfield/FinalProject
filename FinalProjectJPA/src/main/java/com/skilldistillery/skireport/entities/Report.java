@@ -193,7 +193,7 @@ public class Report {
 				.append(", user=").append(user)
 				.append(", trail=").append(trail)
 				.append(", mountainReports=").append(mountain)
-				.append(", comments=").append(comments.size())
+//				.append(", comments=").append(comments.size())
 				.append("]");
 		return builder.toString();
 	}

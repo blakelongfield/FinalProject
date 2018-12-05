@@ -20,6 +20,6 @@
         </div>
       </div>
       <br>
-      <textarea rows="4" cols="50" name="comment" form="usrform" placeholder="Is the gnar on par today?"></textarea><br>
-      <button (click)="createReportOnTrail(report, trail.id)">Submit</button>
+      <textarea rows="4" cols="50" name="comment" form="usrform" placeholder="Is the gnar on par today?" [(ngModel)]="newReport"></textarea><br>
+      <button (click)="createReportOnTrail(newReport)">Submit</button>
     </form>
