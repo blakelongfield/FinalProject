@@ -4,7 +4,7 @@
 
 
 <!-- BUTTONS -->
-<div *ngIf="!addMountain && !updateMountain && !deleteMountain && !addTrail && !updateTrail && !deleteTrail && !addResort && !updateResort && !deleteResort">
+<div *ngIf="!addMountain && !updateMountain && !deleteMountain && !addTrail && !updateTrail && !deleteTrail && !addResort && !updateResort && !deleteResort && !addChairlift && !updateChairlift && !deleteChairlift">
   <div class="container">
     <div class="row">
       <div class="col">
@@ -16,7 +16,7 @@
       <div class="col">
         <button class="btn btn-primary" (click)="deleteMountainForm()">Delete Mountain</button>
       </div>
-    </div><!-- mountain row -->
+    </div><!-- end mountain row -->
     <div class="row">
       <div class="col">
         <button class="btn btn-primary" (click)="addTrailForm()">Add Trail</button>
@@ -27,7 +27,7 @@
       <div class="col">
         <button class="btn btn-primary" (click)="deleteTrailForm()">Delete Trail</button>
       </div>
-    </div><!-- trail row -->
+    </div><!-- end trail row -->
     <div class="row">
       <div class="col">
         <button class="btn btn-primary" (click)="addResortForm()">Add Resort</button>
@@ -38,7 +38,18 @@
       <div class="col">
         <button class="btn btn-primary" (click)="deleteResortForm()">Delete Resort</button>
       </div>
-    </div> <!-- resort row -->
+    </div> <!-- end resort row -->
+    <div class="row">
+      <div class="col">
+        <button class="btn btn-primary" (click)="addChairliftForm()">Add Chairlift</button>
+      </div>
+      <div class="col">
+        <button class="btn btn-primary" (click)="updateChairliftForm()">Update Chairlift</button>
+      </div>
+      <div class="col">
+        <button class="btn btn-primary" (click)="deleteChairliftForm()">Delete Chairlift</button>
+      </div>
+    </div> <!-- end chairlift row -->
   </div> <!-- container -->
 </div> <!-- *ngIf -->
 
@@ -446,11 +457,108 @@
 <!-- DELETE RESORT -->
 <div *ngIf="deleteResort">
     <div class="form-group">
-      <label class="col-lg-2 col-form-label col-form-label-lg" for="mountainSelector">Select Mountain</label>
-      <select class="form-control" name="mountainSelector" [(ngModel)]="mountainToDelete.id">
-        <option *ngFor="let mountain of mountainList" value="{{mountain.id}}" >{{mountain.name}}</option>
+      <label class="col-lg-2 col-form-label col-form-label-lg" for="resortSelector">Select Resort</label>
+      <select class="form-control" name="resortSelector" [(ngModel)]="resortToDelete.id">
+        <option *ngFor="let resort of resortList" value="{{resort.id}}" >{{resort.name}}</option>
       </select>
       <button class="btn btn-outline-danger" (click)="cancelMountain()">Cancel</button>
-      <!-- <button class="btn btn-outline-success" (click)="submitDeleteMountain(mountainToDelete.id)">Submit</button> -->
+      <button class="btn btn-outline-success" (click)="submitDeleteResort(resortToDelete.id)">Submit</button>
+    </div>
+</div> <!-- *ngIf delete resort -->
+
+
+<!--
+  CHAIRLIFT
+-->
+
+
+<!-- ADD CHAIRLIFT -->
+<div *ngIf="addChairlift">
+  <form>
+    <!-- name -->
+    <div class="form-group row">
+      <label class="col-lg-2 col-form-label col-form-label-lg" for="name">Name:</label>
+      <div class="col-lg-5">
+        <input class="form-control form-control-lg" type="text" name="name" [(ngModel)]="addChairlift.name"/>
+      </div>
+    </div>
+    <!-- ride length -->
+    <div class="form-group row">
+      <label class="col-lg-2 col-form-label col-form-label-lg" for="rideLength" >Ride Length:</label>
+      <div class="col-lg-5">
+        <input class="form-control form-control-lg" type="number" name="rideLength" [(ngModel)]="addChairlift.rideLength"/>
+      </div>
+    </div>
+    <!-- hours -->
+    <div class="form-group row">
+      <label class="col-lg-2 col-form-label col-form-label-lg" for="hours" >Hours:</label>
+      <div class="col-lg-5">
+        <input class="form-control form-control-lg" type="text" name="hours" [(ngModel)]="addChairlift.hours"/>
+      </div>
+    </div>
+    <!-- buttons -->
+    <button class="btn btn-outline-danger" (click)="cancelChairlift()">Cancel</button>
+    <button class="btn btn-outline-success" (click)="submitNewChairlift()">Submit</button>
+  </form> <!-- add resort form -->
+</div> <!-- *ngIf add resort -->
+
+
+<!-- UPDATE CHAIRLIFT -->
+<div *ngIf="updateChairlift">
+  <!-- select chairlift to update -->
+  <div class="form-group">
+    <label class="col-lg-2 col-form-label col-form-label-lg" for="chairliftSelector">Select Chairlift</label>
+    <select class="form-control" name="chairliftSelector" [(ngModel)]="updateChairlift.id">
+      <option *ngFor="let chairlift of chairliftList" value="{{chairlift.id}}" >{{chairlift.name}}</option>
+    </select>
+    <input class="btn btn-outline-success" type="submit" (click)="findSingleChairlift(updateChairlift.id)" value="Submit" >
+  </div> <!-- chairlift selector -->
+  <div *ngIf="tempChairlift">
+    <form>
+      <!-- name -->
+      <div class="form-group row">
+        <label class="col-lg-2 col-form-label col-form-label-lg" for="name">Name:</label>
+        <div class="col-lg-5">
+          <input class="form-control form-control-lg" type="text" name="name" [(ngModel)]="updateChairlift.name" value="{{chairliftToUpdate.name}}"/>
+        </div>
+      </div>
+      <!-- ride length -->
+      <div class="form-group row">
+        <label class="col-lg-2 col-form-label col-form-label-lg" for="rideLength" >Ride Length:</label>
+        <div class="col-lg-5">
+          <input class="form-control form-control-lg" type="number" name="rideLength" [(ngModel)]="updateChairlift.rideLength" value="{{chairliftToUpdate.rideLength}}"/>
+        </div>
+      </div>
+      <!-- hours -->
+      <div class="form-group row">
+        <label class="col-lg-2 col-form-label col-form-label-lg" for="hours" >Hours:</label>
+        <div class="col-lg-5">
+          <input class="form-control form-control-lg" type="text" name="hours" [(ngModel)]="updateChairlift.hours" value="{{chairliftToUpdate.hours}}"/>
+        </div>
+      </div>
+      <!-- chairlift type -->
+      <!-- <div class="form-group row">
+        <label class="col-lg-2 col-form-label col-form-label-lg" for="chairliftTypeSelector">Select Chairlift Type</label>
+        <select class="form-control" name="chairliftTypeSelector" [(ngModel)]="updateChairlift.">
+          <option *ngFor="let resort of resortList" value="{{resort.id}}" >{{resort.name}}</option>
+        </select>
+      </div> -->
+      <!-- buttons -->
+      <button class="btn btn-outline-danger" (click)="cancelChairlift()">Cancel</button>
+      <button class="btn btn-outline-success" (click)="submitUpdatedChairlift()">Submit</button>
+    </form> <!-- update resort form -->
+  </div> <!-- temp resort -->
+</div> <!-- *ngIf update resort -->
+
+
+<!-- DELETE CHAIRLIFT -->
+<div *ngIf="deleteChairlift">
+    <div class="form-group">
+      <label class="col-lg-2 col-form-label col-form-label-lg" for="chairliftSelector">Select Resort</label>
+      <select class="form-control" name="chairliftSelector" [(ngModel)]="chairliftToDelete.id">
+        <option *ngFor="let chairlift of chairliftList" value="{{chairlift.id}}" >{{chairlift.name}}</option>
+      </select>
+      <button class="btn btn-outline-danger" (click)="cancelChairlift()">Cancel</button>
+      <button class="btn btn-outline-success" (click)="submitDeleteChairlift(chairliftToDelete.id)">Submit</button>
     </div>
 </div> <!-- *ngIf delete resort -->
