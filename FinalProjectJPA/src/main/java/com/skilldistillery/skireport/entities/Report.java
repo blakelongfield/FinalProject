@@ -48,17 +48,19 @@ public class Report {
 	@JoinColumn(name="user_id")
 	private User user;
 	
-//	@JsonIgnore
+	@JsonIgnore
 //	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
 	@ManyToOne
 	@JoinColumn(name="trail_id")
 	private Trail trail;
+	
 	@JsonIgnore
 //	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
 	@ManyToOne
 	@JoinColumn(name="mountain_id")
 	private Mountain mountain;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy="report", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
 	private List<Comment> comments;
 
