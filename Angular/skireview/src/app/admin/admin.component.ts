@@ -42,7 +42,7 @@ export class AdminComponent implements OnInit {
   updateResort: Resort = null;
   resortList: Resort[] = [];
   resortToUpdate: Resort = null;
-  resortToDelete: Rerort = null;
+  resortToDelete: Resort = null;
   deleteResort: boolean = null;
   tempResort = false;
 
