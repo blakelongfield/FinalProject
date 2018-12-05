@@ -8,8 +8,8 @@
 
 
 
-<!-- SELECT MOUNTAIN -->
-<div id="selectMTN">
+<!-- SELECT MOUNTAIN HOME -->
+<div *ngIf="!selectedMTN" id="selectMTNHome">
 <h3>Select Mountain:</h3>
 <div class="form-group">
   <select class="form-control" name="mountain" [(ngModel)]="mtnId">
@@ -20,6 +20,19 @@
   <input type="submit" (click)="selectMountain(mtnId)" value="submit" />
 </div>
 </div>
+<!-- SELECT MOUNTAIN NO VID-->
+<div class="container" *ngIf="selectedMTN" id="selectMTN">
+    <h3>Select Mountain:</h3>
+    <div class="form-group">
+      <select class="form-control" name="mountain" [(ngModel)]="mtnId">
+        <option *ngFor="let mountain of mountains" value="{{mountain.id}}">{{
+          mountain.name
+        }}</option>
+      </select>
+      <input type="submit" (click)="selectMountain(mtnId)" value="submit" />
+
+    </div>
+    </div>
 
 <!-- MOUNTAIN REPORTS -->
 <div *ngIf="!selectedMTN">
@@ -86,7 +99,7 @@
 </div>
 <!-- ROW -->
 
-<div class="form-group" *ngIf="selectedMTN" class="row">
+<div id="sortBy" class="form-group" *ngIf="selectedMTN" class="row">
   <!-- ROW -->
   <select class="form-control" name="sortby" [(ngModel)]="searchBy">
     <option value="Name">Name</option>
