@@ -1,3 +1,4 @@
+import { ChairliftService } from './../chairlift.service';
 import { TrailDetailsService } from './../trail-details.service';
 import { MountainService } from './../mountain.service';
 import { Mountain } from './../models/mountain';
@@ -50,7 +51,8 @@ export class AdminComponent implements OnInit {
   constructor(
     private mountainService: MountainService,
     private trailService: TrailDetailsService,
-    private resortService: ResortService
+    private resortService: ResortService,
+    private chairliftService: ChairliftService
   ) { }
 
   // nothing happeing on init
