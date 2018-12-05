@@ -53,12 +53,14 @@ public class Report {
 	@ManyToOne
 	@JoinColumn(name="trail_id")
 	private Trail trail;
+	
 	@JsonIgnore
 //	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
 	@ManyToOne
 	@JoinColumn(name="mountain_id")
 	private Mountain mountain;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy="report", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
 	private List<Comment> comments;
 
@@ -181,22 +183,22 @@ public class Report {
 	/*
 	 * toString
 	 */
-	@Override
-	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("Report [id=").append(id)
-				.append(", reportText=").append(reportText)
-				.append(", rating=").append(rating)
-				.append(", imgUrl=").append(imgUrl)
-				.append(", dateCreated=").append(dateCreated)
-				.append(", votes=").append(votes)
-				.append(", user=").append(user)
-				.append(", trail=").append(trail)
-				.append(", mountainReports=").append(mountain)
-//				.append(", comments=").append(comments.size())
-				.append("]");
-		return builder.toString();
-	}
+//	@Override
+//	public String toString() {
+//		StringBuilder builder = new StringBuilder();
+//		builder.append("Report [id=").append(id)
+//				.append(", reportText=").append(reportText)
+//				.append(", rating=").append(rating)
+//				.append(", imgUrl=").append(imgUrl)
+//				.append(", dateCreated=").append(dateCreated)
+//				.append(", votes=").append(votes)
+//				.append(", user=").append(user)
+//				.append(", trail=").append(trail)
+//				.append(", mountainReports=").append(mountain)
+////				.append(", comments=").append(comments.size())
+//				.append("]");
+//		return builder.toString();
+//	}
 
 	/*
 	 * constructors

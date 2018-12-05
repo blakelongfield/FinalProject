@@ -1,5 +1,6 @@
 package com.skilldistillery.skireport.services;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -43,7 +44,12 @@ public class ReportServiceImpl implements ReportService {
 	// FIND REPORTS BY MTN NAME
 	@Override
 	public List<Report> findByMountainId(Integer mid) {
-		return repo.findByMountainId(mid);
+		List<Report> reports = repo.findByMountainId(mid);
+		ReportSortByDate sortByDate = new ReportSortByDate();
+		
+		Collections.sort(reports, sortByDate );
+		System.out.println("&&&&&&&&&&&&&&"+reports);
+		return reports;
 	}
 
 	// FIND REPORTS BY TRAIL NAME
@@ -69,7 +75,7 @@ public class ReportServiceImpl implements ReportService {
 			User user = urepo.findByUsername(username);
 			report.setUser(user);
 			if (trailId != null) {
-			Optional<Trail> trailOpt = trepo.findById(trailId);
+				Optional<Trail> trailOpt = trepo.findById(trailId);
 				if (trailOpt.isPresent()) {
 					trail = trailOpt.get();
 					report.setTrail(trail);
@@ -77,16 +83,15 @@ public class ReportServiceImpl implements ReportService {
 					mountain = mountainOpt.get();
 					report.setMountain(mountain);
 				}
-			}
-			else if (mountainId != null) {
+			} else if (mountainId != null) {
 				Optional<Mountain> mountainOpt = mrepo.findById(mountainId);
 				if (mountainOpt.isPresent()) {
 					mountain = mountainOpt.get();
 					report.setMountain(mountain);
 				}
 			}
-		report.setActive(true);
-		repo.saveAndFlush(report);
+			report.setActive(true);
+			repo.saveAndFlush(report);
 		}
 		return report;
 	}

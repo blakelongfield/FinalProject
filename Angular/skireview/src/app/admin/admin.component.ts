@@ -87,7 +87,9 @@ export class AdminComponent implements OnInit {
   }
 
   /*
+   *
    * MOUNTAIN
+   *
    */
 
   // button click event that shows the add mountain form
@@ -199,7 +201,9 @@ export class AdminComponent implements OnInit {
   }
 
   /*
+   *
    * TRAIL
+   *
    */
 
    // button click event that shows the add trail form
@@ -219,7 +223,9 @@ export class AdminComponent implements OnInit {
   // button click event that shows the delete trail form
   deleteTrailForm() {
     this.title = 'Delete Trail';
+    this.trailToDelete = new Trail();
     this.deleteTrail = true;
+    this.findAllTrails();
   }
 
   // button click event that returns back to initial buttons
@@ -295,7 +301,7 @@ export class AdminComponent implements OnInit {
 
   // delete trail
   submitDeleteTrail(deleteId: number) {
-    this.trailService.deleteTrail(deleteId).subscribe(
+    this.trailService.disableTrail(deleteId).subscribe(
       deleteTrail => {
         console.log(deleteTrail);
         this.cancelTrail();
@@ -309,7 +315,9 @@ export class AdminComponent implements OnInit {
 
 
   /*
+   *
    * RESORT
+   *
    */
 
    // button click event that shows the add resort form
@@ -418,7 +426,9 @@ export class AdminComponent implements OnInit {
 
 
   /*
+   *
    * CHAIRLIFT
+   *
    */
 
   // button click event that shows the add chairlift form
