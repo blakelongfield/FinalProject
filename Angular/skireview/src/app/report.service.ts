@@ -82,7 +82,8 @@ export class ReportService {
 
     //// CREATE NEW REPORT ON A TRAIL
     public createReportTrail(report: Report, trailId ) {
-
+      console.log('ReportService createReport(): report= ' + report);
+      console.log('ReportService createReport(): trailId = ' + trailId);
       return this.http.post<Report>(this.url + '/trails/' + trailId, report, this.httpOptions)
       .pipe(catchError((err: any) => {
         console.log(err);

@@ -115,6 +115,7 @@
     <select class="form-control" name="mountainSelector" [(ngModel)]="updateMountain.id">
       <option *ngFor="let mountain of mountainList" value="{{mountain.id}}" >{{mountain.name}}</option>
     </select>
+    <button class="btn btn-outline-danger" (click)="cancelMountain()">Cancel</button>
     <input class="btn btn-outline-success" type="submit" (click)="findSingleMountain(updateMountain.id)" value="Submit" >
   </div> <!-- mountain selector -->
   <div *ngIf="tempMountain">
@@ -171,7 +172,7 @@
 </div> <!-- *ngIf update mountain -->
 
 
-<!-- DELETE MOUNTAIN -->
+<!-- DISABLE MOUNTAIN -->
 <div *ngIf="deleteMountain">
     <div class="form-group">
       <label class="col-lg-2 col-form-label col-form-label-lg" for="mountainSelector">Select Mountain</label>
@@ -179,7 +180,7 @@
         <option *ngFor="let mountain of mountainList" value="{{mountain.id}}" >{{mountain.name}}</option>
       </select>
       <button class="btn btn-outline-danger" (click)="cancelMountain()">Cancel</button>
-      <button class="btn btn-outline-success" (click)="submitDeleteMountain(mountainToDelete.id)">Submit</button>
+      <button class="btn btn-outline-success" (click)="submitDisableMountain(mountainToDelete.id)">Submit</button>
     </div>
 </div> <!-- *ngIf delete mountain -->
 
