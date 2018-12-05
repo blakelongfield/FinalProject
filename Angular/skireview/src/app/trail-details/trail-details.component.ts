@@ -20,9 +20,10 @@ export class TrailDetailsComponent implements OnInit {
   trails: Trail[] = [];
   reports: Report[] = [];
   comments: any = [];
+  comment = null;
+  newReport = null;
   trailId;
   reportId;
-  comment = null;
 
   // tslint:disable-next-line:max-line-length
   constructor(private trailDetailsService: TrailDetailsService, private reportService: ReportService, private commentService: CommentService, private activeRouter: ActivatedRoute) { }
@@ -171,8 +172,9 @@ export class TrailDetailsComponent implements OnInit {
     );
   }
 
-  public createReportOnTrail(report, id) {
-    this.reportService.createReportTrail(report, id).subscribe(
+  public createReportOnTrail(newReport) {
+    this.trailId = this.activeRouter.snapshot.paramMap.get('id');
+    this.reportService.createReportTrail(newReport, this.trailId).subscribe(
       data => {
         console.log('creating a comment on a report');
       },
