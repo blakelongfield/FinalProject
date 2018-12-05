@@ -124,6 +124,24 @@ public class MountainServiceImpl implements MountainService {
 				Optional<Mountain> optionalMountain = mountRepo.findById(mountainId);
 				if(optionalMountain.isPresent()) {
 					mountainFound = optionalMountain.get();
+					for (int h = 0; h < mountainFound.getReports().size()-1; h++) { // get reports on mountain
+						mountainFound.getReports().get(h).setActive(false);
+					}
+					for (int h2 = 0; h2 < mountainFound.getChairlifts().size()-1; h2++) { // get chairlifts on mountain
+						mountainFound.getReports().get(h2).setActive(false);
+					}
+					for (int i = 0; i < mountainFound.getTrails().size()-1; i++) { //get trails on mountain
+						for (int j = 0; j < mountainFound.getTrails().get(i).getReports().size()-1; j++) { // get reports on trails on mountain
+							for (int j2 = 0; j2 < mountainFound.getTrails().get(i).getReports().get(j).getComments().size()-1; j2++) { // get comments on reports on trails on mountain
+								for (int k = 0; k < mountainFound.getTrails().get(i).getReports().get(j).getComments().get(j2).getComments().size()-1; k++) { // get comments on comments on reports on trails on mountain
+									mountainFound.getTrails().get(i).getReports().get(j).getComments().get(j2).getComments().get(k).setActive(false);
+								}
+								mountainFound.getTrails().get(i).getReports().get(j).getComments().get(j2).setActive(false);
+							}
+							mountainFound.getTrails().get(i).getReports().get(j).setActive(false);;
+						}
+						mountainFound.getTrails().get(i).setActive(false);
+					}
 					mountainFound.setActive(false);
 					disableMountain = true;
 					mountRepo.saveAndFlush(mountainFound);

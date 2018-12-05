@@ -22,6 +22,7 @@ export class HomeComponent implements OnInit {
 
   reports: Report [] = [];
   mReports: Report [] = [];
+  newReport = null;
   sortedTrails: Trail [] = [];
   users: User [] = [];
   mountains: Mountain [] = [];
@@ -31,6 +32,9 @@ export class HomeComponent implements OnInit {
   trailSelected = null;
   mtnId;
   searchBy;
+  reverse = 1;
+  reverse1 = 1;
+  reverse2 = 1;
 
 
 
@@ -60,6 +64,41 @@ export class HomeComponent implements OnInit {
       }
     );
   }
+  //// REVRSE SORT BY LIST
+  public reverseNameList() {
+
+    if ( this.reverse === 1) {
+      this.sortedTrails.reverse();
+      this.reverse = 0;
+    } else if ( this.reverse === 0 ) {
+      this.sortedTrails.reverse();
+      this.reverse = 1;
+    }
+
+  }
+  public reverseDiffList() {
+
+    if ( this.reverse1 === 1) {
+      this.sortedTrails.reverse();
+      this.reverse1 = 0;
+    } else if ( this.reverse1 === 0 ) {
+      this.sortedTrails.reverse();
+      this.reverse1 = 1;
+    }
+
+  }
+  public reverseFeatList() {
+
+    if ( this.reverse2 === 1) {
+      this.sortedTrails.reverse();
+      this.reverse2 = 0;
+    } else if ( this.reverse2 === 0 ) {
+      this.sortedTrails.reverse();
+      this.reverse2 = 1;
+    }
+
+  }
+
 
   // LOAD ALL USERS
   loadUsers() {
@@ -129,6 +168,30 @@ export class HomeComponent implements OnInit {
       }
     );
     }
+    //// OPEN REPORT TEXT BOX, NEWREPORT TO NOT NULL
+    public reportToNotNUll() {
+      this.newReport = new Report();
+    }
+
+    //// CREATE NEW REPORT ON MTN
+    public createReportOnMTN() {
+
+      this.reportServ.createReportMountain(this.newReport, this.mtnId).subscribe(
+        data => {
+          this.mReports.push(this.newReport);
+          this.mountainReports(this.mtnId);
+        },
+        err => {
+          console.error('ERROR on creating report on MTN');
+          console.log(err);
+        }
+
+      );
+
+      this.newReport = null;
+    }
+
+
 
 
 
@@ -141,12 +204,14 @@ export class HomeComponent implements OnInit {
   // CONSTRUCTOR & INIT
 
   // tslint:disable-next-line:max-line-length
-  constructor(private reportServ: ReportService, private userServ: UserService, private mtnServ: MountainService, private trailServ: TrailDetailsService, private route: Router) { }
+  constructor(private reportServ: ReportService, private userServ: UserService, private mtnServ: MountainService, private trailServ: TrailDetailsService, private route: Router, private repotServ: ReportService) { }
 
   ngOnInit() {
     this.loadReports();
     this.loadUsers();
     this.loadMountains();
+
+
 
   }
 

@@ -698,10 +698,10 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `skireviewdb`;
-INSERT INTO `report` (`id`, `report_text`, `rating`, `image_url`, `date_created`, `vote`, `active`, `user_id`, `trail_id`, `mountain_id`) VALUES (1, 'report 1 on trail 1', 5, NULL, '2019-01-01 00:00:00', NULL, true, 5, 1, NULL);
-INSERT INTO `report` (`id`, `report_text`, `rating`, `image_url`, `date_created`, `vote`, `active`, `user_id`, `trail_id`, `mountain_id`) VALUES (2, 'report 1 on mountain 1', NULL, NULL, '2019-01-01 00:00:00', NULL, true, 5, NULL, 1);
-INSERT INTO `report` (`id`, `report_text`, `rating`, `image_url`, `date_created`, `vote`, `active`, `user_id`, `trail_id`, `mountain_id`) VALUES (3, 'report 2 on trail 1', 1, NULL, '2019-01-01 00:00:00', NULL, true, 5, 1, NULL);
-INSERT INTO `report` (`id`, `report_text`, `rating`, `image_url`, `date_created`, `vote`, `active`, `user_id`, `trail_id`, `mountain_id`) VALUES (4, 'report 1 on trail 2', 3, NULL, '2019-01-01 00:00:00', NULL, true, 5, 2, NULL);
+INSERT INTO `report` (`id`, `report_text`, `rating`, `image_url`, `date_created`, `vote`, `active`, `user_id`, `trail_id`, `mountain_id`) VALUES (1, 'report 1 on trail 1', 5, NULL, '2018-11-01 00:00:00', NULL, true, 5, 1, NULL);
+INSERT INTO `report` (`id`, `report_text`, `rating`, `image_url`, `date_created`, `vote`, `active`, `user_id`, `trail_id`, `mountain_id`) VALUES (2, 'report 1 on mountain 1', NULL, NULL, '2018-12-01 00:00:00', NULL, true, 5, NULL, 1);
+INSERT INTO `report` (`id`, `report_text`, `rating`, `image_url`, `date_created`, `vote`, `active`, `user_id`, `trail_id`, `mountain_id`) VALUES (3, 'report 2 on trail 1', 1, NULL, '2018-12-01 00:00:00', NULL, true, 5, 1, NULL);
+INSERT INTO `report` (`id`, `report_text`, `rating`, `image_url`, `date_created`, `vote`, `active`, `user_id`, `trail_id`, `mountain_id`) VALUES (4, 'report 1 on trail 2', 3, NULL, '2018-12-02 00:00:00', NULL, true, 5, 2, NULL);
 INSERT INTO `report` (`id`, `report_text`, `rating`, `image_url`, `date_created`, `vote`, `active`, `user_id`, `trail_id`, `mountain_id`) VALUES (5, 'report 2 on mountain 2', 4, NULL, '2019-01-01 00:00:00', NULL, true, 5, NULL, 2);
 
 COMMIT;

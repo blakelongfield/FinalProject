@@ -14,4 +14,6 @@ public interface ResortService {
 	Resort update(Resort resort, int resortId, String username);
 
 	Boolean destroy(int resortId, String username);
+
+	Boolean disable(int resortId, String username);
 }
