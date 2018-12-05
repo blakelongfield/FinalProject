@@ -103,7 +103,7 @@
   <!-- ROW -->
   <select class="form-control" name="sortby" [(ngModel)]="searchBy">
     <option value="Name">Name</option>
-    <option value="Feature">Feature</option>
+    <option value="Features">Feature</option>
     <option value="Difficulty">Difficulty</option>
   </select>
   <input type="submit" (click)="sortTrailByName(searchBy)" value="Sort By" />
@@ -125,26 +125,31 @@
           <tr>
             <th>Name</th>
             <th>Difficulty</th>
-            <th>Length</th>
-            <th>Elevation Gain/Loss</th>
+            <!-- <th>Length</th>
+            <th>Elevation Gain/Loss</th> -->
             <th>Features</th>
+            <th>Attached Lifts</th>
           </tr>
         </thead>
         <tr *ngFor="let trail of sortedTrails">
           <td (click)="selectedTrail(trail.id)">{{ trail.name }}</td>
           <td>{{ trail.difficulty }}</td>
           <!-- IF -->
-          <td *ngIf="trail.length; else: length">{{ trail.length }}</td>
-          <!-- ELSE -->
-          <ng-template #length> <td></td> </ng-template>
+           <!-- <td *ngIf="trail.length; else: length">{{ trail.length }}</td> -->
+         <!--  ELSE -->
+           <!-- <ng-template #length> <td></td> </ng-template>  -->
           <!-- IF -->
-          <td *ngIf="trail.elevationGainLoss; else: gainLoss">
-            {{ trail.elevationGainLoss }}
-          </td>
-          <!-- ELSE -->
-          <ng-template #gainLoss> <td></td> </ng-template>
+          <!-- <td *ngIf="trail.elevationGainLoss; else: gainLoss"> -->
+            <!-- {{ trail.elevationGainLoss }} -->
+          <!-- </td> -->
+          <!--  ELSE -->
+          <!-- <ng-template #gainLoss> <td></td> </ng-template> -->
 
           <td>{{ trail.features }}</td>
+          <td *ngFor="let lift of trail.chairLift">
+
+          </td>
+          <!-- IF -->
         </tr>
       </table>
     </div>

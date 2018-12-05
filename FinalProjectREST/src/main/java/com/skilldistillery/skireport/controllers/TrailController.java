@@ -65,6 +65,14 @@ public class TrailController {
 		return trail;
 	}
 	
+	@GetMapping("trails/mountains/{mid}")
+	public List<Trail> trailswithliftbyMTNId( @PathVariable("mid") Integer mid) {
+		
+		return trailService.findTrailsWithLiftsByMtnId(mid);
+	}
+	
+	
+	
 
 	@PostMapping("trails/mountains/{mountainId}")
 	public Trail create(@RequestBody Trail trail, @PathVariable("mountainId") int mountainId, HttpServletResponse resp,

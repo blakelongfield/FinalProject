@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -89,6 +90,18 @@ public class MountainController {
 		
 		return updatedMountain;
 		
+	}
+	
+	@DeleteMapping("mountains/disable/{mountainId}")
+	public Boolean disableMountain(@PathVariable("mountainId") int mountainId, HttpServletResponse resp) {
+		Boolean disableMountain = null;
+		disableMountain = mountServ.disable(mountainId, username);
+		if(disableMountain) {
+			resp.setStatus(200);
+		} else {
+			resp.setStatus(404);
+		}
+		return disableMountain;
 	}
 	
 //	Deletes mountain

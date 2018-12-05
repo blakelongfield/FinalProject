@@ -59,6 +59,7 @@ public class CommentServiceImpl implements CommentService {
 					comment.setMainComment(originalComment);;
 				}
 			}
+			comment.setActive(true);
 			commentRepo.saveAndFlush(comment);
 		}
 		return comment;

@@ -49,19 +49,13 @@ public class MountainServiceImpl implements MountainService {
 		User user = userRepo.findByUsername(username);
 		if (user != null) {
 			if (user.getRole().equals("Admin")) {
-
 				Optional<Resort> resortOpt = resortRepo.findById(resortId);
-
 				Resort resort = resortOpt.get();
-
 				mountain.setResort(resort);
-
+				mountain.setActive(true);
 				newMountain = mountRepo.saveAndFlush(mountain);
-
 			}
-
 		}
-
 		return newMountain;
 	}
 
@@ -121,6 +115,25 @@ public class MountainServiceImpl implements MountainService {
 	}
 
 	@Override
+	public Boolean disable(int mountainId, String username) {
+		Boolean disableMountain = false;
+		Mountain mountainFound = null;
+		User user = userRepo.findByUsername(username);
+		if(user != null) {
+			if(user.getRole().equals("Admin")) {
+				Optional<Mountain> optionalMountain = mountRepo.findById(mountainId);
+				if(optionalMountain.isPresent()) {
+					mountainFound = optionalMountain.get();
+					mountainFound.setActive(false);
+					disableMountain = true;
+					mountRepo.saveAndFlush(mountainFound);
+				}
+			}
+		}
+		return disableMountain;
+	}
+
+	@Override
 	public Boolean destroy(Integer mountainId, String username) {
 		Boolean deleteMountain = false;
 		
@@ -138,6 +151,7 @@ public class MountainServiceImpl implements MountainService {
 		
 		return deleteMountain;
 	}
+
 
 	
 
