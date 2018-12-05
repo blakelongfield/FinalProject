@@ -87,6 +87,7 @@ public class TrailServiceImpl implements TrailService {
 				if (optionalMountain.isPresent()) {
 					findMountain = optionalMountain.get();
 					trail.setMountain(findMountain);
+					trail.setActive(true);
 					newTrail = trailRepo.saveAndFlush(trail);
 				}
 			}
@@ -159,6 +160,12 @@ public class TrailServiceImpl implements TrailService {
 			}
 		}
 		return destroy;
+	}
+
+	@Override
+	public List<Trail> findTrailsWithLiftsByMtnId(Integer id) {
+		
+		return trailRepo.findTrailswithCLByMtnId(id);
 	}
 
 	
