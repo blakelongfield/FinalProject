@@ -59,6 +59,9 @@ public class CommentController {
 	@PostMapping(path = "comments/reports/{reportId}")
 	public Comment createCommentOnReport(@RequestBody Comment comment, @PathVariable("reportId") Integer reportId,
 			HttpServletResponse resp, HttpServletRequest req) {
+		System.out.println(reportId);
+		System.out.println(comment);
+		System.out.println("****************************************");
 		Integer commentId = null;
 		comment = commentService.create(comment, username, reportId, commentId);
 		if (comment == null) {

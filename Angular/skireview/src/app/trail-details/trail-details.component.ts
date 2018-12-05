@@ -22,6 +22,8 @@ export class TrailDetailsComponent implements OnInit {
   comments: any = [];
   comment = null;
   newReport = new Report();
+  newCommentOnReport = new Comment();
+  commentHolder = new Comment();
   trailId;
   reportId;
 
@@ -176,11 +178,24 @@ export class TrailDetailsComponent implements OnInit {
     this.trailId = this.activeRouter.snapshot.paramMap.get('id');
     this.reportService.createReportTrail(this.newReport, this.trailId).subscribe(
       data => {
-        console.log('creating a comment on a report');
+        console.log('creating a report on a trail');
         this.ngOnInit();
       },
       err => {
         console.error('trail-details.component.createReportOnTrail(): Error creating report');
+        console.log(err);
+      }
+    );
+  }
+
+  public createCommentOnReport(reportId) {
+    this.commentService.createCommentOnReport(this.newCommentOnReport, reportId).subscribe(
+      data => {
+        console.log('creating a comment on a report');
+        this.ngOnInit();
+      },
+      err => {
+        console.error('trail-details.component.createCommentOnReport(): Error creating a comment on a report');
         console.log(err);
       }
     );
