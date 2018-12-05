@@ -1,3 +1,4 @@
+import { Chairlift } from './chairlift';
 import { Mountain } from './mountain';
 export class Trail {
   id: number;
@@ -17,7 +18,8 @@ export class Trail {
     elevationGainLoss?: number,
     features?: string,
     active?: boolean,
-    mountain?: Mountain
+    mountain?: Mountain,
+
     ) {
     this.id = id;
     this.name = name;
