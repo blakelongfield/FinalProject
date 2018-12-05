@@ -1,0 +1,76 @@
+#backgroundBox{
+  position: absolute;
+  background: url(src/assets/Hero-1.jpg);
+  background-size: cover;
+  width: 1583px;
+  height: 880px;
+  margin-left: -5%;
+  margin-top: -56px;
+  z-index: -1;
+}
+
+#box{
+  position: relative;
+  /* margin-left: 30px; */
+  /* margin: 30px; */
+  top: 140px;
+  left: 450px;
+  /* background-color: rgb(199, 194, 194); */
+  background: rgb(46, 45, 45);
+  /* border:1px solid black; */
+  /* opacity: 0.6;
+  filter: alpha(opacity=60); */
+  width: 600px;
+  height: 450px;;
+  box-shadow: 0px 0px 0px 15px rgba(71, 71, 71, 0.75);
+}
+
+#boxContent{
+  position: relative;
+  padding-left: 37%;
+  padding-top: 7%;
+  color: white;
+}
+
+#editButton{
+
+  margin-left: 38%;
+
+}
+#profileText{
+  margin-left: 45%;
+}
+
+#updateBox{
+
+  position: relative;
+  /* margin-left: 30px; */
+  /* margin: 30px; */
+  top: 140px;
+  left: 450px;
+  /* background-color: rgb(199, 194, 194); */
+  background: rgb(46, 45, 45);
+  /* border:1px solid black; */
+  /* opacity: 0.6;
+  filter: alpha(opacity=60); */
+  width: 600px;
+  height: 450px;;
+  box-shadow: 0px 0px 0px 15px rgba(71, 71, 71, 0.75);
+
+}
+
+#textBoxes{
+  position: relative;
+  margin-left: 35%;
+  padding-top: 125px;
+
+
+}
+
+#updateCancelButtons {
+  margin-left: 40%;
+}
+
+
+
+

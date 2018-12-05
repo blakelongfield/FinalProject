@@ -1,12 +1,4 @@
-/* .registerPhoto {
-  position: fixed;
-  margin-left: -5%;
-  z-index: -1;
-  width: 104%;
-  height: 95%;
-  pointer-events: none;
 
-} */
 
 #backgroundBox{
   position: absolute;
@@ -18,13 +10,7 @@
   margin-top: -30px;
   z-index: -1;
 }
-/* #registration {
 
-  position: relative;
-  padding-top: 1%;
-  margin-left: 1%;;
-  width:300px;
-} */
 
 #registration{
   position: relative;
@@ -63,6 +49,8 @@ color: black;
   padding-left: 30%;
 
 }
+
+
 #box{
   position: relative;
   /* margin-left: 30px; */
