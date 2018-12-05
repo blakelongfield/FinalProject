@@ -1,3 +1,4 @@
+import { Chairlift } from './../models/chairlift';
 import { ChairliftService } from './../chairlift.service';
 import { TrailDetailsService } from './../trail-details.service';
 import { MountainService } from './../mountain.service';
@@ -15,9 +16,26 @@ import { NgForm } from '@angular/forms';
 })
 export class AdminComponent implements OnInit {
 
+  /*
+   * ----ORDER OF CODE----
+   * VARIABLES
+   * MOUNTAIN
+   * TRAIL
+   * RESORT
+   * CHAIRLIFT
+   *
+   * --this code contains CRUD operations for an admin to perform on mountain, trail, resort, and chairlift
+   * --deleting does not actually happen in the database but active is set to false instead
+   */
+
+
   // title information
   title = 'Admin';
   mainTitle = 'Admin';
+
+  /*
+   * VARIABLES
+   */
 
   // mountain variables
   addMountain: Mountain = null;
@@ -47,6 +65,15 @@ export class AdminComponent implements OnInit {
   deleteResort: boolean = null;
   tempResort = false;
 
+  // chairlift variables
+  addChairlift: Chairlift = null;
+  updateChairlift: Chairlift = null;
+  chairliftList: Chairlift[] = [];
+  chairliftToUpdate: Chairlift = null;
+  chairliftToDelete: Chairlift = null;
+  deleteChairlift: boolean = null;
+  tempChairlift = false;
+
   // constructor
   constructor(
     private mountainService: MountainService,
@@ -58,6 +85,10 @@ export class AdminComponent implements OnInit {
   // nothing happeing on init
   ngOnInit() {
   }
+
+  /*
+   * MOUNTAIN
+   */
 
   // button click event that shows the add mountain form
   addMountainForm() {
@@ -81,45 +112,6 @@ export class AdminComponent implements OnInit {
     this.findAllMountains();
   }
 
-  // button click event that shows the add trail form
-  addTrailForm() {
-    this.title = 'Add Trail';
-    this.addTrail = new Trail;
-    this.findAllMountains();
-  }
-
-  // button click event that shows the update trail form
-  updateTrailForm() {
-    this.title = 'Update Trail';
-    this.updateTrail = new Trail();
-    this.findAllTrails();
-  }
-
-  // button click event that shows the delete trail form
-  deleteTrailForm() {
-    this.title = 'Delete Trail';
-    this.deleteTrail = true;
-  }
-
-  // button click event that shows the add resort form
-  addResortForm() {
-    this.title = 'Add Resort';
-    this.addResort = new Resort;
-  }
-
-  // button click event that shows the update resort form
-  updateResortForm() {
-    this.title = 'Update Resort';
-    this.updateResort = new Resort();
-    this.findAllResorts();
-  }
-
-  // button click event that shows the delete resort form
-  deleteResortForm() {
-    this.title = 'Delete Resort';
-    this.deleteResort = true;
-  }
-
   // button click event that returns back to initial buttons
   cancelMountain() {
     this.title = this.mainTitle;
@@ -131,30 +123,6 @@ export class AdminComponent implements OnInit {
     this.tempMountain = false;
     this.mountainToDelete = null;
     this.resortList = [];
-  }
-  // button click event that returns back to initial buttons
-  cancelTrail() {
-    this.title = this.mainTitle;
-    this.addTrail = null;
-    this.updateTrail = null;
-    this.trailList = [];
-    this.trailToUpdate = null;
-    this.deleteTrail = null;
-    this.tempTrail = false;
-    this.trailToDelete = null;
-    this.mountainList = [];
-  }
-
-  // button click event that returns back to initial buttons
-  cancelResort() {
-    this.title = this.mainTitle;
-    this.addResort = null;
-    this.updateResort = null;
-    this.resortList = [];
-    this.resortToUpdate = null;
-    this.deleteResort = null;
-    this.tempResort = false;
-    this.resortToDelete = null;
   }
 
   // add new mountain
@@ -186,7 +154,7 @@ export class AdminComponent implements OnInit {
     );
   }
 
-  // find add mountains
+  // find all mountains
   findAllMountains() {
     this.mountainService.index().subscribe(
       mountainIndex => {
@@ -216,9 +184,9 @@ export class AdminComponent implements OnInit {
     );
   }
 
-  // delete mountain
-  submitDeleteMountain(deleteId: number) {
-    this.mountainService.delete(deleteId).subscribe(
+  // disable mountain
+  submitDisableMountain(deleteId: number) {
+    this.mountainService.disable(deleteId).subscribe(
       deletedMountain => {
         console.log(deletedMountain);
         this.cancelMountain();
@@ -228,6 +196,43 @@ export class AdminComponent implements OnInit {
         console.error(error);
       }
     );
+  }
+
+  /*
+   * TRAIL
+   */
+
+   // button click event that shows the add trail form
+  addTrailForm() {
+    this.title = 'Add Trail';
+    this.addTrail = new Trail;
+    this.findAllMountains();
+  }
+
+  // button click event that shows the update trail form
+  updateTrailForm() {
+    this.title = 'Update Trail';
+    this.updateTrail = new Trail();
+    this.findAllTrails();
+  }
+
+  // button click event that shows the delete trail form
+  deleteTrailForm() {
+    this.title = 'Delete Trail';
+    this.deleteTrail = true;
+  }
+
+  // button click event that returns back to initial buttons
+  cancelTrail() {
+    this.title = this.mainTitle;
+    this.addTrail = null;
+    this.updateTrail = null;
+    this.trailList = [];
+    this.trailToUpdate = null;
+    this.deleteTrail = null;
+    this.tempTrail = false;
+    this.trailToDelete = null;
+    this.mountainList = [];
   }
 
   // add trail
@@ -300,6 +305,42 @@ export class AdminComponent implements OnInit {
         console.error(error);
       }
     );
+  }
+
+
+  /*
+   * RESORT
+   */
+
+   // button click event that shows the add resort form
+  addResortForm() {
+    this.title = 'Add Resort';
+    this.addResort = new Resort;
+  }
+
+  // button click event that shows the update resort form
+  updateResortForm() {
+    this.title = 'Update Resort';
+    this.updateResort = new Resort();
+    this.findAllResorts();
+  }
+
+  // button click event that shows the delete resort form
+  deleteResortForm() {
+    this.title = 'Delete Resort';
+    this.deleteResort = true;
+  }
+
+  // button click event that returns back to initial buttons
+  cancelResort() {
+    this.title = this.mainTitle;
+    this.addResort = null;
+    this.updateResort = null;
+    this.resortList = [];
+    this.resortToUpdate = null;
+    this.deleteResort = null;
+    this.tempResort = false;
+    this.resortToDelete = null;
   }
 
   // add resort
@@ -375,4 +416,39 @@ export class AdminComponent implements OnInit {
     );
   }
 
+
+  /*
+   * CHAIRLIFT
+   */
+
+  // button click event that shows the add chairlift form
+  addChairliftForm() {
+    this.title = 'Add Resort';
+    this.addResort = new Resort;
+  }
+
+  // button click event that shows the update chairlift form
+  updateChairliftForm() {
+    this.title = 'Update Resort';
+    this.updateResort = new Resort();
+    this.findAllResorts();
+  }
+
+  // button click event that shows the delete chairlift form
+  deleteChairliftForm() {
+    this.title = 'Delete Resort';
+    this.deleteResort = true;
+  }
+
+  // button click event that returns back to initial buttons
+  cancelChairlift() {
+    this.title = this.mainTitle;
+    this.addChairlift = null;
+    this.updateChairlift = null;
+    this.chairliftList = [];
+    this.chairliftToUpdate = null;
+    this.deleteChairlift = null;
+    this.tempChairlift = false;
+    this.chairliftToDelete = null;
+  }
 }
