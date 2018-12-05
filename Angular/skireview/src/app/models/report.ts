@@ -15,7 +15,7 @@ export class Report {
 
   constructor(
     id?: number,
-    rtext?: string,
+    reportText?: string,
     rating?: number,
     image?: string,
     votes?: number,
@@ -26,7 +26,7 @@ export class Report {
     comment?: Comment
     ) {
     this.id = id;
-    this.reportText = rtext;
+    this.reportText = reportText;
     this.rating = rating;
     this.imageURL = image;
     this.votes = votes;
