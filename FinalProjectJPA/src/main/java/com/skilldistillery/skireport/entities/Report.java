@@ -62,7 +62,7 @@ public class Report {
 	
 //	@JsonIgnore
 	@OneToMany(mappedBy="report", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
-	private List<Comment> comments;
+	private List<Comment> comment;
 
 	/*
 	 * getters / setters
@@ -147,12 +147,12 @@ public class Report {
 		this.mountain = mountain;
 	}
 
-	public List<Comment> getComments() {
-		return comments;
+	public List<Comment> getComment() {
+		return comment;
 	}
 
 	public void setComments(List<Comment> comments) {
-		this.comments = comments;
+		this.comment = comments;
 	}
 
 	/*
@@ -195,7 +195,7 @@ public class Report {
 				.append(", user=").append(user)
 				.append(", trail=").append(trail)
 				.append(", mountainReports=").append(mountain)
-//				.append(", comments=").append(comments.size())
+			.append(", comment=").append(comment.size())
 				.append("]");
 		return builder.toString();
 	}
@@ -208,7 +208,7 @@ public class Report {
 	}
 
 	public Report(int id, String reportText, Integer rating, String imgUrl, Date dateCreated, Integer votes,
-			Boolean active, User user, Trail trail, Mountain mountain, List<Comment> comments) {
+			Boolean active, User user, Trail trail, Mountain mountain, List<Comment> comment) {
 		super();
 		this.id = id;
 		this.reportText = reportText;
@@ -220,7 +220,7 @@ public class Report {
 		this.user = user;
 		this.trail = trail;
 		this.mountain = mountain;
-		this.comments = comments;
+		this.comment = comment;
 	}
 	
 }
