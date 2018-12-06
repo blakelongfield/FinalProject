@@ -53,9 +53,12 @@ export class TrailDetailsComponent implements OnInit {
   }
 
   public reportsOnTrail(id) {
+    console.log(id);
+    console.log(this.trailId);
     this.reportService.findReportsByTrailId(id).subscribe(
       data => {
         this.reports = data;
+        console.log(this.reports[1].comment);
         for (let i = 0; i < this.reports.length; i++) {
                this.commentsOnReport(this.reports[i].id);
         }
@@ -67,9 +70,11 @@ export class TrailDetailsComponent implements OnInit {
   }
 
   public commentsOnReport(id) {
+    console.log(id);
     this.commentService.findCommentsByReportId(id).subscribe(
       data => {
         this.comments = data;
+        console.log(this.comments);
       },
       err => {
         console.error('trail-details.component.commentsOnreport(): Error retreving comments on report');
@@ -167,11 +172,11 @@ export class TrailDetailsComponent implements OnInit {
   }
 
   public displayTrail(id) {
+    console.log(id);
     this.trailDetailsService.findTrailById(id).subscribe(
       data => {
         console.log('in displayTrail - finding trail by id');
         this.selected = data;
-        this.reportsOnTrail(this.trail.id);
       }
     );
   }
@@ -211,13 +216,14 @@ export class TrailDetailsComponent implements OnInit {
   }
 
   public reportHelpful(report, reportId) {
-    report.vote += 1;
-    console.log('report Helpful?' + report.user);
-    console.log('report helpful?' + reportId);
-    console.log(report.vote);
+    console.log(report);
+    report.votes += 1;
+    console.log('report Helpful?' + report.user.username);
+    console.log('report helpful? ' + reportId);
+    console.log(report.votes);
     this.reportService.updateReport(report, reportId).subscribe(
       data => {
-        report.vote = data;
+        report.votes = data;
         console.log(report.vote);
         this.ngOnInit();
       },
@@ -229,13 +235,13 @@ export class TrailDetailsComponent implements OnInit {
   }
 
   public reportNotHelpful(report, reportId) {
-    report.vote -= 1;
+    report.votes -= 1;
     console.log('report not helpful?' + report.reportText);
     console.log('report not helpful?' + report.reportText);
     console.log(report.vote);
     this.reportService.updateReport(report, reportId).subscribe(
       data => {
-        report.vote = data;
+        report.votes = data;
         this.ngOnInit();
       },
       err => {

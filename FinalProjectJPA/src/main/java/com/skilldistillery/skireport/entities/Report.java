@@ -60,7 +60,7 @@ public class Report {
 	@JoinColumn(name="mountain_id")
 	private Mountain mountain;
 	
-	@JsonIgnore
+//	@JsonIgnore
 	@OneToMany(mappedBy="report", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
 	private List<Comment> comments;
 
