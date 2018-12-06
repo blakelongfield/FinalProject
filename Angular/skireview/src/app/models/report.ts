@@ -6,7 +6,7 @@ export class Report {
   reportText: string;
   rating: number;
   imageURL: string;
-  vote: number;
+  votes: number;
   active: boolean;
   user: User;
   trail: Trail;
@@ -20,7 +20,7 @@ export class Report {
     reportText?: string,
     rating?: number,
     image?: string,
-    vote?: number,
+    votes?: number,
     active?: boolean,
     user?: User,
     mountain?: Mountain,
@@ -31,7 +31,7 @@ export class Report {
     this.reportText = reportText;
     this.rating = rating;
     this.imageURL = image;
-    this.vote = vote ? vote : 0;
+    this.votes = votes;
     this.active = active;
     this.user = user;
     this.trail = trail;
