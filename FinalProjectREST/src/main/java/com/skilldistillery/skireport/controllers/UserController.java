@@ -1,5 +1,6 @@
 package com.skilldistillery.skireport.controllers;
 
+import java.security.Principal;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -28,18 +29,14 @@ public class UserController {
 
 //	Lists all Users
 	@RequestMapping(path = "users", method = RequestMethod.GET)
-	public List<User> index() {
-
+	public List<User> index(Principal principal) {
 		List<User> users = userServ.findAll();
-
 		return users;
-
 	}
 
 	// Finds User by Id
 	@RequestMapping(path = "users/{id}", method = RequestMethod.GET)
-	public User userById(@PathVariable("id") Integer id, HttpServletResponse resp) {
-
+	public User userById(@PathVariable("id") Integer id, HttpServletResponse resp, Principal principal) {
 		User userById = userServ.findById(id);
 		if (userById == null) {
 			resp.setStatus(404);
@@ -50,7 +47,7 @@ public class UserController {
 
 //	Creates a new User
 	@RequestMapping(path = "users", method = RequestMethod.POST)
-	public User createUser(@RequestBody User user, HttpServletResponse resp, HttpServletRequest req) {
+	public User createUser(@RequestBody User user, HttpServletResponse resp, HttpServletRequest req, Principal principal) {
 
 		User newUser = userServ.create(user);
 
@@ -67,37 +64,29 @@ public class UserController {
 
 //	Updates a User
 	@RequestMapping(path = "users", method = RequestMethod.PATCH)
-	public User updateUser(@RequestBody User user, HttpServletResponse resp) {
+	public User updateUser(@RequestBody User user, HttpServletResponse resp, Principal principal) {
 		User updatedUser = userServ.update(user, username);
-		System.out.println("************************************");
-		System.out.println(updatedUser);
-
 		if (updatedUser != null) {
 			resp.setStatus(201);
 		} else {
 			resp.setStatus(404);
-
 		}
-
 		return updatedUser;
-
 	}
 
 //	Deletes User
 	@RequestMapping(path = "users", method = RequestMethod.DELETE)
-	public Boolean deleteUser(HttpServletResponse resp) {
+	public Boolean deleteUser(HttpServletResponse resp, Principal principal) {
 		Boolean deletedUser = null;
 		deletedUser = userServ.destroy(username);
 		if (deletedUser) {
 			resp.setStatus(200);
 			resp.setHeader("Message", "User deleted succesfully");
-			
 		}
 
 		else {
 			resp.setStatus(404);
 			resp.setHeader("Message", "User failed to be deleted");
-
 		}
 		return deletedUser;
 	}
