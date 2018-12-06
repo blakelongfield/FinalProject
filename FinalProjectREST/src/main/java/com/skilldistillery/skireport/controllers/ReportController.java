@@ -79,7 +79,8 @@ public class ReportController {
 	//UPDATE REPORT (PATCH)
 	@PatchMapping("reports/{id}")
 	public Report patch( @PathVariable("id") Integer id, @RequestBody Report report) {
-		
+		System.out.println(id);
+		System.out.println(report.getVotes() + "********************************");
 		return rServ.update(id, report);
 	}
 	
