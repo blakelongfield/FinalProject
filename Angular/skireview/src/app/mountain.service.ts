@@ -1,3 +1,4 @@
+import { AuthService } from './auth.service';
 import { Mountain } from './models/mountain';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
@@ -15,11 +16,13 @@ export class MountainService {
   private url = this.baseUrl + 'api/mountains';
   private httpOptions = {
     headers: new HttpHeaders({
-      'Content-type': 'application/json'
+      'Content-Type':  'application/json',
+      'Authorization': `Basic ${this.authService.getToken}`,
+      'X-Requested-With': 'XMLHttpRequest'
     })
   };
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private authService: AuthService) { }
 
   public index() {
     return this.http.get<Mountain[]>(this.url).pipe(

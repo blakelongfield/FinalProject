@@ -1,5 +1,6 @@
 package com.skilldistillery.skireport.controllers;
 
+import java.security.Principal;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -62,25 +63,23 @@ public class ReportController {
 	
 	//CREATE NEW REPORT ON A TRAIL
 	@PostMapping("reports/trails/{trailId}")
-	public Report createReportOnTrail(@RequestBody Report report, @PathVariable("trailId") int trailId) {
+	public Report createReportOnTrail(@RequestBody Report report, @PathVariable("trailId") int trailId, Principal principal) {
 		Integer mountainId = null;
-		System.out.println(report);
-		System.out.println(trailId + "*******************************************");
-		return rServ.create(report, username, trailId, mountainId);
+		return rServ.create(report, principal.getName(), trailId, mountainId);
 	}
 	
 	//CREATE NEW REPORT ON A MOUNTAIN
 	@PostMapping("reports/mountains/{mountainId}")
-	public Report createReportOnMountain(@RequestBody Report report, @PathVariable("mountainId") Integer mountainId) {
+	public Report createReportOnMountain(@RequestBody Report report, @PathVariable("mountainId") Integer mountainId, Principal principal) {
 		Integer trailId = null;
-		return rServ.create(report, username, trailId, mountainId);
+		return rServ.create(report, principal.getName(), trailId, mountainId);
 	}
 	
 	//UPDATE REPORT (PATCH)
 	@PatchMapping("reports/{id}")
-	public Report patch( @PathVariable("id") Integer id, @RequestBody Report report) {
-		
-		return rServ.update(id, report);
+	public Report patch( @PathVariable("id") Integer id, @RequestBody Report report, Principal principal) {
+
+		return rServ.update(id, report, principal.getName());
 	}
 	
 	//DELETE REPORT

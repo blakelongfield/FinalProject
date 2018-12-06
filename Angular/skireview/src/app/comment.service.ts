@@ -1,3 +1,4 @@
+import { AuthService } from './auth.service';
 import { Comment } from './models/comment';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
@@ -14,11 +15,13 @@ export class CommentService {
   private url = this.baseUrl + 'api/comments';
   private httpOptions = {
     headers: new HttpHeaders({
-      'Content-type': 'application/json'
+      'Content-Type':  'application/json',
+      'Authorization': `Basic ${this.authService.getToken}`,
+      'X-Requested-With': 'XMLHttpRequest'
     })
   };
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private authService: AuthService) { }
 
   public index() {
     return this.http.get<Comment[]>(this.url).pipe(

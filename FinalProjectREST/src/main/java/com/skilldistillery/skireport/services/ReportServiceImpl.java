@@ -55,7 +55,6 @@ public class ReportServiceImpl implements ReportService {
 	// FIND REPORTS BY TRAIL NAME
 	@Override
 	public List<Report> findByTrailId(Integer tid) {
-
 		return repo.findByTrailId(tid);
 	}
 
@@ -98,31 +97,34 @@ public class ReportServiceImpl implements ReportService {
 
 	// UPDATE REPORT
 	@Override
-	public Report update(Integer rid, Report report) {
-
-		Optional<Report> opt = repo.findById(rid);
-		Report mReport = opt.get();
-
-		if (report != null && mReport != null) {
-
-			if (report.getReportText() != null) {
-				mReport.setReportText(report.getReportText());
+	public Report update(Integer rid, Report report, String username) {
+		Report mReport = null;
+		if (username != null) {
+			User user = urepo.findByUsername(username);
+			if (user != null) {
+				Optional<Report> opt = repo.findById(rid);
+				if (opt != null) {
+					mReport = opt.get();
+					if (report != null && mReport != null) {
+						if (report.getReportText() != null) {
+							mReport.setReportText(report.getReportText());
+						}
+						if (report.getRating() != null) {
+							mReport.setRating(report.getRating());
+						}
+						if (report.getImgUrl() != null) {
+							mReport.setImgUrl(report.getImgUrl());
+						}
+						if (report.getTrail() != null) {
+							mReport.setTrail(report.getTrail());
+						}
+						if (report.getComments() != null) {
+							mReport.setComments(report.getComments());
+						}
+						repo.saveAndFlush(mReport);
+					}
+				}
 			}
-			if (report.getRating() != null) {
-				mReport.setRating(report.getRating());
-			}
-			if (report.getImgUrl() != null) {
-				mReport.setImgUrl(report.getImgUrl());
-			}
-			if (report.getTrail() != null) {
-				mReport.setTrail(report.getTrail());
-			}
-			if (report.getComments() != null) {
-				mReport.setComments(report.getComments());
-			}
-
-			repo.saveAndFlush(mReport);
-
 		}
 		return mReport;
 	}

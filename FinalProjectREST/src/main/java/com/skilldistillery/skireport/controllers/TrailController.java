@@ -1,5 +1,6 @@
 package com.skilldistillery.skireport.controllers;
 
+import java.security.Principal;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -51,7 +52,6 @@ public class TrailController {
 	
 	@GetMapping("trails/sort/{mid}/{search}")
 	public List<Trail> sortBy( @PathVariable("search") String search, @PathVariable("mid") Integer mid) {
-		System.out.println("************************" + search);
 		return trailService.sortBy(search, mid);
 	}
 
@@ -76,10 +76,10 @@ public class TrailController {
 
 	@PostMapping("trails/mountains/{mountainId}")
 	public Trail create(@RequestBody Trail trail, @PathVariable("mountainId") int mountainId, HttpServletResponse resp,
-			HttpServletRequest req) {
+			HttpServletRequest req, Principal principal) {
 		Trail newTrail = null;
 		System.out.println(trail);
-		newTrail = trailService.create(trail, mountainId, username);
+		newTrail = trailService.create(trail, mountainId, principal.getName());
 		if (newTrail == null) {
 			resp.setStatus(400);
 		} else {
@@ -91,9 +91,9 @@ public class TrailController {
 	}
 
 	@PutMapping("trails/{trailId}")
-	public Trail update(@RequestBody Trail trail, @PathVariable("trailId") int trailId, HttpServletResponse resp) {
+	public Trail update(@RequestBody Trail trail, @PathVariable("trailId") int trailId, HttpServletResponse resp, Principal principal) {
 		Trail updateTrail = null;
-		updateTrail = trailService.update(trail, trailId, username);
+		updateTrail = trailService.update(trail, trailId, principal.getName());
 		if (updateTrail != null) {
 			resp.setStatus(202);
 		} else {
@@ -103,9 +103,9 @@ public class TrailController {
 	}
 
 	@PatchMapping("trails/{trailId}")
-	public Trail patch(@RequestBody Trail trail, @PathVariable("trailId") int trailId, HttpServletResponse resp) {
+	public Trail patch(@RequestBody Trail trail, @PathVariable("trailId") int trailId, HttpServletResponse resp, Principal principal) {
 		Trail patchTrail = null;
-		patchTrail = trailService.patch(trail, trailId, username);
+		patchTrail = trailService.patch(trail, trailId, principal.getName());
 		if (patchTrail != null) {
 			resp.setStatus(202);
 		} else {
@@ -115,9 +115,9 @@ public class TrailController {
 	}
 	
 	@DeleteMapping("trails/disable/{trailId}")
-	public Boolean disable(@PathVariable("trailId") int trailId, HttpServletResponse resp) {
+	public Boolean disable(@PathVariable("trailId") int trailId, HttpServletResponse resp, Principal principal) {
 		Boolean disableTrail = null;
-		disableTrail = trailService.disable(trailId, username);
+		disableTrail = trailService.disable(trailId, principal.getName());
 		if (disableTrail) {
 			resp.setStatus(200);
 		} else {
@@ -127,9 +127,9 @@ public class TrailController {
 	}
 
 	@DeleteMapping("trails/{trailId}")
-	public Boolean destroy(@PathVariable("trailId") int trailId, HttpServletResponse resp) {
+	public Boolean destroy(@PathVariable("trailId") int trailId, HttpServletResponse resp, Principal principal) {
 		Boolean destroyTrail = null;
-		destroyTrail = trailService.destroy(trailId, username);
+		destroyTrail = trailService.destroy(trailId, principal.getName());
 		if (destroyTrail) {
 			resp.setStatus(200);
 		} else {

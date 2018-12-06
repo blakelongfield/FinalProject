@@ -1,3 +1,4 @@
+import { AuthService } from './auth.service';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { User } from './models/user';
@@ -14,11 +15,13 @@ export class UserService {
 
   private users: User[] = [];
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private authService: AuthService) { }
 
   private httpOptions = {
-    headers: new HttpHeaders ({
-      'Content-Type' : 'application/json'
+    headers: new HttpHeaders({
+      'Content-Type':  'application/json',
+      'Authorization': `Basic ${this.authService.getToken}`,
+      'X-Requested-With': 'XMLHttpRequest'
     })
   };
 

@@ -18,7 +18,7 @@ public interface ReportService {
 	
 	Report create( Report report, String username, Integer trailId, Integer mountainId);
 	
-	Report update( Integer rid, Report report);
+	Report update( Integer rid, Report report, String username);
 	
 	Boolean delete( Integer id);
 

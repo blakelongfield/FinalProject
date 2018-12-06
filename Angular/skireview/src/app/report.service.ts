@@ -1,3 +1,4 @@
+import { AuthService } from './auth.service';
 import {throwError} from 'rxjs';
 import {catchError} from 'rxjs/internal/operators';
 import {HttpHeaders, HttpClient} from '@angular/common/http';
@@ -18,11 +19,12 @@ export class ReportService {
 
   httpOptions = {
     headers: new HttpHeaders({
-      'Content-Type':  'application/json'
-
+      'Content-Type':  'application/json',
+      'Authorization': `Basic ${this.authService.getToken}`,
+      'X-Requested-With': 'XMLHttpRequest'
     })
   };
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private authService: AuthService) { }
 
   //// FUNCTIONS
     //// GRAB ALL REPORTS
@@ -104,9 +106,10 @@ export class ReportService {
     }
 
      //// UPDATE REPORT
-     public updateReport(report: Report, rId ) {
-
-      return this.http.post<Report>(this.url + '/' + rId, report, this.httpOptions)
+     public updateReport(report, rId ) {
+       console.log('in service' + report.reportText + '**************');
+       console.log('in service' + rId + '()()()()()()()()()');
+      return this.http.patch<Report>(this.url + '/' + rId, report, this.httpOptions)
       .pipe(catchError((err: any) => {
         console.log(err);
         return throwError('COULD NOT UPDATE REPORT');
