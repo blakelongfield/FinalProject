@@ -1,5 +1,6 @@
 package com.skilldistillery.skireport.controllers;
 
+import java.security.Principal;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -27,7 +28,7 @@ public class CommentController {
 	private CommentService commentService;
 
 	// hard-coded until we start using Angular
-	private String username = "blake";
+//	private String username = "blake";
 
 	@GetMapping(path = "comments")
 	public List<Comment> getAllComments(HttpServletResponse resp, HttpServletRequest req) {
@@ -58,12 +59,10 @@ public class CommentController {
 
 	@PostMapping(path = "comments/reports/{reportId}")
 	public Comment createCommentOnReport(@RequestBody Comment comment, @PathVariable("reportId") Integer reportId,
-			HttpServletResponse resp, HttpServletRequest req) {
-		System.out.println(reportId);
-		System.out.println(comment);
-		System.out.println("****************************************");
+			HttpServletResponse resp, HttpServletRequest req, Principal principal) {
+
 		Integer commentId = null;
-		comment = commentService.create(comment, username, reportId, commentId);
+		comment = commentService.create(comment, principal.getName(), reportId, commentId);
 		if (comment == null) {
 			resp.setStatus(400);
 		} else {
@@ -74,9 +73,9 @@ public class CommentController {
 
 	@PostMapping(path = "comments/comments/{commentId}")
 	public Comment createCommentOnComment(@RequestBody Comment comment, @PathVariable("commentId") int commentId,
-			HttpServletResponse resp, HttpServletRequest req) {
+			HttpServletResponse resp, HttpServletRequest req, Principal principal) {
 		Integer reportId = null;
-		comment = commentService.create(comment, username, reportId, commentId);
+		comment = commentService.create(comment, principal.getName(), reportId, commentId);
 		if (comment == null) {
 			resp.setStatus(400);
 		} else {
@@ -87,8 +86,8 @@ public class CommentController {
 
 	@PutMapping(path = "comments/{commentId}")
 	public Comment updateComment(@RequestBody Comment comment, @PathVariable("commentId") int commentId,
-			HttpServletResponse resp, HttpServletRequest req) {
-		comment = commentService.update(comment, commentId, username);
+			HttpServletResponse resp, HttpServletRequest req, Principal principal) {
+		comment = commentService.update(comment, commentId, principal.getName());
 		if (comment != null) {
 			resp.setStatus(202);
 		} else {
@@ -99,9 +98,9 @@ public class CommentController {
 
 	@DeleteMapping(path = "comments/{commentId}")
 	public Boolean deleteComment(@PathVariable("commentId") int commentId, HttpServletResponse resp,
-			HttpServletRequest req) {
+			HttpServletRequest req, Principal principal) {
 		Boolean deletedComment = false;
-		deletedComment = commentService.destroy(commentId, username);
+		deletedComment = commentService.destroy(commentId, principal.getName());
 		if (deletedComment == true) {
 			resp.setStatus(200);
 		} else {
