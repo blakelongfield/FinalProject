@@ -211,13 +211,14 @@ export class TrailDetailsComponent implements OnInit {
   }
 
   public reportHelpful(report, reportId) {
-    report.votes += 1;
+    report.vote += 1;
     console.log('report Helpful?' + report.user);
     console.log('report helpful?' + reportId);
+    console.log(report.vote);
     this.reportService.updateReport(report, reportId).subscribe(
       data => {
-        report.votes = data;
-        console.log(this.votes);
+        report.vote = data;
+        console.log(report.vote);
         this.ngOnInit();
       },
       err => {
@@ -228,12 +229,13 @@ export class TrailDetailsComponent implements OnInit {
   }
 
   public reportNotHelpful(report, reportId) {
-    report.votes -= 1;
+    report.vote -= 1;
     console.log('report not helpful?' + report.reportText);
     console.log('report not helpful?' + report.reportText);
+    console.log(report.vote);
     this.reportService.updateReport(report, reportId).subscribe(
       data => {
-        report.votes = data;
+        report.vote = data;
         this.ngOnInit();
       },
       err => {
