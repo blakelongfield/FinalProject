@@ -33,7 +33,7 @@ public class Comment {
 	@JoinColumn(name="report_id")
 	private Report report;
 	
-	@JsonBackReference(value="userToComment")
+//	@JsonBackReference(value="userToComment")
 	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
 	@JoinColumn(name="user_id")
 	private User user;
@@ -136,18 +136,18 @@ public class Comment {
 	/*
 	 * toString
 	 */
-//	@Override
-//	public String toString() {
-//		StringBuilder builder = new StringBuilder();
-//		builder.append("Comment [id=").append(id)
-//				.append(", commentText=").append(commentText)
-//				.append(", report=").append(report)
-//				.append(", userComment=").append(user)
-//				.append(", mainComment=").append(mainComment)
-////				.append(", comments=").append(comments.size())
-//				.append("]");
-//		return builder.toString();
-//	}
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("Comment [id=").append(id)
+				.append(", commentText=").append(commentText)
+				.append(", report=").append(report)
+				.append(", userComment=").append(user)
+				.append(", mainComment=").append(mainComment)
+//				.append(", comments=").append(comments.size())
+				.append("]");
+		return builder.toString();
+	}
 
 	/*
 	 * constructors

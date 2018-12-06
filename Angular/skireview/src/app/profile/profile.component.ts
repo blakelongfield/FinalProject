@@ -59,7 +59,8 @@ console.log(this.editedUser);
   }
 
   cancel () {
-    this.updateUser = null;
+    this.editedUser = null;
+
   }
 
   selectedUser(user) {

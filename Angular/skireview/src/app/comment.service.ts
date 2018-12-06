@@ -4,6 +4,7 @@ import { environment } from 'src/environments/environment';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { catchError } from 'rxjs/operators';
 import { throwError } from 'rxjs';
+import { Report } from './models/report';
 
 @Injectable({
   providedIn: 'root'
@@ -55,6 +56,15 @@ export class CommentService {
     );
   }
 
+  public createCommentOnReport(comment, reportId) {
+    return this.http.post<Comment>(this.url + '/reports/' + reportId, comment, this.httpOptions).pipe(
+      catchError((error: any) => {
+        console.error(error);
+        return throwError('commentService.createCommentOnReport(): Error creating comment on report');
+      })
+    );
+  }
+
   public put(comment: Comment) {
     return this.http.patch<Comment>(this.url + comment.id, comment, this.httpOptions).pipe(
       catchError((error: any) => {
@@ -65,7 +75,6 @@ export class CommentService {
   }
 
   public delete(id: number) {
-    console.log(id);
     return this.http.delete(this.url + '/' + id).pipe(
       catchError((error: any) => {
         console.error(error);
