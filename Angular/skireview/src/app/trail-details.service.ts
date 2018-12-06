@@ -1,3 +1,4 @@
+import { AuthService } from './auth.service';
 import {catchError} from 'rxjs/internal/operators';
 import { Injectable } from '@angular/core';
 import { Trail } from './models/trail';
@@ -13,11 +14,13 @@ export class TrailDetailsService {
   private url = environment.baseUrl + 'api/trails';
   private httpOptions = {
     headers: new HttpHeaders({
-      'Content-Type': 'application/json'
+      'Content-Type':  'application/json',
+      'Authorization': `Basic ${this.authService.getToken}`,
+      'X-Requested-With': 'XMLHttpRequest'
     })
   };
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private authService: AuthService) { }
 
   public index() {
     return this.http.get<Trail[]>(this.url).pipe(

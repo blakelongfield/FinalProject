@@ -24,22 +24,17 @@ public class ChairliftController {
 	
 	@Autowired ChairLiftService clServe;
 	
-	
 	//INDEX
 	@GetMapping("chairlifts")
 	public List<ChairLift> index() {
 		return clServe.findAll();
 	}
 	
-	
-	
 	//SHOW
 	@GetMapping("chairlifts/{id}")
 	public ChairLift showById( @PathVariable("id") Integer id) {
 		return clServe.findById(id);
 	}
-	
-	
 	
 	//CREATE
 	@PostMapping("chairlifts")
@@ -49,14 +44,11 @@ public class ChairliftController {
 		return clServe.create(chairlift, 1);
 	}
 	
-	
 	//UPDATE
-	
 	@PatchMapping("chairlifts/{id}")
 	public ChairLift update( @PathVariable("id") Integer id, @RequestBody ChairLift chairlift ) {
 		return clServe.update(id, chairlift);
 	}
-	
 	
 	//DELETE
 	@DeleteMapping("chairlifts/{id}")

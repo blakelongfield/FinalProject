@@ -1,5 +1,6 @@
 package com.skilldistillery.skireport.controllers;
 
+import java.security.Principal;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -49,8 +50,8 @@ public class ResortController {
 	}
 
 	@PostMapping(path = "resorts")
-	public Resort createResort(@RequestBody Resort resort, HttpServletResponse resp, HttpServletRequest req) {
-		resort = resortService.create(resort, username);
+	public Resort createResort(@RequestBody Resort resort, HttpServletResponse resp, HttpServletRequest req, Principal principal) {
+		resort = resortService.create(resort, principal.getName());
 		if (resort == null) {
 			resp.setStatus(400);
 		} else {
@@ -61,8 +62,8 @@ public class ResortController {
 
 	@PutMapping(path = "resorts/{resortId}")
 	public Resort updateResort(@RequestBody Resort resort, @PathVariable("resortId") int resortId,
-			HttpServletResponse resp, HttpServletRequest req) {
-		resort = resortService.update(resort, resortId, username);
+			HttpServletResponse resp, HttpServletRequest req, Principal principal) {
+		resort = resortService.update(resort, resortId, principal.getName());
 		if (resort != null) {
 			resp.setStatus(202);
 		} else {
@@ -72,9 +73,9 @@ public class ResortController {
 	}
 	
 	@DeleteMapping("resorts/disable/{resortId}")
-	public Boolean disableResort(@PathVariable("resortId") int resortId, HttpServletResponse resp) {
+	public Boolean disableResort(@PathVariable("resortId") int resortId, HttpServletResponse resp, Principal principal) {
 		Boolean disableResort = null;
-		disableResort = resortService.disable(resortId, username);
+		disableResort = resortService.disable(resortId, principal.getName());
 		if (disableResort) {
 			resp.setStatus(200);
 		} else {
@@ -85,8 +86,8 @@ public class ResortController {
 
 	@DeleteMapping(path = "resorts/{resortId}")
 	public Boolean deleteResort(@PathVariable("resortId") int resortId, HttpServletResponse resp,
-			HttpServletRequest req) {
-		Boolean deletedResort = resortService.destroy(resortId, username);
+			HttpServletRequest req, Principal principal) {
+		Boolean deletedResort = resortService.destroy(resortId, principal.getName());
 		if (deletedResort == true) {
 			resp.setStatus(200);
 		} else {
