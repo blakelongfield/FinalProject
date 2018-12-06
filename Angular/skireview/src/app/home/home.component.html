@@ -6,9 +6,10 @@
   </video>
 </div>
 
-<div>
-  <h1>SLOPE SPOT</h1>
-</div>
+
+
+
+
 
 
 
@@ -86,7 +87,7 @@
 <div *ngIf="selectedMTN" class="row"> <!-- ROW -->
 
 
-  <div class="embed-responsive" style="padding-bottom: 60%">
+  <div *ngIf="showTrailMap" class="embed-responsive" style="padding-bottom: 60%">
     <div *ngIf="selectedMTN.id === 1; else: vail">
       <object
         data="assets/Maps/abasin.pdf"
@@ -104,6 +105,8 @@
       ></object>
     </ng-template>
   </div>
+  <button (click)="showMap()"> Trail Maps</button>
+
 </div>
 <!-- ROW -->
 
@@ -118,10 +121,34 @@
 </div>
 <!-- ROW -->
 
-<div class="container">
+<div class="container-fluid">
   <!-- CON -->
   <div class="row" *ngIf="selectedMTN">
     <!-- ROW -->
+
+    <div class="col-2">
+      <!-- Vail Weather Widget -->
+<div *ngIf="selectedMTN && selectedMTN.id === 2" style="width: 245px;"><iframe style="display: block;"
+  src="https://cdnres.willyweather.com/widget/loadView.html?id=98694"
+  width="245" height="228" frameborder="0" scrolling="no"></iframe>
+  <a style="z-index: 1;margin: -20px 0 0 0;height: 20px;position: relative;
+  text-indent: -9999em;display: block" href="https://www.willyweather.com/co/eagle-county/vail.html"
+  rel="nofollow">vail weekly forecast</a></div>
+
+<!-- A-Basin Weather Widget -->
+<div *ngIf="selectedMTN && selectedMTN.id === 1" style="width: 210px;"><iframe style="display: block;"
+  src="https://cdnres.willyweather.com/widget/loadView.html?id=98695"
+   width="210" height="228" frameborder="0" scrolling="no"></iframe>
+   <a style="margin: -20px 0 0 0;z-index: 1;position: relative;
+   height: 20px;display: block;text-indent: -9999em" href="https://www.willyweather.com/co/summit-county/arapahoe-basin-ski-area.html"
+   rel="nofollow">arapahoe basin ski area CO weather forecast</a></div>
+
+
+
+
+
+
+    </div>
 
     <div class="col">
       <!-- COL -->
