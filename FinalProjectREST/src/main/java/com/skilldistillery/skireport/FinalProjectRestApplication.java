@@ -19,7 +19,7 @@ public class FinalProjectRestApplication extends SpringBootServletInitializer {
 	public static void main(String[] args) {
 		SpringApplication.run(FinalProjectRestApplication.class, args);
 	}
-	
+	 
 	@Bean
 	public PasswordEncoder configurePasswordEncoder() {
 		return new BCryptPasswordEncoder();

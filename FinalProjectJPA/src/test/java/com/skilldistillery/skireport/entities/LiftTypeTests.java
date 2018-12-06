@@ -31,8 +31,8 @@ class LiftTypeTests {
 	@Test
 	void test1() {
 		assertEquals(4, liftType.getCapacity().intValue());
-		assertEquals("Express", liftType.getType());
-		assertEquals(1, liftType.getLifts().size());
+		assertEquals("Express Chairlift", liftType.getType());
+		assertEquals(16, liftType.getLifts().size());
 	}
 	
 	@AfterAll

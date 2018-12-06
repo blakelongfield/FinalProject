@@ -32,7 +32,7 @@ public class TrailController {
 	/*
 	 * TO BE REMOVED WHEN WE ADD SECURITY
 	 */
-	private String username = "zach";
+//	private String username = "zach";
 
 	/*
 	 * Get methods can be accessed by anybody. Other methods require you to be an
