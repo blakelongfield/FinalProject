@@ -20,7 +20,7 @@ export class RegisterComponent implements OnInit {
   ngOnInit() {
   }
 // registers a new user (create)
-  public register(newUser: User) {
+  public register() {
 
     // use during auth service
     // this.authService.register(newUser).subscribe(
@@ -33,12 +33,19 @@ export class RegisterComponent implements OnInit {
     // }
     // );
 
-    newUser.active = true;
-    newUser.role = 'Standard';
+    // this.newUser.active = true;
+    // this.newUser.role = 'Standard';
 
-    this.userService.create(newUser).subscribe(
+    this.authService.register(this.newUser).subscribe(
       data => {
-        this.router.navigateByUrl('home');
+        console.log('inside register calling home nav');
+        this.authService.login(this.newUser.username, this.newUser.password).subscribe(
+          loggedin => {
+            console.log(loggedin);
+            this.router.navigateByUrl('home');
+          }
+        );
+
       },
       err => {
         console.error('Error creating new user');

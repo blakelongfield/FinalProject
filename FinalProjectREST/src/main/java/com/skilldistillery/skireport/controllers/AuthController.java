@@ -15,7 +15,7 @@ import com.skilldistillery.skireport.entities.User;
 import com.skilldistillery.skireport.services.AuthService;
 
 @RestController
-@CrossOrigin({ "*", "http://localhost:4201" })
+@CrossOrigin({ "*", "http://localhost:4205" })
 public class AuthController {
 
 	@Autowired

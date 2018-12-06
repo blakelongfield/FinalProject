@@ -28,6 +28,7 @@ export class TrailDetailsComponent implements OnInit {
   reportIdHolder;
   trailId;
   reportId;
+  votes = 0;
 
   // tslint:disable-next-line:max-line-length
   constructor(private trailDetailsService: TrailDetailsService, private reportService: ReportService, private commentService: CommentService, private activeRouter: ActivatedRoute) { }
@@ -56,7 +57,7 @@ export class TrailDetailsComponent implements OnInit {
       data => {
         this.reports = data;
         for (let i = 0; i < this.reports.length; i++) {
-              this.commentsOnReport(this.reports[i].id);
+               this.commentsOnReport(this.reports[i].id);
         }
       },
       err => {
@@ -69,7 +70,6 @@ export class TrailDetailsComponent implements OnInit {
     this.commentService.findCommentsByReportId(id).subscribe(
       data => {
         this.comments = data;
-        console.log(data);
       },
       err => {
         console.error('trail-details.component.commentsOnreport(): Error retreving comments on report');
@@ -208,5 +208,40 @@ export class TrailDetailsComponent implements OnInit {
   public showTextBox(reportId) {
     this.commentTextBox = true;
     this.reportIdHolder = reportId;
+  }
+
+  public reportHelpful(report, reportId) {
+    report.vote += 1;
+    console.log('report Helpful?' + report.user);
+    console.log('report helpful?' + reportId);
+    console.log(report.vote);
+    this.reportService.updateReport(report, reportId).subscribe(
+      data => {
+        report.vote = data;
+        console.log(report.vote);
+        this.ngOnInit();
+      },
+      err => {
+        console.error('Error in trail-details.component reportNotHelpful(): Error downvoting');
+        console.log(err);
+      }
+    );
+  }
+
+  public reportNotHelpful(report, reportId) {
+    report.vote -= 1;
+    console.log('report not helpful?' + report.reportText);
+    console.log('report not helpful?' + report.reportText);
+    console.log(report.vote);
+    this.reportService.updateReport(report, reportId).subscribe(
+      data => {
+        report.vote = data;
+        this.ngOnInit();
+      },
+      err => {
+        console.error('Error in trail-details.component reportNotHelpful(): Error downvoting');
+        console.log(err);
+      }
+    );
   }
 }

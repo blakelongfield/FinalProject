@@ -36,6 +36,11 @@ export class HomeComponent implements OnInit {
   reverse1 = 1;
   reverse2 = 1;
   showTrailMap = false;
+  rating1 = 1;
+  rating2 = 2;
+  rating3 = 3;
+  rating4 = 4;
+  rating5 = 5;
 
 
 
@@ -191,6 +196,68 @@ export class HomeComponent implements OnInit {
 
       this.newReport = null;
     }
+
+    // RATING SYSTEM
+    public ratingsubmit1() {
+      if ( this.rating1 === 1 ) {
+        this.rating1 = 0;
+          console.log(1);
+      } else {
+        this.rating2 = 2;
+        this.rating3 = 3;
+        this.rating4 = 4;
+        this.rating5 = 5;
+        console.log(1);
+      }
+    }
+    public ratingsubmit2 () {
+      if ( this.rating2 === 2 ) {
+        this.rating1 = 0;
+        this.rating2 = 0;
+
+          console.log(2);
+      } else {
+        this.rating3 = 3;
+        this.rating4 = 4;
+        this.rating5 = 5;
+        console.log(2);
+      }
+    }
+    public ratingsubmit3 () {
+      if ( this.rating3 === 3 ) {
+        this.rating1 = 0;
+        this.rating2 = 0;
+        this.rating3 = 0;
+          console.log(3);
+      } else {
+        this.rating4 = 4;
+        this.rating5 = 5;
+        console.log(3);
+      }
+    }
+    public ratingsubmit4 () {
+      if ( this.rating4 === 4 ) {
+        this.rating1 = 0;
+        this.rating2 = 0;
+        this.rating3 = 0;
+        this.rating4 = 0;
+          console.log(4);
+      } else {
+        this.rating5 = 5;
+        console.log(4);
+      }
+    }
+    public ratingsubmit5 () {
+      if ( this.rating5 === 5 ) {
+        this.rating1 = 0;
+        this.rating2 = 0;
+        this.rating3 = 0;
+        this.rating4 = 0;
+        this.rating5 = 0;
+          console.log(5);
+      }
+    }
+
 
 
 

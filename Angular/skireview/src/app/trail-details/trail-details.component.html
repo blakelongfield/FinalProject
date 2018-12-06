@@ -19,22 +19,32 @@
 
       <div class="col">
         <form>
+
             <div *ngFor="let report of reports">
-             <p>{{report.user.username}}: {{report.reportText}}<p>
+              <p>votes: {{report.votes}}</p>
+              <p>{{report.user.username}}: {{report.reportText}}<p>
+                  <div>
+                      <button (click)="reportHelpful(report, report.id)">Helpful?</button>
+                      <button (click)="reportNotHelpful(report, report.id)">Not Helpful?</button>
+                    </div>
               <div>
                 <button (click)="showTextBox(report.id)">Comment</button>
               </div>
+
                 <div *ngFor="let comment of report.comments">
-                   <p>........Comment: {{comment.commentText}}</p>
-                 </div>
-            </div> <br>
-              <div>
-            </div>
-            <textarea rows="4" cols="50" name="comment" form="usrform" placeholder="Is the gnar on par today?" [(ngModel)]="newReport.reportText"></textarea><br>
+                  <p>........Comment: {{comment.commentText}}</p>
+                </div>
+              </div> <br>
+
+            <textarea rows="4" cols="50" name="comment" form="usrform" placeholder="Is the gnar on par today?" [(ngModel)]="newReport.reportText">
+            </textarea> <br>
             <button (click)="createReportOnTrail()">Submit</button>
-          </form></div>
+
+          </form>
+       </div>
+
          <div class="col" *ngIf="commentTextBox">
-          <form> <br><br><br><br><br><br><br><br>
+          <form>
             <textarea rows="3" cols="30" name="commentText" form="usrform" placeholder="Reply to report" [(ngModel)]="newCommentOnReport.commentText"></textarea> <br>
             <button type="submit" name="submit" (click)="createCommentOnReport()">Submit</button>
            </form>

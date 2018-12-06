@@ -1,3 +1,4 @@
+import { AuthService } from './auth.service';
 import { Injectable } from '@angular/core';
 import { Resort } from './models/resort';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
@@ -13,11 +14,13 @@ export class ResortService {
   private url = environment.baseUrl + 'api/resorts';
   private httpOptions = {
     headers: new HttpHeaders({
-      'Content-Type': 'application/json'
+      'Content-Type':  'application/json',
+      'Authorization': `Basic ${this.authService.getToken}`,
+      'X-Requested-With': 'XMLHttpRequest'
     })
   };
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private authService: AuthService) { }
 
   public index() {
     return this.http.get<Resort[]>(this.url).pipe(
