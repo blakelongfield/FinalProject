@@ -206,10 +206,7 @@ export class TrailDetailsComponent implements OnInit {
   }
 
   public showTextBox(reportId) {
-    console.log(reportId);
     this.commentTextBox = true;
     this.reportIdHolder = reportId;
-    console.log(reportId);
-
   }
 }

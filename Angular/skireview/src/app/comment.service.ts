@@ -57,8 +57,6 @@ export class CommentService {
   }
 
   public createCommentOnReport(comment, reportId) {
-    console.log(comment.commentText + 'comment in the commentService');
-    console.log(reportId + 'reportID in the commentService');
     return this.http.post<Comment>(this.url + '/reports/' + reportId, comment, this.httpOptions).pipe(
       catchError((error: any) => {
         console.error(error);
@@ -77,7 +75,6 @@ export class CommentService {
   }
 
   public delete(id: number) {
-    console.log(id);
     return this.http.delete(this.url + '/' + id).pipe(
       catchError((error: any) => {
         console.error(error);

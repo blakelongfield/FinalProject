@@ -13,13 +13,14 @@
         <p>Features: {{selected.features}}</p> <br>
       </div>
 
-      <div class="w-100"></div>
+      <div class="w-100">
+        <h3>Here's what people are saying about the gnar today</h3>
+      </div>
 
       <div class="col">
         <form>
-          <h3>Here's what people are saying about the gnar today</h3> <br>
             <div *ngFor="let report of reports">
-             <p>Report: {{report.reportText}}<p>
+             <p>{{report.user.username}}: {{report.reportText}}<p>
               <div>
                 <button (click)="showTextBox(report.id)">Comment</button>
               </div>
@@ -27,7 +28,6 @@
                    <p>........Comment: {{comment.commentText}}</p>
                  </div>
             </div> <br>
-
               <div>
             </div>
             <textarea rows="4" cols="50" name="comment" form="usrform" placeholder="Is the gnar on par today?" [(ngModel)]="newReport.reportText"></textarea><br>
