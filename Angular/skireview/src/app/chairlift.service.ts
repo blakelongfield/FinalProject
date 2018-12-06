@@ -15,7 +15,7 @@ export class ChairliftService {
   private httpOptions = {
     headers: new HttpHeaders({
       'Content-Type':  'application/json',
-      'Authorization': `Basic ${this.authService.getToken}`,
+      'Authorization': `Basic ${this.authService.getToken()}`,
       'X-Requested-With': 'XMLHttpRequest'
     })
   };
@@ -23,6 +23,7 @@ export class ChairliftService {
   constructor(private http: HttpClient, private authService: AuthService) { }
 
   public index() {
+    console.log('this sucks');
     return this.http.get<Chairlift[]>(this.url).pipe(
       catchError((error: any) => {
         console.error(error);

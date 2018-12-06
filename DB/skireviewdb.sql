@@ -304,11 +304,11 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `skireviewdb`;
-INSERT INTO `user` (`id`, `first_name`, `last_name`, `username`, `password`, `email`, `role`, `active`, `profile_pic_url`) VALUES (1, 'Zachary', 'Lamb', 'zach', 'zach', 'zach@zach.com', 'Admin', true, NULL);
-INSERT INTO `user` (`id`, `first_name`, `last_name`, `username`, `password`, `email`, `role`, `active`, `profile_pic_url`) VALUES (2, 'Kyle', 'Paladini', 'kyle', 'kyle', 'kyle@kyle.com', 'Admin', true, NULL);
-INSERT INTO `user` (`id`, `first_name`, `last_name`, `username`, `password`, `email`, `role`, `active`, `profile_pic_url`) VALUES (3, 'Tyler', 'Paladini', 'tyler', 'tyler', 'tyler@tyler.com', 'Admin', true, NULL);
-INSERT INTO `user` (`id`, `first_name`, `last_name`, `username`, `password`, `email`, `role`, `active`, `profile_pic_url`) VALUES (4, 'Blake', 'Longfield', 'blake', 'blake', 'blake@blake.com', 'Admin', true, NULL);
-INSERT INTO `user` (`id`, `first_name`, `last_name`, `username`, `password`, `email`, `role`, `active`, `profile_pic_url`) VALUES (5, 'John', 'smith', 'john', 'john', 'john@john.com', 'Standard', true, NULL);
+INSERT INTO `user` (`id`, `first_name`, `last_name`, `username`, `password`, `email`, `role`, `active`, `profile_pic_url`) VALUES (1, 'Zachary', 'Lamb', 'zach', '$2a$10$LAMs32XUhZ3z3NMeWh5m2eCKx/G7P8upALo3Q3toMW6gBUrhNe2Ou', 'zach@zach.com', 'Admin', TRUE, 'NULL');
+INSERT INTO `user` (`id`, `first_name`, `last_name`, `username`, `password`, `email`, `role`, `active`, `profile_pic_url`) VALUES (2, 'Kyle', 'Paladini', 'kyle', '$2a$10$qFabll60ATxypxgWTR9td.Z1AML094IU/vFaqNnAWq9M4Lido/lPS', 'kyle@kyle.com', 'Admin', TRUE, 'NULL');
+INSERT INTO `user` (`id`, `first_name`, `last_name`, `username`, `password`, `email`, `role`, `active`, `profile_pic_url`) VALUES (3, 'Tyler', 'Paladini', 'tyler', '$2a$10$Tttr1BwxqhSUpg/K..fCE.PfaqQKgQcDiT0QnfPw5/mXRh7Q5Fg9.', 'tyler@tyler.com', 'Admin', TRUE, 'NULL');
+INSERT INTO `user` (`id`, `first_name`, `last_name`, `username`, `password`, `email`, `role`, `active`, `profile_pic_url`) VALUES (4, 'Blake', 'Longfield', 'blake', '$2a$10$49.mA5X//tUTyOZBM.rNJO2qHg3d03s3oYC6EFvGER69.31tguVqq', 'blake@blake.com', 'Admin', TRUE, 'NULL');
+INSERT INTO `user` (`id`, `first_name`, `last_name`, `username`, `password`, `email`, `role`, `active`, `profile_pic_url`) VALUES (5, 'John', 'smith', 'john', '$2a$10$EfirP4H2iiwMAjfi1HD0T.hp8gOrNRJyiH1Vqh8x6cbGBUvqXDlDe', 'john@john.com', 'Standard', TRUE, 'NULL');
 
 COMMIT;
 
