@@ -24,6 +24,8 @@ export class TrailDetailsComponent implements OnInit {
   newReport = new Report();
   newCommentOnReport = new Comment();
   commentHolder = new Comment();
+  commentTextBox = false;
+  reportIdHolder;
   trailId;
   reportId;
 
@@ -152,7 +154,7 @@ export class TrailDetailsComponent implements OnInit {
   }
 
   public delete(trailId) {
-    this.trailDetailsService.deleteTrail(trailId).subscribe(
+    this.trailDetailsService.disableTrail(trailId).subscribe(
       data => {
         console.log('successfully deleted a trail');
         this.reload();
@@ -188,8 +190,10 @@ export class TrailDetailsComponent implements OnInit {
     );
   }
 
-  public createCommentOnReport(reportId) {
-    this.commentService.createCommentOnReport(this.newCommentOnReport, reportId).subscribe(
+  public createCommentOnReport() {
+    console.log(this.newCommentOnReport);
+    console.log(this.reportIdHolder);
+    this.commentService.createCommentOnReport(this.newCommentOnReport, this.reportIdHolder).subscribe(
       data => {
         console.log('creating a comment on a report');
         this.ngOnInit();
@@ -199,5 +203,10 @@ export class TrailDetailsComponent implements OnInit {
         console.log(err);
       }
     );
+  }
+
+  public showTextBox(reportId) {
+    this.commentTextBox = true;
+    this.reportIdHolder = reportId;
   }
 }
