@@ -132,11 +132,11 @@ public class MountainServiceImpl implements MountainService {
 					}
 					for (int i = 0; i < mountainFound.getTrails().size()-1; i++) { //get trails on mountain
 						for (int j = 0; j < mountainFound.getTrails().get(i).getReports().size()-1; j++) { // get reports on trails on mountain
-							for (int j2 = 0; j2 < mountainFound.getTrails().get(i).getReports().get(j).getComments().size()-1; j2++) { // get comments on reports on trails on mountain
-								for (int k = 0; k < mountainFound.getTrails().get(i).getReports().get(j).getComments().get(j2).getComments().size()-1; k++) { // get comments on comments on reports on trails on mountain
-									mountainFound.getTrails().get(i).getReports().get(j).getComments().get(j2).getComments().get(k).setActive(false);
+							for (int j2 = 0; j2 < mountainFound.getTrails().get(i).getReports().get(j).getComment().size()-1; j2++) { // get comments on reports on trails on mountain
+								for (int k = 0; k < mountainFound.getTrails().get(i).getReports().get(j).getComment().get(j2).getComments().size()-1; k++) { // get comments on comments on reports on trails on mountain
+									mountainFound.getTrails().get(i).getReports().get(j).getComment().get(j2).getComments().get(k).setActive(false);
 								}
-								mountainFound.getTrails().get(i).getReports().get(j).getComments().get(j2).setActive(false);
+								mountainFound.getTrails().get(i).getReports().get(j).getComment().get(j2).setActive(false);
 							}
 							mountainFound.getTrails().get(i).getReports().get(j).setActive(false);;
 						}

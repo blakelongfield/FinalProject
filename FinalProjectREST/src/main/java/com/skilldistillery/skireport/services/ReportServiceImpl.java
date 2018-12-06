@@ -118,8 +118,8 @@ public class ReportServiceImpl implements ReportService {
 						if (report.getTrail() != null) {
 							mReport.setTrail(report.getTrail());
 						}
-						if (report.getComments() != null) {
-							mReport.setComments(report.getComments());
+						if (report.getComment() != null) {
+							mReport.setComments(report.getComment());
 						}
 						repo.saveAndFlush(mReport);
 					}
