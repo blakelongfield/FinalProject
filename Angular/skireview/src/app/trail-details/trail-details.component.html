@@ -21,7 +21,7 @@
         <form>
 
             <div *ngFor="let report of reports">
-              <p>votes: {{report.vote}}</p>
+              <p>votes: {{report.votes}}</p>
               <p>{{report.user.username}}: {{report.reportText}}<p>
                   <div>
                       <button (click)="reportHelpful(report, report.id)">Helpful?</button>
