@@ -12,6 +12,8 @@
 
 
 
+
+
 <!-- SELECT MOUNTAIN HOME -->
 <div *ngIf="!selectedMTN" id="selectMTNHome">
 <h3>Select Mountain:</h3>
@@ -201,3 +203,32 @@
   <!-- ROW -->
 </div>
 <!-- CON -->
+
+<div>
+  <form >
+    <span>
+      <span (click)="ratingsubmit1()" *ngIf="rating1 === 1" > &#9734; </span>
+        <span (click)="ratingsubmit1()" *ngIf="rating1 === 0"> &#9733; </span>
+      </span>
+
+      <span>
+        <span (click)="ratingsubmit2()" *ngIf="rating2 === 2"> &#9734; </span>
+          <span (click)="ratingsubmit2()" *ngIf="rating2 === 0"> &#9733; </span>
+      </span>
+      <span>
+        <span (click)="ratingsubmit3()" *ngIf="rating3 === 3"> &#9734; </span>
+        <span (click)="ratingsubmit3()" *ngIf="rating3 === 0"> &#9733; </span>
+      </span>
+      <span>
+          <span (click)="ratingsubmit4()" *ngIf="rating4 === 4"> &#9734; </span>
+          <span (click)="ratingsubmit4()" *ngIf="rating4 === 0"> &#9733; </span>
+        </span>
+        <span>
+            <span (click)="ratingsubmit5()" *ngIf="rating5 === 5"> &#9734; </span>
+            <span (click)="ratingsubmit5()" *ngIf="rating5 === 0"> &#9733; </span>
+          </span>
+
+  </form>
+</div>
+
+
