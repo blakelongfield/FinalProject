@@ -16,14 +16,18 @@ export class AuthService {
   login(username, password) {
     // Make token
     const credentials = this.generateBasicAuthToken(username, password);
+    console.log(credentials);
+
     // Send token as Authorization header (this is spring security convention for basic auth)
     const headers = new HttpHeaders()
       .set('Authorization', `Basic ${credentials}`);
+    console.log(headers);
 
     // create request to authenticate credentials
-    return this.http
-      .get(this.url + 'authenticate', {headers}).pipe(
+    return this.http.get(this.url + 'authenticate', {headers}).pipe(
         tap((res) => {
+          console.log('login saving creds');
+
           localStorage.setItem('credentials' , credentials);
           return res;
         }),
@@ -36,10 +40,11 @@ export class AuthService {
 
   register(user) {
     // create request to register a new account
-    return this.http.post(this.url + 'register', user)
-    .pipe(
+    return this.http.post(this.url + 'register', user).pipe(
         tap((res) => {  // create a user and then upon success, log them in
-          this.login(user.username, user.password);
+          console.log('register calling login');
+
+          // return this.login(user.username, user.password);
         }),
         catchError((error: any) => {
           console.error(error);
