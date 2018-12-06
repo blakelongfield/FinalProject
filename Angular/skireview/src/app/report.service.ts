@@ -106,9 +106,9 @@ export class ReportService {
     }
 
      //// UPDATE REPORT
-     public updateReport(report: Report, rId ) {
+     public updateReport(report, rId ) {
        console.log('in service' + report.reportText + '**************');
-       console.log('in service' + rId);
+       console.log('in service' + rId + '()()()()()()()()()');
       return this.http.patch<Report>(this.url + '/' + rId, report, this.httpOptions)
       .pipe(catchError((err: any) => {
         console.log(err);

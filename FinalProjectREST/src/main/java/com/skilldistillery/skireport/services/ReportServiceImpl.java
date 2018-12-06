@@ -55,7 +55,6 @@ public class ReportServiceImpl implements ReportService {
 	// FIND REPORTS BY TRAIL NAME
 	@Override
 	public List<Report> findByTrailId(Integer tid) {
-
 		return repo.findByTrailId(tid);
 	}
 
