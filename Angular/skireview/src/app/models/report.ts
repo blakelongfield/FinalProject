@@ -11,7 +11,7 @@ export class Report {
   user: User;
   trail: Trail;
   mountain: Mountain;
-  comment: Comment;
+  comment: Comment[];
   dateCreated: Date;
 
 
@@ -25,7 +25,7 @@ export class Report {
     user?: User,
     mountain?: Mountain,
     trail?: Trail,
-    comment?: Comment
+    comment?: Comment[]
     ) {
     this.id = id;
     this.reportText = reportText;
