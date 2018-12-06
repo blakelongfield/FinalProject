@@ -55,7 +55,7 @@ export class TrailDetailsComponent implements OnInit {
        },
       err => {
         console.error('trail-details.component.reload(): Error retreiving trails');
-        console.log(err);
+        console.error(err);
       }
     );
   }
@@ -133,7 +133,7 @@ export class TrailDetailsComponent implements OnInit {
       },
       err => {
         console.error('trail-details.component.create(): Error creating new trail');
-        console.log(err);
+        console.error(err);
       }
     );
   }
@@ -147,7 +147,7 @@ export class TrailDetailsComponent implements OnInit {
       },
       err => {
         console.error('trail-details.component.updatePut(): Error updating trail');
-        console.log(err);
+        console.error(err);
       }
     );
   }
@@ -161,7 +161,7 @@ export class TrailDetailsComponent implements OnInit {
       },
       err => {
         console.error('trail-details.component.updatePatch(): Error updating trail');
-        console.log(err);
+        console.error(err);
       }
     );
   }
@@ -174,7 +174,7 @@ export class TrailDetailsComponent implements OnInit {
       },
       err => {
         console.error('trail-details.component.delete(): Error deleteing trail');
-        console.log(err);
+        console.error(err);
       }
     );
   }
@@ -198,7 +198,7 @@ export class TrailDetailsComponent implements OnInit {
       },
       err => {
         console.error('trail-details.component.createReportOnTrail(): Error creating report');
-        console.log(err);
+        console.error(err);
       }
     );
   }
@@ -213,7 +213,7 @@ export class TrailDetailsComponent implements OnInit {
       },
       err => {
         console.error('trail-details.component.createCommentOnReport(): Error creating a comment on a report');
-        console.log(err);
+        console.error(err);
       }
     );
   }
@@ -237,7 +237,7 @@ export class TrailDetailsComponent implements OnInit {
       },
       err => {
         console.error('Error in trail-details.component reportNotHelpful(): Error downvoting');
-        console.log(err);
+        console.error(err);
       }
     );
   }
@@ -254,7 +254,7 @@ export class TrailDetailsComponent implements OnInit {
       },
       err => {
         console.error('Error in trail-details.component reportNotHelpful(): Error downvoting');
-        console.log(err);
+        console.error(err);
       }
     );
   }
