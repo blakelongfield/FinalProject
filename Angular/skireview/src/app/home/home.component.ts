@@ -35,6 +35,7 @@ export class HomeComponent implements OnInit {
   reverse = 1;
   reverse1 = 1;
   reverse2 = 1;
+  showTrailMap = false;
 
 
 
@@ -212,6 +213,16 @@ export class HomeComponent implements OnInit {
     this.loadMountains();
 
 
+
+  }
+
+  public showMap() {
+
+  if (this.showTrailMap === true) {
+    this.showTrailMap = false;
+  } else if ( this.showTrailMap === false) {
+    this.showTrailMap = true;
+  }
 
   }
 
