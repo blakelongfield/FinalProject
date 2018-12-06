@@ -182,12 +182,18 @@ export class HomeComponent implements OnInit {
     //// CREATE NEW REPORT ON MTN
     public createReportOnMTN() {
 
+      console.log(this.newReport);
+      console.log(this.mtnId);
       this.reportServ.createReportMountain(this.newReport, this.mtnId).subscribe(
         data => {
+          console.log(this.newReport);
+          console.log(this.mtnId);
           this.mReports.push(this.newReport);
           this.mountainReports(this.mtnId);
         },
         err => {
+          console.log(this.newReport);
+          console.log(this.mtnId);
           console.error('ERROR on creating report on MTN');
           console.log(err);
         }
