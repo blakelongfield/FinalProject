@@ -1,34 +1,44 @@
 <h1><strong>{{selected.name}}</strong></h1> <br> <br>
+
 <div class="container" *ngIf="selected">
     <div class="row">
       <div class="col">
-          <img src="https://www.arttowngifts.com/v/vspfiles/photos/JFDSKITRAIL-2.jpg" alt="Ski sign" height="250" width="250"> <hr>
+        <img src="https://www.arttowngifts.com/v/vspfiles/photos/JFDSKITRAIL-2.jpg" alt="Ski sign" height="250" width="250"> <hr>
       </div>
-      <div class="col">
-          <p>Difficulty: {{selected.difficulty}}</p>
-          <p>Length: {{selected.length}}</p>
-          <p>Elevation gain/loss: {{selected.elevationGainLoss}}</p>
-          <p>Features: {{selected.features}}</p>
-      </div>
-    </div>
-<form>
-    <h3>Here's what people are saying about the gnar today</h3> <br>
-    <div *ngFor="let report of reports">
-      <p>Report: {{report.reportText}}<p>
-        <div>
-          <button (click)="showTextBox(report.id)">Comment</button>
-        </div>
-        <div *ngFor="let comment of report.comments">
-        <p>........Comment: {{comment.commentText}}</p>
-        </div>
-    </div> <br>
 
-    <div *ngIf="commentTextBox">
-      <form>
-         <input type="text" name="commentText" placeholder="Reply to report" [(ngModel)]="newCommentOnReport.commentText">
-        <input type="submit" name="submit" (click)="createCommentOnReport()">
-       </form>
-    </div>
-      <textarea rows="4" cols="50" name="comment" form="usrform" placeholder="Is the gnar on par today?" [(ngModel)]="newReport.reportText"></textarea><br>
-      <button (click)="createReportOnTrail()">Submit</button>
-    </form>
+      <div class="col">
+        <p>Difficulty: {{selected.difficulty}}</p> <br>
+        <p>Length: {{selected.length}}</p> <br>
+        <p>Elevation gain/loss: {{selected.elevationGainLoss}}</p> <br>
+        <p>Features: {{selected.features}}</p> <br>
+      </div>
+
+      <div class="w-100"></div>
+
+      <div class="col">
+        <form>
+          <h3>Here's what people are saying about the gnar today</h3> <br>
+            <div *ngFor="let report of reports">
+             <p>Report: {{report.reportText}}<p>
+              <div>
+                <button (click)="showTextBox(report.id)">Comment</button>
+              </div>
+                <div *ngFor="let comment of report.comments">
+                   <p>........Comment: {{comment.commentText}}</p>
+                 </div>
+            </div> <br>
+
+              <div>
+            </div>
+            <textarea rows="4" cols="50" name="comment" form="usrform" placeholder="Is the gnar on par today?" [(ngModel)]="newReport.reportText"></textarea><br>
+            <button (click)="createReportOnTrail()">Submit</button>
+          </form></div>
+         <div class="col" *ngIf="commentTextBox">
+          <form> <br><br><br><br><br><br><br><br>
+            <textarea rows="3" cols="30" name="commentText" form="usrform" placeholder="Reply to report" [(ngModel)]="newCommentOnReport.commentText"></textarea> <br>
+            <button type="submit" name="submit" (click)="createCommentOnReport()">Submit</button>
+           </form>
+         </div>
+       </div>
+</div>
+
