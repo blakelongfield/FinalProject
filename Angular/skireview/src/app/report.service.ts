@@ -20,7 +20,7 @@ export class ReportService {
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type':  'application/json',
-      'Authorization': `Basic ${this.authService.getToken}`,
+      'Authorization': `Basic ${this.authService.getToken()}`,
       'X-Requested-With': 'XMLHttpRequest'
     })
   };
@@ -97,7 +97,7 @@ export class ReportService {
     //// CREATE NEW REPORT ON A MTN
     public createReportMountain(report: Report, mtnId ) {
 
-      return this.http.post<Report>(this.url + '/trails/' + mtnId, report)
+      return this.http.post<Report>(this.url + '/trails/' + mtnId, report, this.httpOptions)
       .pipe(catchError((err: any) => {
         console.log(err);
         return throwError('COULD NOT CREATE MOUNTAIN REPORT');
@@ -119,7 +119,7 @@ export class ReportService {
 
     //// DELETE REPORT
     public delete ( id ) {
-      return this.http.delete<Report>( this.url + '/' + id)
+      return this.http.delete<Report>( this.url + '/' + id, this.httpOptions)
       .pipe(
         catchError((err: any) => {
         console.log(err);

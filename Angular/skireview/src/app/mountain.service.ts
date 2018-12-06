@@ -17,7 +17,7 @@ export class MountainService {
   private httpOptions = {
     headers: new HttpHeaders({
       'Content-Type':  'application/json',
-      'Authorization': `Basic ${this.authService.getToken}`,
+      'Authorization': `Basic ${this.authService.getToken()}`,
       'X-Requested-With': 'XMLHttpRequest'
     })
   };
