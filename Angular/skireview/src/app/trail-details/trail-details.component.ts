@@ -22,8 +22,13 @@ export class TrailDetailsComponent implements OnInit {
   comments: any = [];
   comment = null;
   newReport = new Report();
+  newCommentOnReport = new Comment();
+  commentHolder = new Comment();
+  commentTextBox = false;
+  reportIdHolder;
   trailId;
   reportId;
+  votes = 0;
 
   // tslint:disable-next-line:max-line-length
   constructor(private trailDetailsService: TrailDetailsService, private reportService: ReportService, private commentService: CommentService, private activeRouter: ActivatedRoute) { }
@@ -52,7 +57,7 @@ export class TrailDetailsComponent implements OnInit {
       data => {
         this.reports = data;
         for (let i = 0; i < this.reports.length; i++) {
-              this.commentsOnReport(this.reports[i].id);
+               this.commentsOnReport(this.reports[i].id);
         }
       },
       err => {
@@ -65,7 +70,6 @@ export class TrailDetailsComponent implements OnInit {
     this.commentService.findCommentsByReportId(id).subscribe(
       data => {
         this.comments = data;
-        console.log(data);
       },
       err => {
         console.error('trail-details.component.commentsOnreport(): Error retreving comments on report');
@@ -150,7 +154,7 @@ export class TrailDetailsComponent implements OnInit {
   }
 
   public delete(trailId) {
-    this.trailDetailsService.deleteTrail(trailId).subscribe(
+    this.trailDetailsService.disableTrail(trailId).subscribe(
       data => {
         console.log('successfully deleted a trail');
         this.reload();
@@ -176,11 +180,64 @@ export class TrailDetailsComponent implements OnInit {
     this.trailId = this.activeRouter.snapshot.paramMap.get('id');
     this.reportService.createReportTrail(this.newReport, this.trailId).subscribe(
       data => {
-        console.log('creating a comment on a report');
+        console.log('creating a report on a trail');
         this.ngOnInit();
       },
       err => {
         console.error('trail-details.component.createReportOnTrail(): Error creating report');
+        console.log(err);
+      }
+    );
+  }
+
+  public createCommentOnReport() {
+    console.log(this.newCommentOnReport);
+    console.log(this.reportIdHolder);
+    this.commentService.createCommentOnReport(this.newCommentOnReport, this.reportIdHolder).subscribe(
+      data => {
+        console.log('creating a comment on a report');
+        this.ngOnInit();
+      },
+      err => {
+        console.error('trail-details.component.createCommentOnReport(): Error creating a comment on a report');
+        console.log(err);
+      }
+    );
+  }
+
+  public showTextBox(reportId) {
+    this.commentTextBox = true;
+    this.reportIdHolder = reportId;
+  }
+
+  public reportHelpful(report, reportId) {
+    report.votes += 1;
+    console.log('report Helpful?' + report.user);
+    console.log('report helpful?' + reportId);
+    this.reportService.updateReport(report, reportId).subscribe(
+      data => {
+        report.votes = data;
+        console.log(this.votes);
+        this.ngOnInit();
+      },
+      err => {
+        console.error('Error in trail-details.component reportNotHelpful(): Error downvoting');
+        console.log(err);
+      }
+    );
+  }
+
+  public reportNotHelpful(report, reportId) {
+    report.votes -= 1;
+    console.log('report not helpful?' + report.reportText);
+    console.log('report not helpful?' + report.reportText);
+    this.reportService.updateReport(report, reportId).subscribe(
+      data => {
+        report.votes = data;
+        this.ngOnInit();
+      },
+      err => {
+        console.error('Error in trail-details.component reportNotHelpful(): Error downvoting');
         console.log(err);
       }
     );
