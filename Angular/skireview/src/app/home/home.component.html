@@ -63,12 +63,14 @@
       <tbody>
         <tr *ngFor="let report of reports">
           <td>{{ report.user.username }}</td>
-          <!-- IF -->
-          <td *ngIf="report.mountain; else: noMTN">
-            {{ report.mountain.name }}
+
+          <td *ngIf="report.trail">
+            {{ report.trail.mountain }}
           </td>
-          <!-- ELSE -->
-          <ng-template #noMTN> <td></td> </ng-template>
+          <td *ngIf="!report.mountain">
+            </td>
+
+
           <!-- IF -->
           <td *ngIf="report.trail; else: noTrail">{{ report.trail.name }}</td>
           <!-- ELSE -->
