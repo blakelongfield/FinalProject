@@ -12,6 +12,7 @@ import { Mountain } from '../models/mountain';
 
 import { Router } from '@angular/router';
 import { Trail } from '../models/trail';
+import { formArrayNameProvider } from '@angular/forms/src/directives/reactive_directives/form_group_name';
 
 @Component({
   selector: 'app-home',
@@ -165,7 +166,8 @@ export class HomeComponent implements OnInit {
   }
   //// SORTS TRAILS BY TRAIL NAME
   public sortTrailByName( search ) {
-    console.log(search);
+    console.log( this.searchBy);
+    console.log('SEARCH*******------' + search);
     this.trailServ.sortTrailByName( search, this.mtnId ).subscribe(
       trails => {
         this.sortedTrails = trails;
@@ -183,11 +185,11 @@ export class HomeComponent implements OnInit {
     //// CREATE NEW REPORT ON MTN
     public createReportOnMTN() {
 
-      console.log(this.newReport);
+      console.log('***** REPORT *****' + this.newReport);
       console.log(this.mtnId);
       this.reportServ.createReportMountain(this.newReport, this.mtnId).subscribe(
         data => {
-          console.log(this.newReport);
+          console.log('***** REPORT *****' + this.newReport);
           console.log(this.mtnId);
           this.mReports.push(this.newReport);
           this.mountainReports(this.mtnId);
@@ -200,6 +202,11 @@ export class HomeComponent implements OnInit {
         }
 
       );
+        this.rating1 = 1;
+        this.rating2 = 2;
+        this.rating3 = 3;
+        this.rating4 = 4;
+        this.rating5 = 5;
 
       this.newReport = null;
     }
@@ -209,11 +216,13 @@ export class HomeComponent implements OnInit {
       if ( this.rating1 === 1 ) {
         this.rating1 = 0;
           console.log(1);
+          this.newReport.rating = 1;
       } else {
         this.rating2 = 2;
         this.rating3 = 3;
         this.rating4 = 4;
         this.rating5 = 5;
+        this.newReport.rating = 1;
         console.log(1);
       }
     }
@@ -221,12 +230,14 @@ export class HomeComponent implements OnInit {
       if ( this.rating2 === 2 ) {
         this.rating1 = 0;
         this.rating2 = 0;
+        this.newReport.rating = 2;
 
           console.log(2);
       } else {
         this.rating3 = 3;
         this.rating4 = 4;
         this.rating5 = 5;
+        this.newReport.rating = 2;
         console.log(2);
       }
     }
@@ -235,10 +246,12 @@ export class HomeComponent implements OnInit {
         this.rating1 = 0;
         this.rating2 = 0;
         this.rating3 = 0;
+        this.newReport.rating = 3;
           console.log(3);
       } else {
         this.rating4 = 4;
         this.rating5 = 5;
+        this.newReport.rating = 3;
         console.log(3);
       }
     }
@@ -248,9 +261,11 @@ export class HomeComponent implements OnInit {
         this.rating2 = 0;
         this.rating3 = 0;
         this.rating4 = 0;
+        this.newReport.rating = 4;
           console.log(4);
       } else {
         this.rating5 = 5;
+        this.newReport.rating = 4;
         console.log(4);
       }
     }
@@ -261,6 +276,7 @@ export class HomeComponent implements OnInit {
         this.rating3 = 0;
         this.rating4 = 0;
         this.rating5 = 0;
+        this.newReport.rating = 5;
           console.log(5);
       }
     }
