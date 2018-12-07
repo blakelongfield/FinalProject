@@ -5,3 +5,8 @@
 h1 {
   text-align: center
 }
+
+#selectComment {
+  position: relative;
+
+}
