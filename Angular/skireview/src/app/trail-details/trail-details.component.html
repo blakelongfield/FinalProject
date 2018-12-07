@@ -75,8 +75,9 @@
     <div class="col">
 
       <div id="reportComments" *ngIf="theReport">
-        <span *ngFor="let comment of comments">
-          <div>
+          <!-- <span *ngFor="let comment of comments"> -->
+            <span *ngFor="let comment of theReport.comment">
+                  <div>
             <p>{{comment.commentText}}</p>
             <div>
 

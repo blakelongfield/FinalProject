@@ -1,6 +1,7 @@
 import { User } from './user';
 import { Trail } from './trail';
 import { Mountain } from './mountain';
+import { Comment } from './comment';
 export class Report {
   id: number;
   reportText: string;
