@@ -20,14 +20,11 @@ export class TrailDetailsComponent implements OnInit {
   selected = new Trail();
   trails: Trail[] = [];
   reports: Report[] = [];
-  comments: any = [];
-  comment = null;
   newReport = new Report();
   theReport =  null;
   newCommentOnReport = new Comment();
   commentHolder = new Comment();
   commentTextBox = false;
-  reportIdHolder;
   trailId;
   reportId;
   commentId;
@@ -68,10 +65,9 @@ export class TrailDetailsComponent implements OnInit {
     this.reportService.findReportsByTrailId(id).subscribe(
       data => {
         this.reports = data;
-
         console.log(this.reports[1].comment);
         for (let i = 0; i < this.reports.length; i++) {
-               this.commentsOnReport(this.reports[i].id);
+               this.commentsOnReport(this.reports[i]);
         }
       },
       err => {
@@ -80,12 +76,28 @@ export class TrailDetailsComponent implements OnInit {
     );
   }
 
-  public commentsOnReport(id) {
-    console.log(id);
-    this.commentService.findCommentsByReportId(id).subscribe(
-      data => {
-        this.comments = data;
-        console.log(this.comments);
+  public overallRating() {
+    const ratingReports = this.reports;
+    let counter = 0;
+    let reportRating = 0;
+    for (let i = 0; i < ratingReports.length; i++) {
+      if (ratingReports[i].rating !== null) {
+        counter += 1;
+      }
+        const overallRating = ratingReports[i].rating;
+        reportRating = reportRating + overallRating;
+    }
+    reportRating = reportRating / counter;
+    return reportRating;
+  }
+
+  public commentsOnReport(report: Report) {
+    console.log(report.id);
+    this.commentService.findCommentsByReportId(report.id).subscribe(
+      results => {
+        console.log('TrailDetailsComponent.commentsOnReport');
+        console.log(results);
+        report.comment = results;
       },
       err => {
         console.error('trail-details.component.commentsOnreport(): Error retreving comments on report');
@@ -199,7 +211,11 @@ export class TrailDetailsComponent implements OnInit {
     this.reportService.createReportTrail(this.newReport, this.trailId).subscribe(
       data => {
         console.log('creating a report on a trail');
-
+        console.log(data);
+        if (! data.comment) {
+          data.comment = [];
+        }
+        this.reports.push(data);
       },
       err => {
         console.error('trail-details.component.createReportOnTrail(): Error creating report');
@@ -211,8 +227,9 @@ export class TrailDetailsComponent implements OnInit {
   public createCommentOnReport() {
     this.commentService.createCommentOnReport(this.newCommentOnReport, this.theReport.id).subscribe(
       data => {
-        this.route.navigateByUrl('/trail/' + this.trailId);
-        this.ngOnInit();
+        this.theReport.comment.push(data);
+        console.log('comment created');
+
       },
       err => {
         console.error('trail-details.component.createCommentOnReport(): Error creating a comment on a report');
@@ -224,7 +241,6 @@ export class TrailDetailsComponent implements OnInit {
 
   public showTextBox(reportId) {
     this.commentTextBox = true;
-    this.reportIdHolder = reportId;
   }
     // DOWN VOTE -1
   public reportHelpful(report, reportId) {
@@ -235,9 +251,7 @@ export class TrailDetailsComponent implements OnInit {
     console.log(report.votes);
     this.reportService.updateReport(report, reportId).subscribe(
       data => {
-        // report.votes = data;
         console.log(report.vote);
-        // this.ngOnInit();
       },
       err => {
         console.error('Error in trail-details.component reportNotHelpful(): Error downvoting');
@@ -253,8 +267,6 @@ export class TrailDetailsComponent implements OnInit {
     console.log(report.votes);
     this.reportService.updateReport(report, reportId).subscribe(
       data => {
-        // report.votes = data;
-        // this.ngOnInit();
       },
       err => {
         console.error('Error in trail-details.component reportNotHelpful(): Error downvoting');
@@ -264,13 +276,11 @@ export class TrailDetailsComponent implements OnInit {
   }
   //// SELECT A REPORT AND SEE COMMENTS
   public selectAReport(report) {
-    this.theReport = new Report();
     this.theReport = report;
-    this.comments = this.theReport.comment;
 
     console.log( this.theReport.id );
     console.log( this.theReport );
-    console.log(this.comments);
+    console.log(this.theReport.comment);
   }
 
 
@@ -280,7 +290,7 @@ export class TrailDetailsComponent implements OnInit {
   public ratingsubmit1() {
     if ( this.rating1 === 1 ) {
       this.rating1 = 0;
-      this.newReport.votes = 1;
+      this.newReport.rating = 1;
         console.log(1);
 
     } else {
@@ -288,7 +298,7 @@ export class TrailDetailsComponent implements OnInit {
       this.rating3 = 3;
       this.rating4 = 4;
       this.rating5 = 5;
-      this.newReport.votes = 1;
+      this.newReport.rating = 1;
       console.log(1);
     }
   }
@@ -296,13 +306,13 @@ export class TrailDetailsComponent implements OnInit {
     if ( this.rating2 === 2 ) {
       this.rating1 = 0;
       this.rating2 = 0;
-      this.newReport.votes = 2;
+      this.newReport.rating = 2;
         console.log(2);
     } else {
       this.rating3 = 3;
       this.rating4 = 4;
       this.rating5 = 5;
-      this.newReport.votes = 2;
+      this.newReport.rating = 2;
       console.log(2);
     }
   }
@@ -311,12 +321,12 @@ export class TrailDetailsComponent implements OnInit {
       this.rating1 = 0;
       this.rating2 = 0;
       this.rating3 = 0;
-      this.newReport.votes = 3;
+      this.newReport.rating = 3;
         console.log(3);
     } else {
       this.rating4 = 4;
       this.rating5 = 5;
-      this.newReport.votes = 3;
+      this.newReport.rating = 3;
       console.log(3);
     }
   }
@@ -326,11 +336,11 @@ export class TrailDetailsComponent implements OnInit {
       this.rating2 = 0;
       this.rating3 = 0;
       this.rating4 = 0;
-      this.newReport.votes = 4;
+      this.newReport.rating = 4;
         console.log(4);
     } else {
       this.rating5 = 5;
-      this.newReport.votes = 4;
+      this.newReport.rating = 4;
       console.log(4);
     }
   }
@@ -341,7 +351,7 @@ export class TrailDetailsComponent implements OnInit {
       this.rating3 = 0;
       this.rating4 = 0;
       this.rating5 = 0;
-      this.newReport.votes = 5;
+      this.newReport.rating = 5;
         console.log(5);
     }
   }
