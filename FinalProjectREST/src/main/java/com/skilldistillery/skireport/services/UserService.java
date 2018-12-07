@@ -20,5 +20,7 @@ public interface UserService {
 	Boolean destroy(String username);
 	
 	Boolean findByRole(String username);
+	
+	User findByUsername(String username);
 
 }

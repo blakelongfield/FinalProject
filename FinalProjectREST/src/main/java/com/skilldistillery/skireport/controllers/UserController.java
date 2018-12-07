@@ -66,7 +66,8 @@ public class UserController {
 //	Updates a User
 	@RequestMapping(path = "users", method = RequestMethod.PATCH)
 	public User updateUser(@RequestBody User user, HttpServletResponse resp, Principal principal) {
-		User updatedUser = userServ.update(user, username);
+		System.out.println("User body: " + user);
+		User updatedUser = userServ.update(user, principal.getName());
 		if (updatedUser != null) {
 			resp.setStatus(201);
 		} else {
@@ -79,7 +80,7 @@ public class UserController {
 	@RequestMapping(path = "users", method = RequestMethod.DELETE)
 	public Boolean deleteUser(HttpServletResponse resp, Principal principal) {
 		Boolean deletedUser = null;
-		deletedUser = userServ.destroy(username);
+		deletedUser = userServ.destroy(principal.getName());
 		if (deletedUser) {
 			resp.setStatus(200);
 			resp.setHeader("Message", "User deleted succesfully");
@@ -104,6 +105,25 @@ public class UserController {
 		
 		
 		return role;
+	}
+	
+//	 Grabs user by username
+	
+	@RequestMapping(path="users/username", method=RequestMethod.GET)
+	public User findByUsername(Principal principal, HttpServletResponse resp) {
+		System.out.println(principal.getName());
+		User user = userServ.findByUsername(principal.getName());
+		
+		if(user != null) {
+			resp.setStatus(200);
+			
+		}
+		else {
+			resp.setStatus(404);
+		}
+		
+		return user;
+		
 	}
 
 }

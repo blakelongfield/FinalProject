@@ -121,5 +121,15 @@ public class UserServiceImpl implements UserService {
 		}
 		return role;
 	}
+	
+//  Grabs user by username
+	@Override
+	public User findByUsername(String username) {
+		User findUser = userRepo.findByUsername(username);
+		System.out.println("--------" + findUser);
+		
+		
+		return findUser;
+	}
 
 }
