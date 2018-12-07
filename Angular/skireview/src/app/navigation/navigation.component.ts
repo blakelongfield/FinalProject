@@ -1,3 +1,4 @@
+import { AuthService } from './../auth.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -8,9 +9,21 @@ import { Component, OnInit } from '@angular/core';
 export class NavigationComponent implements OnInit {
 
   public isCollapsed = false;
-  constructor() { }
+  constructor(private authService: AuthService) { }
 
   ngOnInit() {
+  }
+
+  checkLogin() {
+    console.log('Inside nav component checkLogin' );
+
+    return this.authService.checkLogin();
+  }
+
+  checkAdmin() {
+    console.log('Inside nav component checkAdmin' );
+
+    return this.authService.checkAdmin();
   }
 
 }
