@@ -25,6 +25,8 @@
         <p>votes: {{report.votes}}</p>
         <p>{{report.user.username}}: {{report.reportText}}</p>
         <button type="submit" (click)="selectAReport(report)">More..</button>
+
+
       </div>
 
       <br>
@@ -33,35 +35,35 @@
           </textarea><br>
 
       <span>
-        <span  (click)="ratingsubmit1()" *ngIf="rating1 === 1">
+        <span (click)="ratingsubmit1()" *ngIf="rating1 === 1">
           <img width=30px; height=30px; src="assets/skiB.png" alt="greyski"> </span>
         <span (click)="ratingsubmit1()" *ngIf="rating1 === 0">
           <img width=30px; height=30px; src="assets/ski2.png" alt="colorski"> </span>
       </span>
 
       <span>
-        <span   (click)="ratingsubmit2()" *ngIf="rating2 === 2">
-            <img width=30px; height=30px; src="assets/skiB.png" alt="greyski"> </span>
-        <span   (click)="ratingsubmit2()" *ngIf="rating2 === 0">
-            <img width=30px; height=30px; src="assets/ski2.png" alt="colorski"> </span>
+        <span (click)="ratingsubmit2()" *ngIf="rating2 === 2">
+          <img width=30px; height=30px; src="assets/skiB.png" alt="greyski"> </span>
+        <span (click)="ratingsubmit2()" *ngIf="rating2 === 0">
+          <img width=30px; height=30px; src="assets/ski2.png" alt="colorski"> </span>
       </span>
       <span>
         <span (click)="ratingsubmit3()" *ngIf="rating3 === 3">
-            <img width=30px; height=30px; src="assets/skiB.png" alt="greyski"> </span>
+          <img width=30px; height=30px; src="assets/skiB.png" alt="greyski"> </span>
         <span (click)="ratingsubmit3()" *ngIf="rating3 === 0">
-            <img width=30px; height=30px; src="assets/ski2.png" alt="colorski"> </span>
+          <img width=30px; height=30px; src="assets/ski2.png" alt="colorski"> </span>
       </span>
       <span>
         <span (click)="ratingsubmit4()" *ngIf="rating4 === 4">
-            <img width=30px; height=30px; src="assets/skiB.png" alt="greyski"> </span>
+          <img width=30px; height=30px; src="assets/skiB.png" alt="greyski"> </span>
         <span (click)="ratingsubmit4()" *ngIf="rating4 === 0">
-            <img width=30px; height=30px; src="assets/ski2.png" alt="colorski"> </span>
+          <img width=30px; height=30px; src="assets/ski2.png" alt="colorski"> </span>
       </span>
       <span>
         <span (click)="ratingsubmit5()" *ngIf="rating5 === 5">
-            <img width=30px; height=30px; src="assets/skiB.png" alt="greyski"> </span>
+          <img width=30px; height=30px; src="assets/skiB.png" alt="greyski"> </span>
         <span (click)="ratingsubmit5()" *ngIf="rating5 === 0">
-            <img width=30px; height=30px; src="assets/ski2.png" alt="colorski"> </span>
+          <img width=30px; height=30px; src="assets/ski2.png" alt="colorski"> </span>
       </span>
 
 
@@ -77,12 +79,11 @@
           <div>
             <p>{{comment.commentText}}</p>
             <div>
-              <span (click)="reportHelpful(theReport, theReport.id)">
-                <img width=40px; height=40px; src="assets/upVote.png" alt="upVote">
-              </span>
-              <span (click)="reportNotHelpful(theReport, theReport.id)"> <img width=40px; height=40px; src="assets/downVote.png"
-                  alt="downVote"> </span>
+
+
               <button (click)="showTextBox(theReport.id)">Comment</button>
+
+
 
 
             </div>
@@ -93,6 +94,12 @@
       <br>
 
       <form *ngIf="theReport">
+          <span (click)="reportHelpful(theReport, theReport.id)">
+              <img width=40px; height=40px; src="assets/upVote.png" alt="upVote">
+            </span>
+            <span (click)="reportNotHelpful(theReport, theReport.id)"> <img width=40px; height=40px; src="assets/downVote.png"
+                alt="downVote"> </span>
+                <br>
         <textarea rows="3" cols="30" name="newCommentOnReport" form="usrform" placeholder="Reply to report" [(ngModel)]="newCommentOnReport.commentText"></textarea>
         <br>
         <button type="submit" name="submit" (click)="createCommentOnReport()">Submit</button>
