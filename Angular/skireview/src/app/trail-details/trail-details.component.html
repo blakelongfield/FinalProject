@@ -31,8 +31,12 @@
 
       <br>
       <h4>Create New Report</h4>
-      <textarea rows="4" cols="50" name="comment" form="usrform" placeholder="Is the gnar on par today?" [(ngModel)]="newReport.reportText">
+      <textarea rows="4" cols="50" name="comment" form="usrform" placeholder="Is the gnar on par today?" [(ngModel)]="newReport.reportText" [value]="newReportValue">
           </textarea><br>
+
+
+
+
 
       <span>
         <span (click)="ratingsubmit1()" *ngIf="rating1 === 1">
@@ -94,7 +98,7 @@
             <span (click)="reportNotHelpful(theReport, theReport.id)"> <img width=40px; height=40px; src="assets/downVote.png"
                 alt="downVote"> </span>
                 <br>
-        <textarea rows="3" cols="30" name="newCommentOnReport" form="usrform" placeholder="Reply to report" [(ngModel)]="newCommentOnReport.commentText"></textarea>
+        <textarea rows="3" cols="30" name="newCommentOnReport" form="usrform" placeholder="Reply to report" [(ngModel)]="newCommentOnReport.commentText" [value]="newCommentValue"></textarea>
         <br>
         <button type="submit" name="submit" (click)="createCommentOnReport()">Submit</button>
       </form>
