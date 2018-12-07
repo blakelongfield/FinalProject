@@ -4,6 +4,7 @@ import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { tap, catchError } from 'rxjs/operators';
 import { throwError } from 'rxjs';
+import { Authorities } from './models/authorities';
 
 @Injectable({
   providedIn: 'root'
@@ -25,7 +26,7 @@ export class AuthService {
     console.log(headers);
 
     // create request to authenticate credentials
-    return this.http.get(this.url + 'authenticate', {headers}).pipe(
+    return this.http.get<Authorities>(this.url + 'authenticate', {headers}).pipe(
         tap((res) => {
           console.log('login saving creds');
           console.log(res);
