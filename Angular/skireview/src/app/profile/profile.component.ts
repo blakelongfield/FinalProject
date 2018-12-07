@@ -20,14 +20,15 @@ export class ProfileComponent implements OnInit {
   constructor(private userService: UserService, private router: Router) { }
 
   ngOnInit() {
-    this.userById();
+    // this.userById();
+    this.userByUsername();
   }
 
 
 
 userById() {
-  // HArded coded user ID with 1
-  this.userService.showById('1').subscribe(
+
+  this.userService.showById(this.user.id).subscribe(
     data => {
       this.user = data;
       console.log(data);
@@ -39,15 +40,31 @@ userById() {
   );
 }
 
+// Finds user by Username
+userByUsername() {
+  this.userService.showByUsername().subscribe(
+    data => {
+      this.user = data;
+      console.log(data);
+
+    },
+    err => {
+      console.error(err);
+      return throwError('Unable to find user by username');
+
+    }
+  );
+}
+
   update() {
     console.log('Inside component update');
 console.log(this.editedUser);
 
-    console.log(this.updateUser);
+    // console.log(this.updateUser);
     this.userService.update(this.editedUser).subscribe(
 
       updated => {
-        console.log('Updated User: ' + this.editedUser );
+        console.log('Updated User: ' + updated.firstName);
         this.router.navigateByUrl('home');
 
       },
