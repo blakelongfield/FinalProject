@@ -21,8 +21,10 @@ export class TrailDetailsComponent implements OnInit {
   trails: Trail[] = [];
   reports: Report[] = [];
   newReport = new Report();
+  newReportValue = null;
   theReport =  null;
   newCommentOnReport = new Comment();
+  newCommentValue = null;
   commentHolder = new Comment();
   commentTextBox = false;
   trailId;
@@ -216,6 +218,7 @@ export class TrailDetailsComponent implements OnInit {
           data.comment = [];
         }
         this.reports.push(data);
+        this.newReportValue = '';
       },
       err => {
         console.error('trail-details.component.createReportOnTrail(): Error creating report');
@@ -229,6 +232,7 @@ export class TrailDetailsComponent implements OnInit {
       data => {
         this.theReport.comment.push(data);
         console.log('comment created');
+        this.newCommentValue = '';
 
       },
       err => {
