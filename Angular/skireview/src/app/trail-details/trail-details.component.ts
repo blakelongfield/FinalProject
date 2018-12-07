@@ -212,6 +212,7 @@ export class TrailDetailsComponent implements OnInit {
     this.commentService.createCommentOnReport(this.newCommentOnReport, this.theReport.id).subscribe(
       data => {
         this.route.navigateByUrl('/trail/' + this.trailId);
+        this.ngOnInit();
       },
       err => {
         console.error('trail-details.component.createCommentOnReport(): Error creating a comment on a report');
@@ -234,7 +235,7 @@ export class TrailDetailsComponent implements OnInit {
     console.log(report.votes);
     this.reportService.updateReport(report, reportId).subscribe(
       data => {
-        report.votes = data;
+        // report.votes = data;
         console.log(report.vote);
         // this.ngOnInit();
       },
@@ -252,7 +253,7 @@ export class TrailDetailsComponent implements OnInit {
     console.log(report.votes);
     this.reportService.updateReport(report, reportId).subscribe(
       data => {
-        report.votes = data;
+        // report.votes = data;
         // this.ngOnInit();
       },
       err => {
