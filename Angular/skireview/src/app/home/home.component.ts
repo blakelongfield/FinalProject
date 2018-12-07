@@ -1,3 +1,4 @@
+import { AuthService } from './../auth.service';
 import { TrailDetailsService } from './../trail-details.service';
 import { FormControl } from '@angular/forms';
 import { MountainService } from './../mountain.service';
@@ -265,6 +266,11 @@ export class HomeComponent implements OnInit {
     }
 
 
+    checkLogin() {
+      return this.authService.checkLogin();
+    }
+
+
 
 
 
@@ -278,7 +284,15 @@ export class HomeComponent implements OnInit {
   // CONSTRUCTOR & INIT
 
   // tslint:disable-next-line:max-line-length
-  constructor(private reportServ: ReportService, private userServ: UserService, private mtnServ: MountainService, private trailServ: TrailDetailsService, private route: Router, private repotServ: ReportService) { }
+  constructor(
+    private reportServ: ReportService,
+    private userServ: UserService,
+    private mtnServ: MountainService,
+    private trailServ: TrailDetailsService,
+    private route: Router,
+    private repotServ: ReportService,
+    private authService: AuthService
+    ) { }
 
   ngOnInit() {
     this.loadReports();

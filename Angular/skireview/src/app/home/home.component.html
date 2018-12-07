@@ -132,25 +132,22 @@
 
     <div class="col-2">
       <!-- Vail Weather Widget -->
-<div *ngIf="selectedMTN && selectedMTN.id === 2" style="width: 245px;"><iframe style="display: block;"
-  src="https://cdnres.willyweather.com/widget/loadView.html?id=98694"
-  width="245" height="228" frameborder="0" scrolling="no"></iframe>
-  <a style="z-index: 1;margin: -20px 0 0 0;height: 20px;position: relative;
-  text-indent: -9999em;display: block" href="https://www.willyweather.com/co/eagle-county/vail.html"
-  rel="nofollow">vail weekly forecast</a></div>
+      <div *ngIf="selectedMTN && selectedMTN.id === 2" style="width: 245px;"><iframe style="display: block;"
+        src="https://cdnres.willyweather.com/widget/loadView.html?id=98694"
+        width="245" height="228" frameborder="0" scrolling="no"></iframe>
+        <a style="z-index: 1;margin: -20px 0 0 0;height: 20px;position: relative;
+        text-indent: -9999em;display: block" href="https://www.willyweather.com/co/eagle-county/vail.html"
+        rel="nofollow">vail weekly forecast</a>
+      </div>
 
-<!-- A-Basin Weather Widget -->
-<div *ngIf="selectedMTN && selectedMTN.id === 1" style="width: 210px;"><iframe style="display: block;"
-  src="https://cdnres.willyweather.com/widget/loadView.html?id=98695"
-   width="210" height="228" frameborder="0" scrolling="no"></iframe>
-   <a style="margin: -20px 0 0 0;z-index: 1;position: relative;
-   height: 20px;display: block;text-indent: -9999em" href="https://www.willyweather.com/co/summit-county/arapahoe-basin-ski-area.html"
-   rel="nofollow">arapahoe basin ski area CO weather forecast</a></div>
-
-
-
-
-
+      <!-- A-Basin Weather Widget -->
+      <div *ngIf="selectedMTN && selectedMTN.id === 1" style="width: 210px;"><iframe style="display: block;"
+        src="https://cdnres.willyweather.com/widget/loadView.html?id=98695"
+        width="210" height="228" frameborder="0" scrolling="no"></iframe>
+        <a style="margin: -20px 0 0 0;z-index: 1;position: relative;
+        height: 20px;display: block;text-indent: -9999em" href="https://www.willyweather.com/co/summit-county/arapahoe-basin-ski-area.html"
+        rel="nofollow">arapahoe basin ski area CO weather forecast</a>
+      </div>
 
     </div>
 
@@ -223,7 +220,11 @@
         </tbody>
       </table>
 
-      <button type="button" (click)="reportToNotNUll()">Add Report</button>
+
+      <div *ngIf="checkLogin()">
+        <button type="button" (click)="reportToNotNUll()">Add Report</button>
+      </div>
+
       <form *ngIf="newReport">
           <textarea rows="4" cols="50" name="report" form="report" placeholder="Is the gnar on par today?" [(ngModel)]="newReport.reportText"></textarea><br>
       <button (click)="createReportOnMTN()">Submit</button>

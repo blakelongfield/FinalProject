@@ -41,7 +41,6 @@ width:300px;
     width:300px;
   }
 
-<<<<<<< HEAD
   /* ------------------ */
   .hit-the-floor {
     color: #fff;
@@ -64,29 +63,3 @@ width:300px;
 
 
 
-=======
-
-
-  .mover {
-    motion-path: path("M18.45,58.46s52.87-70.07,101.25-.75,101.75-6.23,101.75-6.23S246.38,5.59,165.33,9.08s-15,71.57-94.51,74.56S18.45,58.46,18.45,58.46Z");
-    offset-path: path("M18.45,58.46s52.87-70.07,101.25-.75,101.75-6.23,101.75-6.23S246.38,5.59,165.33,9.08s-15,71.57-94.51,74.56S18.45,58.46,18.45,58.46Z");
-    motion-rotation: reverse;
-    animation: move 3s linear infinite;
-  }
-  @keyframes move {
-    100% {
-      motion-offset: 100%;
-      offset-distance: 100%;
-    }
-  }
-
-
-  .mover {
-    width: 300px;
-    height: 400px;
-    background: url(https://static.vecteezy.com/system/resources/previews/000/177/978/non_2x/flat-ski-jumping-winter-olympics-korea-vector-illustration.jpg) no-repeat;
-    position: absolute;
-    left: 30%;
-    top: 100px;
-  }
->>>>>>> 8ae7bdf4c9dc6482f4d7a818dc8a55da5b6b3492
