@@ -1,3 +1,4 @@
+import { LandingComponent } from './landing/landing.component';
 import { AdminComponent } from './admin/admin.component';
 import { LogoutComponent } from './logout/logout.component';
 import { LoginComponent } from './login/login.component';
@@ -11,13 +12,15 @@ import { NotFoundComponent } from './not-found/not-found.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'home' },
-  { path: 'home', component: HomeComponent },
+  { path: 'home', component: LandingComponent },
+  { path: 'mountain/:id', component: HomeComponent},
   { path: 'trail', component: TrailDetailsComponent },
   { path: 'trail/:id', component: TrailDetailsComponent},
   { path: 'login', component: LoginComponent },
   { path: 'logout', component: LogoutComponent },
   { path: 'profile', component: ProfileComponent },
   { path: 'register', component: RegisterComponent },
+
   { path: 'admin', component: AdminComponent },
   { path: '**', component: NotFoundComponent }
 ];

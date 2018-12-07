@@ -1,40 +1,15 @@
 
 
-<div  *ngIf="!selectedMTN">
-  <video  id="vid1" autoplay loop>
-    <source src="assets/homeVid.mp4" />
-  </video>
-</div>
-
-
-
-<div class="hit-the-floor">Slope Spot</div>
 
 
 
 
 
-
-
-
-
-
-<!-- SELECT MOUNTAIN HOME -->
-<div *ngIf="!selectedMTN" id="selectMTNHome">
-<h3>Select Mountain:</h3>
-<div class="form-group">
-  <select class="form-control" name="mountain"  (mouseleave)="selectMountain(mtnId)" [(ngModel)]="mtnId">
-    <option *ngFor="let mountain of mountains" value="{{mountain.id}}">{{
-      mountain.name
-    }}</option>
-  </select>
-</div>
-</div>
 <!-- SELECT MOUNTAIN NO VID-->
-<div class="container" *ngIf="selectedMTN" id="selectMTN">
+<div class="container"  id="selectMTN">
     <h3>Select Mountain:</h3>
     <div class="form-group">
-      <select class="form-control" name="mountain"  (mouseleave)="selectMountain(mtnId)" [(ngModel)]="mtnId">
+      <select class="form-control" name="mountain"  (mouseleave)="selectMountain(mtnId)" >
         <option *ngFor="let mountain of mountains" value="{{mountain.id}}">{{
           mountain.name
         }}</option>
@@ -44,46 +19,6 @@
     </div>
     </div>
 
-<!-- MOUNTAIN REPORTS -->
-<div *ngIf="!selectedMTN">
-  <div id="recentReports" class="row"> <!-- ROW -->
-    <h1>Recent Reports</h1>
-
-    <table class="table table-striped table-hover">
-      <thead class="thead-dark">
-        <tr>
-          <th>Username</th>
-          <th>Mountain</th>
-          <th>Trail</th>
-          <th>Report text</th>
-          <th>Rating</th>
-          <th>Date</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let report of reports">
-          <td>{{ report.user.username }}</td>
-
-          <td *ngIf="report.trail">
-            {{ report.trail.mountain }}
-          </td>
-          <td *ngIf="!report.mountain">
-            </td>
-
-
-          <!-- IF -->
-          <td *ngIf="report.trail; else: noTrail">{{ report.trail.name }}</td>
-          <!-- ELSE -->
-          <ng-template #noTrail> <td></td> </ng-template>
-
-          <td>{{ report.reportText }}</td>
-          <td>{{ report.rating }}</td>
-          <td>{{ report.dateCreated}}</td>
-        </tr>
-      </tbody>
-    </table>
-  </div> <!-- ROW -->
-</div>
 
 <!-- SELCTED MOUNTAIN -->
 
