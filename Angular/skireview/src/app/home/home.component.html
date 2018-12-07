@@ -23,24 +23,23 @@
 <div *ngIf="!selectedMTN" id="selectMTNHome">
 <h3>Select Mountain:</h3>
 <div class="form-group">
-  <select class="form-control" name="mountain" [(ngModel)]="mtnId">
+  <select class="form-control" name="mountain"  (mouseleave)="selectMountain(mtnId)" [(ngModel)]="mtnId">
     <option *ngFor="let mountain of mountains" value="{{mountain.id}}">{{
       mountain.name
     }}</option>
   </select>
-  <input type="submit" (click)="selectMountain(mtnId)" value="submit" />
 </div>
 </div>
 <!-- SELECT MOUNTAIN NO VID-->
 <div class="container" *ngIf="selectedMTN" id="selectMTN">
     <h3>Select Mountain:</h3>
     <div class="form-group">
-      <select class="form-control" name="mountain" [(ngModel)]="mtnId">
+      <select class="form-control" name="mountain"  (mouseleave)="selectMountain(mtnId)" [(ngModel)]="mtnId">
         <option *ngFor="let mountain of mountains" value="{{mountain.id}}">{{
           mountain.name
         }}</option>
       </select>
-      <input type="submit" (click)="selectMountain(mtnId)" value="submit" />
+
 
     </div>
     </div>
@@ -116,12 +115,12 @@
 
 <div id="sortBy" class="form-group" *ngIf="selectedMTN" class="row">
   <!-- ROW -->
-  <select class="form-control" name="sortby" [(ngModel)]="searchBy">
+  <select class="form-control" name="sortby"  (mouseleave)="sortTrailByName(searchBy)"  [(ngModel)]="searchBy">
     <option value="Name">Name</option>
     <option value="Features">Feature</option>
     <option value="Difficulty">Difficulty</option>
   </select>
-  <input type="submit" (click)="sortTrailByName(searchBy)" value="Sort By" />
+  <!-- <input type="submit" (click)="sortTrailByName(searchBy)" value="Sort By" /> -->
 </div>
 <!-- ROW -->
 
@@ -227,6 +226,40 @@
 
       <form *ngIf="newReport">
           <textarea rows="4" cols="50" name="report" form="report" placeholder="Is the gnar on par today?" [(ngModel)]="newReport.reportText"></textarea><br>
+
+          <span>
+            <span (click)="ratingsubmit1()" *ngIf="rating1 === 1">
+              <img width=30px; height=30px; src="assets/skiB.png" alt="greyski"> </span>
+            <span (click)="ratingsubmit1()" *ngIf="rating1 === 0">
+              <img width=30px; height=30px; src="assets/ski2.png" alt="colorski"> </span>
+          </span>
+
+          <span>
+            <span (click)="ratingsubmit2()" *ngIf="rating2 === 2">
+              <img width=30px; height=30px; src="assets/skiB.png" alt="greyski"> </span>
+            <span (click)="ratingsubmit2()" *ngIf="rating2 === 0">
+              <img width=30px; height=30px; src="assets/ski2.png" alt="colorski"> </span>
+          </span>
+          <span>
+            <span (click)="ratingsubmit3()" *ngIf="rating3 === 3">
+              <img width=30px; height=30px; src="assets/skiB.png" alt="greyski"> </span>
+            <span (click)="ratingsubmit3()" *ngIf="rating3 === 0">
+              <img width=30px; height=30px; src="assets/ski2.png" alt="colorski"> </span>
+          </span>
+          <span>
+            <span (click)="ratingsubmit4()" *ngIf="rating4 === 4">
+              <img width=30px; height=30px; src="assets/skiB.png" alt="greyski"> </span>
+            <span (click)="ratingsubmit4()" *ngIf="rating4 === 0">
+              <img width=30px; height=30px; src="assets/ski2.png" alt="colorski"> </span>
+          </span>
+          <span>
+            <span (click)="ratingsubmit5()" *ngIf="rating5 === 5">
+              <img width=30px; height=30px; src="assets/skiB.png" alt="greyski"> </span>
+            <span (click)="ratingsubmit5()" *ngIf="rating5 === 0">
+              <img width=30px; height=30px; src="assets/ski2.png" alt="colorski"> </span>
+          </span>
+          <br>
+
       <button (click)="createReportOnMTN()">Submit</button>
       </form>
     </div>
