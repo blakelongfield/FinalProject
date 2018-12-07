@@ -12,6 +12,7 @@ import { throwError } from 'rxjs';
 export class ResortService {
   private resorts: Resort[] = [];
   private url = environment.baseUrl + 'api/resorts';
+  private adminUrl = environment.baseUrl + 'api/admin/resorts';
   private httpOptions = {
     headers: new HttpHeaders({
       'Content-Type':  'application/json',
@@ -41,7 +42,7 @@ export class ResortService {
   }
 
   public createResort(resort: Resort) {
-    return this.http.post<Resort>(this.url, resort).pipe(
+    return this.http.post<Resort>(this.adminUrl, resort, this.httpOptions).pipe(
       catchError((error: any) => {
         console.log(error);
         return throwError('ERROR - resort.service createResort(): Error creating new resort');
@@ -50,7 +51,7 @@ export class ResortService {
   }
 
   public putResort(resort: Resort) {
-    return this.http.put<Resort>(this.url + '/' + resort.id, resort).pipe(
+    return this.http.put<Resort>(this.adminUrl + '/' + resort.id, resort).pipe(
       catchError((error: any) => {
         console.log(error);
         return throwError('ERROR - resort.service putResort(): Error updating resort');
@@ -59,7 +60,7 @@ export class ResortService {
   }
 
   public deleteResort(id: number) {
-    return this.http.delete<Resort>(this.url).pipe(
+    return this.http.delete<Resort>(this.adminUrl).pipe(
       catchError((error: any) => {
         console.log(error);
         return throwError('ERROR - resort.service deleteResort(): Error deleting resort');
