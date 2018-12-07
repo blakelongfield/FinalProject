@@ -21,6 +21,7 @@ import { TrailDetailsService } from './trail-details.service';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { NavigationComponent } from './navigation/navigation.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { LandingComponent } from './landing/landing.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     ProfileComponent,
     HomeComponent,
     NotFoundComponent,
-    NavigationComponent
+    NavigationComponent,
+    LandingComponent
   ],
   imports: [
     BrowserModule,

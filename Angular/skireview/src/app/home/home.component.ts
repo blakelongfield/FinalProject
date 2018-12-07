@@ -10,7 +10,7 @@ import { Report } from '../models/report';
 import { User } from '../models/user';
 import { Mountain } from '../models/mountain';
 
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Trail } from '../models/trail';
 import { formArrayNameProvider } from '@angular/forms/src/directives/reactive_directives/form_group_name';
 
@@ -307,13 +307,16 @@ export class HomeComponent implements OnInit {
     private trailServ: TrailDetailsService,
     private route: Router,
     private repotServ: ReportService,
-    private authService: AuthService
+    private authService: AuthService,
+    private activeRouter: ActivatedRoute
     ) { }
 
   ngOnInit() {
     this.loadReports();
     this.loadUsers();
     this.loadMountains();
+    this.mtnId = this.activeRouter.snapshot.paramMap.get('id');
+    this.selectMountain( this.mtnId);
 
 
 
