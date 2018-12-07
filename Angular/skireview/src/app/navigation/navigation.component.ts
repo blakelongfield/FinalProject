@@ -15,13 +15,13 @@ export class NavigationComponent implements OnInit {
   }
 
   checkLogin() {
-    console.log('Inside nav component checkLogin' );
+
 
     return this.authService.checkLogin();
   }
 
   checkAdmin() {
-    console.log('Inside nav component checkAdmin' );
+
 
     return this.authService.checkAdmin();
   }
