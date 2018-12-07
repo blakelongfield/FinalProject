@@ -37,7 +37,7 @@ public class ChairliftController {
 	}
 	
 	//CREATE
-	@PostMapping("chairlifts")
+	@PostMapping("admin/chairlifts")
 	public ChairLift create(@RequestBody ChairLift chairlift) {
 		
 		// will need to pull in lifttype id
@@ -45,13 +45,13 @@ public class ChairliftController {
 	}
 	
 	//UPDATE
-	@PatchMapping("chairlifts/{id}")
+	@PatchMapping("admin/chairlifts/{id}")
 	public ChairLift update( @PathVariable("id") Integer id, @RequestBody ChairLift chairlift ) {
 		return clServe.update(id, chairlift);
 	}
 	
 	//DELETE
-	@DeleteMapping("chairlifts/{id}")
+	@DeleteMapping("admin/chairlifts/{id}")
 	public Boolean delete( @PathVariable("id") Integer id ) {
 		return clServe.delete(id);
 	}

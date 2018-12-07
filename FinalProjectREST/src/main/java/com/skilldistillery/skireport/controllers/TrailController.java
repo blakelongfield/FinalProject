@@ -74,7 +74,7 @@ public class TrailController {
 	
 	
 
-	@PostMapping("trails/mountains/{mountainId}")
+	@PostMapping("admin/trails/mountains/{mountainId}")
 	public Trail create(@RequestBody Trail trail, @PathVariable("mountainId") int mountainId, HttpServletResponse resp,
 			HttpServletRequest req, Principal principal) {
 		Trail newTrail = null;
@@ -90,7 +90,7 @@ public class TrailController {
 		return newTrail;
 	}
 
-	@PutMapping("trails/{trailId}")
+	@PutMapping("admin/trails/{trailId}")
 	public Trail update(@RequestBody Trail trail, @PathVariable("trailId") int trailId, HttpServletResponse resp, Principal principal) {
 		Trail updateTrail = null;
 		updateTrail = trailService.update(trail, trailId, principal.getName());
@@ -102,7 +102,7 @@ public class TrailController {
 		return updateTrail;
 	}
 
-	@PatchMapping("trails/{trailId}")
+	@PatchMapping("admin/trails/{trailId}")
 	public Trail patch(@RequestBody Trail trail, @PathVariable("trailId") int trailId, HttpServletResponse resp, Principal principal) {
 		Trail patchTrail = null;
 		patchTrail = trailService.patch(trail, trailId, principal.getName());
@@ -114,7 +114,7 @@ public class TrailController {
 		return patchTrail;
 	}
 	
-	@DeleteMapping("trails/disable/{trailId}")
+	@DeleteMapping("admin/trails/disable/{trailId}")
 	public Boolean disable(@PathVariable("trailId") int trailId, HttpServletResponse resp, Principal principal) {
 		Boolean disableTrail = null;
 		disableTrail = trailService.disable(trailId, principal.getName());
@@ -126,7 +126,7 @@ public class TrailController {
 		return disableTrail;
 	}
 
-	@DeleteMapping("trails/{trailId}")
+	@DeleteMapping("admin/trails/{trailId}")
 	public Boolean destroy(@PathVariable("trailId") int trailId, HttpServletResponse resp, Principal principal) {
 		Boolean destroyTrail = null;
 		destroyTrail = trailService.destroy(trailId, principal.getName());

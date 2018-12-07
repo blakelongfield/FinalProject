@@ -34,7 +34,8 @@ export class AuthService {
 
           // this.findAdmin();
           localStorage.setItem('credentials' , credentials);
-          if (res.authorities[0].authority === 'Admin') {
+          if (res.authorities[0].authority === 'Admin' ||
+          res.authorities[0].authority === 'ROLE_Admin' ) {
             localStorage.setItem('Admin', 'true');
 
           } else {

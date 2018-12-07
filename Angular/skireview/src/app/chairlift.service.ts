@@ -12,6 +12,7 @@ import { Chairlift } from './models/chairlift';
 export class ChairliftService {
   private baseUrl = environment.baseUrl;
   private url = this.baseUrl + 'api/chairlifts';
+  private adminUrl = this.baseUrl + 'api/admin/chairlifts';
   private httpOptions = {
     headers: new HttpHeaders({
       'Content-Type':  'application/json',
@@ -42,7 +43,7 @@ export class ChairliftService {
   }
 
   public create(chairlift: Chairlift) {
-    return this.http.post<Chairlift>(this.url, chairlift, this.httpOptions).pipe(
+    return this.http.post<Chairlift>(this.adminUrl, chairlift, this.httpOptions).pipe(
       catchError((error: any) => {
         console.error(error);
         return throwError('chairliftService.create(): Error creating chairlift');
@@ -51,7 +52,7 @@ export class ChairliftService {
   }
 
   public update(chairlift: Chairlift) {
-    return this.http.patch<Chairlift>(this.url + chairlift.id, chairlift, this.httpOptions).pipe(
+    return this.http.patch<Chairlift>(this.adminUrl + chairlift.id, chairlift, this.httpOptions).pipe(
       catchError((error: any) => {
         console.error(error);
         return throwError('chairliftService.update(): Error updating chairlift');
@@ -60,7 +61,7 @@ export class ChairliftService {
   }
 
   public delete(id: number) {
-    return this.http.delete(this.url + `/${id}`).pipe(
+    return this.http.delete(this.adminUrl + `/${id}`).pipe(
       catchError((error: any) => {
         console.error(error);
         return throwError('chairliftService.delete(): Error deleting chairlift');

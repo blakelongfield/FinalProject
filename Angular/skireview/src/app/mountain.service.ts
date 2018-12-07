@@ -14,6 +14,7 @@ export class MountainService {
 
   private baseUrl = environment.baseUrl;
   private url = this.baseUrl + 'api/mountains';
+  private adminUrl = this.baseUrl + 'api/admin/mountains';
   private httpOptions = {
     headers: new HttpHeaders({
       'Content-Type':  'application/json',
@@ -43,7 +44,7 @@ export class MountainService {
   }
 
   public create(mountain: Mountain) {
-    return this.http.post<Mountain>(this.url + `/resorts/${mountain.resort}`, mountain, this.httpOptions).pipe(
+    return this.http.post<Mountain>(this.adminUrl + `/resorts/${mountain.resort}`, mountain, this.httpOptions).pipe(
       catchError((error: any) => {
         console.error(error);
         return throwError('mountainService.create(): Error creating mountain');
@@ -52,7 +53,7 @@ export class MountainService {
   }
 
   public patch(patch: Mountain) {
-    return this.http.patch<Mountain>(this.url + `/${patch.id}`, patch, this.httpOptions).pipe(
+    return this.http.patch<Mountain>(this.adminUrl + `/${patch.id}`, patch, this.httpOptions).pipe(
       catchError((error: any) => {
         console.error(error);
         return throwError('mountainService.patch(): Error patching mountain');
@@ -61,7 +62,7 @@ export class MountainService {
   }
 
   public disable(id: number) {
-    return this.http.delete(this.url + `/disable/${id}`).pipe(
+    return this.http.delete(this.adminUrl + `/disable/${id}`).pipe(
       catchError((error: any) => {
         console.error(error);
         return throwError('mountainService.disable(): Error disabling mountain');
@@ -70,7 +71,7 @@ export class MountainService {
   }
 
   public delete(id: number) {
-    return this.http.delete(this.url + `/${id}`).pipe(
+    return this.http.delete(this.adminUrl  + `/${id}`).pipe(
       catchError((error: any) => {
         console.error(error);
         return throwError('mountainService.delete(): Error deleting mountain');
