@@ -81,11 +81,11 @@ public class ResortServiceImpl implements ResortService {
 						}
 						for (int i = 0; i < resortFound.getMountains().get(h).getTrails().size()-1; i++) { //get trails on mountain on resort
 							for (int j = 0; j < resortFound.getMountains().get(h).getTrails().get(i).getReports().size()-1; j++) { // get reports on trails on mountain on resort
-								for (int j2 = 0; j2 < resortFound.getMountains().get(h).getTrails().get(i).getReports().get(j).getComments().size()-1; j2++) { // get comments on reports on trails on mountain on resort
-									for (int k = 0; k < resortFound.getMountains().get(h).getTrails().get(i).getReports().get(j).getComments().get(j2).getComments().size()-1; k++) { // get comments on comments on reports on trails on mountain
-										resortFound.getMountains().get(h).getTrails().get(i).getReports().get(j).getComments().get(j2).getComments().get(k).setActive(false);
+								for (int j2 = 0; j2 < resortFound.getMountains().get(h).getTrails().get(i).getReports().get(j).getComment().size()-1; j2++) { // get comments on reports on trails on mountain on resort
+									for (int k = 0; k < resortFound.getMountains().get(h).getTrails().get(i).getReports().get(j).getComment().get(j2).getComments().size()-1; k++) { // get comments on comments on reports on trails on mountain
+										resortFound.getMountains().get(h).getTrails().get(i).getReports().get(j).getComment().get(j2).getComments().get(k).setActive(false);
 									}
-									resortFound.getMountains().get(h).getTrails().get(i).getReports().get(j).getComments().get(j2).setActive(false);
+									resortFound.getMountains().get(h).getTrails().get(i).getReports().get(j).getComment().get(j2).setActive(false);
 								}
 								resortFound.getMountains().get(h).getTrails().get(i).getReports().get(j).setActive(false);;
 							}

@@ -1,10 +1,11 @@
+import { Comment } from './../models/comment';
 import { Component, OnInit } from '@angular/core';
 import { TrailDetailsService } from '../trail-details.service';
 import { Trail } from '../models/trail';
 import { ReportService } from '../report.service';
 import { Report } from '../models/report';
 import { CommentService } from '../comment.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { forEach } from '@angular/router/src/utils/collection';
 
 @Component({
@@ -16,28 +17,37 @@ export class TrailDetailsComponent implements OnInit {
   trail = new Trail();
   newTrail = null;
   editTrail = null;
-  selected = null;
+  selected = new Trail();
   trails: Trail[] = [];
   reports: Report[] = [];
   comments: any = [];
   comment = null;
   newReport = new Report();
+  theReport =  null;
   newCommentOnReport = new Comment();
   commentHolder = new Comment();
   commentTextBox = false;
   reportIdHolder;
   trailId;
   reportId;
-  votes = 0;
+  commentId;
+
+  rating1 = 1;
+  rating2 = 2;
+  rating3 = 3;
+  rating4 = 4;
+  rating5 = 5;
+
 
   // tslint:disable-next-line:max-line-length
-  constructor(private trailDetailsService: TrailDetailsService, private reportService: ReportService, private commentService: CommentService, private activeRouter: ActivatedRoute) { }
+  constructor(private trailDetailsService: TrailDetailsService, private reportService: ReportService, private commentService: CommentService, private activeRouter: ActivatedRoute, private route: Router) { }
 
   ngOnInit() {
     this.trailId = this.activeRouter.snapshot.paramMap.get('id');
     this.reload();
     this.displayTrail(this.trailId);
     this.reportsOnTrail(this.trailId);
+
   }
 
   public reload() {
@@ -58,6 +68,7 @@ export class TrailDetailsComponent implements OnInit {
     this.reportService.findReportsByTrailId(id).subscribe(
       data => {
         this.reports = data;
+
         console.log(this.reports[1].comment);
         for (let i = 0; i < this.reports.length; i++) {
                this.commentsOnReport(this.reports[i].id);
@@ -180,13 +191,15 @@ export class TrailDetailsComponent implements OnInit {
       }
     );
   }
-
+// CREATE NEW REPORT ON TRAIL
   public createReportOnTrail() {
     this.trailId = this.activeRouter.snapshot.paramMap.get('id');
+    console.log(this.newReport);
+    console.log('FOO****' + this.newReport.votes);
     this.reportService.createReportTrail(this.newReport, this.trailId).subscribe(
       data => {
         console.log('creating a report on a trail');
-        this.ngOnInit();
+
       },
       err => {
         console.error('trail-details.component.createReportOnTrail(): Error creating report');
@@ -194,27 +207,25 @@ export class TrailDetailsComponent implements OnInit {
       }
     );
   }
-
+// CREATE COMMENT ON A REPORT
   public createCommentOnReport() {
-    console.log(this.newCommentOnReport);
-    console.log(this.reportIdHolder);
-    this.commentService.createCommentOnReport(this.newCommentOnReport, this.reportIdHolder).subscribe(
+    this.commentService.createCommentOnReport(this.newCommentOnReport, this.theReport.id).subscribe(
       data => {
-        console.log('creating a comment on a report');
-        this.ngOnInit();
+        this.route.navigateByUrl('/trail/' + this.trailId);
       },
       err => {
         console.error('trail-details.component.createCommentOnReport(): Error creating a comment on a report');
         console.error(err);
       }
     );
+    this.selectAReport(this.theReport);
   }
 
   public showTextBox(reportId) {
     this.commentTextBox = true;
     this.reportIdHolder = reportId;
   }
-
+    // DOWN VOTE -1
   public reportHelpful(report, reportId) {
     console.log(report);
     report.votes += 1;
@@ -225,7 +236,7 @@ export class TrailDetailsComponent implements OnInit {
       data => {
         report.votes = data;
         console.log(report.vote);
-        this.ngOnInit();
+        // this.ngOnInit();
       },
       err => {
         console.error('Error in trail-details.component reportNotHelpful(): Error downvoting');
@@ -233,16 +244,16 @@ export class TrailDetailsComponent implements OnInit {
       }
     );
   }
-
+    // UP VOTE +1
   public reportNotHelpful(report, reportId) {
     report.votes -= 1;
     console.log('report not helpful?' + report.reportText);
     console.log('report not helpful?' + report.reportText);
-    console.log(report.vote);
+    console.log(report.votes);
     this.reportService.updateReport(report, reportId).subscribe(
       data => {
         report.votes = data;
-        this.ngOnInit();
+        // this.ngOnInit();
       },
       err => {
         console.error('Error in trail-details.component reportNotHelpful(): Error downvoting');
@@ -250,4 +261,90 @@ export class TrailDetailsComponent implements OnInit {
       }
     );
   }
+  //// SELECT A REPORT AND SEE COMMENTS
+  public selectAReport(report) {
+    this.theReport = new Report();
+    this.theReport = report;
+    this.comments = this.theReport.comment;
+
+    console.log( this.theReport.id );
+    console.log( this.theReport );
+    console.log(this.comments);
+  }
+
+
+
+
+  // RATING SYSTEM
+  public ratingsubmit1() {
+    if ( this.rating1 === 1 ) {
+      this.rating1 = 0;
+      this.newReport.votes = 1;
+        console.log(1);
+
+    } else {
+      this.rating2 = 2;
+      this.rating3 = 3;
+      this.rating4 = 4;
+      this.rating5 = 5;
+      this.newReport.votes = 1;
+      console.log(1);
+    }
+  }
+  public ratingsubmit2 () {
+    if ( this.rating2 === 2 ) {
+      this.rating1 = 0;
+      this.rating2 = 0;
+      this.newReport.votes = 2;
+        console.log(2);
+    } else {
+      this.rating3 = 3;
+      this.rating4 = 4;
+      this.rating5 = 5;
+      this.newReport.votes = 2;
+      console.log(2);
+    }
+  }
+  public ratingsubmit3 () {
+    if ( this.rating3 === 3 ) {
+      this.rating1 = 0;
+      this.rating2 = 0;
+      this.rating3 = 0;
+      this.newReport.votes = 3;
+        console.log(3);
+    } else {
+      this.rating4 = 4;
+      this.rating5 = 5;
+      this.newReport.votes = 3;
+      console.log(3);
+    }
+  }
+  public ratingsubmit4 () {
+    if ( this.rating4 === 4 ) {
+      this.rating1 = 0;
+      this.rating2 = 0;
+      this.rating3 = 0;
+      this.rating4 = 0;
+      this.newReport.votes = 4;
+        console.log(4);
+    } else {
+      this.rating5 = 5;
+      this.newReport.votes = 4;
+      console.log(4);
+    }
+  }
+  public ratingsubmit5 () {
+    if ( this.rating5 === 5 ) {
+      this.rating1 = 0;
+      this.rating2 = 0;
+      this.rating3 = 0;
+      this.rating4 = 0;
+      this.rating5 = 0;
+      this.newReport.votes = 5;
+        console.log(5);
+    }
+  }
+
 }
+
+

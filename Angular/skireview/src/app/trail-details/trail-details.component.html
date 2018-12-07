@@ -1,28 +1,121 @@
 <h1><strong>{{selected.name}}</strong></h1> <br> <br>
 
-<div class="container" *ngIf="selected">
-    <div class="row">
-      <div class="col">
-        <img src="https://www.arttowngifts.com/v/vspfiles/photos/JFDSKITRAIL-2.jpg" alt="Ski sign" height="250" width="250"> <hr>
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <img src="https://www.arttowngifts.com/v/vspfiles/photos/JFDSKITRAIL-2.jpg" alt="Ski sign" height="250" width="250">
+      <hr>
+    </div>
+
+    <div class="col">
+      <p>Difficulty: {{selected.difficulty}}</p> <br>
+      <p>Length: {{selected.length}}</p> <br>
+      <p>Elevation gain/loss: {{selected.elevationGainLoss}}</p> <br>
+      <p>Features: {{selected.features}}</p> <br>
+    </div>
+
+    <div class="w-100">
+      <h3>Here's what people are saying about the gnar today</h3>
+    </div>
+
+    <!-- REPORTS ON A TRAIL-->
+    <div class="col">
+
+      <div *ngFor="let report of reports">
+        <p>votes: {{report.votes}}</p>
+        <p>{{report.user.username}}: {{report.reportText}}</p>
+        <button type="submit" (click)="selectAReport(report)">More..</button>
       </div>
 
-      <div class="col">
-        <p>Difficulty: {{selected.difficulty}}</p> <br>
-        <p>Length: {{selected.length}}</p> <br>
-        <p>Elevation gain/loss: {{selected.elevationGainLoss}}</p> <br>
-        <p>Features: {{selected.features}}</p> <br>
+      <br>
+      <h4>Create New Report</h4>
+      <textarea rows="4" cols="50" name="comment" form="usrform" placeholder="Is the gnar on par today?" [(ngModel)]="newReport.reportText">
+          </textarea><br>
+
+      <span>
+        <span  (click)="ratingsubmit1()" *ngIf="rating1 === 1">
+          <img width=30px; height=30px; src="assets/skiB.png" alt="greyski"> </span>
+        <span (click)="ratingsubmit1()" *ngIf="rating1 === 0">
+          <img width=30px; height=30px; src="assets/ski2.png" alt="colorski"> </span>
+      </span>
+
+      <span>
+        <span   (click)="ratingsubmit2()" *ngIf="rating2 === 2">
+            <img width=30px; height=30px; src="assets/skiB.png" alt="greyski"> </span>
+        <span   (click)="ratingsubmit2()" *ngIf="rating2 === 0">
+            <img width=30px; height=30px; src="assets/ski2.png" alt="colorski"> </span>
+      </span>
+      <span>
+        <span (click)="ratingsubmit3()" *ngIf="rating3 === 3">
+            <img width=30px; height=30px; src="assets/skiB.png" alt="greyski"> </span>
+        <span (click)="ratingsubmit3()" *ngIf="rating3 === 0">
+            <img width=30px; height=30px; src="assets/ski2.png" alt="colorski"> </span>
+      </span>
+      <span>
+        <span (click)="ratingsubmit4()" *ngIf="rating4 === 4">
+            <img width=30px; height=30px; src="assets/skiB.png" alt="greyski"> </span>
+        <span (click)="ratingsubmit4()" *ngIf="rating4 === 0">
+            <img width=30px; height=30px; src="assets/ski2.png" alt="colorski"> </span>
+      </span>
+      <span>
+        <span (click)="ratingsubmit5()" *ngIf="rating5 === 5">
+            <img width=30px; height=30px; src="assets/skiB.png" alt="greyski"> </span>
+        <span (click)="ratingsubmit5()" *ngIf="rating5 === 0">
+            <img width=30px; height=30px; src="assets/ski2.png" alt="colorski"> </span>
+      </span>
+
+
+      <br>
+      <button (click)="createReportOnTrail()">Submit</button>
+    </div>
+
+    <!-- SHOW COMMENTS AND ADD NEW COMMENT -->
+    <div class="col">
+
+      <div id="reportComments" *ngIf="theReport">
+        <span *ngFor="let comment of comments">
+          <div>
+            <p>{{comment.commentText}}</p>
+            <div>
+              <span (click)="reportHelpful(theReport, theReport.id)">
+                <img width=40px; height=40px; src="assets/upVote.png" alt="upVote">
+              </span>
+              <span (click)="reportNotHelpful(theReport, theReport.id)"> <img width=40px; height=40px; src="assets/downVote.png"
+                  alt="downVote"> </span>
+              <button (click)="showTextBox(theReport.id)">Comment</button>
+
+
+            </div>
+          </div>
+        </span>
       </div>
+      <br>
+      <br>
 
-      <div class="w-100">
-        <h3>Here's what people are saying about the gnar today</h3>
-      </div>
+      <form *ngIf="theReport">
+        <textarea rows="3" cols="30" name="newCommentOnReport" form="usrform" placeholder="Reply to report" [(ngModel)]="newCommentOnReport.commentText"></textarea>
+        <br>
+        <button type="submit" name="submit" (click)="createCommentOnReport()">Submit</button>
+      </form>
 
-      <div class="col">
-        <form>
+    </div>
 
-            <div *ngFor="let report of reports">
-              <p>votes: {{report.votes}}</p>
-              <p>{{report.user.username}}: {{report.reportText}}<p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!--
                   <div>
                       <button (click)="reportHelpful(report, report.id)">Helpful?</button>
                       <button (click)="reportNotHelpful(report, report.id)">Not Helpful?</button>
@@ -33,22 +126,49 @@
 
                 <div *ngFor="let comment of report.comments">
                   <p>........Comment: {{comment.commentText}}</p>
-                </div>
-              </div> <br>
+                </div> -->
+    <!-- </div> <br>
 
             <textarea rows="4" cols="50" name="comment" form="usrform" placeholder="Is the gnar on par today?" [(ngModel)]="newReport.reportText">
             </textarea> <br>
             <button (click)="createReportOnTrail()">Submit</button>
 
           </form>
-       </div>
+       </div> -->
 
-         <div class="col" *ngIf="commentTextBox">
+    <!-- <div class="col" *ngIf="commentTextBox">
           <form>
-            <textarea rows="3" cols="30" name="commentText" form="usrform" placeholder="Reply to report" [(ngModel)]="newCommentOnReport.commentText"></textarea> <br>
-            <button type="submit" name="submit" (click)="createCommentOnReport()">Submit</button>
-           </form>
-         </div>
-       </div>
-</div>
+            <textarea rows="3" cols="30" name="newCommentOnReport" form="usrform" placeholder="Reply to report" [(ngModel)]="newCommentOnReport.comment"></textarea> <br>
 
+           </form>
+         </div> -->
+    <!-- </div> -->
+    <!-- STAR RATING -->
+    <!-- <div>
+    <form >
+      <span>
+        <span (click)="ratingsubmit1()" *ngIf="rating1 === 1" > &#9734; </span>
+          <span (click)="ratingsubmit1()" *ngIf="rating1 === 0"> &#9733; </span>
+        </span>
+
+        <span>
+          <span (click)="ratingsubmit2()" *ngIf="rating2 === 2"> &#9734; </span>
+            <span (click)="ratingsubmit2()" *ngIf="rating2 === 0"> &#9733; </span>
+        </span>
+        <span>
+          <span (click)="ratingsubmit3()" *ngIf="rating3 === 3"> &#9734; </span>
+          <span (click)="ratingsubmit3()" *ngIf="rating3 === 0"> &#9733; </span>
+        </span>
+        <span>
+            <span (click)="ratingsubmit4()" *ngIf="rating4 === 4"> &#9734; </span>
+            <span (click)="ratingsubmit4()" *ngIf="rating4 === 0"> &#9733; </span>
+          </span>
+          <span>
+              <span (click)="ratingsubmit5()" *ngIf="rating5 === 5"> &#9734; </span>
+              <span (click)="ratingsubmit5()" *ngIf="rating5 === 0"> &#9733; </span>
+            </span>
+
+    </form>
+  </div>
+</div>
+<button type="submit" name="submit" (click)="createCommentOnReport()">Submit</button> -->
