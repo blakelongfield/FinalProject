@@ -49,7 +49,7 @@ public class ResortController {
 		return resort;
 	}
 
-	@PostMapping(path = "resorts")
+	@PostMapping(path = "admin/resorts")
 	public Resort createResort(@RequestBody Resort resort, HttpServletResponse resp, HttpServletRequest req, Principal principal) {
 		resort = resortService.create(resort, principal.getName());
 		if (resort == null) {
@@ -60,7 +60,7 @@ public class ResortController {
 		return resort;
 	}
 
-	@PutMapping(path = "resorts/{resortId}")
+	@PutMapping(path = "admin/resorts/{resortId}")
 	public Resort updateResort(@RequestBody Resort resort, @PathVariable("resortId") int resortId,
 			HttpServletResponse resp, HttpServletRequest req, Principal principal) {
 		resort = resortService.update(resort, resortId, principal.getName());
@@ -72,7 +72,7 @@ public class ResortController {
 		return resort;
 	}
 	
-	@DeleteMapping("resorts/disable/{resortId}")
+	@DeleteMapping("admin/resorts/disable/{resortId}")
 	public Boolean disableResort(@PathVariable("resortId") int resortId, HttpServletResponse resp, Principal principal) {
 		Boolean disableResort = null;
 		disableResort = resortService.disable(resortId, principal.getName());
@@ -84,7 +84,7 @@ public class ResortController {
 		return disableResort;
 	}
 
-	@DeleteMapping(path = "resorts/{resortId}")
+	@DeleteMapping(path = "admin/resorts/{resortId}")
 	public Boolean deleteResort(@PathVariable("resortId") int resortId, HttpServletResponse resp,
 			HttpServletRequest req, Principal principal) {
 		Boolean deletedResort = resortService.destroy(resortId, principal.getName());

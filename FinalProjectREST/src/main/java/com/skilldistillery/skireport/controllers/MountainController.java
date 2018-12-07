@@ -55,12 +55,14 @@ public class MountainController {
 
 //	Creates a new mountain
 	@RequestMapping(path = "admin/mountains/resorts/{resortId}", method = RequestMethod.POST)
-	public Mountain createMountain(@RequestBody Mountain mountain, @PathVariable("resortId") int resortId, HttpServletResponse resp, HttpServletRequest req, Principal principal) {
+	public Mountain createMountain(@RequestBody Mountain mountain, @PathVariable("resortId") int resortId,
+			HttpServletResponse resp, HttpServletRequest req, Principal principal) {
 
-		System.out.println("In create mountain" + mountain);
+		System.out.println("In create mountain " + mountain);
+		System.out.println(principal);
 		// will need to pull in resort id
 		Mountain newMountain = mountServ.create(mountain, resortId, principal.getName());
-		System.out.println("After create mountain" + newMountain);
+		System.out.println("After create mountain " + newMountain);
 		if (newMountain == null) {
 			resp.setStatus(404);
 		} else {
@@ -74,7 +76,7 @@ public class MountainController {
 	}
 	
 //	Updates mountain (patch)
-	@RequestMapping(path="mountains/{id}", method=RequestMethod.PATCH)
+	@RequestMapping(path="admin/mountains/{id}", method=RequestMethod.PATCH)
 	public Mountain updateMountain(@RequestBody Mountain mountain, @PathVariable ("id") Integer mountainId,
 			HttpServletResponse resp, Principal principal) {
 		
@@ -92,7 +94,7 @@ public class MountainController {
 		
 	}
 	
-	@DeleteMapping("mountains/disable/{mountainId}")
+	@DeleteMapping("admin/mountains/disable/{mountainId}")
 	public Boolean disableMountain(@PathVariable("mountainId") int mountainId, HttpServletResponse resp, Principal principal) {
 		Boolean disableMountain = null;
 		disableMountain = mountServ.disable(mountainId, principal.getName());
@@ -105,7 +107,7 @@ public class MountainController {
 	}
 	
 //	Deletes mountain
-	@RequestMapping(path="mountains/{id}", method=RequestMethod.DELETE)
+	@RequestMapping(path="admin/mountains/{id}", method=RequestMethod.DELETE)
 	public Boolean deleteMountain(@PathVariable ("id") Integer mountainId, HttpServletResponse resp, Principal principal) {
 		Boolean deletedMountain = null;
 		

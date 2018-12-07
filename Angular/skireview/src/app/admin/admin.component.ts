@@ -160,7 +160,7 @@ export class AdminComponent implements OnInit {
   findAllMountains() {
     this.mountainService.index().subscribe(
       mountainIndex => {
-        console.log(mountainIndex);
+
         this.mountainList = mountainIndex;
       },
       error => {

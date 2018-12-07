@@ -12,6 +12,8 @@ import { environment } from 'src/environments/environment';
 export class TrailDetailsService {
   private trails: Trail[] = [];
   private url = environment.baseUrl + 'api/trails';
+  private adminUrl = environment.baseUrl + 'api/admin/trails';
+
   private httpOptions = {
     headers: new HttpHeaders({
       'Content-Type':  'application/json',
@@ -41,7 +43,12 @@ export class TrailDetailsService {
   }
 
   public createTrail(trail: Trail) {
-    return this.http.post<Trail>(this.url + `/mountains/${trail.mountain}`, trail).pipe(
+    console.log('Inside create trail');
+    console.log(trail);
+    console.log(this.adminUrl + `/mountains/${trail.mountain}`);
+    console.log(this.httpOptions);
+
+    return this.http.post<Trail>(this.adminUrl + `/mountains/${trail.mountain}`, trail, this.httpOptions).pipe(
       catchError((error: any) => {
         console.log(error);
         return throwError('ERROR - trail-details.createTrail(): Error creating new trail');
@@ -50,7 +57,7 @@ export class TrailDetailsService {
   }
 
   public putTrail(trail: Trail) {
-    return this.http.put<Trail>(this.url + '/' + trail.id, trail).pipe(
+    return this.http.put<Trail>(this.adminUrl + '/' + trail.id, trail).pipe(
       catchError((error: any) => {
         console.log(error);
         return throwError('ERROR - trail-details.putTrail(): Error updating trail');
@@ -59,7 +66,7 @@ export class TrailDetailsService {
   }
 
   public patchTrail(trail: Trail) {
-    return this.http.put<Trail>(this.url + '/' + trail.id, trail).pipe(
+    return this.http.put<Trail>(this.adminUrl + '/' + trail.id, trail).pipe(
       catchError((error: any) => {
         console.log(error);
         return throwError('ERROR - trail-details.patchTrail(): Error updating trail');
@@ -69,7 +76,7 @@ export class TrailDetailsService {
 
 
   public disableTrail(id: number) {
-    return this.http.delete<Trail>(this.url + `/${id}`).pipe(
+    return this.http.delete<Trail>(this.adminUrl + `/${id}`).pipe(
       catchError((error: any) => {
         console.log(error);
         return throwError('ERROR - trail-details.deleteTrail(): Error deleting trail');

@@ -31,6 +31,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	        .antMatchers(HttpMethod.OPTIONS, "/api/**").permitAll()  // For CORS, the preflight request will hit the OPTIONS on the route
 	        .antMatchers(HttpMethod.OPTIONS, "/**").permitAll()
 	        .antMatchers(HttpMethod.GET, "/api/**").permitAll()
+	        .antMatchers("/api/admin/**").hasRole("Admin")
 	        .antMatchers(HttpMethod.POST, "/api/**").authenticated()
 	        .antMatchers("/login").permitAll()
 	        .antMatchers("/register").permitAll()

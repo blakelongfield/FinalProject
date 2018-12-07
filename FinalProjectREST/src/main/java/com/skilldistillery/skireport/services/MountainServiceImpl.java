@@ -48,7 +48,7 @@ public class MountainServiceImpl implements MountainService {
 		Mountain newMountain = null;
 		User user = userRepo.findByUsername(username);
 		if (user != null) {
-			if (user.getRole().equals("Admin")) {
+			if (user.getRole().equals("Admin") || user.getRole().equals("ROLE_Admin")) {
 				Optional<Resort> resortOpt = resortRepo.findById(resortId);
 				Resort resort = resortOpt.get();
 				mountain.setResort(resort);
