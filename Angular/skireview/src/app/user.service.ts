@@ -48,6 +48,19 @@ return this.http.get<User[]>(this.url + '?sortedtrue')
 
   }
 
+  //  show by username
+  showByUsername() {
+    return this.http.get<User>(this.url + '/username', this.httpOptions)
+    .pipe(
+      catchError((err: any) => {
+        console.error(err);
+        return throwError('Error grabbing username');
+
+      })
+    );
+
+  }
+
 // creates a new user
 
 public create(user: User) {
