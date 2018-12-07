@@ -54,7 +54,7 @@ public class MountainController {
 	}
 
 //	Creates a new mountain
-	@RequestMapping(path = "mountains/resorts/{resortId}", method = RequestMethod.POST)
+	@RequestMapping(path = "admin/mountains/resorts/{resortId}", method = RequestMethod.POST)
 	public Mountain createMountain(@RequestBody Mountain mountain, @PathVariable("resortId") int resortId, HttpServletResponse resp, HttpServletRequest req, Principal principal) {
 
 		System.out.println("In create mountain" + mountain);

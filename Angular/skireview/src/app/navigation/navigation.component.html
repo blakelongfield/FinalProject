@@ -9,9 +9,18 @@
       <a class="nav-item nav-link" [routerLink]="['/trail']">Trail</a>
       <a class="nav-item nav-link" [routerLink]="['/profile']">Profile</a>
       <a class="nav-item nav-link" [routerLink]="['/register']">Register</a>
-      <a class="nav-item nav-link" [routerLink]="['/admin']">Admin</a>
-      <a id="loginTab" class="nav-item nav-link" [routerLink]="['/login']">Login</a>
-      <a class="nav-item nav-link" [routerLink]="['/logout']">Logout</a>
+      <div *ngIf="checkAdmin()">
+        <a class="nav-item nav-link" [routerLink]="['/admin']">Admin</a>
+      </div>
+      <div *ngIf="!checkLogin()" >
+        <app-login></app-login>
+      </div>
+      <!-- <a id="loginTab" class="nav-item nav-link" [routerLink]="['/login']">Login</a> -->
+      <div *ngIf="checkLogin()">
+        <app-logout></app-logout>
+
+      </div>
+      <!-- <a class="nav-item nav-link" [routerLink]="['/logout']">Logout</a> -->
     </div>
   </div>
 </nav>

@@ -108,4 +108,18 @@ public class UserServiceImpl implements UserService {
 
 	}
 
+	@Override
+	public Boolean findByRole(String username) {
+		User user = userRepo.findByUsername(username);
+		Boolean role = false;
+		
+		if(user != null) {
+			if(user.getRole().equals("Admin")) {
+				role = true;
+			}
+			
+		}
+		return role;
+	}
+
 }

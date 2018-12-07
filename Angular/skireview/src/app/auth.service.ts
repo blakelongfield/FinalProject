@@ -1,3 +1,4 @@
+import { forEach } from '@angular/router/src/utils/collection';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
@@ -27,8 +28,17 @@ export class AuthService {
     return this.http.get(this.url + 'authenticate', {headers}).pipe(
         tap((res) => {
           console.log('login saving creds');
+          console.log(res);
+          console.log(res.authorities[0].authority);
 
+          // this.findAdmin();
           localStorage.setItem('credentials' , credentials);
+          if (res.authorities[0].authority === 'Admin') {
+            localStorage.setItem('Admin', 'true');
+
+          } else {
+            localStorage.removeItem('Admin');
+          }
           return res;
         }),
         catchError((err: any) => {
@@ -55,6 +65,7 @@ export class AuthService {
 
   logout() {
     localStorage.removeItem('credentials');
+    localStorage.removeItem('Admin');
   }
 
   checkLogin() {
@@ -70,5 +81,13 @@ export class AuthService {
 
   getToken() {
     return localStorage.getItem('credentials');
+  }
+
+
+  checkAdmin() {
+    if (localStorage.getItem('Admin')) {
+      return true;
+    }
+    return false;
   }
 }

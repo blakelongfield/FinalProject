@@ -18,5 +18,7 @@ public interface UserService {
 	User update(User user, String username);
 
 	Boolean destroy(String username);
+	
+	Boolean findByRole(String username);
 
 }
