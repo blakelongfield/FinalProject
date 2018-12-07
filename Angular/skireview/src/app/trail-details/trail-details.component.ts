@@ -20,8 +20,8 @@ export class TrailDetailsComponent implements OnInit {
   selected = new Trail();
   trails: Trail[] = [];
   reports: Report[] = [];
-  comments: any = [];
-  comment = null;
+  // comments: any = [];
+  // comment = null;
   newReport = new Report();
   theReport =  null;
   newCommentOnReport = new Comment();
@@ -71,7 +71,7 @@ export class TrailDetailsComponent implements OnInit {
 
         console.log(this.reports[1].comment);
         for (let i = 0; i < this.reports.length; i++) {
-               this.commentsOnReport(this.reports[i].id);
+               this.commentsOnReport(this.reports[i]);
         }
       },
       err => {
@@ -80,12 +80,13 @@ export class TrailDetailsComponent implements OnInit {
     );
   }
 
-  public commentsOnReport(id) {
-    console.log(id);
-    this.commentService.findCommentsByReportId(id).subscribe(
-      data => {
-        this.comments = data;
-        console.log(this.comments);
+  public commentsOnReport(report: Report) {
+    console.log(report.id);
+    this.commentService.findCommentsByReportId(report.id).subscribe(
+      results => {
+        console.log('TrailDetailsComponent.commentsOnReport');
+        console.log(results);
+        report.comment = results;
       },
       err => {
         console.error('trail-details.component.commentsOnreport(): Error retreving comments on report');
@@ -199,7 +200,11 @@ export class TrailDetailsComponent implements OnInit {
     this.reportService.createReportTrail(this.newReport, this.trailId).subscribe(
       data => {
         console.log('creating a report on a trail');
-
+        console.log(data);
+        if (! data.comment) {
+          data.comment = [];
+        }
+        this.reports.push(data);
       },
       err => {
         console.error('trail-details.component.createReportOnTrail(): Error creating report');
@@ -211,8 +216,11 @@ export class TrailDetailsComponent implements OnInit {
   public createCommentOnReport() {
     this.commentService.createCommentOnReport(this.newCommentOnReport, this.theReport.id).subscribe(
       data => {
-        this.route.navigateByUrl('/trail/' + this.trailId);
-        this.ngOnInit();
+        // this.route.navigateByUrl('/trail/' + this.trailId);
+        // this.ngOnInit();
+        this.theReport.comment.push(this.newCommentOnReport);
+        console.log('comment created');
+
       },
       err => {
         console.error('trail-details.component.createCommentOnReport(): Error creating a comment on a report');
@@ -264,13 +272,13 @@ export class TrailDetailsComponent implements OnInit {
   }
   //// SELECT A REPORT AND SEE COMMENTS
   public selectAReport(report) {
-    this.theReport = new Report();
+    // this.theReport = new Report();
     this.theReport = report;
-    this.comments = this.theReport.comment;
+    // this.comments = this.theReport.comment;
 
     console.log( this.theReport.id );
     console.log( this.theReport );
-    console.log(this.comments);
+    console.log(this.theReport.comment);
   }
 
 
