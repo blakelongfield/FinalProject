@@ -7,9 +7,9 @@
        Peak Elevation: {{selectedMTN.peakElevation}} feet<br>
     </div>
     <div class="centered2"><img src="assets/green.png" alt="green" id="green" width="20px" height="20px"> Beginner: 7% <br>
-      <img src="assets/blue.png" alt="blue" id="blue" width="20px" height="20px">Intermediate 20% <br>
-      <img src="assets/blackDiamond.png" alt="blackDiamond" id="blackDiamond" width="20px" height="20px"> Hard 49% <br>
-      <img src="assets/doubleBlack.png" alt="doubleBlack" id="doubleBlack" width="20px" height="20px"> Expert 24%
+      <img src="assets/blue.png" alt="blue" id="blue" width="20px" height="20px"> Intermediate: 20% <br>
+      <img src="assets/blackDiamond.png" alt="blackDiamond" id="blackDiamond" width="20px" height="20px"> Hard: 49% <br>
+      <img src="assets/doubleBlack.png" alt="doubleBlack" id="doubleBlack" width="20px" height="20px"> Expert: 24%
     </div>
   <div class="topright">
       <button (click)="showMap()">Trail Map</button>
@@ -33,9 +33,9 @@
        Peak Elevation: {{selectedMTN.peakElevation}} feet<br>
     </div>
     <div class="centered2"><img src="assets/green.png" alt="green" id="green" width="20px" height="20px"> Beginner: 19% <br>
-      <img src="assets/blue.png" alt="blue" id="blue" width="20px" height="20px">Intermediate 29% <br>
-      <img src="assets/blackDiamond.png" alt="blackDiamond" id="blackDiamond" width="20px" height="20px"> Hard 48% <br>
-      <img src="assets/doubleBlack.png" alt="doubleBlack" id="doubleBlack" width="20px" height="20px"> Expert 4%
+      <img src="assets/blue.png" alt="blue" id="blue" width="20px" height="20px"> Intermediate: 29% <br>
+      <img src="assets/blackDiamond.png" alt="blackDiamond" id="blackDiamond" width="20px" height="20px"> Hard: 48% <br>
+      <img src="assets/doubleBlack.png" alt="doubleBlack" id="doubleBlack" width="20px" height="20px"> Expert: 4%
     </div>
   <div class="topright">
       <button (click)="showMap()" target="blank">Trail Map</button>
@@ -87,15 +87,15 @@
 </div>
 <!-- ROW -->
 
-<div id="sortBy" class="form-group" *ngIf="selectedMTN" class="row">
-  <!-- ROW -->
-  <select class="form-control" name="sortby"  (mouseleave)="sortTrailByName(searchBy)"  [(ngModel)]="searchBy">
+<!-- <div id="sortBy" class="form-group" *ngIf="selectedMTN" class="row">
+  ROW -->
+  <!-- <select class="form-control" name="sortby"  (mouseleave)="sortTrailByName(searchBy)"  [(ngModel)]="searchBy">
     <option value="Name">Name</option>
     <option value="Features">Feature</option>
     <option value="Difficulty">Difficulty</option>
-  </select>
+  </select> -->
   <!-- <input type="submit" (click)="sortTrailByName(searchBy)" value="Sort By" /> -->
-</div>
+<!-- </div> -->
 <!-- ROW -->
 
 <div class="container-fluid">
@@ -103,7 +103,7 @@
   <div class="row" *ngIf="selectedMTN">
     <!-- ROW -->
 
-    <div class="col-2">
+    <!-- <div class="col-2"> -->
       <!-- Vail Weather Widget -->
       <!-- <div *ngIf="selectedMTN && selectedMTN.id === 2" style="width: 245px;"><iframe style="display: block;"
         src="https://cdnres.willyweather.com/widget/loadView.html?id=98694"
@@ -122,12 +122,22 @@
         rel="nofollow">arapahoe basin ski area CO weather forecast</a>
       </div> -->
 
-    </div>
+    <!-- </div> -->
+
 
     <div class="col">
       <!-- COL -->
 
-      <h1 *ngIf="selectedMTN">Mountain Trails</h1>
+      <h1 *ngIf="selectedMTN"> Mountain Trails</h1>
+      <!-- <div id="sortBy" class="form-group" *ngIf="selectedMTN" > -->
+          <!-- ROW -->
+          <select class="form-control" name="sortby" (mouseleave)="sortTrailByName(searchBy)" [(ngModel)]="searchBy">
+            <option value="Name">Name</option>
+            <option value="Features">Feature</option>
+            <option value="Difficulty">Difficulty</option>
+          </select>
+          <!-- <input type="submit" (click)="sortTrailByName(searchBy)" value="Sort By" /> -->
+        <!-- </div> -->
 
       <table class="table table-striped table-hover">
         <thead class="thead-dark">
@@ -194,6 +204,7 @@
       </table>
 
 
+      <!-- NEW REPORT AND RATING  -->
       <div *ngIf="checkLogin()">
         <button type="button" (click)="reportToNotNUll()">Add Report</button>
       </div>
