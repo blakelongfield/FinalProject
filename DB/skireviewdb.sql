@@ -66,6 +66,7 @@ CREATE TABLE IF NOT EXISTS `mountain` (
   `number_of_lifts` INT NOT NULL,
   `elevation_base` INT NOT NULL,
   `elevation_peak` INT NOT NULL,
+  `average_annual_snowfall` INT NULL,
   `mountain_map_url` VARCHAR(255) NULL,
   `active` TINYINT(1) NOT NULL DEFAULT 1,
   `resort_id` INT NOT NULL,
@@ -329,8 +330,8 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `skireviewdb`;
-INSERT INTO `mountain` (`id`, `name`, `number_of_trails`, `number_of_lifts`, `elevation_base`, `elevation_peak`, `mountain_map_url`, `active`, `resort_id`) VALUES (1, 'Arapahoe Basin', 145, 9, 10780, 13050, NULL, true, 1);
-INSERT INTO `mountain` (`id`, `name`, `number_of_trails`, `number_of_lifts`, `elevation_base`, `elevation_peak`, `mountain_map_url`, `active`, `resort_id`) VALUES (2, 'Vail', 195, 31, 8120, 11570, NULL, true, 2);
+INSERT INTO `mountain` (`id`, `name`, `number_of_trails`, `number_of_lifts`, `elevation_base`, `elevation_peak`, `average_annual_snowfall`, `mountain_map_url`, `active`, `resort_id`) VALUES (1, 'Arapahoe Basin', 145, 9, 10780, 13050, 350, NULL, true, 1);
+INSERT INTO `mountain` (`id`, `name`, `number_of_trails`, `number_of_lifts`, `elevation_base`, `elevation_peak`, `average_annual_snowfall`, `mountain_map_url`, `active`, `resort_id`) VALUES (2, 'Vail', 195, 31, 8120, 11570, 189, NULL, true, 2);
 
 COMMIT;
 
