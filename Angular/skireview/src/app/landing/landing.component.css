@@ -6,12 +6,18 @@
   overflow: hidden;
 }
 
+#selectMTN {
+  position: relative;
+  padding-top: 5%;
+  margin-left: 10%;;
+  width:300px;
+}
 
 #vid1 {
   position: absolute;
-  margin-left: -5%;
+  margin-left: -8%;
   z-index: -1;
-  width: 108%;
+  width: 110%;
   height: 100%;
   pointer-events: none;
 }
@@ -27,14 +33,8 @@
   width:300px;
 
   }
-  #selectMTN {
 
-    position: relative;
-    padding-top: 5%;
-    margin-left: 10%;;
-    width:300px;
 
-    }
     #sortBy {
       padding-top: 2%;
       padding-left: 2%;
