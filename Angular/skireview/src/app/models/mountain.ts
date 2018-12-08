@@ -7,6 +7,7 @@ export class Mountain {
   numberOfLifts: number;
   baseElevation: number;
   peakElevation: number;
+  averageAnnualSnowfall: number;
   mountainMapUrl: string;
   active: boolean;
   trails: Trail[];
@@ -19,6 +20,7 @@ export class Mountain {
     numberOfLifts?: number,
     baseElevation?: number,
     peakElevation?: number,
+    averageAnnualSnowfall?: number,
     mountainMapUrl?: string,
     active?: boolean,
     trails ?: Trail[],
@@ -30,6 +32,7 @@ export class Mountain {
     this.numberOfLifts = numberOfLifts;
     this.baseElevation = baseElevation;
     this.peakElevation = peakElevation;
+    this.averageAnnualSnowfall = averageAnnualSnowfall;
     this.mountainMapUrl = mountainMapUrl;
     this.active = active;
     this.trails = trails;
