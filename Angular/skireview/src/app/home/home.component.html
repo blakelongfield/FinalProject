@@ -2,14 +2,14 @@
 <div *ngIf="selectedMTN.id === 1">
   <img src="assets/mountains.jpg" alt="abasin" style=width:100% id="aBasinHomePic">
   <div class="centered">{{selectedMTN.name}}  </div> <br>
-    <div class="centered1">Average Annual Snowfall: {{selectedMTN.averageAnnualSnowfall}} <br>
-       Base elevation: {{selectedMTN.baseElevation}} <br>
-       Peak Elevation: {{selectedMTN.peakElevation}} <br>
+    <div class="centered1">Average Annual Snowfall: {{selectedMTN.averageAnnualSnowfall}} inches <br>
+       Base elevation: {{selectedMTN.baseElevation}} feet<br>
+       Peak Elevation: {{selectedMTN.peakElevation}} feet<br>
     </div>
-    <div class="centered2">Picture 7% <br>
-                   Picture 20% <br>
-                   Picture 49% <br>
-                   Picture 24%
+    <div class="centered2"><img src="assets/green.png" alt="green" id="green" width="20px" height="20px"> Beginner: 7% <br>
+      <img src="assets/blue.png" alt="blue" id="blue" width="20px" height="20px">Intermediate 20% <br>
+      <img src="assets/blackDiamond.png" alt="blackDiamond" id="blackDiamond" width="20px" height="20px"> Hard 49% <br>
+      <img src="assets/doubleBlack.png" alt="doubleBlack" id="doubleBlack" width="20px" height="20px"> Expert 24%
     </div>
   <div class="topright">
       <button (click)="showMap()">Trail Map</button>
@@ -20,16 +20,25 @@
           width="210" height="228" frameborder="0" scrolling="no"></iframe>
           <a style="margin: -20px 0 0 0;z-index: 1;position: relative;
           height: 20px;display: block;text-indent: -9999em" href="https://www.willyweather.com/co/summit-county/arapahoe-basin-ski-area.html"
-          rel="nofollow">arapahoe basin ski area CO weather forecast</a>
+          rel="nofollow">Arapahoe Basin ski area</a>
         </div>
 
     </div>
 </div>
 <div *ngIf="selectedMTN.id === 2">
   <img src="assets/spraySnow.jpg" alt="vail" style=width:100% id="vailHomePic">
-  <div class="centered">Vail</div>
+  <div class="centered">{{selectedMTN.name}}  </div> <br>
+    <div class="centered1">Average Annual Snowfall: {{selectedMTN.averageAnnualSnowfall}} inches <br>
+       Base elevation: {{selectedMTN.baseElevation}} feet<br>
+       Peak Elevation: {{selectedMTN.peakElevation}} feet<br>
+    </div>
+    <div class="centered2"><img src="assets/green.png" alt="green" id="green" width="20px" height="20px"> Beginner: 19% <br>
+      <img src="assets/blue.png" alt="blue" id="blue" width="20px" height="20px">Intermediate 29% <br>
+      <img src="assets/blackDiamond.png" alt="blackDiamond" id="blackDiamond" width="20px" height="20px"> Hard 48% <br>
+      <img src="assets/doubleBlack.png" alt="doubleBlack" id="doubleBlack" width="20px" height="20px"> Expert 4%
+    </div>
   <div class="topright">
-      <button (click)="showMap()">Trail Map</button>
+      <button (click)="showMap()" target="blank">Trail Map</button>
   </div>
   <div class="topleft">
       <div *ngIf="selectedMTN && selectedMTN.id === 2" style="width: 245px;"><iframe style="display: block;"
@@ -37,7 +46,7 @@
         width="245" height="228" frameborder="0" scrolling="no"></iframe>
         <a style="z-index: 1;margin: -20px 0 0 0;height: 20px;position: relative;
         text-indent: -9999em;display: block" href="https://www.willyweather.com/co/eagle-county/vail.html"
-        rel="nofollow">vail weekly forecast</a>
+        rel="nofollow">Vail Ski Area</a>
       </div>
   </div>
 </div>

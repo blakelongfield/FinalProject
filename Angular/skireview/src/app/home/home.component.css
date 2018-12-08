@@ -6,6 +6,11 @@
   overflow: hidden;
 }
 
+.green {
+  width: 1%;
+  height: auto;
+}
+
 .centered {
   font-size: 600%;
   position: absolute;
@@ -19,7 +24,7 @@
 .centered1 {
   text-align: left;
   font-size: 125%;
-  padding-right: 375px;
+  padding-right: 220px;
   padding-top: 200px;
   position: absolute;
   top: 50%;
@@ -32,8 +37,8 @@
 .centered2 {
   text-align: left;
   font-size: 125%;
-  padding-left: 300px;
-  padding-top: 200px;
+  padding-left: 450px;
+  padding-top: 230px;
   position: absolute;
   top: 50%;
   left: 50%;

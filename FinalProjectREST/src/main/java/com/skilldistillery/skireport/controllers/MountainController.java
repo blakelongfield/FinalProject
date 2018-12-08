@@ -41,7 +41,6 @@ public class MountainController {
 //	Finds mountain by ID
 	@RequestMapping(path = "mountains/{id}", method = RequestMethod.GET)
 	public Mountain findById(@PathVariable("id") Integer id, HttpServletResponse resp) {
-
 		Mountain mountById = mountServ.findById(id);
 		if (mountById == null) {
 			resp.setStatus(404);

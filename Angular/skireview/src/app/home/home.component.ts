@@ -141,6 +141,7 @@ export class HomeComponent implements OnInit {
     this.mtnServ.show(id).subscribe(
       mountain => {
       this.selectedMTN = mountain;
+      console.log(mountain.averageAnnualSnowfall);
       this.sortedTrails = this.selectedMTN.trails;
       },
       err => {
@@ -323,12 +324,18 @@ export class HomeComponent implements OnInit {
   }
 
   public showMap() {
+    if (this.selectedMTN.id === 1) {
+  window.open('https://skimap.org/data/513/2200/1533603005.jpg', '_blank');
+    }
+    if (this.selectedMTN.id === 2) {
+      window.open('https://images.ski.com/docs/trail-maps/vail-frontside_trail-map.pdf', '_blank');
+    }
 
-  if (this.showTrailMap === true) {
-    this.showTrailMap = false;
-  } else if ( this.showTrailMap === false) {
-    this.showTrailMap = true;
-  }
+  //   if (this.showTrailMap === true) {
+  //   this.showTrailMap = false;
+  // } else if ( this.showTrailMap === false) {
+  //   this.showTrailMap = true;
+  // }
 
   }
 
