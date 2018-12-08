@@ -34,6 +34,9 @@ public class Mountain {
 	@Column(name="elevation_peak")
 	private Integer peakElevation;
 	
+	@Column(name="average_annual_snowfall")
+	private Integer averageAnnualSnowfall;
+	
 	@Column(name="mountain_map_url")
 	private String imgUrl;
 	
