@@ -226,6 +226,14 @@ public class Mountain {
 		this.reports = reports;
 		this.trails = trails;
 	}
+
+	public Integer getAverageAnnualSnowfall() {
+		return averageAnnualSnowfall;
+	}
+
+	public void setAverageAnnualSnowfall(Integer averageAnnualSnowfall) {
+		this.averageAnnualSnowfall = averageAnnualSnowfall;
+	}
  
 	
 }
