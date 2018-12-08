@@ -6,6 +6,39 @@
   overflow: hidden;
 }
 
+.centered {
+  font-size: 600%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  text-shadow: 2px 2px 4px #000000;
+}
+
+#aBasinHomePic {
+  position: fixed;
+  top: 0;
+  bottom: 20;
+  left: 0;
+  right: 0;
+  max-width: 100%;
+  max-height: 5%;
+  margin: auto;
+  overflow: auto;
+}
+
+#vailHomePic {
+  position: relative;
+  top: 0;
+  bottom: 20;
+  left: 0;
+  right: 0;
+  max-width: 100%;
+  max-height: 60%;
+  margin: auto;
+  overflow: auto;
+}
 
 #vid1 {
   position: absolute;
@@ -41,4 +74,9 @@ width:300px;
     width:300px;
   }
 
+  #aBasinHomePic {
+    position: relative;
+    width: 108%;
+    height: 100%;
+  }
 
