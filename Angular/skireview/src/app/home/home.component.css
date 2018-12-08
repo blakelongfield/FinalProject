@@ -16,6 +16,44 @@
   text-shadow: 2px 2px 4px #000000;
 }
 
+.centered1 {
+  text-align: left;
+  font-size: 125%;
+  padding-right: 375px;
+  padding-top: 200px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  text-shadow: 2px 2px 4px #000000;
+}
+
+.centered2 {
+  text-align: left;
+  font-size: 125%;
+  padding-left: 300px;
+  padding-top: 200px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  text-shadow: 2px 2px 4px #000000;
+}
+
+.topright {
+  position: absolute;
+  top: 75px;
+  right: 70px;
+}
+
+.topleft {
+  position: absolute;
+  top: 75px;
+  left: 16px;
+}
+
 #aBasinHomePic {
   position: fixed;
   top: 0;
