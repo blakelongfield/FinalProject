@@ -1,29 +1,30 @@
-
-
-
-
-
-
+<!-- PHOTO AT TOP OF SCREEN FOR MOUNTAIN -->
+<div *ngIf="selectedMTN.id === 1">
+  <img src="assets/mountains.jpg" alt="abasin" style=width:100% id="aBasinHomePic">
+  <div class="centered">Arapahoe Basin</div>
+</div>
+<div *ngIf="selectedMTN.id === 2">
+  <img src="assets/spraySnow.jpg" alt="vail" style=width:100% id="vailHomePic">
+  <div class="centered">Vail</div>
+</div>
 
 <!-- SELECT MOUNTAIN NO VID-->
 <div class="container"  id="selectMTN">
-    <h3>Select Mountain:</h3>
-    <div class="form-group">
-      <select class="form-control" name="mountain"  (mouseleave)="selectMountain(mtnId)" >
-        <option *ngFor="let mountain of mountains" value="{{mountain.id}}">{{
-          mountain.name
-        }}</option>
-      </select>
-
-
-    </div>
-    </div>
+  <h3>Select Mountain:</h3>
+  <div class="form-group">
+    <select class="form-control" name="mountain"  (mouseleave)="selectMountain(mtnId)" >
+      <option *ngFor="let mountain of mountains" value="{{mountain.id}}" id="mountainName">{{
+        mountain.name
+      }}
+    </option>
+  </select>
+</div>
+</div>
 
 
 <!-- SELCTED MOUNTAIN -->
 
 <div *ngIf="selectedMTN" class="row"> <!-- ROW -->
-
   <div *ngIf="showTrailMap" class="embed-responsive" style="padding-bottom: 60%">
     <div *ngIf="selectedMTN.id === 1; else: vail">
       <object
