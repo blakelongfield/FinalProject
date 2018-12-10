@@ -1,23 +1,25 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <a class="navbar-brand" [routerLink]="['/home']">Ski Spot</a>
+  <a class="navbar-brand" [routerLink]="['/home']">Slope Spot</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation" (click)="isCollapsed = !isCollapsed" [attr.aria-expanded]="!isCollapsed">
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarNavAltMarkup" [ngbCollapse]='isCollapsed'>
     <div class="navbar-nav">
       <a class="nav-item nav-link active" [routerLink]="['/home']">Home <span class="sr-only">(current)</span></a>
-      <a class="nav-item nav-link" [routerLink]="['/mountain']">Mountain</a>
-      <a class="nav-item nav-link" [routerLink]="['/trail']">Trail</a>
       <a class="nav-item nav-link" [routerLink]="['/profile']">Profile</a>
       <a class="nav-item nav-link" [routerLink]="['/register']">Register</a>
+
       <div *ngIf="checkAdmin()">
         <a class="nav-item nav-link" [routerLink]="['/admin']">Admin</a>
       </div>
+
+
       <div *ngIf="!checkLogin()" >
         <app-login></app-login>
       </div>
       <!-- <a id="loginTab" class="nav-item nav-link" [routerLink]="['/login']">Login</a> -->
       <div *ngIf="checkLogin()">
+
         <app-logout></app-logout>
 
       </div>
