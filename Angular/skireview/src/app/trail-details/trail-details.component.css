@@ -1,5 +1,6 @@
-.centered {
-  padding-bottom: 825px;
+/* .centered {
+  padding-bottom: 1150px;
+  padding-top: 500px;
   font-size: 99%;
   position: relative;
   top: 50%;
@@ -7,25 +8,45 @@
   transform: translate(-50%, -50%);
   color: white;
   text-shadow: 2px 2px 4px #000000;
-}
+  } */
 
-#trailPic {
-  min-height: 100%;
-  position: relative;
-  height: 120%;
+  /* .centered {
+    padding-bottom: 500px;
+  } */
+
+  .centered {
+    /* padding-top: 750px; */
+    color: white;
+    background-image: url(src/assets/clearSkiLift.jpg);
+    z-index: 1;
+    background-repeat: round;
+    position: relative;
+    /* min-height:400px; */
+    /* height: 10%;
+    width: 10%; */
+    background-size: 100%;
+  }
+
+body {
+  background-image: url(src/assets/clearSkiLift.jpg);
+  z-index: -1;
+  /* background-repeat: repeat-y; */
+  position: fixed;
+  height: 100%;
   width: 100%;
 }
 
-.commentsOnReports {
+/* .commentsOnReports {
   text-indent: 50px;
-}
+} */
+
 
 h1 {
   text-align: center
 }
 
-#selectComment {
+/* #selectComment {
   position: relative;
 
-}
+} */
 
