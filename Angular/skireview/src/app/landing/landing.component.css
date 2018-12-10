@@ -7,36 +7,47 @@
 }
 
 #selectMTN {
-  position: relative;
+  position: sticky;
   padding-top: 5%;
   margin-left: 10%;;
   width:300px;
 }
 
 #vid1 {
-  position: absolute;
-  margin-left: -8%;
+  position: relative;
+margin-left: -1%;
   z-index: -1;
-  width: 110%;
-  height: 100%;
-  pointer-events: none;
+  width: 102%;
+  height:70%;
+
+
 }
 #recentReports{
   position: relative;
-  margin-top: 10%;
+  margin-top: 2%;
+  padding-left: 1%;
+
 }
 #selectMTNHome {
 
-  position: relative;
-  padding-top: 40%;
-  margin-left: 70%;;
-  width:300px;
+  position: absolute;
+  top: 23%;
+  left:-3%;
+
+  margin-left: 50%;;
+  width:240px;
+
+  }
+  #title {
+    position: absolute;
+  font-size-adjust: inherit;
+    z-index: 1;
+    margin-left: 40%;
+    margin-top: 5%;
+    font-family: 'Monoton', cursive;
+    font-size: 500%;
 
   }
 
 
-    #sortBy {
-      padding-top: 2%;
-      padding-left: 2%;
-      width:300px;
-    }
+
