@@ -1,3 +1,6 @@
+<div>
+  <!-- <img src="assets/clearSkiLift.jpg" alt="skiLift" id="trailPic"> -->
+  <div class="centered">
 <h1><strong>{{selected.name}}</strong></h1> <br> <br>
 
 <div class="container">
@@ -21,7 +24,7 @@
     <div class="col">
 
       <div *ngFor="let report of reports">
-        <p>votes: {{report.votes}}</p>
+        <p>{{report.votes}} found this report helpful</p>
         <p>rating on trail: {{report.rating}}</p>
         <p>{{report.user.username}}: {{report.reportText}}</p>
         <button type="submit" (click)="selectAReport(report)">More..</button>
@@ -99,7 +102,6 @@
                 alt="downVote"> </span>
                 <br>
         <textarea rows="3" cols="30" name="newCommentOnReport" form="usrform" placeholder="Reply to report" [(ngModel)]="newCommentOnReport.commentText" [value]="newCommentValue"></textarea>
-        <br>
         <button type="submit" name="submit" (click)="createCommentOnReport()">Submit</button>
       </form>
 
@@ -177,3 +179,5 @@
   </div>
 </div>
 <button type="submit" name="submit" (click)="createCommentOnReport()">Submit</button> -->
+  </div>
+</div>
