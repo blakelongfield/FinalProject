@@ -289,6 +289,22 @@ CREATE TABLE IF NOT EXISTS `day_of_week_has_hours` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
+
+-- -----------------------------------------------------
+-- Table `restaurant`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `restaurant` ;
+
+CREATE TABLE IF NOT EXISTS `restaurant` (
+  `id` INT NOT NULL,
+  `name` VARCHAR(45) NOT NULL,
+  `cuisine` VARCHAR(45) NOT NULL,
+  `menu` VARCHAR(45) NOT NULL,
+  `price_range` VARCHAR(45) NOT NULL,
+  `chairlift_id` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
 SET SQL_MODE = '';
 DROP USER IF EXISTS user@localhost;
 SET SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
