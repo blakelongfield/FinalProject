@@ -9,6 +9,7 @@ import { ResortService } from '../resort.service';
 import { Resort } from '../models/resort';
 import { NgForm } from '@angular/forms';
 
+
 @Component({
   selector: 'app-admin',
   templateUrl: './admin.component.html',
