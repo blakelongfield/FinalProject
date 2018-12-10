@@ -1,10 +1,10 @@
 #backgroundBox{
   position: absolute;
-  background: url(src/assets/Hero-1.jpg);
+  background: url(src/assets/sports-snowboarding_00217145.jpg);
   background-size: cover;
-  width: 1583px;
-  height: 880px;
-  margin-left: -5%;
+  width: 100%;
+  height: 100%;
+  /* margin-left: -5%; */
   margin-top: -56px;
   z-index: -1;
 }
@@ -13,8 +13,8 @@
   position: relative;
   /* margin-left: 30px; */
   /* margin: 30px; */
-  top: 140px;
-  left: 450px;
+  top: 225px;
+  left: 35%;
   /* background-color: rgb(199, 194, 194); */
   background: rgb(46, 45, 45);
   /* border:1px solid black; */
@@ -38,7 +38,10 @@
 
 }
 #profileText{
+  position: relative;
   margin-left: 45%;
+  top: 220px;
+
 }
 
 #updateBox{
@@ -70,6 +73,8 @@
 #updateCancelButtons {
   margin-left: 40%;
 }
+
+
 
 
 
