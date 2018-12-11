@@ -46,7 +46,6 @@ public class ReportServiceImpl implements ReportService {
 	public List<Report> findByMountainId(Integer mid) {
 		List<Report> reports = repo.findByMountainId(mid);
 		ReportSortByDate sortByDate = new ReportSortByDate();
-		
 		Collections.sort(reports, sortByDate );
 		System.out.println("&&&&&&&&&&&&&&"+reports);
 		return reports;

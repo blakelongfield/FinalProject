@@ -44,15 +44,12 @@ export class HomeComponent implements OnInit {
   rating4 = 4;
   rating5 = 5;
 
-
-
-
-
   // FUNCTIONS
   // LOAD ALL REPORTS
   loadReports() {
     this.reportServ.index().subscribe(
       reports => {
+        console.log('hiiiiasdfoasdf');
         this.reports = reports;
       },
       err => {
@@ -70,8 +67,8 @@ export class HomeComponent implements OnInit {
       err => {
         console.error('Observer got error: ' + err);
       }
-    );
-  }
+      );
+    }
   //// REVRSE SORT BY LIST
   public reverseNameList() {
 
@@ -320,9 +317,6 @@ export class HomeComponent implements OnInit {
     this.loadReports();
     this.loadUsers();
     this.loadMountains();
-
-
-
   }
 
   public showMap() {
