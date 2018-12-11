@@ -1,20 +1,16 @@
-  .centered {
-    background-image: url(src/assets/clearSkiLift.jpg);
-    z-index: 1;
-    background-repeat: round;
-    position: relative;
-    background-size: 100%;
-    color:snow;
-    font-weight: bold;
-    text-shadow: 2px 2px 4px #000000;
-  }
-
-h1 {
-  text-align: center;
-  color: white;
+.centered {
+  background-image: url('https://a43c63f3564655ce7892-9c2b0cfb3f1b4fd3afb469a11024eac6.ssl.cf1.rackcdn.com/REDBULL-SJOSTROMC-0051.jpg');
+  z-index: 1;
+  background-repeat: round;
+  position: relative;
+  background-size: cover;
+  color:snow;
+  font-weight: bold;
   text-shadow: 2px 2px 4px #000000;
 }
 
-
-
-
+h1 {
+text-align: center;
+color: white;
+text-shadow: 2px 2px 4px #000000;
+}
