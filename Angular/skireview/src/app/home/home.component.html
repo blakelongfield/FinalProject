@@ -12,7 +12,7 @@
       <img src="assets/doubleBlack.png" alt="doubleBlack" id="doubleBlack" width="20px" height="20px"> Expert: 24%
     </div>
   <div class="topright">
-      <button (click)="showMap()">Trail Map</button>
+      <button class="btn btn-warning" (click)="showMap()">Trail Map</button>
   </div>
     <div class="topleft">
         <div *ngIf="selectedMTN && selectedMTN.id === 1" style="width: 210px;"><iframe style="display: block;"
@@ -25,7 +25,7 @@
     </div>
 </div>
 
-<div *ngIf="selectedMTN.id === 2">
+<div *ngIf="selectedMTN.id === 22">
   <img src="assets/spraySnow.jpg" alt="vail" style=width:100% id="vailHomePic">
   <div class="centered">{{selectedMTN.name}}  </div> <br>
     <div class="centered1">Average Annual Snowfall: {{selectedMTN.averageAnnualSnowfall}} inches <br>
@@ -38,7 +38,7 @@
       <img src="assets/doubleBlack.png" alt="doubleBlack" id="doubleBlack" width="20px" height="20px"> Expert: 4%
     </div>
   <div class="topright">
-      <button (click)="showMap()" target="blank">Trail Map</button>
+      <button class="btn btn-warning" (click)="showMap()" target="blank">Trail Map</button>
   </div>
   <div class="topleft">
       <div *ngIf="selectedMTN && selectedMTN.id === 2" style="width: 245px;"><iframe style="display: block;"

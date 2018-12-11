@@ -2,18 +2,25 @@
 <!-- HEADER -->
 <h1>{{ title }}</h1>
 
-
 <!-- BUTTONS -->
 <div *ngIf="!addMountain && !updateMountain && !deleteMountain && !addTrail && !updateTrail && !deleteTrail && !addResort && !updateResort && !deleteResort && !addChairlift && !updateChairlift && !deleteChairlift">
   <div class="container">
-    <div class="row">
-      <div class="col">
-        <button class="btn btn-primary" (click)="addMountainForm()">Add Mountain</button>
+    <div class="card-deck">
+      <div class="card" (click)="addMountainForm()">
+        <img class="card-img" src="https://img1.onthesnow.com/image/la/98/sun_valley_resort_9894.jpg" alt="Add Mountain">
+        <div class="card-img-overlay">
+          <h4>Add Mountain</h4>
+        </div>
+        <!-- <button class="btn btn-primary" (click)="addMountainForm()">Add Mountain</button> -->
       </div>
-      <div class="col">
-        <button class="btn btn-primary" (click)="updateMountainForm()">Update Mountain</button>
+      <div class="card" (click)="updateMountainForm()">
+        <img class="card-img" src="https://newengland.com/wp-content/uploads/2L8A9398edited_2100x1176_300_RGB-780x437.jpg" alt="Update Mountain">
+        <div class="card-img-overlay">
+          <h4>Update Mountain</h4>
+        </div>
+        <!-- <button class="btn btn-primary" (click)="updateMountainForm()">Update Mountain</button> -->
       </div>
-      <div class="col">
+      <div class="card">
         <button class="btn btn-primary" (click)="deleteMountainForm()">Delete Mountain</button>
       </div>
     </div><!-- end mountain row -->
