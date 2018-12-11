@@ -41,7 +41,7 @@
       <button class="btn btn-warning" (click)="showMap()" target="blank">Trail Map</button>
   </div>
   <div class="topleft">
-      <div *ngIf="selectedMTN && selectedMTN.id === 2" style="width: 245px;"><iframe style="display: block;"
+      <div *ngIf="selectedMTN && selectedMTN.id === 22" style="width: 245px;"><iframe style="display: block;"
         src="https://cdnres.willyweather.com/widget/loadView.html?id=98694"
         width="245" height="228" frameborder="0" scrolling="no"></iframe>
         <a style="z-index: 1;margin: -20px 0 0 0;height: 20px;position: relative;
@@ -128,7 +128,7 @@
     <div class="col">
       <!-- COL -->
 
-      <h1 *ngIf="selectedMTN"> Mountain Trails</h1>
+      <h1 *ngIf="selectedMTN">{{selectedMTN.name}} Trails</h1>
       <!-- <div id="sortBy" class="form-group" *ngIf="selectedMTN" > -->
           <!-- ROW -->
           <select class="form-control" name="sortby" (mouseleave)="sortTrailByName(searchBy)" [(ngModel)]="searchBy">
@@ -184,7 +184,7 @@
 
     <div class="col">
       <!-- COL -->
-      <h1>Mountain Reports</h1>
+      <h1>{{selectedMTN.name}} Recent Reports</h1>
       <table class="table table-striped table-hover">
         <thead class="thead-dark">
           <tr>
