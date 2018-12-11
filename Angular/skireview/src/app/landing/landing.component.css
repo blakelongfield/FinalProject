@@ -7,7 +7,8 @@
 }
 
 #selectMTN {
-  position: sticky;
+  position: relative;
+  z-index:  1;
   padding-top: 5%;
   margin-left: 10%;;
   width:300px;
@@ -15,10 +16,10 @@
 
 #vid1 {
   position: relative;
-margin-left: -1%;
+
   z-index: -1;
-  width: 102%;
-  height:70%;
+  width: 100%;
+  height:100%;
 
 
 }
@@ -33,6 +34,7 @@ margin-left: -1%;
   position: absolute;
   top: 23%;
   left:-3%;
+
 
   margin-left: 50%;;
   width:240px;
