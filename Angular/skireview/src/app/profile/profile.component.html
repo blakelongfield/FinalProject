@@ -19,7 +19,7 @@
  <h2 >{{user.profilePic}}</h2><br>
  </div>
 
- <button id="editButton" (click)="editUser()">Edit Profile</button>
+ <button class="btn btn-primary" id="editButton" (click)="editUser()">Edit Profile</button>
 
 
 
@@ -38,8 +38,8 @@
       <input type="text" name="profilepic" placeholder="Image Url" [(ngModel)]="editedUser.profilePic" /> <br>
     </div>
     <div id="updateCancelButtons">
-      <button (click)="update()">  Save </button>
-      <button (click)="cancel()"> Cancel </button>
+      <button class="btn btn-success" (click)="update()">  Save </button>
+      <button class="btn btn-danger" (click)="cancel()"> Cancel </button>
     </div>
     </form>
   </div>

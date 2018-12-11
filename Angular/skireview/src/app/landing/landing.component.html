@@ -1,19 +1,17 @@
 
 
-  <h1 id="title">Slope Spot</h1>
+<h1 id="title">Slope Spot</h1>
 <video  id="vid1" autoplay loop>
-    <source src="assets/slopespot4.mp4" />
-  </video>
-  <div id="selectMTNHome">
-      <h3>Select Mountain:</h3>
-      <div class="form-group">
-        <select class="form-control" name="mountain"  (change)="selectMountain(mtnId)" [(ngModel)]="mtnId">
-          <option *ngFor="let mountain of mountains" value="{{mountain.id}}">{{
-            mountain.name
-          }}</option>
-        </select>
-      </div>
-      </div>
+  <source src="assets/slopespot4.mp4" />
+</video>
+<div id="selectMTNHome">
+  <h3>Select Mountain:</h3>
+  <div class="form-group">
+    <select class="form-control" name="mountain"  (change)="selectMountain(mtnId)" [(ngModel)]="mtnId">
+      <option *ngFor="let mountain of mountains" value="{{mountain.id}}">{{mountain.name}}</option>
+    </select>
+  </div>
+</div>
 
 
 
