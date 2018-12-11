@@ -325,7 +325,11 @@ INSERT INTO `user` (`id`, `first_name`, `last_name`, `username`, `password`, `em
 INSERT INTO `user` (`id`, `first_name`, `last_name`, `username`, `password`, `email`, `role`, `active`, `profile_pic_url`) VALUES (2, 'Kyle', 'Paladini', 'kyle', '$2a$10$qFabll60ATxypxgWTR9td.Z1AML094IU/vFaqNnAWq9M4Lido/lPS', 'kyle@kyle.com', 'Admin', TRUE, 'NULL');
 INSERT INTO `user` (`id`, `first_name`, `last_name`, `username`, `password`, `email`, `role`, `active`, `profile_pic_url`) VALUES (3, 'Tyler', 'Paladini', 'tyler', '$2a$10$Tttr1BwxqhSUpg/K..fCE.PfaqQKgQcDiT0QnfPw5/mXRh7Q5Fg9.', 'tyler@tyler.com', 'Admin', TRUE, 'NULL');
 INSERT INTO `user` (`id`, `first_name`, `last_name`, `username`, `password`, `email`, `role`, `active`, `profile_pic_url`) VALUES (4, 'Blake', 'Longfield', 'blake', '$2a$10$49.mA5X//tUTyOZBM.rNJO2qHg3d03s3oYC6EFvGER69.31tguVqq', 'blake@blake.com', 'Admin', TRUE, 'NULL');
-INSERT INTO `user` (`id`, `first_name`, `last_name`, `username`, `password`, `email`, `role`, `active`, `profile_pic_url`) VALUES (5, 'John', 'smith', 'john', '$2a$10$EfirP4H2iiwMAjfi1HD0T.hp8gOrNRJyiH1Vqh8x6cbGBUvqXDlDe', 'john@john.com', 'Standard', TRUE, 'NULL');
+INSERT INTO `user` (`id`, `first_name`, `last_name`, `username`, `password`, `email`, `role`, `active`, `profile_pic_url`) VALUES (5, 'Jerry', NULL, 'ShredCity', '$2a$10$OymOZVvkH1OvxSK/gDaq6OObMFgEMaZbGYDg1y.Qm7d.cZ2kZuhRe', 'shredCity@example.com', 'Standard', TRUE, 'NULL');
+INSERT INTO `user` (`id`, `first_name`, `last_name`, `username`, `password`, `email`, `role`, `active`, `profile_pic_url`) VALUES (6, 'Jerry', NULL, 'PowPowLover', '$2a$10$OymOZVvkH1OvxSK/gDaq6OObMFgEMaZbGYDg1y.Qm7d.cZ2kZuhRe', 'powpowlover@example.com', 'Standard', TRUE, 'NULL');
+INSERT INTO `user` (`id`, `first_name`, `last_name`, `username`, `password`, `email`, `role`, `active`, `profile_pic_url`) VALUES (7, 'Jerry', NULL, 'MogulsAreTheEnemy', '$2a$10$OymOZVvkH1OvxSK/gDaq6OObMFgEMaZbGYDg1y.Qm7d.cZ2kZuhRe', 'mogulsaretheenemy@example.com', 'Standard', TRUE, 'NULL');
+INSERT INTO `user` (`id`, `first_name`, `last_name`, `username`, `password`, `email`, `role`, `active`, `profile_pic_url`) VALUES (8, 'Jerry', NULL, 'SluchOverIce', '$2a$10$OymOZVvkH1OvxSK/gDaq6OObMFgEMaZbGYDg1y.Qm7d.cZ2kZuhRe', 'slushoverice@example.com', 'Standard', TRUE, 'NULL');
+INSERT INTO `user` (`id`, `first_name`, `last_name`, `username`, `password`, `email`, `role`, `active`, `profile_pic_url`) VALUES (9, 'Jerry', NULL, 'FrostyRider', '$2a$10$OymOZVvkH1OvxSK/gDaq6OObMFgEMaZbGYDg1y.Qm7d.cZ2kZuhRe', 'frostyrider@example.com', 'Standard', TRUE, 'NULL');
 
 COMMIT;
 
@@ -759,11 +763,14 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `skireviewdb`;
-INSERT INTO `report` (`id`, `report_text`, `rating`, `image_url`, `date_created`, `vote`, `active`, `user_id`, `trail_id`, `mountain_id`) VALUES (1, 'report 1 on trail 1', 5, NULL, '2018-11-01 00:00:00', 5, true, 5, 1, NULL);
-INSERT INTO `report` (`id`, `report_text`, `rating`, `image_url`, `date_created`, `vote`, `active`, `user_id`, `trail_id`, `mountain_id`) VALUES (2, 'report 1 on mountain 1', NULL, NULL, '2018-11-15 00:00:00', 4, true, 5, NULL, 1);
-INSERT INTO `report` (`id`, `report_text`, `rating`, `image_url`, `date_created`, `vote`, `active`, `user_id`, `trail_id`, `mountain_id`) VALUES (3, 'report 2 on trail 1', 1, NULL, '2018-12-01 00:00:00', 3, true, 5, 1, NULL);
-INSERT INTO `report` (`id`, `report_text`, `rating`, `image_url`, `date_created`, `vote`, `active`, `user_id`, `trail_id`, `mountain_id`) VALUES (4, 'report 1 on trail 2', 3, NULL, '2018-12-02 00:00:00', 2, true, 5, 2, NULL);
-INSERT INTO `report` (`id`, `report_text`, `rating`, `image_url`, `date_created`, `vote`, `active`, `user_id`, `trail_id`, `mountain_id`) VALUES (5, 'report 2 on mountain 2', 4, NULL, '2019-01-01 00:00:00', 1, true, 5, NULL, 22);
+INSERT INTO `report` (`id`, `report_text`, `rating`, `image_url`, `date_created`, `vote`, `active`, `user_id`, `trail_id`, `mountain_id`) VALUES (1, 'Dude, this run was in awesome condition today!', 5, NULL, '2018-12-09 00:00:00', 5, true, 5, 1, NULL);
+INSERT INTO `report` (`id`, `report_text`, `rating`, `image_url`, `date_created`, `vote`, `active`, `user_id`, `trail_id`, `mountain_id`) VALUES (2, 'The run was full of powder and ready to shred this morning!', 4, NULL, '2018-12-10 00:00:00', 4, true, 6, 1, NULL);
+INSERT INTO `report` (`id`, `report_text`, `rating`, `image_url`, `date_created`, `vote`, `active`, `user_id`, `trail_id`, `mountain_id`) VALUES (3, 'This mountain will forever by my go-to!', NULL, NULL, '2018-12-10 00:00:00', 3, true, 5, NULL, 1);
+INSERT INTO `report` (`id`, `report_text`, `rating`, `image_url`, `date_created`, `vote`, `active`, `user_id`, `trail_id`, `mountain_id`) VALUES (4, 'The people, the food and the skiing are incredible here!', NULL, NULL, '2018-12-10 00:00:00', 2, true, 7, NULL, 1);
+INSERT INTO `report` (`id`, `report_text`, `rating`, `image_url`, `date_created`, `vote`, `active`, `user_id`, `trail_id`, `mountain_id`) VALUES (5, 'Handsdown, the best mountain in Colorado', NULL, NULL, '2018-12-11 00:00:00', 1, true, 5, NULL, 22);
+INSERT INTO `report` (`id`, `report_text`, `rating`, `image_url`, `date_created`, `vote`, `active`, `user_id`, `trail_id`, `mountain_id`) VALUES (6, 'Super icey in the beginning of the season, but always ends up getting better later in the season.', NULL, NULL, '2018-12-12 00:00:00', 4, true, 8, NULL, 10);
+INSERT INTO `report` (`id`, `report_text`, `rating`, `image_url`, `date_created`, `vote`, `active`, `user_id`, `trail_id`, `mountain_id`) VALUES (7, 'Mountain is cheap and easy to get to. I recommend it!', NULL, NULL, '2018-12-12 00:00:00', 3, true, 9, NULL, 12);
+INSERT INTO `report` (`id`, `report_text`, `rating`, `image_url`, `date_created`, `vote`, `active`, `user_id`, `trail_id`, `mountain_id`) VALUES (8, 'Not my favorite mountain, but I\'ll probably go back again.', NULL, NULL, '2018-12-12 00:00:00', 5, true, 5, NULL, 22);
 
 COMMIT;
 
@@ -971,12 +978,12 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `skireviewdb`;
-INSERT INTO `comment` (`id`, `comment_text`, `active`, `report_id`, `user_id`, `comment_id`) VALUES (1, 'comment 1 on report 1', true, 1, 5, NULL);
-INSERT INTO `comment` (`id`, `comment_text`, `active`, `report_id`, `user_id`, `comment_id`) VALUES (2, 'comment 1 on comment 1', true, NULL, 5, 1);
-INSERT INTO `comment` (`id`, `comment_text`, `active`, `report_id`, `user_id`, `comment_id`) VALUES (3, 'comment 2 on report 1', true, 1, 5, NULL);
-INSERT INTO `comment` (`id`, `comment_text`, `active`, `report_id`, `user_id`, `comment_id`) VALUES (4, 'comment 2 on comment 1', true, NULL, 5, 1);
-INSERT INTO `comment` (`id`, `comment_text`, `active`, `report_id`, `user_id`, `comment_id`) VALUES (5, 'comment 1 on report 2', true, 3, 5, NULL);
-INSERT INTO `comment` (`id`, `comment_text`, `active`, `report_id`, `user_id`, `comment_id`) VALUES (6, 'comment 3 on report 1', true, 1, 5, NULL);
+INSERT INTO `comment` (`id`, `comment_text`, `active`, `report_id`, `user_id`, `comment_id`) VALUES (1, 'I second that!', true, 1, 6, NULL);
+INSERT INTO `comment` (`id`, `comment_text`, `active`, `report_id`, `user_id`, `comment_id`) VALUES (2, 'Couldn\'t agree more! Can\'t wait to get up and shred again tomorrow!', true, 1, 7, NULL);
+INSERT INTO `comment` (`id`, `comment_text`, `active`, `report_id`, `user_id`, `comment_id`) VALUES (3, 'I saw you shredding this run today while on the lift. Looked great', true, 1, 8, NULL);
+INSERT INTO `comment` (`id`, `comment_text`, `active`, `report_id`, `user_id`, `comment_id`) VALUES (4, 'Pow for daysssss', true, 2, 9, NULL);
+INSERT INTO `comment` (`id`, `comment_text`, `active`, `report_id`, `user_id`, `comment_id`) VALUES (5, 'Powder up to my knees. Me and my buds did this run 3 times today!', true, 2, 6, NULL);
+INSERT INTO `comment` (`id`, `comment_text`, `active`, `report_id`, `user_id`, `comment_id`) VALUES (6, 'what?', true, 4, 8, NULL);
 
 COMMIT;
 
