@@ -1,32 +1,18 @@
-
-
-
-
 <div id="backgroundBox">
-
-
-  </div>
-
-  <h1 id="profileText">Profile</h1>
+</div>
+<h1 id="profileText">Profile</h1>
 
 <div id="box" *ngIf="!selected && !editedUser">
 
   <div id="boxContent">
- <h2 >{{user.firstName}}</h2><br>
- <h2 >{{user.lastName}}</h2><br>
- <!-- <h2 >{{user.password}}</h2><br> -->
- <h2 >{{user.email}}</h2><br>
- <h2 >{{user.profilePic}}</h2><br>
+  <h2>{{user.firstName}} {{user.lastName}}</h2><br>
+  <h2>{{user.username}}</h2> <br>
+  <h2>{{user.email}}</h2><br>
+  <h2>{{user.profilePic}}</h2><br>
  </div>
 
  <button class="btn btn-primary" id="editButton" (click)="editUser()">Edit Profile</button>
-
-
-
-
   </div>
-
-
 
  <div id="updateBox" *ngIf="editedUser">
     <form>
