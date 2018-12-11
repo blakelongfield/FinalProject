@@ -25,8 +25,8 @@
       <thead class="thead-dark">
         <tr>
           <th>Username</th>
-          <th>Mountain</th>
-          <th>Trail</th>
+          <!-- <th>Mountain</th>
+          <th>Trail</th> -->
           <th>Report text</th>
           <th>Rating</th>
           <th>Date</th>
@@ -35,16 +35,16 @@
       <tbody>
         <tr *ngFor="let report of reports">
           <td>{{ report.user.username }}</td>
-
+<!--
           <td *ngIf="report.trail">
             {{ report.trail.mountain }}
           </td>
           <td *ngIf="!report.mountain">
-          </td>
+          </td> -->
 
 
           <!-- IF -->
-          <td *ngIf="report.trail; else: noTrail">{{ report.trail.name }}</td>
+          <!-- <td *ngIf="report.trail; else: noTrail">{{ report.trail.name }}</td> -->
           <!-- ELSE -->
           <ng-template #noTrail>
             <td></td>

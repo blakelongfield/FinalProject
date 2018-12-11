@@ -44,10 +44,6 @@ export class HomeComponent implements OnInit {
   rating4 = 4;
   rating5 = 5;
 
-
-
-
-
   // FUNCTIONS
   // LOAD ALL REPORTS
   loadReports() {
@@ -70,8 +66,8 @@ export class HomeComponent implements OnInit {
       err => {
         console.error('Observer got error: ' + err);
       }
-    );
-  }
+      );
+    }
   //// REVRSE SORT BY LIST
   public reverseNameList() {
 
