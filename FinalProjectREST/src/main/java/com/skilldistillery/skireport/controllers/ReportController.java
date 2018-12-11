@@ -65,6 +65,7 @@ public class ReportController {
 	@PostMapping("reports/trails/{trailId}")
 	public Report createReportOnTrail(@RequestBody Report report, @PathVariable("trailId") int trailId, Principal principal) {
 		Integer mountainId = null;
+		System.out.println("hi");
 		return rServ.create(report, principal.getName(), trailId, mountainId);
 	}
 	
