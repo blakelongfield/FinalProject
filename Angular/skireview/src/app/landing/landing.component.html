@@ -1,13 +1,11 @@
-
-
 <h1 id="title">Slope Spot</h1>
-<video  id="vid1" autoplay loop>
+<video id="vid1" autoplay loop>
   <source src="assets/slopespot4.mp4" />
 </video>
 <div id="selectMTNHome">
   <h3>Select Mountain:</h3>
   <div class="form-group">
-    <select class="form-control" name="mountain"  (change)="selectMountain(mtnId)" [(ngModel)]="mtnId">
+    <select class="form-control" name="mountain" (change)="selectMountain(mtnId)" [(ngModel)]="mtnId">
       <option *ngFor="let mountain of mountains" value="{{mountain.id}}">{{mountain.name}}</option>
     </select>
   </div>
@@ -15,42 +13,83 @@
 
 
 
-      <div>
-          <div id="recentReports" class="row"> <!-- ROW -->
-            <h1> Recent Reports</h1>
+<div>
+  <div id="recentReports" class="row">
+    <!-- ROW -->
+    <h1> Recent Reports</h1>
 
-            <table class="table table-striped table-hover">
-              <thead class="thead-dark">
-                <tr>
-                  <th>Username</th>
-                  <th>Mountain</th>
-                  <th>Trail</th>
-                  <th>Report text</th>
-                  <th>Rating</th>
-                  <th>Date</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr *ngFor="let report of reports">
-                  <td>{{ report.user.username }}</td>
+    <table class="table table-striped table-hover">
+      <thead class="thead-dark">
+        <tr>
+          <th>Username</th>
+          <th>Mountain</th>
+          <th>Trail</th>
+          <th>Report text</th>
+          <th>Rating</th>
+          <th>Date</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let report of reports">
+          <td>{{ report.user.username }}</td>
 
-                  <td *ngIf="report.trail">
-                    {{ report.trail.mountain }}
-                  </td>
-                  <td *ngIf="!report.mountain">
-                    </td>
+          <td *ngIf="report.trail">
+            {{ report.trail.mountain }}
+          </td>
+          <td *ngIf="!report.mountain">
+          </td>
 
 
-                  <!-- IF -->
-                  <td *ngIf="report.trail; else: noTrail">{{ report.trail.name }}</td>
-                  <!-- ELSE -->
-                  <ng-template #noTrail> <td></td> </ng-template>
+          <!-- IF -->
+          <td *ngIf="report.trail; else: noTrail">{{ report.trail.name }}</td>
+          <!-- ELSE -->
+          <ng-template #noTrail>
+            <td></td>
+          </ng-template>
 
-                  <td>{{ report.reportText }}</td>
-                  <td>{{ report.rating }}</td>
-                  <td>{{ report.dateCreated}}</td>
-                </tr>
-              </tbody>
-            </table>
-          </div> <!-- ROW -->
-        </div>
+          <td>{{ report.reportText }}</td>
+          <td>{{ report.rating }}</td>
+          <td>{{ report.dateCreated}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div> <!-- ROW -->
+</div>
+
+<div id="about">
+  <h1>About Slope Spot</h1>
+  <br>
+  <p>We all love to either ski or snowbaord, but had the same problem. With many moutains in Colorado having well over a 100 trails, how can we decide? This was how Slope Spot was born. Built for riders by riders. Each trail on every mountain can be given a report on daily condition, if the difficulty rating is true, closures, and over all expierence. This will enable riders to get the most out of there day and hit the trails that suit them best. <strong>You decide, is the gnar on par? </strong></p>
+  <p></p>
+
+
+</div>
+  <div id="grouppics" class="row">
+
+    <div class="col offset-1">
+      <h3 id="blake" >Blake Longfield</h3>
+      <img id="aboutPics" src="assets/blake.jpg" width=200px; height=200px; alt="">
+    </div>
+
+    <div class="col">
+      <h3 id="tyler" >Tyler Paladini</h3>
+      <img id="aboutPics" src="assets/tyler.jpg" width=200px; height=200px; alt="">
+    </div>
+
+    <div class="col">
+      <h3 id="kyle" >Kyle Paladini</h3>
+      <img  id="aboutPics"src="assets/kyleJerry.jpg" width=200px; height=200px; alt="">
+    </div>
+
+    <div  class="col">
+      <h3 id="zach" >Zach Lamb</h3>
+      <img  id="aboutPics" src="assets/zach.jpg" width=200px; height=200px; alt="">
+
+    </div>
+  </div>
+
+
+
+
+
+
