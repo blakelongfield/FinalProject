@@ -135,19 +135,21 @@ export class HomeComponent implements OnInit {
 
   // SELECT MOUTAIN AND SHOW REPORTS
   selectMountain( id ) {
-    console.log(id);
+    console.log('new mountaind id' + id);
 
 
     this.mtnServ.show(id).subscribe(
       mountain => {
       this.selectedMTN = mountain;
       console.log(mountain.averageAnnualSnowfall);
+      console.log(this.selectedMTN.id + '&************');
       this.sortedTrails = this.selectedMTN.trails;
       },
       err => {
         console.error('Observer got error: ' + err);
       }
     );
+
     this.mountainReports(id);
 
   }
@@ -313,11 +315,11 @@ export class HomeComponent implements OnInit {
     ) { }
 
   ngOnInit() {
+    this.mtnId = this.activeRouter.snapshot.paramMap.get('id');
+    this.selectMountain( this.mtnId);
     this.loadReports();
     this.loadUsers();
     this.loadMountains();
-    this.mtnId = this.activeRouter.snapshot.paramMap.get('id');
-    this.selectMountain( this.mtnId);
 
 
 

@@ -1,29 +1,44 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <a class="navbar-brand" [routerLink]="['/home']">Slope Spot</a>
+  <a id="navtext" class="navbar-brand" [routerLink]="['/home']">Slope Spot</a>
 
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation" (click)="isCollapsed = !isCollapsed" [attr.aria-expanded]="!isCollapsed">
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarNavAltMarkup" [ngbCollapse]='isCollapsed'>
     <div class="navbar-nav">
-      <a class="nav-item nav-link active" [routerLink]="['/home']">Home <span class="sr-only">(current)</span></a>
+      <a id="navtext" class="nav-item nav-link active" [routerLink]="['/home']">Home <span class="sr-only">(current)</span></a>
       <div *ngIf="checkLogin()">
-        <a class="nav-item nav-link" [routerLink]="['/profile']">Profile</a>
+        <a  id="navtext" class="nav-item nav-link" [routerLink]="['/profile']">Profile</a>
       </div>
       <div *ngIf="!checkLogin()">
-        <a class="nav-item nav-link" [routerLink]="['/register']">Register</a>
+        <a  id="navtext" class="nav-item nav-link" [routerLink]="['/register']">Register</a>
       </div>
       <div *ngIf="checkAdmin()">
         <a class="nav-item nav-link" [routerLink]="['/admin']">Admin</a>
       </div>
 
+      <div class="row">
+      <div id="selectMTNHome">
+          <div class="form-group">
+              <label>Select Mountain:</label>
+            <select class="form-control" name="mountain" (change)="selectMountain(mtnId)" [(ngModel)]="mtnId">
+              <option *ngFor="let mountain of mountains" value="{{mountain.id}}">{{mountain.name}}</option>
+            </select>
+          </div>
+        </div>
+      </div>
 
 
-      <div *ngIf="!checkLogin()" >
+
+
+
+
+
+      <div id="login" *ngIf="!checkLogin()" >
         <app-login></app-login>
       </div>
       <!-- <a id="loginTab" class="nav-item nav-link" [routerLink]="['/login']">Login</a> -->
-      <div *ngIf="checkLogin()">
+      <div id="logout" *ngIf="checkLogin()">
 
         <app-logout></app-logout>
 
