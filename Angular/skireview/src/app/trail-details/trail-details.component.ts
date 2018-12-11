@@ -1,3 +1,4 @@
+import { AuthService } from './../auth.service';
 import { Comment } from './../models/comment';
 import { Component, OnInit } from '@angular/core';
 import { TrailDetailsService } from '../trail-details.service';
@@ -37,9 +38,13 @@ export class TrailDetailsComponent implements OnInit {
   rating4 = 4;
   rating5 = 5;
 
-
-  // tslint:disable-next-line:max-line-length
-  constructor(private trailDetailsService: TrailDetailsService, private reportService: ReportService, private commentService: CommentService, private activeRouter: ActivatedRoute, private route: Router) { }
+  constructor(
+    private trailDetailsService: TrailDetailsService,
+    private reportService: ReportService,
+    private commentService: CommentService,
+    private activeRouter: ActivatedRoute,
+    private route: Router,
+    private authService: AuthService) { }
 
   ngOnInit() {
     this.trailId = this.activeRouter.snapshot.paramMap.get('id');
@@ -360,6 +365,9 @@ export class TrailDetailsComponent implements OnInit {
     }
   }
 
+  checkLogin() {
+    return this.authService.checkLogin();
+  }
 }
 
 

@@ -26,48 +26,53 @@
           <p>{{report.votes}} people found this report helpful</p>
           <p>rating on trail: {{report.rating}}</p>
           <p>{{report.user.username}}: {{report.reportText}}</p>
-          <button class="btn btn-success" type="submit" (click)="selectAReport(report)">More..</button>
+          <button class="btn btn-secondary btn-sm" type="submit" (click)="selectAReport(report)">More</button>
         </div>
 
         <br>
+
         <h4>Create New Report</h4>
-        <textarea rows="4" cols="50" name="comment" form="usrform" placeholder="Is the gnar on par today?" [(ngModel)]="newReport.reportText" [value]="newReportValue">
-            </textarea><br>
+        <div *ngIf="!checkLogin()">
+          <h6>Please login to create a new report</h6>
+        </div>
+        <div *ngIf="checkLogin()">
+          <textarea rows="4" cols="50" name="comment" form="usrform" placeholder="Is the gnar on par today?" [(ngModel)]="newReport.reportText" [value]="newReportValue">
+              </textarea><br>
 
-        <span>
-          <span (click)="ratingsubmit1()" *ngIf="rating1 === 1">
-            <img width=30px; height=30px; src="assets/skiB.png" alt="greyski"> </span>
-          <span (click)="ratingsubmit1()" *ngIf="rating1 === 0">
-            <img width=30px; height=30px; src="assets/ski2.png" alt="colorski"> </span>
-        </span>
+          <span>
+            <span (click)="ratingsubmit1()" *ngIf="rating1 === 1">
+              <img width=30px; height=30px; src="assets/skiB.png" alt="greyski"> </span>
+            <span (click)="ratingsubmit1()" *ngIf="rating1 === 0">
+              <img width=30px; height=30px; src="assets/ski2.png" alt="colorski"> </span>
+          </span>
 
-        <span>
-          <span (click)="ratingsubmit2()" *ngIf="rating2 === 2">
-            <img width=30px; height=30px; src="assets/skiB.png" alt="greyski"> </span>
-          <span (click)="ratingsubmit2()" *ngIf="rating2 === 0">
-            <img width=30px; height=30px; src="assets/ski2.png" alt="colorski"> </span>
-        </span>
-        <span>
-          <span (click)="ratingsubmit3()" *ngIf="rating3 === 3">
-            <img width=30px; height=30px; src="assets/skiB.png" alt="greyski"> </span>
-          <span (click)="ratingsubmit3()" *ngIf="rating3 === 0">
-            <img width=30px; height=30px; src="assets/ski2.png" alt="colorski"> </span>
-        </span>
-        <span>
-          <span (click)="ratingsubmit4()" *ngIf="rating4 === 4">
-            <img width=30px; height=30px; src="assets/skiB.png" alt="greyski"> </span>
-          <span (click)="ratingsubmit4()" *ngIf="rating4 === 0">
-            <img width=30px; height=30px; src="assets/ski2.png" alt="colorski"> </span>
-        </span>
-        <span>
-          <span (click)="ratingsubmit5()" *ngIf="rating5 === 5">
-            <img width=30px; height=30px; src="assets/skiB.png" alt="greyski"> </span>
-          <span (click)="ratingsubmit5()" *ngIf="rating5 === 0">
-            <img width=30px; height=30px; src="assets/ski2.png" alt="colorski"> </span>
-        </span>
-
-        <br>
-        <button class="btn btn-success" (click)="createReportOnTrail()">Submit</button>
+          <span>
+            <span (click)="ratingsubmit2()" *ngIf="rating2 === 2">
+              <img width=30px; height=30px; src="assets/skiB.png" alt="greyski"> </span>
+            <span (click)="ratingsubmit2()" *ngIf="rating2 === 0">
+              <img width=30px; height=30px; src="assets/ski2.png" alt="colorski"> </span>
+          </span>
+          <span>
+            <span (click)="ratingsubmit3()" *ngIf="rating3 === 3">
+              <img width=30px; height=30px; src="assets/skiB.png" alt="greyski"> </span>
+            <span (click)="ratingsubmit3()" *ngIf="rating3 === 0">
+              <img width=30px; height=30px; src="assets/ski2.png" alt="colorski"> </span>
+          </span>
+          <span>
+            <span (click)="ratingsubmit4()" *ngIf="rating4 === 4">
+              <img width=30px; height=30px; src="assets/skiB.png" alt="greyski"> </span>
+            <span (click)="ratingsubmit4()" *ngIf="rating4 === 0">
+              <img width=30px; height=30px; src="assets/ski2.png" alt="colorski"> </span>
+          </span>
+          <span>
+            <span (click)="ratingsubmit5()" *ngIf="rating5 === 5">
+              <img width=30px; height=30px; src="assets/skiB.png" alt="greyski"> </span>
+            <span (click)="ratingsubmit5()" *ngIf="rating5 === 0">
+              <img width=30px; height=30px; src="assets/ski2.png" alt="colorski"> </span>
+          </span>
+          <br>
+          <button class="btn btn-success btn-sm" (click)="createReportOnTrail()">Submit</button>
+        </div>
       </div>
 
       <!-- SHOW COMMENTS AND ADD NEW COMMENT -->
@@ -82,7 +87,6 @@
           </span>
         </div>
         <br>
-        <br>
 
         <form *ngIf="theReport">
           <div>
@@ -92,8 +96,10 @@
               <span (click)="reportNotHelpful(theReport, theReport.id)"> <img width=40px; height=40px; src="assets/thumbsDown.png"
                   alt="downVote"> </span>
                   <br></div>
-          <textarea rows="3" cols="30" name="newCommentOnReport" form="usrform" placeholder="Reply to report" [(ngModel)]="newCommentOnReport.commentText" [value]="newCommentValue"></textarea>
-          <button type="submit" name="submit" (click)="createCommentOnReport()">Submit</button>
+          <div *ngIf="checkLogin()">
+            <textarea rows="3" cols="30" name="newCommentOnReport" form="usrform" placeholder="Reply to report" [(ngModel)]="newCommentOnReport.commentText" [value]="newCommentValue"></textarea>
+            <button class="btn btn-success btn-sm" type="submit" name="submit" (click)="createCommentOnReport()">Submit</button>
+          </div>
         </form>
 
       </div>
