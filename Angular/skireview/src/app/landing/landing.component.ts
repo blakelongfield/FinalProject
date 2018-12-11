@@ -59,6 +59,7 @@ loadReports() {
   this.reportServ.index().subscribe(
     reports => {
       this.reports = reports;
+      this.reports.reverse();
     },
     err => {
       console.error('Observer got error: ' + err);

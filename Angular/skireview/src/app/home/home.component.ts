@@ -49,6 +49,7 @@ export class HomeComponent implements OnInit {
   loadReports() {
     this.reportServ.index().subscribe(
       reports => {
+        console.log('hiiiiasdfoasdf');
         this.reports = reports;
       },
       err => {
@@ -316,9 +317,6 @@ export class HomeComponent implements OnInit {
     this.loadReports();
     this.loadUsers();
     this.loadMountains();
-
-
-
   }
 
   public showMap() {
