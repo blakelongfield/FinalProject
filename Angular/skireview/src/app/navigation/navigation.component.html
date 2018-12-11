@@ -7,9 +7,12 @@
   <div class="collapse navbar-collapse" id="navbarNavAltMarkup" [ngbCollapse]='isCollapsed'>
     <div class="navbar-nav">
       <a class="nav-item nav-link active" [routerLink]="['/home']">Home <span class="sr-only">(current)</span></a>
-      <a class="nav-item nav-link" [routerLink]="['/profile']">Profile</a>
-      <a class="nav-item nav-link" [routerLink]="['/register']">Register</a>
-
+      <div *ngIf="checkLogin()">
+        <a class="nav-item nav-link" [routerLink]="['/profile']">Profile</a>
+      </div>
+      <div *ngIf="!checkLogin()">
+        <a class="nav-item nav-link" [routerLink]="['/register']">Register</a>
+      </div>
       <div *ngIf="checkAdmin()">
         <a class="nav-item nav-link" [routerLink]="['/admin']">Admin</a>
       </div>
