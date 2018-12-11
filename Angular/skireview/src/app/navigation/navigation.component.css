@@ -1,3 +1,50 @@
 #loginTab {
   padding-left: 1050px;
 }
+#logout{
+position: relative;
+left:660%;
+}
+#navtext{
+  position: relative;
+  font-size: 30px;
+}
+
+#login{
+  position: relative;
+  left:220%;
+  }
+  #selectMTNHome{
+    position: relative;
+    margin-left: 7%;
+    top:25%;
+
+  }
+  label {
+    position:absolute;
+    z-index:1;
+    height:40px;
+    line-height:40px;
+    pointer-events:none;
+    text-indent:10px;
+    font-weight:bold;
+}
+select {
+  padding-left:150px;
+  height:35px;
+  position:relative;
+  border:1px solid #333;
+  width:300px;
+  display:block;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -o-appearance: none;
+  -ms-appearance: none;
+  border-radius: 0;
+  -webkit-box-shadow: none;
+}
+
+
+
+
