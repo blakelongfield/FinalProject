@@ -3,8 +3,14 @@
 }
 #logout{
 position: relative;
-left:660%;
+left:260%;
+padding-top:1%;
 }
+#logout2{
+  position: relative;
+  left:170%;
+  padding-top:1%;
+  }
 #navtext{
   position: relative;
   font-size: 30px;
@@ -12,7 +18,9 @@ left:660%;
 
 #login{
   position: relative;
-  left:220%;
+  left:100%;
+  padding-top:1%;
+
   }
   #selectMTNHome{
     position: relative;

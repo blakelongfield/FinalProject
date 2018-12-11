@@ -13,7 +13,7 @@
       <div *ngIf="!checkLogin()">
         <a  id="navtext" class="nav-item nav-link" [routerLink]="['/register']">Register</a>
       </div>
-      <div *ngIf="checkAdmin()">
+      <div id="navtext" *ngIf="checkAdmin()">
         <a class="nav-item nav-link" [routerLink]="['/admin']">Admin</a>
       </div>
 
@@ -43,6 +43,11 @@
         <app-logout></app-logout>
 
       </div>
+      <div id="logout2" *ngIf="checkLogin() && checkAdmin() ">
+
+          <app-logout></app-logout>
+
+        </div>
       <!-- <a class="nav-item nav-link" [routerLink]="['/logout']">Logout</a> -->
     </div>
   </div>
