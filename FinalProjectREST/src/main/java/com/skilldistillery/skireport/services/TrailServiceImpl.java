@@ -34,13 +34,12 @@ public class TrailServiceImpl implements TrailService {
 	public List<Trail> sortBy( String searchParam, Integer mid) {
 		
 		List<Trail> trails = trailRepo.findByMountainId(mid);
-		//List<Trail> sorted = new ArrayList<>();
 		
 		if( searchParam.equals("Name")) {
 		TrailSortByName sort = new TrailSortByName();
 		Collections.sort(trails, sort);
-			
 		}
+		
 		else if(searchParam.equals("Difficulty")) {
 		TrailSortByDifficulty sortDiff = new TrailSortByDifficulty();
 		Collections.sort(trails, sortDiff);
@@ -52,12 +51,7 @@ public class TrailServiceImpl implements TrailService {
 			TrailSortByFeature sortFeature = new TrailSortByFeature();
 			for (int i = 0; i < trails.size() -1; i++) {
 				if(trails.get(i).getFeatures() != null ) {
-					// adds trails with features  to new featureList array
 					featureList.add(trails.get(i));
-					// removes null trails from original trails list
-					//trails.remove(trails.get(i));
-					
-					
 				}
 			}
 			trails = featureList;
